@@ -1103,6 +1103,47 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
   .inventory-stats .kpi-value{font-size:21px}
   .inventory-stats .kpi-icon{width:24px;height:24px}
 }
+
+/* v7.8.7 — inventario: tre importi con dettaglio apribile */
+.inventory-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:26px}
+.inventory-stats .inventory-kpi{appearance:none;display:block;position:relative;width:100%;font:inherit;text-align:left;cursor:pointer;transition:box-shadow .18s,border-color .18s,transform .18s;background:#fff;border:1.5px solid #c7dbe4}
+.inventory-stats .inventory-kpi:nth-child(1){border-color:#87c9ba}
+.inventory-stats .inventory-kpi:nth-child(2){border-color:#db9ea7}
+.inventory-stats .inventory-kpi:nth-child(3){border-color:#a9c8dc}
+.inventory-stats .inventory-kpi:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(21,65,86,.11)}
+.inventory-stats .inventory-kpi:focus-visible{outline:3px solid #168d85;outline-offset:3px}
+.inventory-stats .inventory-kpi .kpi-top{min-height:32px;margin-bottom:12px}
+.inventory-stats .inventory-kpi .kpi-value{white-space:nowrap;overflow-wrap:normal;font-size:clamp(22px,2.4vw,31px)}
+.inventory-kpi-foot{display:flex;align-items:center;gap:5px;font-size:12px;color:#267c7c;margin-top:12px;font-weight:650}
+.inventory-kpi-foot svg{width:13px;height:13px}
+.inventory-legacy-note{margin:-10px 0 25px;border:1px solid #e0bd7c;border-radius:13px;padding:12px 14px;background:#fff;color:#4c6575;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;line-height:1.5}
+.inventory-legacy-note[hidden]{display:none}
+.inventory-legacy-note strong{color:#644e2c}
+.inventory-legacy-note button{flex:none;appearance:none;border:1px solid #c6a365;color:#856329;background:#fff;border-radius:9px;padding:9px 11px;font:inherit;font-weight:700;cursor:pointer}
+.inventory-legacy-note button:hover{background:#fffaf0}
+.inventory-breakdown-list{display:grid;gap:10px}
+.inventory-breakdown-row{border:1px solid #d2e2e9;border-radius:13px;background:#fff;padding:14px 15px;display:grid;gap:8px}
+.inventory-breakdown-row-header{display:flex;align-items:start;justify-content:space-between;gap:10px}
+.inventory-breakdown-row-header strong{color:#24465a;font-size:15px;min-width:0;overflow-wrap:anywhere}
+.inventory-breakdown-row-header b{font-size:16px;color:#173d52;white-space:nowrap}
+.inventory-breakdown-meta{font-size:13px;line-height:1.6;color:#617d8e}
+.inventory-breakdown-summary{margin:0 0 15px;padding:13px 14px;border:1px solid #cee0e9;border-radius:12px;background:#fff;display:flex;justify-content:space-between;align-items:center;gap:10px;color:#49697c}
+.inventory-breakdown-summary strong{font-size:19px;color:#183d52;white-space:nowrap}
+.inventory-recovery-update{border:1px solid #b8d5dc;border-radius:9px;background:#f8fcfd;color:#246d78;padding:8px 10px;font-weight:680;font-size:13px;justify-self:start;cursor:pointer}
+.inventory-recovery-update:hover{background:#eef9f9}
+.inventory-recovery-unknown{color:#986d28;font-weight:650}
+@media(max-width:900px){.inventory-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}}
+@media(max-width:620px){
+ .inventory-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .inventory-stats .inventory-kpi{min-height:122px;padding:15px 14px}
+ .inventory-stats .inventory-kpi:nth-child(3){grid-column:1/-1;min-height:105px}
+ .inventory-stats .inventory-kpi .kpi-top{font-size:12px;min-height:42px}
+ .inventory-stats .inventory-kpi:nth-child(3) .kpi-top{min-height:24px}
+ .inventory-stats .inventory-kpi .kpi-value{font-size:clamp(22px,5.4vw,28px)}
+ .inventory-legacy-note{align-items:stretch;flex-direction:column}
+ .inventory-legacy-note button{align-self:flex-start}
+}
+@media(max-width:350px){.inventory-stats .inventory-kpi{padding:12px 10px}.inventory-stats .inventory-kpi .kpi-top{font-size:11px}.inventory-stats .inventory-kpi .kpi-value{font-size:22px}}
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
 <symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></symbol>
@@ -1170,7 +1211,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 <div class="older-wrap" hidden="" id="olderWrap"><p class="older-note">Solo esiti e informazioni storiche. Nessun video o fotogramma disponibile dopo 72 ore.</p><div class="card analysis-list-card" id="olderAlerts"></div></div>
 </div>
 </section>
-<section aria-label="Inventario" class="screen" id="page-inventory"><div class="page-header"><h1 class="page-title">Inventario</h1><button class="teal-btn inventory-head-btn" id="addItem"><svg><use href="#i-plus"></use></svg>Aggiungi prodotto</button></div><div class="inventory-stats" id="inventoryKpis"></div><div class="section-head"><h2>Prodotti registrati</h2><button class="text-action" id="exportInventory">Esporta CSV</button></div><div class="card"><div class="table-wrap desktop-table"><table aria-label="Merce registrata" class="data-table inventory-table"><thead><tr><th>Prodotto</th><th>Segnalazione</th><th>Quantità</th><th>Valore</th><th>Recupero</th><th></th></tr></thead><tbody id="inventoryTable"></tbody></table></div><div class="compact-rows" id="inventoryCardsMobile"></div></div></section>
+<section aria-label="Inventario" class="screen" id="page-inventory"><div class="page-header"><h1 class="page-title">Inventario</h1><button class="teal-btn inventory-head-btn" id="addItem"><svg><use href="#i-plus"></use></svg>Aggiungi prodotto</button></div><div class="inventory-stats" id="inventoryKpis"></div><div class="inventory-legacy-note" id="inventoryLegacyNote" hidden></div><div class="section-head"><h2>Prodotti registrati</h2><button class="text-action" id="exportInventory">Esporta CSV</button></div><div class="card"><div class="table-wrap desktop-table"><table aria-label="Merce registrata" class="data-table inventory-table"><thead><tr><th>Prodotto</th><th>Segnalazione</th><th>Quantità</th><th>Valore</th><th>Recupero</th><th></th></tr></thead><tbody id="inventoryTable"></tbody></table></div><div class="compact-rows" id="inventoryCardsMobile"></div></div></section>
 <section aria-label="Guida operativa" class="screen" id="page-guide">
 <div class="page-header"><h1 class="page-title">Guida operativa</h1></div>
 <p class="guide-page-summary">Indicazioni chiare per verificare le segnalazioni e agire in sicurezza.</p>
@@ -1375,13 +1416,38 @@ function renderAnalysis(){
  $('olderAlerts').innerHTML=older.map(a=>rowHtml(a,true)).join('')||'<div class="empty">Nessun esito precedente per questo filtro.</div>';
 }
 function itemValue(i){return i.qty*i.price;}
+function inventoryTotals(){
+ const sum=items=>Math.round(items.reduce((acc,i)=>acc+Math.round(itemValue(i)*100),0))/100;
+ const recovered=state.inventory.filter(i=>i.recovery==='yes');
+ const notRecovered=state.inventory.filter(i=>i.recovery==='no');
+ const unclassified=state.inventory.filter(i=>i.recovery!=='yes'&&i.recovery!=='no');
+ return {recovered,notRecovered,unclassified,totalValue:sum(state.inventory),recoveredValue:sum(recovered),notRecoveredValue:sum(notRecovered),unclassifiedValue:sum(unclassified)};
+}
+function inventoryKpi(label,amount,iconName,type){
+ return `<button type="button" class="kpi-card inventory-kpi" data-inventory-breakdown="${type}" aria-label="Visualizza prodotti: ${esc(label)}, ${money(amount)}"><span class="kpi-top"><span>${esc(label)}</span><span class="kpi-icon ${type==='total'?'blue':type==='notRecovered'?'amber':''}">${icon(iconName)}</span></span><span class="kpi-value">${money(amount)}</span><span class="inventory-kpi-foot">Vedi prodotti ${icon('arrow')}</span></button>`;
+}
+function inventoryRecoveryLabel(i){return i.recovery==='yes'?'Sì':i.recovery==='no'?'No':'Non specificato';}
 function renderInventory(){
- let total=state.inventory.reduce((sum,i)=>sum+itemValue(i),0),recovered=state.inventory.filter(i=>i.recovery==='yes').reduce((sum,i)=>sum+itemValue(i),0),loss=state.inventory.filter(i=>i.recovery==='no').reduce((sum,i)=>sum+itemValue(i),0),unknown=state.inventory.filter(i=>i.recovery!=='yes'&&i.recovery!=='no').reduce((sum,i)=>sum+itemValue(i),0);
- $('inventoryKpis').innerHTML=kpi('Merce recuperata',money(recovered),'check','')+kpi('Merce non recuperata',money(loss),'box','amber')+kpi('Valore merce da verificare',money(unknown),'search','blue')+kpi('Valore complessivo',money(total),'analysis','blue');
- 
- const rec=i=>({yes:'Sì',no:'No',unknown:'Non noto'}[i.recovery]||'Non noto');
- $('inventoryTable').innerHTML=state.inventory.map(i=>`<tr><td><strong>${esc(i.name)}</strong></td><td>${esc(i.alertId||i.eventId||'Senza alert')}</td><td>${i.qty}</td><td><strong>${money(itemValue(i))}</strong></td><td>${rec(i)}</td><td><button class="trash-btn" aria-label="Elimina ${esc(i.name)}" data-remove="${esc(i.id)}">${icon('trash')}</button></td></tr>`).join('')||'<tr><td colspan="6" class="empty">Nessun prodotto registrato.</td></tr>';
- $('inventoryCardsMobile').innerHTML=state.inventory.map(i=>`<div class="compact-row"><div><strong>${esc(i.name)}</strong><small>${esc(i.alertId||i.eventId||'Senza alert')} · Quantità: ${i.qty}</small><small>Recuperata: ${rec(i)}</small></div><div class="right"><strong>${money(itemValue(i))}</strong><button class="trash-btn" data-remove="${esc(i.id)}" aria-label="Elimina ${esc(i.name)}">${icon('trash')}</button></div></div>`).join('')||'<div class="empty">Nessun prodotto registrato.</div>';
+ const totals=inventoryTotals();
+ $('inventoryKpis').innerHTML=inventoryKpi('Merce recuperata',totals.recoveredValue,'check','recovered')+inventoryKpi('Merce non recuperata',totals.notRecoveredValue,'box','notRecovered')+inventoryKpi('Valore complessivo',totals.totalValue,'analysis','total');
+ const legacy=$('inventoryLegacyNote');
+ legacy.hidden=totals.unclassified.length===0;
+ legacy.innerHTML=totals.unclassified.length?`<span><strong>${money(totals.unclassifiedValue)} senza indicazione di recupero.</strong> Completa l'esito dei ${totals.unclassified.length} prodotti già registrati per classificarli correttamente.</span><button type="button" data-inventory-breakdown="unclassified">Completa recupero</button>`:'';
+ $('inventoryTable').innerHTML=state.inventory.map(i=>`<tr><td><strong>${esc(i.name)}</strong></td><td>${esc(i.alertId||i.eventId||'Senza alert')}</td><td>${i.qty}</td><td><strong>${money(itemValue(i))}</strong></td><td>${inventoryRecoveryLabel(i)}${i.recovery!=='yes'&&i.recovery!=='no'?` <button type="button" class="inventory-recovery-update" data-inventory-classify="${esc(i.id)}">Specifica</button>`:''}</td><td><button class="trash-btn" aria-label="Elimina ${esc(i.name)}" data-remove="${esc(i.id)}">${icon('trash')}</button></td></tr>`).join('')||'<tr><td colspan="6" class="empty">Nessun prodotto registrato.</td></tr>';
+ $('inventoryCardsMobile').innerHTML=state.inventory.map(i=>`<div class="compact-row"><div><strong>${esc(i.name)}</strong><small>${esc(i.alertId||i.eventId||'Senza alert')} · Quantità: ${i.qty}</small><small>Recuperata: ${inventoryRecoveryLabel(i)}</small>${i.recovery!=='yes'&&i.recovery!=='no'?`<button type="button" class="inventory-recovery-update" data-inventory-classify="${esc(i.id)}" style="margin-top:9px">Specifica recupero</button>`:''}</div><div class="right"><strong>${money(itemValue(i))}</strong><button class="trash-btn" data-remove="${esc(i.id)}" aria-label="Elimina ${esc(i.name)}">${icon('trash')}</button></div></div>`).join('')||'<div class="empty">Nessun prodotto registrato.</div>';
+}
+function openInventoryBreakdown(type){
+ const totals=inventoryTotals();
+ const defs={recovered:['Merce recuperata',totals.recovered,totals.recoveredValue],notRecovered:['Merce non recuperata',totals.notRecovered,totals.notRecoveredValue],total:['Valore complessivo',state.inventory,totals.totalValue],unclassified:['Recupero da completare',totals.unclassified,totals.unclassifiedValue]};
+ const def=defs[type];if(!def)return;
+ const [title,items,total]=def;
+ const list=items.length?items.map(i=>`<div class="inventory-breakdown-row"><div class="inventory-breakdown-row-header"><strong>${esc(i.name)}</strong><b>${money(itemValue(i))}</b></div><div class="inventory-breakdown-meta">${esc(i.alertId||i.eventId||'Senza alert')} · Quantità: ${i.qty} · Valore unitario: ${money(i.price)}<div>Merce recuperata: <span class="${i.recovery==='unknown'?'inventory-recovery-unknown':''}">${inventoryRecoveryLabel(i)}</span></div></div>${i.recovery!=='yes'&&i.recovery!=='no'?`<button type="button" class="inventory-recovery-update" data-inventory-classify="${esc(i.id)}">Specifica recupero</button>`:''}</div>`).join(''):'<p class="guide-empty">Nessun prodotto in questa categoria.</p>';
+ const notice=type==='total'&&totals.unclassified.length?`<p class="hint">Nel totale sono inclusi ${money(totals.unclassifiedValue)} di prodotti il cui recupero non è ancora specificato.</p>`:'';
+ openModal(title,`<div class="inventory-breakdown-summary"><span>Totale ${esc(title.toLowerCase())}</span><strong>${money(total)}</strong></div>${notice}<div class="inventory-breakdown-list">${list}</div>`,'inventorybreakdown');
+}
+function openClassifyRecovery(id){
+ const item=state.inventory.find(i=>i.id===id);if(!item)return;
+ openModal('Esito recupero',`<form id="classifyRecoveryForm" data-item-id="${esc(item.id)}"><p class="manual-help"><strong>${esc(item.name)}</strong> · ${money(itemValue(item))}</p><div class="form-group"><label>La merce è stata recuperata?</label><div class="form-check-grid"><label><input type="radio" name="recovery" value="yes" ${item.recovery==='yes'?'checked':''} required> Sì</label><label><input type="radio" name="recovery" value="no" ${item.recovery==='no'?'checked':''} required> No</label></div></div><div class="form-actions"><button type="button" class="outline-btn" data-close="1">Annulla</button><button type="submit" class="primary-btn">Salva esito</button></div></form>`,'inventoryclassify');
 }
 
 function render(){renderHome();renderAnalysis();renderInventory();renderGuidePage();if(activeIncomingAlertId){const a=alertById(activeIncomingAlertId);if(!a||a.status!=='pending'||clipExpired(a))hideIncomingNotification();}}
@@ -1617,7 +1683,7 @@ function openAddItem(preselect=''){
  let options=`<option value="manual">Nuovo furto accertato senza segnalazione del sistema</option>`
   +manualEvents.map((id,n)=>`<option value="manual-existing:${esc(id)}">Aggiungi a furto manuale già registrato ${n+1}</option>`).join('')
   +confirmed.map(a=>`<option value="${esc(a.id)}" ${a.id===preselect?'selected':''}>${esc(a.id)} · ${formatDate(a.ts)} · ${esc(a.camera)}</option>`).join('');
- let h=`<form id="itemForm"><div class="form-group"><label for="alertSelect">Collegamento</label><select id="alertSelect" required>${options}</select></div><div class="form-group"><label for="itemName">Prodotto</label><input type="text" id="itemName" autocomplete="off" maxlength="85" placeholder="Es. Prodotto cosmetico" required></div><div class="form-grid"><div class="form-group"><label for="itemQty">Quantità</label><input type="number" id="itemQty" min="1" max="100000" step="1" value="1" required></div><div class="form-group"><label for="itemPrice">Valore unitario (€)</label><input type="number" id="itemPrice" min="0" max="1000000" step="0.01" placeholder="0,00" required></div></div><div class="form-group"><label>Merce recuperata?</label><div class="form-check-grid"><label><input type="radio" name="recovery" value="yes"> Sì</label><label><input type="radio" name="recovery" value="no"> No</label><label><input type="radio" name="recovery" value="unknown" checked> Non noto</label></div></div><p class="hint">Registra soltanto furti effettivamente accertati.</p><div class="form-actions"><button type="button" class="outline-btn" data-close="1">Annulla</button><button class="primary-btn" type="submit">Salva prodotto</button></div></form>`;
+ let h=`<form id="itemForm"><div class="form-group"><label for="alertSelect">Collegamento</label><select id="alertSelect" required>${options}</select></div><div class="form-group"><label for="itemName">Prodotto</label><input type="text" id="itemName" autocomplete="off" maxlength="85" placeholder="Es. Prodotto cosmetico" required></div><div class="form-grid"><div class="form-group"><label for="itemQty">Quantità</label><input type="number" id="itemQty" min="1" max="100000" step="1" value="1" required></div><div class="form-group"><label for="itemPrice">Valore unitario (€)</label><input type="number" id="itemPrice" min="0" max="1000000" step="0.01" placeholder="0,00" required></div></div><div class="form-group"><label>Merce recuperata? <span aria-hidden="true">*</span></label><div class="form-check-grid"><label><input type="radio" name="recovery" value="yes" required> Sì</label><label><input type="radio" name="recovery" value="no" required> No</label></div></div><p class="hint">Registra soltanto furti effettivamente accertati.</p><div class="form-actions"><button type="button" class="outline-btn" data-close="1">Annulla</button><button class="primary-btn" type="submit">Salva prodotto</button></div></form>`;
  openModal('Registra prodotto',h,'inventoryform');
 }
 
@@ -1678,6 +1744,8 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
  if(btn.id==='homeGuide'){selectedAlertId=btn.dataset.homeId;openProcedure('home');return;}
  if(btn.id==='homePlay'){notify('Riproduzione video non ancora disponibile.');return;}
  if(btn.dataset.filter){filter=btn.dataset.filter;renderAnalysis();return;}
+ if(btn.dataset.inventoryBreakdown){openInventoryBreakdown(btn.dataset.inventoryBreakdown);return;}
+ if(btn.dataset.inventoryClassify){openClassifyRecovery(btn.dataset.inventoryClassify);return;}
  if(btn.dataset.remove){if(window.confirm('Eliminare questo prodotto dall’inventario?')){state.inventory=state.inventory.filter(i=>i.id!==btn.dataset.remove);save();render();notify('Prodotto eliminato');}return;}
  if(btn.dataset.status){saveStatus(btn.dataset.status);return;}
  if(btn.id==='homeDeterrence'){openDeterrence(btn.dataset.homeId,'home');return;}
@@ -1713,12 +1781,19 @@ document.addEventListener('submit',async e=>{
  if(e.target.id==='dismissForm'){
    e.preventDefault();const inp=e.target.querySelector('input[name="reason"]:checked');commitDismiss(inp?inp.value:'');return;
  }
+ if(e.target.id==='classifyRecoveryForm'){
+   e.preventDefault();
+   const item=state.inventory.find(i=>i.id===e.target.dataset.itemId);
+   const recovery=e.target.querySelector('input[name="recovery"]:checked')?.value;
+   if(!item||!['yes','no'].includes(recovery)){notify('Seleziona Sì oppure No');return;}
+   item.recovery=recovery;save();closeModal();renderInventory();nav('inventory');notify('Recupero aggiornato');return;
+ }
  if(e.target.id==='itemForm'){
    e.preventDefault();let selection=$('alertSelect').value,qty=Number($('itemQty').value),price=Number($('itemPrice').value),name=$('itemName').value.trim();
-   let recovery=e.target.querySelector('input[name="recovery"]:checked')?.value||'unknown';
+   let recovery=e.target.querySelector('input[name="recovery"]:checked')?.value;
    const manualExisting=selection.startsWith('manual-existing:');
    const linked=selection!=='manual'&&!manualExisting;
-   if(!name||(manualExisting&&!state.inventory.some(i=>i.eventId===selection.slice(16)&&!i.alertId))||(linked&&(!alertById(selection)||alertById(selection).status!=='confirmed'))||!Number.isInteger(qty)||qty<1||qty>1e5||!Number.isFinite(price)||price<0||price>1e6){notify('Controlla i dati inseriti');return;}
+   if(!['yes','no'].includes(recovery)||!name||(manualExisting&&!state.inventory.some(i=>i.eventId===selection.slice(16)&&!i.alertId))||(linked&&(!alertById(selection)||alertById(selection).status!=='confirmed'))||!Number.isInteger(qty)||qty<1||qty>1e5||!Number.isFinite(price)||price<0||price>1e6){notify('Controlla i dati inseriti');return;}
    const eventId=linked?selection:manualExisting?selection.slice(16):'MAN-'+Date.now();
    state.inventory.unshift({id:'INV-'+Date.now()+'-'+Math.floor(Math.random()*10000),alertId:linked?selection:'',eventId,name,qty,price,recovery});
    if(linked)recordAction(alertById(selection),'Prodotto registrato in inventario');
