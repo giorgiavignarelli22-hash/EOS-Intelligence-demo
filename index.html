@@ -89,7 +89,8 @@ body{background:var(--bg);color:var(--ink)}
 .guide-step .step-num{width:27px;height:27px}
 .guide-step h3{font-size:12px;font-weight:720;color:#244e69;margin:0 0 4px}
 .guide-step p{font-size:12px;color:#5f7889;line-height:1.65;margin:0}
-.guide-scenario-list{display:grid;gap:9px}.guide-scenario-list details{border:1px solid #dfe9ee;border-radius:10px;background:#fff;overflow:hidden}
+.quick-guide-shell{display:grid;gap:18px}.quick-guide-hero{background:linear-gradient(180deg,#fbfefe 0%,#f4fbfb 100%);border:1px solid #d6ecec;border-radius:16px;padding:18px 18px 17px;box-shadow:0 8px 22px rgba(22,66,92,.04)}
+.quick-guide-label{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#e8f7f5;color:#167f7f;font-size:11px;font-weight:760;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}.quick-guide-hero h3{margin:0 0 8px;font-size:20px;line-height:1.25;color:#193f53;font-weight:760;letter-spacing:-.03em}.quick-guide-hero p{margin:0;font-size:14px;line-height:1.65;color:#5d7989}.quick-guide-steps{display:grid;gap:12px}.quick-guide-step{display:flex;align-items:flex-start;gap:14px;padding:16px 16px 15px;border:1px solid #dfeaf0;border-radius:16px;background:#fff;box-shadow:0 6px 18px rgba(23,71,96,.04)}.quick-guide-step .step-num{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#e7f7f5;color:#238a87;font-size:17px;font-weight:760}.quick-guide-step h4{margin:0 0 4px;font-size:18px;line-height:1.35;color:#22465a;font-weight:730}.quick-guide-step p{margin:0;font-size:14px;line-height:1.65;color:#5d7888}.quick-guide-safety{border:1px solid #f1d4d7;border-left:5px solid #d97773;background:#fff6f6;border-radius:16px;padding:16px 16px 15px;box-shadow:0 6px 18px rgba(117,49,49,.04)}.quick-guide-safety h4{margin:0 0 6px;font-size:17px;line-height:1.3;color:#9b5556;font-weight:740}.quick-guide-safety p{margin:0;font-size:14px;line-height:1.7;color:#935f5f}.quick-guide-actions{display:grid;gap:10px}.quick-guide-actions .primary-btn,.quick-guide-actions .outline-btn{width:100%;justify-content:center}.quick-guide-actions .primary-btn svg,.quick-guide-actions .outline-btn svg{width:16px;height:16px}.quick-guide-actions .outline-btn{border-color:#cddde6;color:#35576a;background:#fff}.quick-guide-actions .outline-btn:hover{background:#f6fbfd;border-color:#b9cfdb}.quick-guide-actions .primary-btn{background:#0f3553}.quick-guide-actions .primary-btn:hover{background:#0c2d46}.quick-guide-linknote{font-size:13px;color:#6d8795;margin-top:-4px}.guide-scenario-list{display:grid;gap:9px}.guide-scenario-list details{border:1px solid #dfe9ee;border-radius:10px;background:#fff;overflow:hidden}
 .guide-scenario-list summary{cursor:pointer;list-style:none;padding:15px 16px;display:flex;align-items:center;justify-content:space-between;gap:11px;color:#254f6a;font-weight:700;font-size:12px}
 .guide-scenario-list summary::-webkit-details-marker{display:none}.guide-scenario-list summary svg{width:17px;height:17px;color:#168f91}
 .guide-scenario-list details[open]{border-color:#b6dadf;background:#fafdfe}
@@ -293,7 +294,7 @@ body.login-mode .app,body.login-mode .bottom-nav{display:none}
 .demo-tools{border-top:1px solid #ecf1f3;margin-top:8px;padding:15px 4px 0}.demo-tools summary{font-size:11px;color:#78919e;cursor:pointer}.demo-tools p{font-size:11px;color:#79909c;line-height:1.6;margin:12px 0 3px}
 .support-destination{border:1px solid #dcebec;background:#f6fbfb;border-radius:10px;padding:11px 13px;display:grid;gap:4px;margin-bottom:18px}
 .support-destination span{font-size:11px;color:#718c9d}.support-destination strong{font-size:13px;color:#26576c;overflow-wrap:anywhere}
-.support-feedback{color:#1e7779;border:1px solid #cce9e7;background:#eff9f6;border-radius:8px;padding:11px;font-size:12px;line-height:1.55}.support-copy-fallback{width:100%;border:1px solid #dae7e9;border-radius:8px;margin-top:10px;min-height:135px;padding:12px;color:#425e6f;font-size:11px}
+.support-feedback{color:#1e7779;border:1px solid #cce9e7;background:#eff9f6;border-radius:8px;padding:11px;font-size:12px;line-height:1.55}
 @media(max-width:1100px){.guide-dashboard .guide-steps-grid{grid-template-columns:1fr}}
 @media(max-width:900px){.topbar{display:flex;height:73px;justify-content:space-between}.guide-section-card{scroll-margin-top:15px}}
 @media(max-width:620px){.topbar{height:69px}.guide-section-card{padding:18px 16px}.guide-section-card>h2{font-size:15px;margin-bottom:16px}.guide-jump{gap:6px;margin-bottom:18px}.guide-jump a{font-size:11px;padding:8px 10px}.guide-dashboard .guide-scenario-list,.guide-dashboard .faq-list{grid-template-columns:1fr}.guide-dashboard{gap:13px}.privacy-fact{padding:13px 12px;gap:11px}.privacy-fact p{font-size:11px}.account-field{align-items:flex-start}.account-field span{flex:0 0 110px}.account-field strong{min-width:0}}
@@ -466,9 +467,9 @@ body.login-mode .app,body.login-mode .bottom-nav{display:none}
 .support-destination span{font-size:13px}
 .support-destination strong{font-size:15px}
 .support-actions{align-items:center;flex-wrap:wrap}
-.support-send-note{font-size:12px;line-height:1.55;color:#526f81;margin:10px 0 0}
+
 .support-feedback{font-size:13px}
-.support-copy-fallback{font-size:13px;border-color:#a7c5d2}
+
 .account-fields{border-color:#bcd1dd}
 @media(min-width:901px){
   .main .muted,.main .stat-note,.main .kpi-foot{font-size:14px}
@@ -533,11 +534,306 @@ body.login-mode .app,body.login-mode .bottom-nav{display:none}
 @media (max-width: 900px) {
   #loginUser, #loginPassword, #page-guide #guideSearch,
   .form-group input, .form-group select, .form-group textarea,
-  #supportCopyFallback { font-size: 16px; }
+  #supportForm textarea { font-size: 16px; }
 }
 @media (max-width: 480px) {
   #page-guide .guide-card-description { font-size: 15px; }
   #page-guide .guide-page-summary { font-size: 15px; }
+}
+
+/* EOS Intelligence 7.6.2 — Supporto: one clear action and a tighter hierarchy */
+.dialog.support-dialog{width:min(100%,520px)}
+.dialog.support-dialog .dialog-head{padding:18px 21px;border-bottom:1.5px solid #c9dbe4}
+.dialog.support-dialog .dialog-head h2{font-size:19px;font-weight:700;color:#1c3a4f}
+.dialog.support-dialog .dialog-body{padding:22px}
+#supportForm .support-destination{display:flex;align-items:baseline;flex-wrap:wrap;column-gap:10px;row-gap:3px;padding:11px 14px;margin-bottom:18px;background:#f7fafc;border:1.5px solid #bed5e1;border-radius:10px}
+#supportForm .support-destination span{font-size:12px;font-weight:600;color:#687e8d}
+#supportForm .support-destination strong{font-size:14px;font-weight:650;color:#244d64}
+#supportForm .form-group{gap:8px;margin-bottom:16px}
+#supportForm .form-group label{font-size:14px;font-weight:650;color:#38576a}
+#supportForm .form-group input,#supportForm .form-group select,#supportForm .form-group textarea{border:1.5px solid #b5cbd8;background:#fff;border-radius:10px;color:#203f54}
+#supportForm .form-group input,#supportForm .form-group select{height:48px;min-height:48px}
+#supportForm .form-group textarea{height:116px;min-height:116px;line-height:1.5;padding:12px 14px;resize:vertical}
+#supportForm .form-group input:focus,#supportForm .form-group select:focus,#supportForm .form-group textarea:focus{border-color:#138e9c;box-shadow:0 0 0 3px rgba(19,142,156,.13)}
+#supportForm .support-actions{display:flex;justify-content:stretch;margin-top:21px}
+#supportForm .support-actions button{width:100%;height:49px;min-height:49px;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-size:15px;font-weight:700;border-radius:11px}
+#supportForm .support-feedback{margin-top:12px;padding:11px 13px;font-size:13px;line-height:1.5}
+@media(max-width:900px){
+ .dialog.support-dialog .dialog-head{padding:17px 20px}
+ .dialog.support-dialog .dialog-body{padding:19px 20px calc(20px + env(safe-area-inset-bottom))}
+ #supportForm .form-group input,#supportForm .form-group select,#supportForm .form-group textarea{font-size:16px}
+}
+@media(max-width:380px){
+ #supportForm .support-destination strong{font-size:13px}
+}
+
+/* ---------------------------------------------------------------
+   EOS Intelligence 7.7 — unified visual system across the whole app
+   Principle: one scale, one border language, restrained semantic color
+   --------------------------------------------------------------- */
+:root{
+  --ink:#173b50;
+  --ink-2:#36566a;
+  --muted:#607b8b;
+  --line:#cfdee6;
+  --bg:#f5f8fb;
+  --blue:#153b53;
+  --blue-soft:#f0f6f9;
+  --teal:#15998f;
+  --teal-deep:#0b817e;
+  --teal-wash:#e8f7f4;
+  --red:#ca6a70;
+  --red-soft:#fff4f4;
+  --amber:#b17a35;
+  --amber-soft:#fff6e8;
+  --eos-radius:14px;
+  --eos-radius-sm:11px;
+  --eos-border:#cadbe5;
+  --eos-shadow:0 8px 28px rgba(17,55,78,.047);
+  --shadow:var(--eos-shadow);
+}
+html,body{color:var(--ink);background:var(--bg);font-size:15px}
+strong{font-weight:680}
+button,select,input,textarea{font-family:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #2daaa4;outline-offset:3px}
+/* Unified section hierarchy and navigation */
+.page-header{margin-bottom:22px}
+.page-title{font-size:27px;font-weight:700;letter-spacing:-.65px;color:#193f55}
+.section-head h2,.chart-head h2{font-size:17px;color:#20465c;font-weight:700}
+.mini-subtle,.section-head .mini-subtle{font-size:12px;color:var(--muted)}
+.sidebar{border-right:1px solid #d5e3e9;background:#fff}
+.nav-btn{font-size:14px;min-height:48px;color:#567386;border-radius:12px;font-weight:560}
+.nav-btn.active{color:#087e7d;background:#e6f6f3;box-shadow:inset 3px 0 0 #20a79f;font-weight:700}
+.nav-btn:hover:not(.active){background:#f2f7fa;color:#264f69}
+.sidebar-utility{border-top-color:#dbe7ed}
+.sidebar-utility .nav-btn{font-size:14px}
+/* Shared surface: one visible, restrained edge */
+.card,.kpi-card,.home-featured,.small-chart,
+#page-guide .guide-search-bar,#page-guide .guide-fundamentals,
+#page-guide .guide-content-section,#page-guide .guide-procedure-heading,
+#page-guide .guide-detail-block,#page-guide .guide-procedure-card,
+#page-guide .guide-accordion,#page-guide .guide-avoid-list>div,
+#page-guide .privacy-fact,.inventory-stats .kpi-card,
+.guide-section-card,.quick-guide-hero,.quick-guide-step,
+.account-fields,.deterrence-panel,.support-destination{
+  border-color:var(--eos-border);
+  border-radius:var(--eos-radius);
+}
+.card,.kpi-card,.home-featured,.small-chart,
+#page-guide .guide-content-section,#page-guide .guide-procedure-heading,
+#page-guide .guide-procedure-card,.guide-section-card{
+  box-shadow:var(--eos-shadow);
+}
+/* KPIs throughout Home, Analysis and Inventory */
+.kpi-grid{gap:14px}
+.kpi-card{padding:20px 21px;min-height:115px}
+.kpi-top{font-size:13px;color:#496a7f;font-weight:680;margin-bottom:17px;line-height:1.35}
+.kpi-value{font-size:32px;font-weight:740;color:#173e53}
+.kpi-foot{font-size:13px;line-height:1.45;color:#668394}
+.kpi-icon{width:36px;height:36px;border-radius:11px}
+.kpi-icon svg{width:18px;height:18px}
+.home-kpis .kpi-card{padding:19px 18px;min-height:116px}
+.home-kpis .kpi-top{font-size:13px;line-height:1.3;margin-bottom:14px;gap:8px}
+.home-kpis .kpi-value{font-size:30px}
+.analysis-kpis .kpi-card{padding:18px;min-height:105px}
+.analysis-kpis .kpi-top{font-size:13px;margin-bottom:13px}
+.analysis-kpis .kpi-value{font-size:28px}
+.inventory-stats .kpi-card{padding:20px}
+/* Tables, alerts and filters */
+.alert-name{font-size:15px;font-weight:710;line-height:1.45;color:#23465c}
+.alert-meta,.alert-sub,.clip-indicator{font-size:12px;color:#688295;line-height:1.5}
+.alert-row{border-bottom-color:#e1ebef;padding:17px 19px}
+.alert-row:hover{background:#f5fafc}
+.alert-media{border:1px solid #deeaef;border-radius:11px}
+.badge{font-size:11px;font-weight:720;border-radius:7px;padding:6px 9px;line-height:1.15}
+.badge.pending,.badge.not_evaluable{border:1px solid #f0d7af}
+.badge.confirmed{border:1px solid #c0e9df}
+.badge.dismissed,.badge.expired{border:1px solid #d9e4e9}
+.filter-chip{border:1px solid #c5d8e1;min-height:38px;border-radius:10px;padding:8px 12px;color:#466c82;font-size:13px;font-weight:650}
+.filter-chip.active{border-color:#6dbdb7;background:#e8f7f5;color:#0b7374}
+.line-btn{min-height:39px;border-color:#bcd2de;border-radius:10px;font-size:13px;padding:8px 13px;color:#365b72}
+.data-table th{font-size:13px;font-weight:700;color:#4b6a7d;padding:15px 18px;border-bottom:1px solid #cfdee6}
+.data-table td{font-size:14px;color:#456478;padding:17px 18px;border-bottom:1px solid #e2ebef;line-height:1.5}
+.chart-head h2{font-size:17px}
+.chart-axis span{font-size:12px;color:#607e90}
+.older-plain-row{border-color:#e1ebf0}
+.older-plain-row .line-btn{font-size:12px}
+.alert-action-history p{font-size:13px;color:#668294}
+/* Consistent action hierarchy: blue primary, pale secondary, teal help */
+.primary-btn,.login-submit,.home-alert-buttons .home-confirm{background:#133d57;border-color:#133d57;color:#fff}
+.primary-btn,.outline-btn,.teal-btn,.line-btn,.home-alert-buttons button,
+.account-logout,.login-submit,.support-actions button{
+  border-radius:var(--eos-radius-sm);
+  font-size:14px;
+  font-weight:700;
+  transition:background-color .16s,border-color .16s,box-shadow .16s,transform .12s;
+}
+.primary-btn,.outline-btn,.teal-btn{min-height:45px;display:inline-flex;justify-content:center;align-items:center;gap:9px;padding:11px 17px}
+.primary-btn:hover,.login-submit:hover,.home-alert-buttons .home-confirm:hover{background:#0e3047;border-color:#0e3047}
+.outline-btn{border:1px solid #bcd2dd;color:#335870;background:#fff}
+.outline-btn:hover{background:#f0f7fa;border-color:#8fb6c8}
+.teal-btn{background:#168d85;border-color:#168d85}
+.teal-btn:hover{background:#0f7f78;border-color:#0f7f78}
+.text-action,.home-history-link,.guide-back{font-size:14px;font-weight:710;color:#087f7b}
+.text-action:hover,.home-history-link:hover{text-decoration:underline}
+.trash-btn{color:#758f9f;border-radius:9px}
+.trash-btn:hover{background:#fff1f2;color:#b94a59}
+/* Home primary surfaces */
+.home-featured{overflow:hidden}
+.home-featured-head{padding:20px 23px}
+.home-featured-head h2{font-size:20px;font-weight:710}
+.home-featured-eyebrow{font-size:11px;letter-spacing:.075em;color:#be6160}
+.home-alert-facts{font-size:13px;color:#527184;border-color:#dfebf0}
+.home-alert-buttons{border-top:1px solid #e5edf1;gap:10px}
+.home-alert-buttons button{min-height:47px;height:auto;padding:10px 13px}
+.home-alert-buttons .home-dismiss{color:#335a72;background:#fff;border-color:#b8cfdb}
+.home-alert-buttons .home-guide-btn{background:#edf6f9;color:#285b72;border:1px solid #c8dfe8}
+.home-alert-buttons .home-deterrence-btn{background:#fff;border:1px solid #b8cfdb;color:#315b72}
+.home-alert-buttons .home-guide-btn:hover,.home-alert-buttons .home-deterrence-btn:hover{background:#eaf5f6;border-color:#77bcb8}
+.home-history-link{font-size:14px}
+/* All dialog shells use the same header, border and spacing */
+.modal-backdrop{background:rgba(14,39,56,.43);backdrop-filter:blur(3px)}
+.dialog{border:1px solid #a9c4d2;border-radius:17px;box-shadow:0 26px 70px rgba(13,40,60,.24)}
+.dialog-head{padding:19px 22px;background:#fafcfe;border-top:4px solid #235a75;border-bottom:1px solid #d3e2e9}
+.dialog-head h2,.dialog.support-dialog .dialog-head h2{font-size:20px;line-height:1.3;color:#1b4056;font-weight:740;letter-spacing:-.35px}
+.dialog-body{padding:23px;line-height:1.55}
+.dialog-close{width:39px;height:39px;border-radius:11px;border:1px solid #e1e9ee;background:#f2f7f9;color:#607f90}
+.dialog-close:hover{background:#e6f1f5;color:#29546d}
+.detail-summary h3{font-size:18px;color:#204a61}
+.detail-summary p,.detail-fields,.field-pair{font-size:14px}
+.detail-video{border:1px solid #d1e0e7;border-radius:13px}
+.manual-help{border-color:#d5e5ed;border-radius:11px;font-size:14px;line-height:1.65}
+.dismiss-reasons label{border-color:#d2e1e8;border-radius:11px;font-size:14px}
+/* Account, deterrence and confirmation details */
+.account-fields{overflow:hidden;background:#f8fbfd}
+.account-field{padding:16px;font-size:14px;border-color:#dbe6ec;gap:12px}
+.account-field span{color:#597688}
+.account-field strong{color:#24485c}
+#passwordFormContainer{border:1px solid #c8dae3;border-radius:13px;background:#f8fbfd;padding:18px}
+.account-change,.account-logout{font-size:14px}
+.account-logout{border-color:#e9c5c9;color:#a9545e}
+.deterrence-panel{padding:21px 22px;background:#f8fcfd;border-color:#c9dfe7}
+.deterrence-label{font-size:14px;color:#27536a}
+.deterrence-script{font-size:19px;line-height:1.6;color:#1f475c;font-weight:580;padding:21px 0}
+.deterrence-panel .primary-btn{min-height:48px;font-size:15px}
+.deterrence-note{font-size:13px;color:#617e90;line-height:1.6}
+.voice-hint{font-size:12px;color:#64818e}
+/* Form controls are equal in Login, Support, Account and Inventory */
+.login-panel{border:1px solid #c5d8e2;border-radius:20px;box-shadow:0 20px 62px rgba(19,55,78,.10)}
+.login-field label{font-size:14px;color:#2b4c61}
+.login-input{border:1.5px solid #bcd0db;border-radius:12px;background:#f7fafc}
+.login-input input{font-size:16px}
+.login-input:focus-within{border-color:#149b98;box-shadow:0 0 0 3px rgba(26,162,155,.14)}
+.login-submit{font-size:16px;min-height:53px;border-radius:12px}
+.form-group{gap:8px;margin-bottom:17px}
+.form-group label,#supportForm .form-group label{font-size:14px;font-weight:690;color:#35586e}
+.form-group input,.form-group select,.form-group textarea,
+#supportForm .form-group input,#supportForm .form-group select,#supportForm .form-group textarea{
+  border:1.5px solid #b8cfdc;border-radius:11px;background:#fff;
+  color:#21465a;font-size:16px;min-height:47px;
+}
+.form-group textarea,#supportForm .form-group textarea{min-height:116px;line-height:1.6;padding:13px}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus,
+#supportForm .form-group input:focus,#supportForm .form-group select:focus,#supportForm .form-group textarea:focus{border-color:#168e93;box-shadow:0 0 0 3px rgba(22,156,148,.13)}
+.support-destination,#supportForm .support-destination{border-color:#b8d2df;background:#f6fafc;border-radius:12px}
+#supportForm .support-actions button{min-height:48px;font-size:15px}
+.support-feedback{border-radius:10px}
+.form-actions{gap:10px;margin-top:20px}
+.form-actions button{min-height:45px}
+/* The Guide remains reference design, including quick guide */
+#page-guide .guide-card-title{font-weight:720}
+#page-guide .guide-card-description{color:#5a7587}
+#page-guide .guide-procedure-card{border-color:#cbdee7}
+#page-guide .guide-accordion{border-color:#cadde7}
+#page-guide .guide-card-action{color:#087e7b}
+#page-guide .guide-jump button{border-radius:11px;font-weight:680}
+#page-guide .guide-accordion summary{font-weight:690}
+#page-guide .guide-detail-block h3{font-weight:720}
+.quick-guide-hero{border-color:#c7e1e3}
+.quick-guide-step{border-color:#cfdee6;box-shadow:0 7px 22px rgba(14,55,79,.045)}
+.quick-guide-step h4{font-weight:720}
+.quick-guide-safety{border-color:#edcbd0;border-left-color:#c86a71;background:#fff6f6}
+/* Accessibility, dynamic states */
+button:active{transform:translateY(1px)}
+button[disabled]:active{transform:none}
+@media(min-width:901px){
+ .main{padding-left:42px;padding-right:42px}
+ .page-title{font-size:27px}
+ #page-guide .guide-page-summary{font-size:15px}
+ .alert-meta{font-size:13px}
+ .analysis-kpis .kpi-card{min-height:121px}
+}
+@media(max-width:900px){
+ .page-title{font-size:23px}
+ .dialog{border-radius:18px 18px 0 0}
+ .dialog-head{padding:17px 20px}
+ .dialog-body{padding:20px 20px calc(22px + env(safe-area-inset-bottom))}
+ .bottom-nav{border-top:1px solid #cbdde6;box-shadow:0 -8px 22px rgba(25,59,80,.075)}
+ .bottom-nav button{font-size:11px;color:#577687}
+ .bottom-nav button.active{color:#0a8581}
+ .home-kpis .kpi-card{min-height:107px}
+ .home-kpis .kpi-top{font-size:12px}
+ .home-kpis .kpi-value{font-size:26px}
+ .analysis-kpis .kpi-top{font-size:12px}
+ .alert-name{font-size:14px}
+ .alert-meta{font-size:12px}
+ .login-panel{border-radius:17px}
+ .quick-guide-step h4{font-size:17px}
+}
+@media(max-width:620px){
+ .page-title{font-size:22px}
+ .dialog-head h2,.dialog.support-dialog .dialog-head h2{font-size:19px}
+ .dialog-close{width:38px;height:38px}
+ .home-featured-head{padding:18px}
+ .home-featured-head h2{font-size:18px}
+ .home-alert-facts{font-size:12px}
+ .home-alert-buttons button{font-size:12px;padding:9px 8px;min-height:46px}
+ .home-kpis .kpi-card{padding:14px 10px;min-height:102px}
+ .home-kpis .kpi-top{font-size:11px}
+ .home-kpis .kpi-value{font-size:25px}
+ .analysis-kpis .kpi-card{padding:13px 10px}
+ .analysis-kpis .kpi-top{font-size:11px}
+ .analysis-kpis .kpi-value{font-size:25px}
+ .kpi-grid{gap:9px}
+ .alert-row{padding:13px 11px}
+ .alert-name{font-size:13px}
+ .alert-meta{font-size:11px}
+ .filter-chip{font-size:12px;padding:7px 10px}
+ .data-table td{font-size:13px}
+ .form-actions{flex-wrap:wrap}
+ .dialog-body{padding:19px 18px calc(22px + env(safe-area-inset-bottom))}
+ .deterrence-script{font-size:18px}
+ .quick-guide-hero h3{font-size:18px}
+ .quick-guide-step h4{font-size:16px}
+ .quick-guide-step p,.quick-guide-hero p,.quick-guide-safety p{font-size:14px}
+}
+@media(max-width:380px){
+ .kpi-grid.home-kpis{gap:6px}
+ .home-kpis .kpi-card{padding:12px 8px}
+ .home-kpis .kpi-top{font-size:10.5px}
+ .home-kpis .kpi-value{font-size:23px}
+ .dialog-body{padding-left:15px;padding-right:15px}
+ .login-panel{padding-left:20px;padding-right:20px}
+}
+
+/* v7.7 final pass — consistent three-column inventory scorecard */
+.inventory-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:none;gap:14px;margin-bottom:26px}
+.inventory-stats .kpi-card{min-width:0;min-height:118px;padding:19px 19px}
+.inventory-stats .kpi-top{font-size:13px;line-height:1.3;min-height:33px;margin-bottom:13px}
+.inventory-stats .kpi-value{font-size:30px;letter-spacing:-.7px;white-space:nowrap}
+@media(max-width:620px){
+ .inventory-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:22px}
+ .inventory-stats .kpi-card{min-height:105px;padding:12px 9px;border-radius:13px}
+ .inventory-stats .kpi-top{font-size:11px;line-height:1.3;min-height:29px;gap:4px;margin-bottom:11px}
+ .inventory-stats .kpi-value{font-size:22px;letter-spacing:-.9px}
+ .inventory-stats .kpi-icon{width:25px;height:25px;border-radius:8px}
+ .inventory-stats .kpi-icon svg{width:14px;height:14px}
+}
+@media(max-width:350px){
+ .inventory-stats{gap:6px}
+ .inventory-stats .kpi-card{padding:11px 7px}
+ .inventory-stats .kpi-top{font-size:10.3px}
+ .inventory-stats .kpi-value{font-size:20px}
 }
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
@@ -741,7 +1037,7 @@ function renderInventory(){
 
 function render(){renderHome();renderAnalysis();renderInventory();renderGuidePage();}
 function nav(target){if(!['home','analysis','inventory','guide'].includes(target))return;screen=target;document.querySelectorAll('.screen').forEach(el=>el.classList.toggle('active',el.id==='page-'+target));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===target));window.scrollTo({top:0,behavior:'instant'});}
-function openModal(title,html,type,wide=false){lastFocus=document.activeElement;modal=type;$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('dialog').classList.toggle('wide',wide);$('modalRoot').classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>$('closeModal').focus(),40);}
+function openModal(title,html,type,wide=false){lastFocus=document.activeElement;modal=type;$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('dialog').classList.toggle('wide',wide);$('dialog').classList.toggle('support-dialog',type==='support');$('modalRoot').classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>$('closeModal').focus(),40);}
 function closeMobileAux(){let el=$('mobileAuxMenu'),toggle=$('mobileAuxToggle');if(el)el.hidden=true;if(toggle)toggle.setAttribute('aria-expanded','false');}
 function toggleMobileAux(){const el=$('mobileAuxMenu');if(!el)return;el.hidden=!el.hidden;$('mobileAuxToggle').setAttribute('aria-expanded',String(!el.hidden));}
 function closeModal(){if(modal==='deterrence'){stopDeterrenceAudio();}let r=$('modalRoot');r.classList.remove('open');document.body.style.overflow='';modal='';selectedAlertId=null;if(lastFocus&&document.contains(lastFocus))lastFocus.focus();}
@@ -812,11 +1108,23 @@ function commitDismiss(reason){
  }
 
 const PROCEDURE=`
-<div class="guide-step"><span class="step-num">1</span><div><h3>Controlla il video</h3><p>Osserva il gesto e considera il contesto che la clip permette di vedere.</p></div></div>
-<div class="guide-step"><span class="step-num">2</span><div><h3>Agisci con discrezione</h3><p>Se necessario coinvolgi il responsabile, seguendo le procedure autorizzate dal negozio.</p></div></div>
-<div class="guide-step"><span class="step-num">3</span><div><h3>Registra la verifica</h3><p>Conferma o scarta la segnalazione. Registra prodotti soltanto per furti effettivamente accertati.</p></div></div>
-<div class="soft-warning"><strong>Sicurezza:</strong> non esporti a rischi. In caso di minaccia, applica il piano di emergenza; se c'è un'emergenza reale, chiama il 112.</div>
-<button class="text-action" id="goCompleteGuide">Apri guida completa ${icon('arrow')}</button>`;
+<div class="quick-guide-shell">
+  <div class="quick-guide-hero">
+    <span class="quick-guide-label">Guida rapida</span>
+    <h3>Tre passaggi chiari per gestire una segnalazione.</h3>
+    <p>Consulta il video, agisci con discrezione e registra correttamente l’esito senza appesantire l’operatività.</p>
+  </div>
+  <div class="quick-guide-steps">
+    <div class="quick-guide-step"><span class="step-num">1</span><div><h4>Controlla il video</h4><p>Osserva il gesto e il contesto che la clip consente realmente di vedere.</p></div></div>
+    <div class="quick-guide-step"><span class="step-num">2</span><div><h4>Agisci con discrezione</h4><p>Se necessario coinvolgi il responsabile seguendo soltanto le procedure autorizzate.</p></div></div>
+    <div class="quick-guide-step"><span class="step-num">3</span><div><h4>Registra la verifica</h4><p>Conferma o scarta la segnalazione e registra prodotti soltanto per furti accertati.</p></div></div>
+  </div>
+  <div class="quick-guide-safety"><h4>Sicurezza prima di tutto</h4><p>Non esporti a rischi. In caso di minaccia applica il piano di emergenza del punto vendita; se c’è un’emergenza reale, chiama il 112.</p></div>
+  <div class="quick-guide-actions">
+    <button class="primary-btn" id="goCompleteGuide">Apri guida completa ${icon('arrow')}</button>
+    __BACK__
+  </div>
+</div>`;
 const GUIDELINES=[
  'Le segnalazioni AI richiedono sempre una valutazione umana: non identificano persone e non provano automaticamente un furto.',
  'Le clip si consultano soltanto con accessi e strumenti aziendali autorizzati.',
@@ -953,7 +1261,7 @@ function renderGuidePage(){
  if(guideTab==='procedures'&&!guideActiveProcedure)filterGuideProcedures();
 }
 function openGuide(){closeModal();nav('guide');}
-function openProcedure(origin='detail'){procedureOrigin=origin;openModal('Procedura operativa',PROCEDURE+`<button class="outline-btn" id="backToAlert" style="margin-top:15px;width:100%">${origin==='home'?'Torna alla Home':'Torna alla segnalazione'}</button>`,'procedure');}
+function openProcedure(origin='detail'){procedureOrigin=origin;const backLabel=origin==='home'?'Torna alla Home':'Torna alla segnalazione';const content=PROCEDURE.replace('__BACK__',`<button class="outline-btn" id="backToAlert">${backLabel}</button>`);openModal('Procedura operativa',content,'procedure');}
 
 function openAddItem(preselect=''){
  let confirmed=state.alerts.filter(a=>a.status==='confirmed');
@@ -967,22 +1275,6 @@ function openAddItem(preselect=''){
 
 function supportRequestBody(){
  return 'Email per la risposta: '+$('supportEmail').value.trim()+'\nOggetto: '+$('supportReason').value+'\n\n'+$('supportMessage').value.trim();
-}
-async function copySupportRequest(){
- const email=$('supportEmail'),message=$('supportMessage');
- if(!email || !message)return;
- // The copy button also validates the text before preparing a transferable request.
- if(!email.reportValidity() || !message.reportValidity())return;
- const body=supportRequestBody();
- let copied=false;
- try{if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(body);copied=true;}}catch(ex){}
- const feedback=$('supportDemoFeedback');feedback.hidden=false;
- if(copied){feedback.textContent='Testo copiato negli appunti. Nessuna email è stata inviata.';return;}
- let area=$('supportCopyFallback');
- if(!area){area=document.createElement('textarea');area.id='supportCopyFallback';area.className='support-copy-fallback';area.readOnly=true;area.setAttribute('aria-label','Testo della richiesta pronto da copiare');feedback.after(area);}
- area.value=body;area.focus();area.select();
- try{copied=!!document.execCommand('copy');}catch(ex){}
- feedback.textContent=copied?'Testo copiato negli appunti. Nessuna email è stata inviata.':'Seleziona e copia il testo qui sotto. Nessuna email è stata inviata.';
 }
 function openInfo(which){
  let h='';
@@ -1001,12 +1293,10 @@ function openInfo(which){
  if(which==='support')h=`
  <form id="supportForm">
   <div class="support-destination"><span>Destinatario</span><strong>supporto@eosintelligence.it</strong></div>
-  <div class="form-group"><label for="supportEmail">Email per la risposta</label><input type="email" id="supportEmail" autocomplete="email" placeholder="nome@azienda.it" required></div>
+  <div class="form-group"><label for="supportEmail">La tua email</label><input type="email" id="supportEmail" autocomplete="email" placeholder="nome@azienda.it" required></div>
   <div class="form-group"><label for="supportReason">Oggetto</label><select id="supportReason"><option>Problema tecnico</option><option>Segnalazioni e video</option><option>Accesso all'account</option><option>Altro</option></select></div>
-  <div class="form-group"><label for="supportMessage">Messaggio</label><textarea id="supportMessage" placeholder="Descrivi la richiesta..." required></textarea></div>
-  
-  <div class="form-actions support-actions"><button type="button" class="outline-btn" id="copySupportRequest">Copia testo</button><button type="submit" class="primary-btn">Invia ${icon('arrow')}</button></div>
-  <p class="support-send-note">Si aprirà la tua app email: conferma l’invio da lì. L’indirizzo di supporto dovrà essere attivato per ricevere i messaggi.</p>
+  <div class="form-group"><label for="supportMessage">Messaggio</label><textarea id="supportMessage" placeholder="Descrivi la richiesta..." rows="4" required></textarea></div>
+  <div class="form-actions support-actions"><button type="submit" class="primary-btn">Invia ${icon('arrow')}</button></div>
   <p id="supportDemoFeedback" class="support-feedback" aria-live="polite" hidden></p>
  </form>`;
  if(which==='privacy'){nav('guide');document.getElementById('guide-privacy')?.scrollIntoView({behavior:'smooth',block:'start'});return;}
@@ -1018,7 +1308,6 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
  if(btn.dataset.guideTab){guideTab=btn.dataset.guideTab;guideActiveProcedure=null;guideSearch='';renderGuidePage();return;}
  if(btn.dataset.guideProcedure){guideTab='procedures';guideActiveProcedure=btn.dataset.guideProcedure;renderGuidePage();document.querySelector('#page-guide')?.scrollIntoView({block:'start',behavior:'instant'});return;}
  if(btn.hasAttribute('data-guide-back')){guideTab='procedures';guideActiveProcedure=null;renderGuidePage();document.querySelector('#page-guide')?.scrollIntoView({block:'start',behavior:'instant'});return;}
- if(btn.id==='copySupportRequest'){copySupportRequest();return;}
  if(btn.id==='loginForgot'){notify('Recupero password disponibile dopo il collegamento del servizio di autenticazione.');return;}
  if(btn.id==='logoutDemo'){closeMobileAux();leaveStore();return;}
  if(btn.id==='mobileAuxToggle'){toggleMobileAux();return;}
@@ -1090,7 +1379,7 @@ document.addEventListener('submit',async e=>{
    const link='mailto:supporto@eosintelligence.it?subject='+encodeURIComponent('EOS Intelligence — '+reason)+'&body='+encodeURIComponent(body);
    const feedback=$('supportDemoFeedback');
    feedback.hidden=false;
-   feedback.textContent='Si apre la tua app email. Per inviare la richiesta, premi Invia nell’app di posta. Nessun messaggio è stato spedito dalla dashboard.';
+   feedback.textContent='Completa l’invio nell’app email: nessun messaggio è stato ancora spedito dalla dashboard.';
    window.location.href=link;
    return;
  }
