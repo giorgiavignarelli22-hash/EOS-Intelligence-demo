@@ -449,6 +449,96 @@ body.login-mode .app,body.login-mode .bottom-nav{display:none}
  #page-guide .privacy-fact p{font-size:14px}
 }
 
+
+
+/* 7.6 — higher-contrast edges and readable type without heavy colour blocks. */
+:root{--line:#ccdae2;--shadow:0 7px 25px rgba(24,62,87,.055)}
+.card,.kpi-card{border-color:#c9d8e1}
+.dialog{border:1.5px solid #a9c0cd;box-shadow:0 28px 85px rgba(14,44,65,.22)}
+.dialog-head{border-bottom-color:#cfdfe7}
+.login-input{border-color:#c2d0d9}
+.login-input:focus-within{border-color:#0e9c98;box-shadow:0 0 0 3px rgba(20,166,158,.15)}
+.form-group label{font-size:13px;font-weight:640;color:#486576}
+.form-group input,.form-group select,.form-group textarea{border:1.5px solid #b9cbd6;border-radius:10px;font-size:15px;min-height:45px}
+.form-group textarea{min-height:120px}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#0c9e9a;box-shadow:0 0 0 3px rgba(29,172,162,.14)}
+.support-destination{border:1.5px solid #b7d4e1;background:#f6fafc}
+.support-destination span{font-size:13px}
+.support-destination strong{font-size:15px}
+.support-actions{align-items:center;flex-wrap:wrap}
+.support-send-note{font-size:12px;line-height:1.55;color:#526f81;margin:10px 0 0}
+.support-feedback{font-size:13px}
+.support-copy-fallback{font-size:13px;border-color:#a7c5d2}
+.account-fields{border-color:#bcd1dd}
+@media(min-width:901px){
+  .main .muted,.main .stat-note,.main .kpi-foot{font-size:14px}
+  .main .kpi-label,.main .alert-sub{font-size:15px}
+}
+#page-guide .guide-page-summary{color:#506d7d;font-size:16px}
+#page-guide .guide-jump button{border:1.5px solid #bdd0db;font-size:15px}
+#page-guide .guide-jump button.active{border-color:#168b89;background:#e5f6f3;color:#086d6e}
+#page-guide .guide-search-bar{border:1.5px solid #bdd1dc}
+#page-guide .guide-search-input{border:1.5px solid #bcd0da}
+#page-guide .guide-procedure-card{border:1.5px solid #bfd1dc;box-shadow:0 6px 20px rgba(21,73,96,.045)}
+#page-guide .guide-procedure-card:hover,#page-guide .guide-procedure-card:focus-visible{border-color:#0c9f9a;box-shadow:0 8px 26px rgba(18,113,117,.1)}
+#page-guide .guide-procedure-card:has(.guide-level-critical){border-color:#d58c94;background:linear-gradient(145deg,#fff,#fffcfc)}
+#page-guide .guide-procedure-card:has(.guide-level-attention){border-color:#d4b982}
+#page-guide .guide-level-attention{background:#fff2dc;color:#81571b;border:1px solid #edce95}
+#page-guide .guide-level-critical{background:#ffeff0;color:#a83746;border:1px solid #e4a5ac}
+#page-guide .guide-level-review{background:#eaf4f7;color:#236878;border:1px solid #a7cfda}
+#page-guide .guide-card-description,#page-guide .guide-fundamental{font-size:15px;color:#456677}
+#page-guide .guide-card-title{font-size:18px}
+#page-guide .guide-card-action{font-size:14px}
+#page-guide .guide-card-action svg{transform:rotate(180deg)}
+#page-guide .guide-fundamentals{border:1.5px solid #bfd0da}
+#page-guide .guide-procedure-heading{border:1.5px solid #bdd1db}
+#page-guide .guide-detail-block{border:1.5px solid #bbcfdb}
+#page-guide .guide-detail-block:has(.guide-block-icon.good){border-color:#6eb8ad;background:#fbfffd}
+#page-guide .guide-detail-block:has(.guide-block-icon.bad){border-color:#db8991;background:#fffafa}
+#page-guide .guide-detail-block.guide-stop{border-color:#d78791;background:#fff6f6!important}
+#page-guide .guide-detail-block.guide-support{border-color:#8ebbd0;background:#f8fcfe}
+#page-guide .guide-checklist li{font-size:16px;color:#385b6d}
+#page-guide .guide-note-list{font-size:15px}
+#page-guide .guide-detail-disclaimer{font-size:14px;color:#577181}
+#page-guide .guide-content-section{border:1.5px solid #b9d0dc}
+#page-guide .guide-card-accordions{gap:14px}
+#page-guide .guide-accordion{border:1.5px solid #b8cfdc}
+#page-guide .guide-accordion[open]{border-color:#229f97}
+#page-guide .guide-accordion summary{font-size:16px}
+#page-guide .guide-accordion-body{font-size:16px;color:#3f5f72}
+#page-guide .guide-avoid-list>div{border:1.5px solid #df949c;background:#fffafb;color:#385669}
+#page-guide .guide-safety-note{border:1.5px solid #cf9b7a;background:#fff9f5}
+#page-guide .guide-safety-note svg{color:#bd7454}
+#page-guide .privacy-fact{border-color:#bdd3dd}
+#page-guide .privacy-fact p{font-size:15px}
+@media(max-width:620px){
+  #page-guide .guide-page-summary{font-size:14px}
+  #page-guide .guide-jump button{font-size:13px}
+  #page-guide .guide-card-title{font-size:17px}
+  #page-guide .guide-card-description{font-size:14px}
+  #page-guide .guide-fundamental{font-size:14px}
+  #page-guide .guide-accordion summary{font-size:15px}
+  #page-guide .guide-accordion-body{font-size:15px}
+  #page-guide .guide-checklist li{font-size:15px}
+  #page-guide .guide-note-list{font-size:14px}
+  #page-guide .privacy-fact p{font-size:14px}
+  .form-group label{font-size:13px}
+  .support-actions{flex-direction:column-reverse;align-items:stretch}
+  .support-actions button{width:100%}
+}
+
+
+/* EOS Intelligence v7.6.1 - verification fixes: forward navigation and iOS text inputs */
+#page-guide .guide-card-action svg { transform: none; }
+@media (max-width: 900px) {
+  #loginUser, #loginPassword, #page-guide #guideSearch,
+  .form-group input, .form-group select, .form-group textarea,
+  #supportCopyFallback { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  #page-guide .guide-card-description { font-size: 15px; }
+  #page-guide .guide-page-summary { font-size: 15px; }
+}
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
 <symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></symbol>
@@ -520,7 +610,7 @@ body.login-mode .app,body.login-mode .bottom-nav{display:none}
 <p class="guide-page-summary">Indicazioni chiare per verificare le segnalazioni e agire in sicurezza.</p>
  <nav aria-label="Argomenti della guida" class="guide-jump">
   <button type="button" data-guide-tab="procedures" class="active" aria-pressed="true">Procedure</button>
-  <button type="button" data-guide-tab="situations" aria-pressed="false">Situazioni</button>
+  <button type="button" data-guide-tab="situations" aria-pressed="false">Scenari</button>
   <button type="button" data-guide-tab="avoid" aria-pressed="false">Cosa evitare</button>
   <button type="button" data-guide-tab="faq" aria-pressed="false">FAQ</button>
   <button type="button" data-guide-tab="privacy" aria-pressed="false">Privacy</button>
@@ -733,14 +823,16 @@ const GUIDELINES=[
  'Gli interventi nel punto vendita seguono le procedure approvate dal responsabile.'
 ];
 const SCENARIOS=[
- ['Possibile occultamento in borsa o zaino',
- '<b>Situazione:</b> un movimento potrebbe essere compatibile con l’occultamento, ma può avere altre spiegazioni.<br><b>Come comportarsi:</b> rivedi la clip e, se opportuno, informa il responsabile. Mantieni un’interazione commerciale ordinaria; non imporre l’apertura di borse o zaini né effettuare ispezioni personali.'],
- ['Gesto ambiguo o video poco chiaro',
- '<b>Situazione:</b> manca il contesto necessario o il movimento non è interpretabile con certezza.<br><b>Come comportarsi:</b> non trarre conclusioni. Se le immagini non permettono una valutazione, registra l’esito “Non valutabile”.'],
- ['Presunta manomissione di etichette o confezioni',
- '<b>Situazione:</b> si osserva un gesto che potrebbe riguardare un’etichetta o una confezione.<br><b>Come comportarsi:</b> evita conclusioni sulla sola clip e, se serve, coinvolgi il responsabile. Il modello attuale non classifica autonomamente questo evento.'],
- ['Minacce, aggressività o rischio immediato',
- '<b>Situazione:</b> un comportamento comporta rischi per clienti o personale.<br><b>Come comportarsi:</b> interrompi iniziative potenzialmente conflittuali, mantieni distanza e richiedi l’assistenza prevista. Per un’emergenza reale chiama il 112.']
+ ['Una persona apre la propria borsa davanti allo scaffale',
+ '<b>Cosa si osserva:</b> una persona porta le mani nella borsa dopo essersi fermata davanti a un espositore. Può stare riponendo un oggetto personale.<br><b>Come agire:</b> non presumere un occultamento. Verifica la sequenza completa; se restano elementi concreti da chiarire, informa il responsabile. Non chiedere di aprire la borsa.'],
+ ['Movimento verso una tasca segnalato dall’AI',
+ '<b>Cosa si osserva:</b> un gesto rapido vicino alla tasca attiva una segnalazione, ma il video può mostrare che la persona sta utilizzando il telefono o cerca le chiavi.<br><b>Come agire:</b> valuta i frame precedenti e successivi. Se il gesto segnalato è chiaramente normale, scarta la segnalazione indicando il motivo corretto.'],
+ ['Telecamera coperta o ripresa incompleta',
+ '<b>Cosa si osserva:</b> uno scaffale o il passaggio di altre persone impedisce di capire che cosa accada durante il gesto.<br><b>Come agire:</b> scegli “Video non valutabile” quando mancano elementi sufficienti. Questo esito non equivale a un falso positivo né alla conferma di un furto.'],
+ ['Confezione aperta o etichetta danneggiata',
+ '<b>Cosa si osserva:</b> una confezione appare alterata oppure una persona la manipola, ma la clip non mostra che cosa sia realmente accaduto.<br><b>Come agire:</b> verifica con il responsabile secondo le procedure del negozio. Il modello attuale non identifica autonomamente manomissioni di etichette o confezioni.'],
+ ['Interazione che diventa tesa o aggressiva',
+ '<b>Cosa si osserva:</b> una discussione si intensifica, creando possibili rischi per dipendenti e clienti.<br><b>Come agire:</b> interrompi l’iniziativa, mantieni distanza e coinvolgi il responsabile o la sicurezza prevista. In caso di emergenza reale, chiama il 112. La tutela delle persone viene sempre prima del recupero dei prodotti.']
 ];
 const FAQ=[
  ['Confermare un alert significa che un furto è accertato?', 'No. La conferma riguarda il gesto segnalato; il furto si registra a parte, soltanto con riscontri effettivi.'],
@@ -838,7 +930,7 @@ function filterGuideProcedures(){
  });
  const no=$('guideNoResults');if(no)no.hidden=n!==0;
 }
-function guideSituationsHtml(){return `<section class="guide-content-section"><div class="guide-content-header"><h2>Situazioni pratiche</h2><p>Come affrontare i casi più comuni senza trarre conclusioni affrettate.</p></div><div class="guide-card-accordions">${SCENARIOS.map(([title,body])=>`<details class="guide-accordion"><summary><span class="guide-summary-icon">${icon('book')}</span><span>${esc(title)}</span>${icon('chevron')}</summary><div class="guide-accordion-body">${body}</div></details>`).join('')}</div></section>`;}
+function guideSituationsHtml(){return `<section class="guide-content-section"><div class="guide-content-header"><h2>Scenari operativi</h2><p>Esempi concreti per distinguere ciò che si osserva da ciò che deve essere verificato.</p></div><div class="guide-card-accordions">${SCENARIOS.map(([title,body])=>`<details class="guide-accordion"><summary><span class="guide-summary-icon">${icon('book')}</span><span>${esc(title)}</span>${icon('chevron')}</summary><div class="guide-accordion-body">${body}</div></details>`).join('')}</div></section>`;}
 function guideAvoidHtml(){return `<section class="guide-content-section"><div class="guide-content-header"><h2>Cosa evitare</h2><p>La sicurezza e il rispetto delle persone hanno sempre la priorità.</p></div><div class="guide-avoid-list">
  <div>${icon('close')}<span>Non formulare accuse pubbliche né improvvisare perquisizioni o trattenimenti fisici.</span></div>
  <div>${icon('close')}<span>Non condividere clip attraverso chat, dispositivi o canali personali non autorizzati.</span></div>
@@ -873,6 +965,25 @@ function openAddItem(preselect=''){
  openModal('Registra prodotto',h,'inventoryform');
 }
 
+function supportRequestBody(){
+ return 'Email per la risposta: '+$('supportEmail').value.trim()+'\nOggetto: '+$('supportReason').value+'\n\n'+$('supportMessage').value.trim();
+}
+async function copySupportRequest(){
+ const email=$('supportEmail'),message=$('supportMessage');
+ if(!email || !message)return;
+ // The copy button also validates the text before preparing a transferable request.
+ if(!email.reportValidity() || !message.reportValidity())return;
+ const body=supportRequestBody();
+ let copied=false;
+ try{if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(body);copied=true;}}catch(ex){}
+ const feedback=$('supportDemoFeedback');feedback.hidden=false;
+ if(copied){feedback.textContent='Testo copiato negli appunti. Nessuna email è stata inviata.';return;}
+ let area=$('supportCopyFallback');
+ if(!area){area=document.createElement('textarea');area.id='supportCopyFallback';area.className='support-copy-fallback';area.readOnly=true;area.setAttribute('aria-label','Testo della richiesta pronto da copiare');feedback.after(area);}
+ area.value=body;area.focus();area.select();
+ try{copied=!!document.execCommand('copy');}catch(ex){}
+ feedback.textContent=copied?'Testo copiato negli appunti. Nessuna email è stata inviata.':'Seleziona e copia il testo qui sotto. Nessuna email è stata inviata.';
+}
 function openInfo(which){
  let h='';
  if(which==='account')h=`
@@ -894,7 +1005,8 @@ function openInfo(which){
   <div class="form-group"><label for="supportReason">Oggetto</label><select id="supportReason"><option>Problema tecnico</option><option>Segnalazioni e video</option><option>Accesso all'account</option><option>Altro</option></select></div>
   <div class="form-group"><label for="supportMessage">Messaggio</label><textarea id="supportMessage" placeholder="Descrivi la richiesta..." required></textarea></div>
   
-  <div class="form-actions"><button type="submit" class="primary-btn">Prepara richiesta ${icon('arrow')}</button></div>
+  <div class="form-actions support-actions"><button type="button" class="outline-btn" id="copySupportRequest">Copia testo</button><button type="submit" class="primary-btn">Invia ${icon('arrow')}</button></div>
+  <p class="support-send-note">Si aprirà la tua app email: conferma l’invio da lì. L’indirizzo di supporto dovrà essere attivato per ricevere i messaggi.</p>
   <p id="supportDemoFeedback" class="support-feedback" aria-live="polite" hidden></p>
  </form>`;
  if(which==='privacy'){nav('guide');document.getElementById('guide-privacy')?.scrollIntoView({behavior:'smooth',block:'start'});return;}
@@ -906,6 +1018,7 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
  if(btn.dataset.guideTab){guideTab=btn.dataset.guideTab;guideActiveProcedure=null;guideSearch='';renderGuidePage();return;}
  if(btn.dataset.guideProcedure){guideTab='procedures';guideActiveProcedure=btn.dataset.guideProcedure;renderGuidePage();document.querySelector('#page-guide')?.scrollIntoView({block:'start',behavior:'instant'});return;}
  if(btn.hasAttribute('data-guide-back')){guideTab='procedures';guideActiveProcedure=null;renderGuidePage();document.querySelector('#page-guide')?.scrollIntoView({block:'start',behavior:'instant'});return;}
+ if(btn.id==='copySupportRequest'){copySupportRequest();return;}
  if(btn.id==='loginForgot'){notify('Recupero password disponibile dopo il collegamento del servizio di autenticazione.');return;}
  if(btn.id==='logoutDemo'){closeMobileAux();leaveStore();return;}
  if(btn.id==='mobileAuxToggle'){toggleMobileAux();return;}
@@ -970,13 +1083,15 @@ document.addEventListener('submit',async e=>{
  if(e.target.id==='passwordForm'){e.preventDefault();if($('newPass').value!==$('repeatPass').value){notify('Le nuove password non coincidono');return;}notify('La modifica della password non è ancora disponibile.');return;}
  if(e.target.id==='supportForm'){
    e.preventDefault();
-   const body='Destinatario: supporto@eosintelligence.it\nEmail per la risposta: '+$('supportEmail').value+'\nOggetto: '+$('supportReason').value+'\n\n'+$('supportMessage').value;
-   let copied=false;
-   try{if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(body);copied=true;}}catch(ex){}
+   // The static GitHub Pages site cannot send email itself. Open the device email composer
+   // synchronously within the form submit event to preserve iOS user activation.
+   const reason=$('supportReason').value;
+   const body=supportRequestBody();
+   const link='mailto:supporto@eosintelligence.it?subject='+encodeURIComponent('EOS Intelligence — '+reason)+'&body='+encodeURIComponent(body);
    const feedback=$('supportDemoFeedback');
    feedback.hidden=false;
-   feedback.textContent=copied?'Testo copiato negli appunti. Nessuna email è stata inviata.':'Richiesta preparata ma non inviata. Puoi copiare il testo qui sotto.';
-   if(!copied && !$('supportCopyFallback')){const area=document.createElement('textarea');area.id='supportCopyFallback';area.className='support-copy-fallback';area.value=body;area.readOnly=true;area.setAttribute('aria-label','Testo della richiesta pronto da copiare');feedback.after(area);area.focus();area.select();}
+   feedback.textContent='Si apre la tua app email. Per inviare la richiesta, premi Invia nell’app di posta. Nessun messaggio è stato spedito dalla dashboard.';
+   window.location.href=link;
    return;
  }
 });
