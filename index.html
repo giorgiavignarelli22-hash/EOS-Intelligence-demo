@@ -881,6 +881,77 @@ button[disabled]:active{transform:none}
   .quick-guide-step h4{font-size:16px}
   .quick-guide-step p,.quick-guide-safety p{font-size:15px}
 }
+
+/* EOS Intelligence v7.8 — consistent visual language across ALL sections */
+:root{--eos-surface:#fff;--eos-border:#cbdde6;--eos-blue:#153e57;--eos-teal:#0c8982;--eos-red:#c76b77;--eos-amber:#cfaa5f}
+/* Same white surface / subtle blue border for Home, Analisi, Inventario, Guide, account and dialogs. */
+.card,.kpi-card,.home-featured,.login-panel,.dialog,
+#page-guide .guide-content-section,#page-guide .guide-procedure-heading,
+#page-guide .guide-detail-block,#page-guide .guide-accordion,
+#page-guide .guide-procedure-card,.quick-guide-step,
+.deterrence-panel,.manual-help,.account-fields,#passwordFormContainer,
+#supportForm .support-destination{
+ background-color:var(--eos-surface);border-color:var(--eos-border);
+}
+.card,.kpi-card,.home-featured,#page-guide .guide-content-section,
+#page-guide .guide-procedure-card{box-shadow:0 6px 20px rgba(22,58,79,.045)}
+/* Guide: priority meaning is carried by BORDER and label, not large filled panels. */
+#page-guide .guide-procedure-card{border-width:1.5px;background:#fff;gap:10px}
+#page-guide .guide-procedure-card--review{border-color:#abd0dc}
+#page-guide .guide-procedure-card--attention{border-color:#d6b66e}
+#page-guide .guide-procedure-card--critical{border-color:#dd8e98}
+#page-guide .guide-procedure-card--review .guide-procedure-icon{color:#168b86}
+#page-guide .guide-procedure-card--attention .guide-procedure-icon{color:#9e792b}
+#page-guide .guide-procedure-card--critical .guide-procedure-icon{color:#ba5463}
+#page-guide .guide-level{border:1px solid #c6d9e2;background:#fff;color:#3c6377;font-weight:730}
+#page-guide .guide-level-review{border-color:#afd1dc;color:#386f83;background:#fff}
+#page-guide .guide-level-attention{border-color:#e1c47e;color:#8c691e;background:#fff}
+#page-guide .guide-level-critical{border-color:#e5a1a9;color:#a84858;background:#fff}
+#page-guide .guide-avoid-list>div{
+ background:#fff!important;border:1.5px solid #da97a1;border-radius:14px;
+ box-shadow:0 3px 12px rgba(23,60,79,.025);color:#3a5b6d
+}
+#page-guide .guide-safety-note{
+ background:#fff!important;border:1.5px solid #d999a2;border-left:4px solid #c66977;
+ color:#654a55;border-radius:14px;box-shadow:0 3px 12px rgba(23,60,79,.025)
+}
+#page-guide .guide-safety-note svg{color:#bd6070}
+.quick-guide-safety{
+ background:#fff!important;border:1.5px solid #d99ca5;border-left:4px solid #c66977;
+ box-shadow:0 3px 12px rgba(23,60,79,.035)
+}
+.quick-guide-safety h4{color:#a05260}
+.quick-guide-safety p{color:#715967}
+#page-guide .guide-stop{background:#fff!important;border:1.5px solid #d99ca5!important}
+#page-guide .guide-detail-columns:not(.guide-bottom-columns) .guide-detail-block:nth-child(2){border:1.5px solid #d99ca5}
+#page-guide .guide-bottom-columns .guide-detail-block{background:#fff!important}
+#page-guide .guide-support{border-color:#afd2df}
+#page-guide .guide-content-header p{color:#5b7788}
+#page-guide .guide-card-title,#page-guide .guide-card-description{letter-spacing:normal}
+#page-guide .guide-card-description{font-size:15px}
+/* Common danger and confirmation cards outside Guide */
+.soft-warning{background:#fff;border:1.5px solid #d99ca5;border-left:4px solid #c66977;color:#945563;font-size:14px}
+.account-logout{background:#fff;border:1px solid #d99ca5}
+/* Badges may remain softly tinted, while card backgrounds are always neutral */
+.badge.pending{border:1px solid #e3c788}
+.badge.confirmed,.badge.fresh{border:1px solid #b3dfcf}
+.badge.dismissed,.badge.expired{border:1px solid #d8e1e6}
+/* Shared interactive controls, consistent borders and focus */
+.filter-chip,.line-btn,.outline-btn,.home-history-link,.dialog-close,
+#page-guide .guide-jump button{border-color:#bcd1dc}
+.form-group input,.form-group textarea,.form-group select,
+#supportForm .form-group input,#supportForm .form-group select,#supportForm .form-group textarea,
+.login-input{background:#fff;border-color:#bcd0dc}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,
+summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
+/* Give secondary labels sufficient weight and contrast without excessive decorative density */
+.alert-meta,.mini-subtle,.chart-axis span,.home-alert-facts{color:#577487}
+#page-guide .guide-detail-disclaimer{color:#657f90;font-size:14px}
+@media(max-width:620px){
+ #page-guide .guide-procedure-card{border-width:1.5px}
+ #page-guide .guide-card-description{font-size:14px}
+ .quick-guide-safety p{font-size:15px}
+}
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
 <symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></symbol>
@@ -1166,15 +1237,10 @@ const PROCEDURE=`
     __BACK__
   </div>
 </div>`;
-const GUIDELINES=[
- 'Le segnalazioni AI richiedono sempre una valutazione umana: non identificano persone e non provano automaticamente un furto.',
- 'Le clip si consultano soltanto con accessi e strumenti aziendali autorizzati.',
- 'Gli interventi nel punto vendita seguono le procedure approvate dal responsabile.'
-];
 const SCENARIOS=[
  ['Una persona apre la propria borsa davanti allo scaffale',
  '<b>Cosa si osserva:</b> una persona porta le mani nella borsa dopo essersi fermata davanti a un espositore. Può stare riponendo un oggetto personale.<br><b>Come agire:</b> non presumere un occultamento. Verifica la sequenza completa; se restano elementi concreti da chiarire, informa il responsabile. Non chiedere di aprire la borsa.'],
- ['Movimento verso una tasca segnalato dall’AI',
+ ['Movimento verso una tasca segnalato dal sistema',
  '<b>Cosa si osserva:</b> un gesto rapido vicino alla tasca attiva una segnalazione, ma il video può mostrare che la persona sta utilizzando il telefono o cerca le chiavi.<br><b>Come agire:</b> valuta i frame precedenti e successivi. Se il gesto segnalato è chiaramente normale, scarta la segnalazione indicando il motivo corretto.'],
  ['Telecamera coperta o ripresa incompleta',
  '<b>Cosa si osserva:</b> uno scaffale o il passaggio di altre persone impedisce di capire che cosa accada durante il gesto.<br><b>Come agire:</b> scegli “Video non valutabile” quando mancano elementi sufficienti. Questo esito non equivale a un falso positivo né alla conferma di un furto.'],
@@ -1186,7 +1252,7 @@ const SCENARIOS=[
 const FAQ=[
  ['Confermare un alert significa che un furto è accertato?', 'No. La conferma riguarda il gesto segnalato; il furto si registra a parte, soltanto con riscontri effettivi.'],
  ['Che cosa scelgo quando non riesco a valutare il video?', 'Usa Scarta → Video non valutabile. Questo esito è separato dai falsi positivi e non attribuisce un comportamento al cliente.'],
- ['Posso registrare un furto che il sistema non ha segnalato?', 'Sì. In Inventario puoi registrare un furto accertato senza collegarlo a un alert AI e aggiungere più prodotti allo stesso evento.'],
+ ['Posso registrare un furto che il sistema non ha segnalato?', 'Sì. In Inventario puoi registrare un furto accertato senza collegarlo a una segnalazione e aggiungere più prodotti allo stesso evento.'],
  ['Posso condividere una clip con un collega?', 'Solo se il collega è autorizzato e soltanto attraverso strumenti aziendali previsti; non usare chat o dispositivi personali.'],
  ['La deterrenza vocale si sente nel supermercato?', 'Attualmente il messaggio viene riprodotto soltanto sul dispositivo che utilizzi, senza trasmissione verso telecamere o altoparlanti.'],
  ['Come correggo un esito che ho inserito per errore?', 'Puoi riaprire una segnalazione ancora disponibile dalla sezione Analisi furti. Dopo la scadenza della clip resta consultabile solo lo storico, senza nuove verifiche video.']
@@ -1224,7 +1290,7 @@ const GUIDE_PROCEDURES=[
   'Valuta il contesto disponibile e osserva se il gesto è chiaramente visibile.',
   'Se necessario avvisa il responsabile del reparto.',
   'Documenta soltanto fatti effettivamente verificati.'
- ],avoid:['Non presumere che il movimento sia un furto.','Non attribuire al modello una classificazione che non è prevista dal sistema attuale.'],support:['Se è necessaria una verifica della merce secondo le procedure autorizzate.'],stop:['Se un eventuale intervento genera tensione o mette a rischio qualcuno.']},
+ ],avoid:['Non presumere che il movimento sia un furto.','Non attribuire al sistema una classificazione che non è prevista.'],support:['Se è necessaria una verifica della merce secondo le procedure autorizzate.'],stop:['Se un eventuale intervento genera tensione o mette a rischio qualcuno.']},
  {id:'uscita',title:'Persona in prossimità dell’uscita',level:'review',levelLabel:'Verifica',intro:'La posizione vicino all’uscita non costituisce da sola un comportamento sospetto.',do:[
   'Verifica se la clip fornisce davvero elementi pertinenti.',
   'Avvisa il responsabile solo se le procedure interne lo prevedono e sono presenti elementi concreti.',
@@ -1264,12 +1330,11 @@ function guideProceduresHtml(){
  return `<div class="guide-library">
   <div class="guide-search-bar"><label for="guideSearch">Cerca una procedura</label><div class="guide-search-input">${icon('search')}<input id="guideSearch" type="search" placeholder="Es. occultamento, uscita, sicurezza..." autocomplete="off" value="${esc(guideSearch)}"/></div></div>
   <div class="guide-list-head"><h2>Procedure operative</h2><span>${GUIDE_PROCEDURES.length} procedure</span></div>
-  <div class="guide-procedures-grid" id="guideProcedureGrid">${GUIDE_PROCEDURES.map((p,i)=>`<button type="button" class="guide-procedure-card" data-guide-procedure="${p.id}" data-guide-search="${esc((p.title+' '+p.intro+' '+p.levelLabel).toLowerCase())}">
-   <span class="guide-card-upper"><span class="guide-procedure-icon">${icon(i===5?'shield':i===2?'search':i===3?'check':'book')}</span><span class="guide-level guide-level-${p.level}">${esc(p.levelLabel)}</span></span>
+  <div class="guide-procedures-grid" id="guideProcedureGrid">${[...GUIDE_PROCEDURES].sort((a,b)=>({review:0,attention:1,critical:2}[a.level]??3)-({review:0,attention:1,critical:2}[b.level]??3)).map((p,i)=>`<button type="button" class="guide-procedure-card guide-procedure-card--${p.level}" data-guide-procedure="${p.id}" data-guide-search="${esc((p.title+' '+p.intro+' '+p.levelLabel).toLowerCase())}">
+   <span class="guide-card-upper"><span class="guide-procedure-icon">${icon(p.level==='critical'?'shield':p.level==='review'?'search':'book')}</span><span class="guide-level guide-level-${p.level}">${esc(p.levelLabel)}</span></span>
    <span class="guide-card-title">${esc(p.title)}</span><span class="guide-card-description">${esc(p.intro)}</span>
    <span class="guide-card-action">Apri procedura ${icon('arrow')}</span>
   </button>`).join('')}</div><p id="guideNoResults" class="guide-empty" hidden>Nessuna procedura trovata. Prova con altre parole.</p>
-  <div class="guide-fundamentals"><h3>Principi fondamentali</h3>${GUIDELINES.map(t=>`<div class="guide-fundamental">${icon('check')}<span>${esc(t)}</span></div>`).join('')}</div>
  </div>`;
 }
 function filterGuideProcedures(){
@@ -1284,7 +1349,7 @@ function guideAvoidHtml(){return `<section class="guide-content-section"><div cl
  <div>${icon('close')}<span>Non formulare accuse pubbliche né improvvisare perquisizioni o trattenimenti fisici.</span></div>
  <div>${icon('close')}<span>Non condividere clip attraverso chat, dispositivi o canali personali non autorizzati.</span></div>
  <div>${icon('close')}<span>Non mettere in pericolo clienti o colleghi per recuperare prodotti.</span></div>
- <div>${icon('close')}<span>Non considerare un alert AI come prova automatica di un furto.</span></div>
+ <div>${icon('close')}<span>Non considerare una segnalazione come prova automatica di un furto.</span></div>
  </div><div class="guide-safety-note">${icon('shield')} <span>In caso di minaccia, interrompi l’intervento e segui le procedure di sicurezza del negozio. Per un’emergenza reale, chiama il 112.</span></div></section>`;}
 function guideFaqHtml(){return `<section class="guide-content-section"><div class="guide-content-header"><h2>Domande frequenti</h2><p>Risposte rapide per usare la dashboard correttamente.</p></div><div class="guide-card-accordions">${FAQ.map(([q,a])=>`<details class="guide-accordion"><summary><span class="guide-summary-icon">${icon('book')}</span><span>${esc(q)}</span>${icon('chevron')}</summary><p class="guide-accordion-body">${esc(a)}</p></details>`).join('')}</div></section>`;}
 function guidePrivacyHtml(){return `<section class="guide-content-section"><div class="guide-content-header"><h2>Privacy e conservazione</h2><p>Accesso ai video e gestione delle informazioni.</p></div>
@@ -1307,7 +1372,7 @@ function openProcedure(origin='detail'){procedureOrigin=origin;const backLabel=o
 function openAddItem(preselect=''){
  let confirmed=state.alerts.filter(a=>a.status==='confirmed');
  const manualEvents=[...new Set(state.inventory.filter(i=>!i.alertId&&i.eventId).map(i=>i.eventId))];
- let options=`<option value="manual">Nuovo furto accertato senza alert AI</option>`
+ let options=`<option value="manual">Nuovo furto accertato senza segnalazione del sistema</option>`
   +manualEvents.map((id,n)=>`<option value="manual-existing:${esc(id)}">Aggiungi a furto manuale già registrato ${n+1}</option>`).join('')
   +confirmed.map(a=>`<option value="${esc(a.id)}" ${a.id===preselect?'selected':''}>${esc(a.id)} · ${formatDate(a.ts)} · ${esc(a.camera)}</option>`).join('');
  let h=`<form id="itemForm"><div class="form-group"><label for="alertSelect">Collegamento</label><select id="alertSelect" required>${options}</select></div><div class="form-group"><label for="itemName">Prodotto</label><input type="text" id="itemName" autocomplete="off" maxlength="85" placeholder="Es. Prodotto cosmetico" required></div><div class="form-grid"><div class="form-group"><label for="itemQty">Quantità</label><input type="number" id="itemQty" min="1" max="100000" step="1" value="1" required></div><div class="form-group"><label for="itemPrice">Valore unitario (€)</label><input type="number" id="itemPrice" min="0" max="1000000" step="0.01" placeholder="0,00" required></div></div><div class="form-group"><label>Merce recuperata?</label><div class="form-check-grid"><label><input type="radio" name="recovery" value="yes"> Sì</label><label><input type="radio" name="recovery" value="no"> No</label><label><input type="radio" name="recovery" value="unknown" checked> Non noto</label></div></div><p class="hint">Registra soltanto furti effettivamente accertati.</p><div class="form-actions"><button type="button" class="outline-btn" data-close="1">Annulla</button><button class="primary-btn" type="submit">Salva prodotto</button></div></form>`;
