@@ -835,6 +835,52 @@ button[disabled]:active{transform:none}
  .inventory-stats .kpi-top{font-size:10.3px}
  .inventory-stats .kpi-value{font-size:20px}
 }
+
+/* EOS Intelligence 7.7.1 — operational guidance alignment: avoid contradictions and redundant intro */
+#page-guide .guide-avoid-header h2{margin:0 0 20px;font-size:23px;line-height:1.25;color:#173d53}
+#page-guide .guide-avoid-list{gap:12px}
+#page-guide .guide-avoid-list>div{
+  border:1.5px solid #dc9da6;
+  background:#fff9fa;
+  border-radius:14px;
+  color:#38596c;
+  padding:17px 18px;
+  box-shadow:0 5px 18px rgba(90,39,54,.035);
+  font-size:15px;
+  line-height:1.64;
+}
+#page-guide .guide-avoid-list svg{color:#be5b69;width:20px;height:20px;margin-top:3px}
+#page-guide .guide-safety-note{
+  border:1.5px solid #d78c97;
+  border-left:5px solid #c76b78;
+  border-radius:14px;
+  padding:17px 18px;
+  background:#fff5f6;
+  color:#714c56;
+  font-size:15px;
+  line-height:1.65;
+  margin-top:16px;
+  box-shadow:0 5px 18px rgba(90,39,54,.035);
+}
+#page-guide .guide-safety-note svg{color:#b95b68;flex:none;width:22px;height:22px;margin-top:3px}
+/* Quick guide: the modal title is sufficient; begin with the three actionable steps. */
+.quick-guide-shell{gap:15px}
+.quick-guide-steps{gap:12px}
+.quick-guide-step{border-color:#cadfe9;border-radius:15px;padding:18px 17px;box-shadow:0 5px 16px rgba(23,71,96,.038)}
+.quick-guide-step h4{font-size:17px}
+.quick-guide-step p{font-size:15px;line-height:1.58}
+.quick-guide-step .step-num{background:#e7f6f4;color:#207d80}
+.quick-guide-safety{border-color:#e0a4ac;border-left-color:#ca6977;background:#fff7f8;border-radius:15px}
+.quick-guide-safety h4{color:#9f4e5d}
+.quick-guide-safety p{color:#815760;font-size:15px}
+#page-guide .guide-detail-actions{gap:0}
+@media(max-width:620px){
+  #page-guide .guide-avoid-header h2{font-size:21px;margin-bottom:17px}
+  #page-guide .guide-avoid-list>div{font-size:15px;padding:16px 15px;gap:13px}
+  #page-guide .guide-safety-note{font-size:15px;padding:16px 15px}
+  .quick-guide-step h4{font-size:16px}
+  .quick-guide-step p,.quick-guide-safety p{font-size:15px}
+}
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
 <symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></symbol>
@@ -1109,11 +1155,6 @@ function commitDismiss(reason){
 
 const PROCEDURE=`
 <div class="quick-guide-shell">
-  <div class="quick-guide-hero">
-    <span class="quick-guide-label">Guida rapida</span>
-    <h3>Tre passaggi chiari per gestire una segnalazione.</h3>
-    <p>Consulta il video, agisci con discrezione e registra correttamente l’esito senza appesantire l’operatività.</p>
-  </div>
   <div class="quick-guide-steps">
     <div class="quick-guide-step"><span class="step-num">1</span><div><h4>Controlla il video</h4><p>Osserva il gesto e il contesto che la clip consente realmente di vedere.</p></div></div>
     <div class="quick-guide-step"><span class="step-num">2</span><div><h4>Agisci con discrezione</h4><p>Se necessario coinvolgi il responsabile seguendo soltanto le procedure autorizzate.</p></div></div>
@@ -1178,7 +1219,7 @@ const GUIDE_PROCEDURES=[
   'Verifica il video una seconda volta e considera soltanto gli elementi osservabili.',
   'Se il contesto non è sufficiente, scegli “Video non valutabile”.',
   'Mantieni separati i casi non valutabili dagli errori certi del sistema.'
- ],avoid:['Non confermare automaticamente un furto o un gesto illecito.','Non classificare come falso positivo un video semplicemente incompleto.'],support:['Se serve verificare la corretta inquadratura o segnalare un problema tecnico.'],stop:['Non avviare alcun intervento operativo basandoti su immagini non interpretabili.']},
+ ],avoid:['Non confermare automaticamente un furto o un gesto illecito.','Non classificare come falso positivo un video semplicemente incompleto.'],support:['Se occorre segnalare al responsabile una ripresa incompleta o un problema di inquadratura.'],stop:['Non avviare alcun intervento operativo basandoti su immagini non interpretabili.']},
  {id:'etichette',title:'Possibile manomissione di confezioni',level:'attention',levelLabel:'Attenzione',intro:'Un gesto su confezioni o etichette non equivale a una manomissione accertata.',do:[
   'Valuta il contesto disponibile e osserva se il gesto è chiaramente visibile.',
   'Se necessario avvisa il responsabile del reparto.',
@@ -1214,7 +1255,7 @@ function guideDetailHtml(item){
    <section class="guide-detail-block guide-support"><h3>${icon('user')} Quando richiedere supporto</h3><ul class="guide-note-list">${item.support.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></section>
    <section class="guide-detail-block guide-stop"><h3>${icon('shield')} Quando interrompere l’intervento</h3><ul class="guide-note-list">${item.stop.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></section>
   </div>
-  <div class="guide-detail-actions"><button type="button" class="primary-btn" data-guide-back>${icon('arrow')} Torna al manuale</button><button type="button" class="outline-btn" data-modal="support">${icon('mail')} Richiedi supporto</button></div>
+  <div class="guide-detail-actions"><button type="button" class="primary-btn" data-guide-back>${icon('arrow')} Torna al manuale</button></div>
   <p class="guide-detail-disclaimer">Le procedure del punto vendita e le indicazioni del responsabile prevalgono su questa guida generale.</p>
  </div>`;
 }
@@ -1239,12 +1280,12 @@ function filterGuideProcedures(){
  const no=$('guideNoResults');if(no)no.hidden=n!==0;
 }
 function guideSituationsHtml(){return `<section class="guide-content-section"><div class="guide-content-header"><h2>Scenari operativi</h2><p>Esempi concreti per distinguere ciò che si osserva da ciò che deve essere verificato.</p></div><div class="guide-card-accordions">${SCENARIOS.map(([title,body])=>`<details class="guide-accordion"><summary><span class="guide-summary-icon">${icon('book')}</span><span>${esc(title)}</span>${icon('chevron')}</summary><div class="guide-accordion-body">${body}</div></details>`).join('')}</div></section>`;}
-function guideAvoidHtml(){return `<section class="guide-content-section"><div class="guide-content-header"><h2>Cosa evitare</h2><p>La sicurezza e il rispetto delle persone hanno sempre la priorità.</p></div><div class="guide-avoid-list">
+function guideAvoidHtml(){return `<section class="guide-content-section"><div class="guide-content-header guide-avoid-header"><h2>Cosa evitare</h2></div><div class="guide-avoid-list">
  <div>${icon('close')}<span>Non formulare accuse pubbliche né improvvisare perquisizioni o trattenimenti fisici.</span></div>
  <div>${icon('close')}<span>Non condividere clip attraverso chat, dispositivi o canali personali non autorizzati.</span></div>
  <div>${icon('close')}<span>Non mettere in pericolo clienti o colleghi per recuperare prodotti.</span></div>
  <div>${icon('close')}<span>Non considerare un alert AI come prova automatica di un furto.</span></div>
- </div><div class="guide-safety-note">${icon('shield')} <span>In caso di minaccia o emergenza, interrompi l'intervento e attiva le procedure di sicurezza del punto vendita. Per un'emergenza reale chiama il 112.</span></div></section>`;}
+ </div><div class="guide-safety-note">${icon('shield')} <span>In caso di minaccia, interrompi l’intervento e segui le procedure di sicurezza del negozio. Per un’emergenza reale, chiama il 112.</span></div></section>`;}
 function guideFaqHtml(){return `<section class="guide-content-section"><div class="guide-content-header"><h2>Domande frequenti</h2><p>Risposte rapide per usare la dashboard correttamente.</p></div><div class="guide-card-accordions">${FAQ.map(([q,a])=>`<details class="guide-accordion"><summary><span class="guide-summary-icon">${icon('book')}</span><span>${esc(q)}</span>${icon('chevron')}</summary><p class="guide-accordion-body">${esc(a)}</p></details>`).join('')}</div></section>`;}
 function guidePrivacyHtml(){return `<section class="guide-content-section"><div class="guide-content-header"><h2>Privacy e conservazione</h2><p>Accesso ai video e gestione delle informazioni.</p></div>
  <div class="privacy-facts">
