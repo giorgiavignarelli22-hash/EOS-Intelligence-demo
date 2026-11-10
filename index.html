@@ -1,7 +1,103 @@
 <!DOCTYPE html>
 
 <html lang="it"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
-<meta content="#f5f8fb" name="theme-color"/><title>EOS Intelligence | Dashboard</title>
+<meta content="#f5f8fb" name="theme-color"/>
+<meta name="eos-build" content="7.8.8"/>
+<script id="eos-auto-update">
+/* Static GitHub Pages: verify the deployed version without clearing local data. */
+(function(){
+  'use strict';
+  if (!/^https?:$/.test(window.location.protocol)) return;
+  var PARAM = '__eos_fresh';
+  var currentVersion = '7.8.8';
+  var lastCheckTime = 0;
+  var checking = false;
+  var canonical;
+  try {
+    canonical = new URL(window.location.href);
+    if (canonical.searchParams.has(PARAM)) {
+      canonical.searchParams.delete(PARAM);
+      window.history.replaceState(window.history.state, '', canonical.pathname + canonical.search + canonical.hash);
+    }
+  } catch(e) { return; }
+
+  function canReload() {
+    var active = document.activeElement;
+    return !active || !['INPUT','TEXTAREA','SELECT'].includes(active.tagName) || !document.hasFocus();
+  }
+  async function latestBuild() {
+    var probe = new URL(window.location.href);
+    probe.searchParams.delete(PARAM);
+    probe.searchParams.set('__eos_check', Date.now().toString(36));
+    var controller = new AbortController();
+    var timer = setTimeout(function(){controller.abort();}, 10000);
+    var response;
+    try {
+      response = await fetch(probe.toString(), {
+        method: 'GET', cache: 'no-store', credentials: 'same-origin',
+        signal: controller.signal
+      });
+      if (!response.ok) return null;
+      var contentType = response.headers.get('content-type') || '';
+      if (contentType && !/text\/html/i.test(contentType)) return null;
+      var match, text = '';
+      var re = /<meta\s+name=["']eos-build["']\s+content=["']([\w.-]+)["']/i;
+      if (response.body && typeof response.body.getReader === 'function' && typeof TextDecoder !== 'undefined') {
+        var reader = response.body.getReader();
+        var decoder = new TextDecoder();
+        try {
+          for (var i=0; i<10 && text.length<64000; i++) {
+            var part = await reader.read();
+            if (part.done) break;
+            text += decoder.decode(part.value, {stream:true});
+            match = re.exec(text);
+            if (match) return match[1];
+          }
+        } finally { reader.cancel().catch(function(){}); }
+      } else {
+        text = (await response.text()).slice(0,64000);
+        match = re.exec(text);
+        if (match) return match[1];
+      }
+      return null;
+    } finally { clearTimeout(timer); }
+  }
+  function refreshFresh(latest) {
+    if (!canReload()) return;
+    try {
+      // Prevent a redirect loop if the CDN has not finished publishing.
+      var key = 'eos-update-attempt';
+      var previous = JSON.parse(sessionStorage.getItem(key) || '{}');
+      if (previous.version === latest && Date.now() - previous.time < 120000) return;
+      sessionStorage.setItem(key, JSON.stringify({version:latest,time:Date.now()}));
+    } catch(e) {}
+    var next = new URL(window.location.href);
+    next.searchParams.delete('__eos_check');
+    next.searchParams.set(PARAM, latest + '-' + Date.now().toString(36));
+    // replace() doesn't add a browser-history step. The query is removed on arrival.
+    window.location.replace(next.toString());
+  }
+  async function checkIfNewer() {
+    if (checking || Date.now() - lastCheckTime < 12000) return;
+    if (!navigator.onLine || document.visibilityState === 'hidden') return;
+    checking = true;
+    lastCheckTime = Date.now();
+    try {
+      var deployed = await latestBuild();
+      if (deployed && deployed !== currentVersion) refreshFresh(deployed);
+    } catch(e) {
+      // Offline or unsupported streaming: keep using the currently loaded app.
+    } finally { checking = false; }
+  }
+  document.addEventListener('DOMContentLoaded', checkIfNewer, {once:true});
+  window.addEventListener('pageshow', function(event){
+    if (event.persisted) checkIfNewer();
+  });
+  document.addEventListener('visibilitychange', function(){
+    if (!document.hidden && Date.now() - lastCheckTime > 60000) checkIfNewer();
+  });
+})();
+</script><title>EOS Intelligence | Dashboard</title>
 <style>
 :root{--ink:#142f41;--ink-2:#304957;--muted:#7d8e97;--line:#eaf0f1;--bg:#f8fafb;--white:#fff;--teal:#19a89e;--teal-deep:#0f958b;--teal-wash:#e4f6f3;--blue:#294b62;--blue-soft:#edf3f6;--red:#eb6b6d;--red-soft:#fff0f0;--amber:#b4792c;--amber-soft:#fff4e7;--shadow:0 8px 30px rgba(24,62,71,.043)}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,'Segoe UI',-apple-system,BlinkMacSystemFont,Arial,sans-serif;color:var(--ink);font-size:14px;background:var(--bg);font-weight:400;-webkit-font-smoothing:antialiased}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #66cdc4;outline-offset:3px}button, a{-webkit-tap-highlight-color:transparent}a{color:inherit}svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round;flex:none}strong{font-weight:650}
