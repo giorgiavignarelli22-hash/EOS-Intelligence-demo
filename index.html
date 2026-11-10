@@ -1029,6 +1029,80 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 @media(max-width:900px){.eos-incoming{top:82px;right:15px}}
 @media(max-width:620px){.eos-incoming{top:calc(env(safe-area-inset-top,0px) + 76px);right:12px;width:calc(100vw - 24px);padding:16px 15px;border-radius:15px}.eos-incoming-title{font-size:16px}.eos-incoming-line{font-size:13px}.eos-incoming-open{font-size:14px}}
 @media(max-width:360px){.eos-incoming{top:calc(env(safe-area-inset-top,0px) + 72px)}.eos-incoming-head{gap:9px}.eos-incoming-icon{width:36px;height:36px}}
+
+/* EOS Intelligence 7.8.5 — consistent selection, native left arrow, and recovery clarity */
+#analysisFilters .filter-chip{background:#fff;border-color:#bbd0da;color:#4b697c;}
+#analysisFilters .filter-chip.active{
+  background:#fff!important;
+  border-color:#238f87!important;
+  box-shadow:inset 0 0 0 1px #238f87;
+  color:#0a756f!important;
+}
+#analysisFilters .filter-chip:focus-visible{outline:2px solid #0c807b;outline-offset:2px;}
+.deterrence-back svg{transform:none!important;width:19px;height:19px;flex:none;display:block;}
+.inventory-unknown-note{
+  color:#5c7787;font-size:13px;line-height:1.5;
+  margin:-14px 0 23px 2px;
+}
+.inventory-unknown-note[hidden]{display:none!important;}
+@media(max-width:620px){.inventory-unknown-note{font-size:12px;margin:-10px 0 19px 2px;}}
+
+/* EOS Intelligence 7.8.6 — inventario: quattro valori in ordine operativo */
+.inventory-stats{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;max-width:none;margin-bottom:26px;
+}
+.inventory-stats .kpi-card{
+  min-width:0;min-height:126px;padding:19px 17px;
+  background:#fff;border:1.5px solid #bdd4df;border-radius:15px;
+  box-shadow:0 5px 17px rgba(30,72,94,.035);
+}
+.inventory-stats .kpi-card:nth-child(1){border-color:#84c9bc;background:#fff}
+.inventory-stats .kpi-card:nth-child(2){border-color:#dba0a7;background:#fff}
+.inventory-stats .kpi-card:nth-child(3){border-color:#d7bd7e;background:#fff}
+.inventory-stats .kpi-card:nth-child(4){border-color:#a9c8dc;background:#fff}
+.inventory-stats .kpi-top{
+  font-size:13px;line-height:1.38;min-height:42px;margin-bottom:12px;
+  color:#496679;font-weight:720;align-items:flex-start;
+}
+.inventory-stats .kpi-top>span:first-child{min-width:0;overflow-wrap:break-word}
+.inventory-stats .kpi-icon{flex:none}
+.inventory-stats .kpi-value{
+  font-size:clamp(23px,2.25vw,30px);font-weight:750;
+  letter-spacing:-.65px;line-height:1.18;color:#1d4056;
+  white-space:normal;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;
+}
+/* Analisi: nessuna striscia decorativa; il filtro attivo resta turchese. */
+.analysis-kpis .kpi-card,
+.analysis-kpis .kpi-card:nth-child(1),
+.analysis-kpis .kpi-card:nth-child(2),
+.analysis-kpis .kpi-card:nth-child(3){
+  background:#fff;border:1.5px solid #c7dbe4;
+  box-shadow:0 4px 16px rgba(23,60,82,.035);
+}
+#analysisFilters .filter-chip.active{
+  background:#e8f7f5!important;border-color:#238f87!important;
+  box-shadow:inset 0 0 0 1px #238f87;color:#0a756f!important;
+}
+@media(max-width:900px){
+  .inventory-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:26px}
+  .inventory-stats .kpi-card{min-height:121px;padding:17px 17px}
+  .inventory-stats .kpi-value{font-size:clamp(23px,3.6vw,30px)}
+}
+@media(max-width:620px){
+  .inventory-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:24px}
+  .inventory-stats .kpi-card{padding:15px 14px;min-height:122px;border-radius:14px}
+  .inventory-stats .kpi-top{font-size:12px;line-height:1.35;min-height:49px;margin-bottom:12px;gap:6px}
+  .inventory-stats .kpi-value{font-size:clamp(21px,5vw,27px)}
+  .inventory-stats .kpi-icon{width:27px;height:27px}
+}
+@media(max-width:350px){
+  .inventory-stats{gap:8px}
+  .inventory-stats .kpi-card{padding:13px 10px;min-height:120px}
+  .inventory-stats .kpi-top{font-size:11px;min-height:51px;gap:3px}
+  .inventory-stats .kpi-value{font-size:21px}
+  .inventory-stats .kpi-icon{width:24px;height:24px}
+}
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
 <symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></symbol>
@@ -1045,6 +1119,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 <symbol id="i-plus" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></symbol>
 <symbol id="i-book" viewbox="0 0 24 24"><path d="M12 6c-2-2-6-2-9-1v14c3-1 7-1 9 1 2-2 6-2 9-1V5c-3-1-7-1-9 1zm0 0v14"></path></symbol>
 <symbol id="i-arrow" viewbox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"></path></symbol>
+<symbol id="i-arrow-left" viewbox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"></path></symbol>
 <symbol id="i-log-out" viewbox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="M16 17l5-5-5-5M21 12H9"></path></symbol>
 <symbol id="i-chevron" viewbox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></symbol>
 <symbol id="i-shield" viewbox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3 8 8 11 5-3 8-6 8-11V5zM8 12l3 3 5-6"></path></symbol>
@@ -1201,6 +1276,8 @@ function clipExpired(a){return Date.now() - a.ts >= MAX_CLIP_AGE;}
 function alertById(id){return state.alerts.find(a=>a.id===id);}
 function inventoryIsTheft(id){return state.inventory.some(p=>p.alertId===id);}
 function countStatus(status){return state.alerts.filter(a=>a.status===status).length;}
+// Solo gli scarti con un motivo esplicito e pertinente sono falsi positivi.
+function countFalsePositives(){return state.alerts.filter(a=>a.status==='dismissed'&&['Movimento normale','Rilevamento errato'].includes(a.dismissReason)).length;}
 function countPending(){return state.alerts.filter(a=>a.status==='pending'&&!clipExpired(a)).length;}
 function theftCount(){return new Set(state.inventory.map(i=>i.eventId||(i.alertId||i.id))).size;}
 function getRows(){return [...state.alerts].sort((a,b)=>b.ts-a.ts);}
@@ -1288,8 +1365,8 @@ function saveHomeStatus(id,status){const a=alertById(id);if(!a||a.status!=='pend
 function renderChart(){let days=[];let n=new Date();for(let i=6;i>=0;i--){let d=new Date(n.getFullYear(),n.getMonth(),n.getDate()-i);days.push({d,key:d.toDateString(),num:0});}for(let a of state.alerts){let key=new Date(a.ts).toDateString();let day=days.find(d=>d.key===key);if(day)day.num++;}let max=Math.max(...days.map(d=>d.num),1);$('bars').innerHTML=days.map(d=>`<div class="chart-col"><div class="chart-bar" style="height:${Math.max(5,Math.round(d.num/max*88))}px" title="${d.num} segnalazioni"></div></div>`).join('');$('barLabels').innerHTML=days.map(d=>`<span>${new Date(d.d).toLocaleDateString('it-IT',{weekday:'short'})}</span>`).join('');}
 function matchesFilter(a){if(filter==='all')return true;if(filter==='pending')return a.status==='pending'&&!clipExpired(a);return a.status===filter;}
 function renderAnalysis(){
- $('analysisKpis').innerHTML=kpi('Segnalazioni',state.alerts.length,'analysis','blue')+kpi('Confermate',countStatus('confirmed'),'check','')+kpi('Falsi positivi',countStatus('dismissed'),'close','amber');
- renderChart();document.querySelectorAll('#analysisFilters button').forEach(b=>b.classList.toggle('active',b.dataset.filter===filter));
+ $('analysisKpis').innerHTML=kpi('Segnalazioni',state.alerts.length,'analysis','blue')+kpi('Confermate',countStatus('confirmed'),'check','')+kpi('Falsi positivi',countFalsePositives(),'close','amber');
+ renderChart();document.querySelectorAll('#analysisFilters button').forEach(b=>{const active=b.dataset.filter===filter;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
  const recent=getRows().filter(a=>!clipExpired(a)&&matchesFilter(a));
  const older=getRows().filter(a=>clipExpired(a)&&matchesFilter(a));
  $('recentAlerts').innerHTML=recent.map(a=>rowHtml(a)).join('')||'<div class="empty">Nessuna segnalazione nelle ultime 72 ore per questo filtro.</div>';
@@ -1299,8 +1376,9 @@ function renderAnalysis(){
 }
 function itemValue(i){return i.qty*i.price;}
 function renderInventory(){
- let total=state.inventory.reduce((sum,i)=>sum+itemValue(i),0),recovered=state.inventory.filter(i=>i.recovery==='yes').reduce((sum,i)=>sum+itemValue(i),0),loss=state.inventory.filter(i=>i.recovery==='no').reduce((sum,i)=>sum+itemValue(i),0);
- $('inventoryKpis').innerHTML=kpi('Valore registrato',money(total),'analysis','blue')+kpi('Merce recuperata',money(recovered),'check','')+kpi('Perdita nota',money(loss),'box','amber');
+ let total=state.inventory.reduce((sum,i)=>sum+itemValue(i),0),recovered=state.inventory.filter(i=>i.recovery==='yes').reduce((sum,i)=>sum+itemValue(i),0),loss=state.inventory.filter(i=>i.recovery==='no').reduce((sum,i)=>sum+itemValue(i),0),unknown=state.inventory.filter(i=>i.recovery!=='yes'&&i.recovery!=='no').reduce((sum,i)=>sum+itemValue(i),0);
+ $('inventoryKpis').innerHTML=kpi('Merce recuperata',money(recovered),'check','')+kpi('Merce non recuperata',money(loss),'box','amber')+kpi('Valore merce da verificare',money(unknown),'search','blue')+kpi('Valore complessivo',money(total),'analysis','blue');
+ 
  const rec=i=>({yes:'Sì',no:'No',unknown:'Non noto'}[i.recovery]||'Non noto');
  $('inventoryTable').innerHTML=state.inventory.map(i=>`<tr><td><strong>${esc(i.name)}</strong></td><td>${esc(i.alertId||i.eventId||'Senza alert')}</td><td>${i.qty}</td><td><strong>${money(itemValue(i))}</strong></td><td>${rec(i)}</td><td><button class="trash-btn" aria-label="Elimina ${esc(i.name)}" data-remove="${esc(i.id)}">${icon('trash')}</button></td></tr>`).join('')||'<tr><td colspan="6" class="empty">Nessun prodotto registrato.</td></tr>';
  $('inventoryCardsMobile').innerHTML=state.inventory.map(i=>`<div class="compact-row"><div><strong>${esc(i.name)}</strong><small>${esc(i.alertId||i.eventId||'Senza alert')} · Quantità: ${i.qty}</small><small>Recuperata: ${rec(i)}</small></div><div class="right"><strong>${money(itemValue(i))}</strong><button class="trash-btn" data-remove="${esc(i.id)}" aria-label="Elimina ${esc(i.name)}">${icon('trash')}</button></div></div>`).join('')||'<div class="empty">Nessun prodotto registrato.</div>';
@@ -1354,7 +1432,7 @@ function commitDismiss(reason){
  function openDeterrence(alertId=selectedAlertId,origin='detail'){
   if(!alertId||!canReview(alertById(alertId)))return;deterrenceOrigin=alertId;deterrenceReturn=origin;
   let h=`<div class="deterrence-panel"><div class="deterrence-label">${icon('volume')} Messaggio predefinito</div><p class="deterrence-script">“${esc(DEMO_MESSAGE)}”</p><button class="primary-btn" id="playDeterrence">${icon('volume')} Ascolta il messaggio</button><div id="googleVoiceHint" class="voice-hint" aria-live="polite">Voce preregistrata</div><audio id="deterrenceAudio" preload="auto" playsinline src="${DETERRENCE_AUDIO_SRC}"></audio><div class="deterrence-note">${icon('shield')}L’audio viene riprodotto soltanto su questo dispositivo; non viene trasmesso agli altoparlanti del negozio.</div></div>
-  <button class="text-action deterrence-back" id="backFromDeterrence" type="button">${icon('arrow')}<span>${originBackLabel()}</span></button>`;
+  <button class="text-action deterrence-back" id="backFromDeterrence" type="button">${icon('arrow-left')}<span>${originBackLabel()}</span></button>`;
   openModal('Deterrenza vocale',h,'deterrence');
   deterrenceAudio=$('deterrenceAudio');
   if(deterrenceAudio){
