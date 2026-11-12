@@ -2,14 +2,14 @@
 
 <html lang="it"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#f5f8fb" name="theme-color"/>
-<meta name="eos-build" content="7.8.9"/>
+<meta name="eos-build" content="7.8.10"/>
 <script id="eos-auto-update">
 /* Static GitHub Pages: verify the deployed version without clearing local data. */
 (function(){
   'use strict';
   if (!/^https?:$/.test(window.location.protocol)) return;
   var PARAM = '__eos_fresh';
-  var currentVersion = '7.8.9';
+  var currentVersion = '7.8.10';
   var lastCheckTime = 0;
   var checking = false;
   var canonical;
@@ -1241,7 +1241,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 }
 @media(max-width:350px){.inventory-stats .inventory-kpi{padding:12px 10px}.inventory-stats .inventory-kpi .kpi-top{font-size:11px}.inventory-stats .inventory-kpi .kpi-value{font-size:22px}}
 
-/* 7.8.9 — Detail alert: identical two-row action hierarchy to Home. */
+/* 7.8.10 — Detail alert: identical two-row action hierarchy to Home. */
 .detail-extra{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin-top:10px;align-items:stretch}
 .detail-extra .detail-guide-btn,.detail-extra .detail-deterrence-btn{
   display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;
@@ -1514,7 +1514,7 @@ function renderHome(){
   <div class="home-featured-head"><div><div class="home-featured-eyebrow"><span class="home-status-dot"></span>DA VERIFICARE</div><h2>${esc(alertName(a))}</h2></div></div>
   <div class="home-video"><div class="home-rec"><span class="home-rec-dot"></span> VIDEO EVENTO</div><button class="home-play" id="homePlay" aria-label="Riproduci video evento">${icon('play')}</button><div class="home-video-bottom"><span>${esc(a.camera)} &nbsp;·&nbsp; ${esc(a.area||'Area non configurata')}</span><span>VIDEO NON DISPONIBILE</span></div></div>
   <div class="home-alert-facts"><span>${icon('clock')} ${formatDate(a.ts)} · ${formatTime(a.ts)}</span><span>${icon('analysis')} ${esc(a.camera)}</span>${a.area?`<span>${icon('shield')} ${esc(a.area)}</span>`:''}</div>
-  <div class="home-alert-buttons"><button class="teal-btn home-confirm" data-home-status="confirmed" data-home-id="${esc(a.id)}">${icon('check')}Conferma</button><button class="outline-btn home-dismiss" data-home-status="dismissed" data-home-id="${esc(a.id)}">${icon('close')}Scarta</button><button class="home-guide-btn" id="homeGuide" data-home-id="${esc(a.id)}">${icon('book')}Guida operativa ${icon('arrow')}</button><button class="home-deterrence-btn" id="homeDeterrence" data-home-id="${esc(a.id)}">${icon('volume')}Attiva deterrenza</button></div>
+  <div class="home-alert-buttons"><button class="teal-btn home-confirm" data-home-status="confirmed" data-home-id="${esc(a.id)}">${icon('check')}Conferma</button><button class="outline-btn home-dismiss" data-home-status="dismissed" data-home-id="${esc(a.id)}">${icon('close')}Scarta</button><button class="home-deterrence-btn" id="homeDeterrence" data-home-id="${esc(a.id)}">${icon('volume')}Attiva deterrenza</button><button class="home-guide-btn" id="homeGuide" data-home-id="${esc(a.id)}">${icon('book')}Guida operativa ${icon('arrow')}</button></div>
  </article>`;}
  $('homeKpis').innerHTML=kpi('Da verificare',countPending(),'bell','amber')+kpi('Confermate',countStatus('confirmed'),'check','')+kpi('Furti accertati',theftCount(),'box','blue');
  const boxes=$('homeKpis').querySelectorAll('.kpi-card');['kpi-waiting','kpi-success','kpi-thefts'].forEach((c,i)=>boxes[i]?.classList.add(c));
@@ -1583,7 +1583,7 @@ function detailHtml(a){
  <div class="detail-fields"><div class="field-pair"><span>Data e ora</span><strong>${formatDate(a.ts)} · ${formatTime(a.ts)}</strong></div><div class="field-pair"><span>Video</span><strong>${exp?'Non disponibile':'Non disponibile'}</strong></div></div>
  ${a.dismissReason?`<div class="manual-help"><b>Motivo dello scarto:</b> ${esc(a.dismissReason)}</div>`:''}
  ${can?`<div class="actions-pair"><button class="primary-btn" data-status="confirmed">${icon('check')}${a.status==='confirmed'?'Confermata':'Conferma'}</button><button class="outline-btn" data-status="dismissed">${icon('close')}Scarta</button></div>
- <div class="detail-extra"><button class="detail-guide-btn" id="openProcedure">${icon('book')}Guida operativa ${icon('arrow')}</button><button class="detail-deterrence-btn" id="openDeterrence">${icon('volume')}Attiva deterrenza</button></div>`:`<div class="manual-help">È disponibile soltanto lo storico dell'esito. La clip non può essere aperta e non si possono effettuare nuove verifiche.</div>`}
+ <div class="detail-extra"><button class="detail-deterrence-btn" id="openDeterrence">${icon('volume')}Attiva deterrenza</button><button class="detail-guide-btn" id="openProcedure">${icon('book')}Guida operativa ${icon('arrow')}</button></div>`:`<div class="manual-help">È disponibile soltanto lo storico dell'esito. La clip non può essere aperta e non si possono effettuare nuove verifiche.</div>`}
  ${a.status==='confirmed'&&!exp?`<div class="after-confirm">Furto accertato? <button class="text-action" id="recordFromAlert">Registra merce ↗</button></div>`:''}
  ${logActionHtml(a)}`;
 }
