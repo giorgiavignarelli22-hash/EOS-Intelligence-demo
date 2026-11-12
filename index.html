@@ -2,14 +2,14 @@
 
 <html lang="it"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#f5f8fb" name="theme-color"/>
-<meta name="eos-build" content="7.8.8"/>
+<meta name="eos-build" content="7.8.9"/>
 <script id="eos-auto-update">
 /* Static GitHub Pages: verify the deployed version without clearing local data. */
 (function(){
   'use strict';
   if (!/^https?:$/.test(window.location.protocol)) return;
   var PARAM = '__eos_fresh';
-  var currentVersion = '7.8.8';
+  var currentVersion = '7.8.9';
   var lastCheckTime = 0;
   var checking = false;
   var canonical;
@@ -1240,6 +1240,29 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
  .inventory-legacy-note button{align-self:flex-start}
 }
 @media(max-width:350px){.inventory-stats .inventory-kpi{padding:12px 10px}.inventory-stats .inventory-kpi .kpi-top{font-size:11px}.inventory-stats .inventory-kpi .kpi-value{font-size:22px}}
+
+/* 7.8.9 — Detail alert: identical two-row action hierarchy to Home. */
+.detail-extra{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin-top:10px;align-items:stretch}
+.detail-extra .detail-guide-btn,.detail-extra .detail-deterrence-btn{
+  display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;
+  min-height:47px;height:auto;padding:10px 8px;border-radius:11px;
+  font:inherit;font-size:13px;font-weight:700;line-height:1.25;text-align:center;cursor:pointer;
+}
+.detail-extra .detail-guide-btn{background:#edf6f9;color:#285b72;border:1px solid #c8dfe8}
+.detail-extra .detail-deterrence-btn{background:#fff;color:#315b72;border:1px solid #b8cfdb}
+.detail-extra .detail-guide-btn:hover,.detail-extra .detail-deterrence-btn:hover{background:#eaf5f6;border-color:#77bcb8}
+.detail-extra .detail-guide-btn svg,.detail-extra .detail-deterrence-btn svg{width:16px;height:16px;flex:none}
+.detail-extra .detail-guide-btn svg:last-child{width:14px;height:14px}
+@media(max-width:620px){
+  .detail-extra{gap:9px}
+  .detail-extra .detail-guide-btn,.detail-extra .detail-deterrence-btn{min-height:46px;font-size:12px;gap:6px;padding:8px 6px}
+  .detail-extra .detail-guide-btn svg,.detail-extra .detail-deterrence-btn svg{width:15px;height:15px}
+  .detail-extra .detail-guide-btn svg:last-child{width:12px;height:12px}
+}
+@media(max-width:350px){
+  .detail-extra .detail-guide-btn,.detail-extra .detail-deterrence-btn{font-size:11px;gap:4px;padding:8px 3px}
+  .detail-extra .detail-guide-btn svg:last-child{display:none}
+}
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
 <symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></symbol>
@@ -1560,7 +1583,7 @@ function detailHtml(a){
  <div class="detail-fields"><div class="field-pair"><span>Data e ora</span><strong>${formatDate(a.ts)} · ${formatTime(a.ts)}</strong></div><div class="field-pair"><span>Video</span><strong>${exp?'Non disponibile':'Non disponibile'}</strong></div></div>
  ${a.dismissReason?`<div class="manual-help"><b>Motivo dello scarto:</b> ${esc(a.dismissReason)}</div>`:''}
  ${can?`<div class="actions-pair"><button class="primary-btn" data-status="confirmed">${icon('check')}${a.status==='confirmed'?'Confermata':'Conferma'}</button><button class="outline-btn" data-status="dismissed">${icon('close')}Scarta</button></div>
- <div class="detail-extra"><button class="outline-btn" id="openDeterrence">${icon('volume')}Attiva deterrenza</button><button class="option-help" id="openProcedure">${icon('book')}Guida operativa ${icon('arrow')}</button></div>`:`<div class="manual-help">È disponibile soltanto lo storico dell'esito. La clip non può essere aperta e non si possono effettuare nuove verifiche.</div>`}
+ <div class="detail-extra"><button class="detail-guide-btn" id="openProcedure">${icon('book')}Guida operativa ${icon('arrow')}</button><button class="detail-deterrence-btn" id="openDeterrence">${icon('volume')}Attiva deterrenza</button></div>`:`<div class="manual-help">È disponibile soltanto lo storico dell'esito. La clip non può essere aperta e non si possono effettuare nuove verifiche.</div>`}
  ${a.status==='confirmed'&&!exp?`<div class="after-confirm">Furto accertato? <button class="text-action" id="recordFromAlert">Registra merce ↗</button></div>`:''}
  ${logActionHtml(a)}`;
 }
