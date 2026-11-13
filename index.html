@@ -1366,6 +1366,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 .quick-guide-deeper label span{font-weight:450;color:#637e8d}
 .quick-guide-deeper select{border:1px solid #bdcfd8;border-radius:9px;width:100%;padding:11px 10px;min-height:44px;background:#fff;color:#244e64;font:inherit;font-size:13px}
 .quick-guide-deeper p{font-size:11px;line-height:1.55;color:#667f8a;margin:9px 0 0}
+.quick-guide-deeper .quick-guide-deeper-subtitle{margin:-3px 0 12px;font-size:12px;line-height:1.45;color:#657f8d}
 .quick-guide-shell .quick-guide-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .quick-guide-shell .quick-guide-actions button{font-size:13px;min-height:45px;padding:11px 12px}
 @media(max-width:620px){
@@ -2040,10 +2041,10 @@ function openProcedure(origin='detail'){
   [['Distingui segnalazione e furto','La conferma del gesto non significa che un furto sia stato accertato.'],['Valuta il contesto in sicurezza','Se necessario, avvisa il responsabile e segui le procedure del negozio.'],['Completa il rapporto in seguito','In Analisi furti potrai registrare l’esito oppure chiudere senza esito accertato.']]:
   [['Rileggi l’esito registrato','Consulta le informazioni salvate senza attribuire nuovi significati alla clip.'],['Evita deduzioni non verificate','Le note devono descrivere soltanto fatti riscontrati.'],['Consulta il manuale se occorre','Per dubbi specifici usa le procedure operative approvate dal punto vendita.']];
  const scenarioOptions=GUIDE_PROCEDURES.map(p=>`<option value="${esc(p.id)}">${esc(p.title)}</option>`).join('');
- const h=`<div class="quick-guide-shell"><div class="quick-guide-hero"><span class="quick-guide-label">${stage==='pending'?'Da verificare':stage==='confirmed'?'Confermata':'Valutazione registrata'}</span><h3>Indicazioni per questa segnalazione</h3><p>Una guida rapida per orientarti, senza interrompere la verifica dell’evento.</p></div>
+ const h=`<div class="quick-guide-shell">
  <div class="quick-guide-steps">${steps.map((it,i)=>`<div class="quick-guide-step"><span class="step-num">${i+1}</span><div><h4>${esc(it[0])}</h4><p>${esc(it[1])}</p></div></div>`).join('')}</div>
  <div class="quick-guide-safety"><strong>${icon('shield')} Prima la sicurezza</strong><p>Non accusare, inseguire o affrontare fisicamente una persona sulla base di una segnalazione AI. In caso di rischio, segui le procedure del punto vendita.</p></div>
- <div class="quick-guide-deeper"><label for="guideScenarioChoice">Vuoi approfondire una situazione specifica? <span>(facoltativo)</span></label><select id="guideScenarioChoice"><option value="">Mostra tutte le procedure</option>${scenarioOptions}</select><p>Seleziona tu lo scenario: il sistema non attribuisce automaticamente un furto o un livello di pericolosità.</p></div>
+ <div class="quick-guide-deeper"><label for="guideScenarioChoice">Vuoi approfondire una situazione specifica?</label><p class="quick-guide-deeper-subtitle">Scenario facoltativo</p><select id="guideScenarioChoice"><option value="">Mostra tutte le procedure</option>${scenarioOptions}</select></div>
  <div class="quick-guide-actions"><button type="button" class="outline-btn" id="backToAlert">${icon('arrow')} ${origin==='home'?'Torna alla Home':'Torna alla segnalazione'}</button><button type="button" class="primary-btn" id="goCompleteGuide">Consulta la guida completa ${icon('arrow')}</button></div></div>`;
  openModal('Guida operativa',h,'contextGuide',true);
 }
