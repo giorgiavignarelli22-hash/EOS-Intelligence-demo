@@ -2,14 +2,14 @@
 
 <html lang="it"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#f5f8fb" name="theme-color"/>
-<meta name="eos-build" content="7.8.10"/>
+<meta name="eos-build" content="7.8.12"/>
 <script id="eos-auto-update">
 /* Static GitHub Pages: verify the deployed version without clearing local data. */
 (function(){
   'use strict';
   if (!/^https?:$/.test(window.location.protocol)) return;
   var PARAM = '__eos_fresh';
-  var currentVersion = '7.8.10';
+  var currentVersion = '7.8.12';
   var lastCheckTime = 0;
   var checking = false;
   var canonical;
@@ -1329,6 +1329,56 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 .context-guide-actions button{font-size:12px;min-height:42px}
 @media(max-width:620px){.analysis-section-tabs{margin-top:-5px;margin-bottom:19px}.analysis-tab{padding:12px 14px;font-size:13px}.reports-header{flex-direction:column;gap:10px}.reports-header h2{font-size:18px}.reports-filters{align-items:stretch}.reports-search-wrap{max-width:none;flex-basis:100%}.reports-filter-buttons{flex-wrap:nowrap;overflow-x:auto}.report-list-card{padding:16px;align-items:stretch;flex-direction:column;gap:12px}.report-list-action{width:100%}.report-form-actions{grid-template-columns:1fr}.context-guide-actions{flex-direction:column-reverse}.context-guide-actions button{width:100%}.report-detail-box{padding:14px}.report-detail-actions button{width:100%}}
 
+
+/* EOS 7.8.12 — guide linked to alert and detailed, practical procedures. */
+.guide-return-banner{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;background:#edf8f6;border:1px solid #b5dfdc;border-radius:13px;padding:13px 16px;margin:15px 0 18px;color:#285c66}
+.guide-return-banner[hidden]{display:none!important}
+.guide-return-copy{display:flex;align-items:center;gap:10px;font-size:13px;line-height:1.55}
+.guide-return-copy>svg{width:17px;height:17px;flex:none;color:#168f89;transform:rotate(180deg)}
+.guide-return-button{min-height:39px;padding:9px 14px;display:inline-flex;align-items:center;gap:8px;font-size:13px;white-space:normal}
+.guide-return-button svg{width:15px;height:15px;transform:rotate(180deg)}
+#page-guide .guide-objective{margin-top:22px;padding:17px 18px;border-left:4px solid #19a198;background:#f0faf8;border-radius:8px}
+#page-guide .guide-objective>span{display:flex;align-items:center;gap:8px;color:#1b746f;font-size:13px;font-weight:740;margin-bottom:5px}
+#page-guide .guide-objective svg{width:16px;height:16px}
+#page-guide .guide-objective p{margin:0;font-size:14px;line-height:1.6;color:#426a73}
+#page-guide .guide-fullwidth{grid-column:1/-1}
+#page-guide .guide-fullwidth>h3>svg{width:21px;height:21px;color:#158e87}
+#page-guide .guide-ordered-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+#page-guide .guide-ordered-list li{display:flex;gap:13px;align-items:flex-start;padding:13px 14px;border:1px solid #deebef;border-radius:11px;background:#f9fcfd;color:#36586c;font-size:14px;line-height:1.65}
+#page-guide .guide-sequence-num{flex:none;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#e2f6f3;color:#11847e;font-weight:750;font-size:13px}
+#page-guide .guide-communication>h3>svg{width:20px;height:20px;color:#168e89}
+#page-guide .guide-example-quote{background:#eff9f7;padding:15px 17px;color:#235867;border-radius:11px;border-left:3px solid #1ea79d;font-size:15px;font-weight:630;line-height:1.65;margin-bottom:12px}
+#page-guide .guide-communication>p{font-size:14px;line-height:1.7;color:#597687;margin:0}
+.quick-guide-shell{gap:13px}
+.quick-guide-shell .quick-guide-hero{padding:15px 17px;border-radius:12px}
+.quick-guide-shell .quick-guide-hero h3{font-size:18px}
+.quick-guide-shell .quick-guide-steps{gap:8px}
+.quick-guide-shell .quick-guide-step{border-radius:12px;padding:13px 14px;box-shadow:none}
+.quick-guide-shell .quick-guide-step h4{font-size:15px}
+.quick-guide-shell .quick-guide-step p{font-size:13px}
+.quick-guide-shell .quick-guide-step .step-num{display:grid;place-items:center;width:29px;height:29px;flex:none;border-radius:50%;background:#e0f6f2;color:#147e78;font-weight:750;font-size:13px}
+.quick-guide-safety{border-radius:11px;padding:14px 16px;border:1px solid #f0d7d7;background:#fff8f7;color:#94585a}
+.quick-guide-safety strong{display:flex;align-items:center;gap:7px;font-size:13px;margin-bottom:5px}
+.quick-guide-safety svg{width:16px;height:16px}
+.quick-guide-safety p{font-size:13px;line-height:1.65;margin:0;color:#82656b}
+.quick-guide-deeper{border:1px solid #d7e7e9;border-radius:12px;padding:15px 16px;background:#fff}
+.quick-guide-deeper label{font-size:13px;font-weight:700;display:block;margin-bottom:9px;color:#28546b}
+.quick-guide-deeper label span{font-weight:450;color:#637e8d}
+.quick-guide-deeper select{border:1px solid #bdcfd8;border-radius:9px;width:100%;padding:11px 10px;min-height:44px;background:#fff;color:#244e64;font:inherit;font-size:13px}
+.quick-guide-deeper p{font-size:11px;line-height:1.55;color:#667f8a;margin:9px 0 0}
+.quick-guide-shell .quick-guide-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.quick-guide-shell .quick-guide-actions button{font-size:13px;min-height:45px;padding:11px 12px}
+@media(max-width:620px){
+ .guide-return-banner{align-items:stretch;flex-direction:column;gap:10px;padding:13px}
+ .guide-return-button{justify-content:center;width:100%}
+ #page-guide .guide-ordered-list li{font-size:13px;padding:11px 12px}
+ #page-guide .guide-objective{padding:14px}
+ #page-guide .guide-objective p{font-size:13px}
+ .quick-guide-shell .quick-guide-actions{grid-template-columns:1fr}
+ .quick-guide-shell .quick-guide-step{padding:12px}
+ .quick-guide-shell .quick-guide-hero h3{font-size:17px}
+}
+
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
 <symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></symbol>
@@ -1412,6 +1462,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 <section aria-label="Guida operativa" class="screen" id="page-guide">
 <div class="page-header"><h1 class="page-title">Guida operativa</h1></div>
 <p class="guide-page-summary">Indicazioni chiare per verificare le segnalazioni e agire in sicurezza.</p>
+<div id="guideReturnBanner" class="guide-return-banner" hidden></div>
  <nav aria-label="Argomenti della guida" class="guide-jump">
   <button type="button" data-guide-tab="procedures" class="active" aria-pressed="true">Procedure</button>
   <button type="button" data-guide-tab="review" aria-pressed="false">Valutazione</button>
@@ -1848,27 +1899,81 @@ const GUIDE_PROCEDURES=[
   'In caso di emergenza reale, chiama il 112 quando puoi farlo in sicurezza.'
  ],avoid:['Non inseguire né tentare di fermare fisicamente la persona.','Non mettere a rischio colleghi o clienti per recuperare merce.'],support:['Coinvolgi immediatamente chi è responsabile della sicurezza.','Se necessario, attiva i soccorsi attraverso i canali previsti.'],stop:['Sospendi ogni procedura di loss prevention e passa alla gestione della sicurezza delle persone.']}
 ];
+const GUIDE_EXTRAS={
+ borsa:{objective:'Valutare un gesto potenzialmente ambiguo senza attribuire automaticamente un furto.',say:'«Buongiorno, posso aiutarla a trovare qualcosa?»',sayNote:'Solo se una normale assistenza commerciale è appropriata. Non citare la segnalazione né formulare accuse.'},
+ tasca:{objective:'Distinguere un movimento ordinario da un gesto che richiede ulteriori verifiche.',say:'«Ha bisogno di aiuto per trovare un prodotto?»',sayNote:'Formula la domanda soltanto come normale assistenza alla vendita, senza richiedere controlli personali.'},
+ ambiguo:{objective:'Evitare conclusioni quando la ripresa non permette di capire il gesto.',say:'',sayNote:'Non serve avvicinare il cliente per chiarire un video poco leggibile. Registra “Video non valutabile” quando opportuno.'},
+ etichette:{objective:'Documentare soltanto eventuali alterazioni effettivamente riscontrate.',say:'«Posso aiutarla con le informazioni su questo prodotto?»',sayNote:'È un esempio di assistenza commerciale, non un modo per contestare una presunta manomissione.'},
+ uscita:{objective:'Valutare elementi concreti senza assumere che avvicinarsi all’uscita indichi un illecito.',say:'',sayNote:'Non avviare confronti all’uscita sulla sola base di una segnalazione AI.'},
+ aggressione:{objective:'Proteggere clienti e personale prima di qualsiasi considerazione sulla merce.',say:'',sayNote:'Non cercare un confronto o una frase “giusta”: mantieni la distanza e applica il piano di sicurezza del negozio.'}
+};
+let guideReturnContext=null;
+function guideReturnBannerHtml(){
+ const ctx=guideReturnContext;
+ if(!ctx)return '';
+ const a=alertById(ctx.id);
+ if(!a)return '';
+ return `<div class="guide-return-copy">${icon('arrow')}<span>Hai aperto la guida dalla segnalazione <strong>${esc(ctx.id)}</strong> · ${esc(a.camera)}</span></div><button type="button" class="outline-btn guide-return-button" data-return-alert>${icon('arrow')} ${ctx.origin==='home'?'Torna alla Home':'Torna alla segnalazione'}</button>`;
+}
+function returnToGuideAlert(){
+ const ctx=guideReturnContext;guideReturnContext=null;
+ guideActiveProcedure=null;
+ if(!ctx)return;
+ const a=alertById(ctx.id);
+ if(!a){nav('analysis');return;}
+ if(ctx.origin==='home'){
+  const pending=state.alerts.filter(x=>x.status==='pending'&&!clipExpired(x)).sort((x,y)=>y.ts-x.ts);
+  if(pending.length&&pending[0].id===ctx.id){nav('home');return;}
+ }
+ nav('analysis');showAlert(ctx.id);
+}
+function closeGuideOrModal(){
+ if(modal==='contextGuide'){
+  if(procedureOrigin==='detail'&&selectedAlertId){const id=selectedAlertId;showAlert(id);return;}
+  closeModal();nav('home');return;
+ }
+ closeModal();
+}
+function openFullGuideFromAlert(){
+ const a=alertById(selectedAlertId);
+ const sel=$('guideScenarioChoice');
+ const chosen=sel&&GUIDE_PROCEDURES.some(p=>p.id===sel.value)?sel.value:null;
+ const ctx=a?{id:a.id,origin:procedureOrigin==='home'?'home':'detail'}:null;
+ closeModal();
+ guideReturnContext=ctx;
+ guideTab='procedures';guideActiveProcedure=chosen;guideSearch='';
+ nav('guide');renderGuidePage();
+}
 let guideTab='procedures';
 let guideActiveProcedure=null;
 let guideSearch='';
 function guideList(items,cls){return items.map(t=>`<li>${icon(cls==='danger'?'close':'check')}<span>${esc(t)}</span></li>`).join('');}
 function guideDetailHtml(item){
+ const extra=GUIDE_EXTRAS[item.id]||{};
  return `<div class="guide-detail-container" id="guide-detail">
   <button class="guide-back" type="button" data-guide-back>${icon('arrow')} Torna alle procedure</button>
   <section class="guide-procedure-heading">
    <div class="guide-procedure-heading-top"><span class="guide-detail-label">Procedura operativa</span><span class="guide-level guide-level-${item.level}">${esc(item.levelLabel)}</span></div>
    <h2>${esc(item.title)}</h2><p>${esc(item.intro)}</p>
+   <div class="guide-objective"><span>${icon('check')} Obiettivo</span><p>${esc(extra.objective||item.intro)}</p></div>
+  </section>
+  <section class="guide-detail-block guide-fullwidth">
+   <h3>${icon('book')} Come comportarsi, passo dopo passo</h3>
+   <ol class="guide-ordered-list">${item.do.map((t,i)=>`<li><span class="guide-sequence-num">${i+1}</span><span>${esc(t)}</span></li>`).join('')}</ol>
   </section>
   <div class="guide-detail-columns">
-   <section class="guide-detail-block"><h3><span class="guide-block-icon good">${icon('check')}</span>Cosa fare</h3><ul class="guide-checklist">${guideList(item.do,'good')}</ul></section>
-   <section class="guide-detail-block"><h3><span class="guide-block-icon bad">${icon('close')}</span>Cosa non fare</h3><ul class="guide-checklist danger">${guideList(item.avoid,'danger')}</ul></section>
+   <section class="guide-detail-block guide-communication"><h3>${icon('user')} Comunicazione con il cliente</h3>
+    ${extra.say?`<div class="guide-example-quote">${esc(extra.say)}</div>`:''}
+    <p>${esc(extra.sayNote||'Comunica in modo professionale e rispettoso, senza formulare accuse.')}</p>
+   </section>
+   <section class="guide-detail-block"><h3><span class="guide-block-icon bad">${icon('close')}</span>Cosa evitare</h3><ul class="guide-checklist danger">${guideList(item.avoid,'danger')}</ul></section>
   </div>
   <div class="guide-detail-columns guide-bottom-columns">
-   <section class="guide-detail-block guide-support"><h3>${icon('user')} Quando richiedere supporto</h3><ul class="guide-note-list">${item.support.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></section>
+   <section class="guide-detail-block guide-support"><h3>${icon('user')} Quando coinvolgere il responsabile</h3><ul class="guide-note-list">${item.support.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></section>
    <section class="guide-detail-block guide-stop"><h3>${icon('shield')} Quando interrompere l’intervento</h3><ul class="guide-note-list">${item.stop.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></section>
   </div>
   <div class="guide-detail-actions"><button type="button" class="primary-btn" data-guide-back>${icon('arrow')} Torna al manuale</button></div>
-  <p class="guide-detail-disclaimer">Le procedure del punto vendita e le indicazioni del responsabile prevalgono su questa guida generale.</p>
+  <p class="guide-detail-disclaimer">Questa guida non costituisce una verifica di furto. Le procedure approvate dal punto vendita, la formazione ricevuta e le indicazioni del responsabile prevalgono.</p>
  </div>`;
 }
 function guideProceduresHtml(){
@@ -1915,6 +2020,8 @@ function guidePrivacyHtml(){return `<section class="guide-content-section"><div 
   <div class="privacy-fact">${icon('shield')}<div><h3>Accesso riservato al proprio negozio</h3><p>In produzione ogni richiesta al server dovrà verificare le autorizzazioni e il punto vendita associato all'account.</p></div></div>
  </div><details class="privacy-note"><summary>Note sulla protezione dei dati e la formazione ${icon('chevron')}</summary><div><p>Le indicazioni operative sono generali e dovranno essere integrate con le procedure approvate dal singolo punto vendita, gli obblighi di protezione dei dati e la formazione del personale.</p><p>Il limite di 72 ore deve essere documentato e giustificato dal titolare del trattamento. La cancellazione effettiva e i controlli di accesso dovranno essere implementati e verificati sul server.</p>${GUIDE_REFERENCES}</div></details></section>`;}
 function renderGuidePage(){
+ const banner=$('guideReturnBanner');
+ if(banner){banner.hidden=!guideReturnContext;banner.innerHTML=guideReturnContext?guideReturnBannerHtml():'';}
  document.querySelectorAll('.guide-jump [data-guide-tab]').forEach(btn=>{
   const active=btn.dataset.guideTab===guideTab;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active));
  });
@@ -1922,21 +2029,23 @@ function renderGuidePage(){
  $('guideContent').innerHTML=html;
  if(guideTab==='procedures'&&!guideActiveProcedure)filterGuideProcedures();
 }
-function openGuide(){closeModal();nav('guide');}
+function openGuide(){closeModal();guideReturnContext=null;guideActiveProcedure=null;nav('guide');renderGuidePage();}
 function openProcedure(origin='detail'){
  procedureOrigin=origin;
  const a=alertById(selectedAlertId);
  const stage=a?.status==='confirmed'?'confirmed':a?.status==='dismissed'||a?.status==='not_evaluable'?'closed':'pending';
  const steps=stage==='pending'?
-  [['Verifica attentamente la clip','Valuta soltanto ciò che è visibile, evitando deduzioni sull’intenzione della persona.'],['Mantieni un approccio discreto','Non formulare accuse e non intervenire sulla base della sola segnalazione automatica.'],['Registra la valutazione','Conferma il gesto sospetto, scarta oppure indica che il video non è valutabile.']]:
+  [['Verifica attentamente la clip','Considera soltanto ciò che è visibile; l’AI non stabilisce se sia avvenuto un furto.'],['Mantieni un approccio discreto','Se opportuno, offri normale assistenza. Non formulare accuse né intervenire sulla sola segnalazione.'],['Registra la valutazione','Conferma il gesto, scarta oppure indica che il video non è valutabile.']]:
   stage==='confirmed'?
-  [['Valuta la situazione reale','Una segnalazione confermata non equivale a un furto accertato.'],['Agisci secondo le procedure del negozio','Mantieni la sicurezza del personale e del cliente; richiedi supporto al responsabile quando necessario.'],['Completa l’esito quando possibile','In Analisi furti puoi compilare il rapporto in seguito, anche chiudendolo senza esito accertato.']]:
-  [['Consulta l’esito registrato','Verifica le informazioni salvate e la cronologia delle attività.'],['Documenta soltanto fatti verificabili','Evita interpretazioni e giudizi non supportati dagli elementi disponibili.'],['Consulta il manuale completo','Per situazioni particolari usa le procedure del punto vendita e la Guida operativa.']];
- const h=`<p class="context-guide-sub">Indicazioni per la fase: <strong>${stage==='pending'?'segnalazione da verificare':stage==='confirmed'?'segnalazione confermata':'esito già valutato'}</strong>.</p>
- <div class="context-steps">${steps.map((s,i)=>`<div class="context-step"><span class="context-step-num">${i+1}</span><div><strong>${esc(s[0])}</strong><p>${esc(s[1])}</p></div></div>`).join('')}</div>
- <div class="context-guide-safety">La sicurezza delle persone viene prima dell’accertamento: non accusare, inseguire o affrontare fisicamente un cliente sulla base dell’alert AI.</div>
- <div class="context-guide-actions"><button type="button" class="outline-btn" id="backToAlert">${origin==='home'?'Torna alla Home':'Torna alla segnalazione'}</button><button type="button" class="primary-btn" id="goCompleteGuide">Apri guida completa ${icon('arrow')}</button></div>`;
- openModal('Guida alla segnalazione',h,'contextGuide',true);
+  [['Distingui segnalazione e furto','La conferma del gesto non significa che un furto sia stato accertato.'],['Valuta il contesto in sicurezza','Se necessario, avvisa il responsabile e segui le procedure del negozio.'],['Completa il rapporto in seguito','In Analisi furti potrai registrare l’esito oppure chiudere senza esito accertato.']]:
+  [['Rileggi l’esito registrato','Consulta le informazioni salvate senza attribuire nuovi significati alla clip.'],['Evita deduzioni non verificate','Le note devono descrivere soltanto fatti riscontrati.'],['Consulta il manuale se occorre','Per dubbi specifici usa le procedure operative approvate dal punto vendita.']];
+ const scenarioOptions=GUIDE_PROCEDURES.map(p=>`<option value="${esc(p.id)}">${esc(p.title)}</option>`).join('');
+ const h=`<div class="quick-guide-shell"><div class="quick-guide-hero"><span class="quick-guide-label">${stage==='pending'?'Da verificare':stage==='confirmed'?'Confermata':'Valutazione registrata'}</span><h3>Indicazioni per questa segnalazione</h3><p>Una guida rapida per orientarti, senza interrompere la verifica dell’evento.</p></div>
+ <div class="quick-guide-steps">${steps.map((it,i)=>`<div class="quick-guide-step"><span class="step-num">${i+1}</span><div><h4>${esc(it[0])}</h4><p>${esc(it[1])}</p></div></div>`).join('')}</div>
+ <div class="quick-guide-safety"><strong>${icon('shield')} Prima la sicurezza</strong><p>Non accusare, inseguire o affrontare fisicamente una persona sulla base di una segnalazione AI. In caso di rischio, segui le procedure del punto vendita.</p></div>
+ <div class="quick-guide-deeper"><label for="guideScenarioChoice">Vuoi approfondire una situazione specifica? <span>(facoltativo)</span></label><select id="guideScenarioChoice"><option value="">Mostra tutte le procedure</option>${scenarioOptions}</select><p>Seleziona tu lo scenario: il sistema non attribuisce automaticamente un furto o un livello di pericolosità.</p></div>
+ <div class="quick-guide-actions"><button type="button" class="outline-btn" id="backToAlert">${icon('arrow')} ${origin==='home'?'Torna alla Home':'Torna alla segnalazione'}</button><button type="button" class="primary-btn" id="goCompleteGuide">Consulta la guida completa ${icon('arrow')}</button></div></div>`;
+ openModal('Guida operativa',h,'contextGuide',true);
 }
 
 function openAddItem(preselect=''){
@@ -2018,6 +2127,7 @@ function commitReport(id,withoutOutcome=false){
 }
 
 window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;
+ if(btn.hasAttribute('data-return-alert')){returnToGuideAlert();return;}
  if(btn.dataset.guideTab){guideTab=btn.dataset.guideTab;guideActiveProcedure=null;guideSearch='';renderGuidePage();return;}
  if(btn.dataset.guideProcedure){guideTab='procedures';guideActiveProcedure=btn.dataset.guideProcedure;renderGuidePage();document.querySelector('#page-guide')?.scrollIntoView({block:'start',behavior:'instant'});return;}
  if(btn.hasAttribute('data-guide-back')){guideTab='procedures';guideActiveProcedure=null;renderGuidePage();document.querySelector('#page-guide')?.scrollIntoView({block:'start',behavior:'instant'});return;}
@@ -2036,7 +2146,7 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
  if(btn.dataset.reportOpen){openReport(btn.dataset.reportOpen);return;}
  if(btn.dataset.reportInventory){const id=btn.dataset.reportInventory;closeModal();nav('inventory');openAddItem(id);return;}
  if(btn.dataset.reportNoOutcome){commitReport(btn.dataset.reportNoOutcome,true);return;}
- if(btn.dataset.page){if(modal)closeModal();nav(btn.dataset.page);return;}
+ if(btn.dataset.page){if(modal)closeModal();if(btn.dataset.page==='guide'){guideReturnContext=null;guideActiveProcedure=null;renderGuidePage();}nav(btn.dataset.page);return;}
  if(btn.id==='viewRecent'){filter='all';showOlder=false;nav('analysis');renderAnalysis();return;}
  if(btn.id==='olderToggle'){showOlder=!showOlder;renderAnalysis();return;}
  if(btn.dataset.alert){showAlert(btn.dataset.alert);return;}
@@ -2055,7 +2165,7 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
  if(btn.id==='dismissCancel'){let o=dismissOrigin,id=dismissTarget;dismissTarget=null;if(o==='detail'&&id)showAlert(id);else closeModal();return;}
  if(btn.dataset.modal){closeMobileAux();if(btn.dataset.modal==='guide')openGuide();else openInfo(btn.dataset.modal);return;}
  if(btn.id==='openProcedure'){openProcedure();return;}
- if(btn.id==='goCompleteGuide'){openGuide();return;}
+ if(btn.id==='goCompleteGuide'){openFullGuideFromAlert();return;}
  if(btn.id==='backToAlert'){if(procedureOrigin==='home'){closeModal();nav('home');}else if(selectedAlertId)showAlert(selectedAlertId);return;}
  if(btn.id==='recordFromAlert'){let id=selectedAlertId;closeModal();nav('inventory');openAddItem(id);return;}
  if(btn.id==='playVideo'){notify('Riproduzione video non ancora disponibile.');return;}
@@ -2070,8 +2180,8 @@ $('addItem').addEventListener('click',()=>openAddItem());
 $('exportInventory').addEventListener('click',exportInventory);
 
 
-$('closeModal').addEventListener('click',closeModal);$('modalBackdrop').addEventListener('click',closeModal);
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(modal)closeModal();else closeMobileAux();}});
+$('closeModal').addEventListener('click',closeGuideOrModal);$('modalBackdrop').addEventListener('click',closeGuideOrModal);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(modal)closeGuideOrModal();else closeMobileAux();}});
 document.addEventListener('submit',async e=>{
  if(e.target.id==='reportForm'){e.preventDefault();commitReport(e.target.dataset.reportId,false);return;}
  if(e.target.id==='loginForm'){
