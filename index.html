@@ -2,14 +2,14 @@
 
 <html lang="it"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#f5f8fb" name="theme-color"/>
-<meta name="eos-build" content="7.8.13-pagine-dedicate-20261118-r9"/>
+<meta name="eos-build" content="7.8.13-recenti-inventario-20261118-r9c"/>
 <script id="eos-auto-update">
 /* Static GitHub Pages: verify the deployed version without clearing local data. */
 (function(){
   'use strict';
   if (!/^https?:$/.test(window.location.protocol)) return;
   var PARAM = '__eos_fresh';
-  var currentVersion = '7.8.13-pagine-dedicate-20261118-r9';
+  var currentVersion = '7.8.13-recenti-inventario-20261118-r9c';
   var lastCheckTime = 0;
   var checking = false;
   var canonical;
@@ -1840,7 +1840,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 </div>
 <div id="analysisInventoryPane" role="tabpanel" class="eos-analysis-pane" hidden>
  <div class="eos-pane-heading"><h2>Inventario</h2></div>
- <div class="eos-filter-panel eos-period-only"><label>Periodo<select id="eosInventoryPeriod"><option value="72">Ultime 72 ore</option><option value="48">Ultime 48 ore</option><option value="older">Oltre 72 ore</option><option value="all">Tutte le date</option></select></label></div>
+ <div class="eos-filter-panel eos-period-only"><label>Periodo<select id="eosInventoryPeriod"><option value="recent">Recenti</option><option value="72">Ultime 72 ore</option><option value="48">Ultime 48 ore</option><option value="older">Oltre 72 ore</option><option value="all">Tutte le date</option></select></label></div>
  <div id="eosInventoryOverview" class="eos-groups"></div>
  <div id="eosInventoryDetail" class="eos-detail-page" hidden></div>
  <div id="eosInventorySlot" hidden></div>
@@ -2000,7 +2000,7 @@ let alertPeriod='overview',alertStatus='all',alertSearch='',alertOpenGroup=null,
 let reportPeriod='recent',reportStatus='all',reportOpenGroup=null,reportVisibleLimit=9,statsTab='alerts';
 let alertDetailGroup=null,alertDetailAll=false,alertDetailLimit=8;
 let reportDetailGroup=null,reportDetailAll=false,reportDetailLimit=8;
-let inventoryPeriod='72',inventoryDetailGroup=null,inventoryDetailAll=false,inventoryDetailLimit=8;
+let inventoryPeriod='recent',inventoryDetailGroup=null,inventoryDetailAll=false,inventoryDetailLimit=8;
 let statsPeriod='all',statsDetail=null,statsDetailLimit=8;
 let activeIncomingAlertId=null,pendingIncomingAlertId=null;
 const SIMULATED_ALERT_DELAY_MS=4000;
@@ -2014,7 +2014,7 @@ function syncLogin(){
 
 }
 function enterStore(store){cancelScheduledSimulation();hideIncomingNotification();pendingIncomingAlertId=null;currentStore=store;state=loadStore(store);try{sessionStorage.setItem(DEMO_SESSION_KEY,store);}catch(e){}
- filter='all';showOlder=false;analysisTab='alerts';reportsFilter='all';reportsSearch='';alertPeriod='overview';alertStatus='all';alertSearch='';alertOpenGroup=null;reportPeriod='recent';reportStatus='all';reportOpenGroup=null;statsTab='alerts';alertDetailGroup=null;reportDetailGroup=null;inventoryPeriod='72';inventoryDetailGroup=null;statsPeriod='all';statsDetail=null;syncLogin();render();nav('home');}
+ filter='all';showOlder=false;analysisTab='alerts';reportsFilter='all';reportsSearch='';alertPeriod='overview';alertStatus='all';alertSearch='';alertOpenGroup=null;reportPeriod='recent';reportStatus='all';reportOpenGroup=null;statsTab='alerts';alertDetailGroup=null;reportDetailGroup=null;inventoryPeriod='recent';inventoryDetailGroup=null;statsPeriod='all';statsDetail=null;syncLogin();render();nav('home');}
 function leaveStore(){cancelScheduledSimulation();hideIncomingNotification();pendingIncomingAlertId=null;stopDeterrenceAudio();currentStore='';try{sessionStorage.removeItem(DEMO_SESSION_KEY);}catch(e){}closeModal();$('loginForm').reset();$('loginError').hidden=true;syncLogin();}
 try{let saved=sessionStorage.getItem(DEMO_SESSION_KEY);if(saved&&DEMO_USERS[saved]){currentStore=saved;state=loadStore(saved);}}catch(e){}
 
@@ -2304,9 +2304,10 @@ function statsAlertRows(kind){
 function inventoryTimestamp(item){const a=item.alertId?alertById(item.alertId):null;return a?.ts||item.createdAt||item.updatedAt||0;}
 function inventoryWithinPeriod(item,period){
  if(period==='all')return true;
- const hrs=period==='older'?72:parseInt(period,10);
+ const normalized=period==='recent'?'72':period;
+ const hrs=normalized==='older'?72:parseInt(normalized,10);
  const age=Date.now()-inventoryTimestamp(item);
- return Number.isFinite(age)&&(period==='older'?age>=72*MS_HOUR:age>=0&&age<hrs*MS_HOUR);
+ return Number.isFinite(age)&&(normalized==='older'?age>=72*MS_HOUR:age>=0&&age<hrs*MS_HOUR);
 }
 function statsInventoryRows(kind){return state.inventory.filter(i=>statWithinPeriod(inventoryTimestamp(i))&&(kind==='total'||(kind==='recovered'&&i.recovery==='yes')||(kind==='notRecovered'&&i.recovery==='no')));}
 function renderChart(){
@@ -2366,7 +2367,7 @@ function renderInventoryOverview(){
  if($('eosInventoryPeriod'))$('eosInventoryPeriod').value=inventoryPeriod;
  const groups=[['unknown','Merce da aggiornare','Prodotti con recupero da definire','pending'],['products','Prodotti registrati','Merce inserita nei rapporti','closed']];
  $('eosInventoryOverview').innerHTML=groups.map(([id,title,desc,accent])=>`<section class="eos-group-bar eos-group--${accent}">
- <button type="button" class="eos-group-main" data-inventory-group="${id}"><span class="eos-group-label"><strong>${title}</strong><small>Ultime ${inventoryPeriod==='all'?'date disponibili':inventoryPeriod==='older'?'72+ ore':inventoryPeriod+' ore'}</small></span>
+ <button type="button" class="eos-group-main" data-inventory-group="${id}"><span class="eos-group-label"><strong>${title}</strong><small>${inventoryPeriod==='all'?'Tutte le date':inventoryPeriod==='older'?'Oltre 72 ore':inventoryPeriod==='recent'?'Ultime 72 ore':'Ultime '+inventoryPeriod+' ore'}</small></span>
  <span class="eos-group-side"><span class="eos-group-count">${inventoryGroupRows(id).length}</span>${icon('arrow')}</span></button></section>`).join('');
  $('eosInventoryOverview').hidden=!!inventoryDetailGroup;$('eosInventoryDetail').hidden=!inventoryDetailGroup;
  if(inventoryDetailGroup)renderInventoryDetail();
@@ -2375,7 +2376,7 @@ function renderInventoryDetail(){
  if(!inventoryDetailGroup)return;
  const label=inventoryDetailGroup==='unknown'?'Merce da aggiornare':'Prodotti registrati';
  const rows=inventoryGroupRows(inventoryDetailGroup,inventoryDetailAll),limited=rows.slice(0,inventoryDetailLimit),more=rows.length-limited.length;
- const periodText=inventoryDetailAll?'Tutte le date':inventoryPeriod==='all'?'Tutte le date':inventoryPeriod==='older'?'Oltre 72 ore':`Ultime ${inventoryPeriod} ore`;
+ const periodText=inventoryDetailAll?'Tutte le date':inventoryPeriod==='all'?'Tutte le date':inventoryPeriod==='older'?'Oltre 72 ore':inventoryPeriod==='recent'?'Ultime 72 ore':`Ultime ${inventoryPeriod} ore`;
  $('eosInventoryDetail').innerHTML=`<button type="button" class="eos-back-btn" data-inventory-back>${icon('arrow')} Torna all’Inventario</button>
  <div class="eos-detail-head"><h2>${label}</h2><span class="eos-detail-count">${rows.length} ${rows.length===1?'prodotto':'prodotti'}</span></div>
  <p class="eos-detail-period">${periodText}</p>
