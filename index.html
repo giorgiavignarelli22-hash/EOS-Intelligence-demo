@@ -2,14 +2,14 @@
 
 <html lang="it"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#f5f8fb" name="theme-color"/>
-<meta name="eos-build" content="7.8.13-recenti-inventario-20261118-r9c"/>
+<meta name="eos-build" content="7.8.13-statistiche-totale-centrato-20261118-r9d"/>
 <script id="eos-auto-update">
 /* Static GitHub Pages: verify the deployed version without clearing local data. */
 (function(){
   'use strict';
   if (!/^https?:$/.test(window.location.protocol)) return;
   var PARAM = '__eos_fresh';
-  var currentVersion = '7.8.13-recenti-inventario-20261118-r9c';
+  var currentVersion = '7.8.13-statistiche-totale-centrato-20261118-r9d';
   var lastCheckTime = 0;
   var checking = false;
   var canonical;
@@ -1739,6 +1739,9 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 .eos-inventory-stat.eos-stat-click{align-items:stretch;display:flex;flex-direction:column;gap:7px;min-height:105px;border:1px solid #d9e6e9}
 .eos-inventory-stat.eos-stat-click small{display:flex;align-items:center;gap:5px;color:#267e7d;font-size:11px;font-weight:700}
 .eos-inventory-stat.eos-stat-click small svg{width:13px;height:13px;stroke:currentColor;fill:none}
+/* Only the full-width Valore complessivo tile is centered. */
+.eos-inventory-stat.eos-stat-click[data-stat-inventory="total"]{align-items:center;text-align:center;justify-content:center}
+.eos-inventory-stat.eos-stat-click[data-stat-inventory="total"] small{justify-content:center}
 @media(max-width:430px){.eos-detail-head h2{font-size:19px}.eos-detail-count{font-size:11px;padding:5px 8px}.eos-back-btn{font-size:12px}.eos-detail-list .alert-row{padding:10px!important}}
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
