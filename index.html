@@ -2,14 +2,14 @@
 
 <html lang="it"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#f5f8fb" name="theme-color"/>
-<meta name="eos-build" content="7.8.13-home-pulita-refresh-20261118-r2"/>
+<meta name="eos-build" content="7.8.13-rapporti-consultazione-20261118-r3"/>
 <script id="eos-auto-update">
 /* Static GitHub Pages: verify the deployed version without clearing local data. */
 (function(){
   'use strict';
   if (!/^https?:$/.test(window.location.protocol)) return;
   var PARAM = '__eos_fresh';
-  var currentVersion = '7.8.13-home-pulita-refresh-20261118-r2';
+  var currentVersion = '7.8.13-rapporti-consultazione-20261118-r3';
   var lastCheckTime = 0;
   var checking = false;
   var canonical;
@@ -1545,6 +1545,18 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
  #page-home .home-refresh-icon{width:40px;height:40px}
 }
 @media(max-width:355px){#page-home .home-tab{font-size:12px;padding:13px 8px}}
+
+/* 7.8.13 – completed reports are read-only until Modifica rapporto */
+.report-view{display:grid;gap:0}
+.report-view-field{padding:14px 0;border-bottom:1px solid #e4ecef;color:#294c60;font-size:13px;line-height:1.55}
+.report-view-field>strong{display:block;font-size:13px;margin-bottom:6px;color:#21465b}
+.report-view-field>div{overflow-wrap:anywhere;white-space:normal}
+.report-view-action{display:inline-block;margin:0 6px 6px 0;background:#f4f9fa;border:1px solid #e1ecef;padding:5px 9px;border-radius:8px}
+.report-view-product{padding:5px 0}
+.report-view-actions{grid-template-columns:1fr;}
+.report-view-actions button{font-size:13px;min-height:45px}
+.report-form-actions:has(>button:only-child){grid-template-columns:1fr}
+@media(max-width:620px){.report-view-field{padding:12px 0}.report-view-actions button{min-height:48px}}
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
 <symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></symbol>
@@ -1627,7 +1639,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 </div>
 </div>
 <div id="analysisReportsPane" role="tabpanel" hidden>
- <div class="reports-header"><div><h2>Rapporti evento</h2><p>Completa gli esiti in un secondo momento, senza rallentare la verifica delle segnalazioni.</p></div><span class="reports-pending-pill" id="reportsPendingPill">0 da completare</span></div>
+ <div class="reports-header"><div><h2>Rapporti evento</h2></div><span class="reports-pending-pill" id="reportsPendingPill">0 da completare</span></div>
  <div class="reports-filters"><label class="reports-search-wrap"><svg><use href="#i-search"></use></svg><input type="search" id="reportsSearch" placeholder="Cerca ID, telecamera o area…" autocomplete="off" aria-label="Cerca rapporti" /></label><div class="reports-filter-buttons" id="reportFilters"><button type="button" data-report-filter="all" class="active">Tutti</button><button type="button" data-report-filter="pending">Da completare</button><button type="button" data-report-filter="closed">Completati</button></div></div>
  <div id="reportsList" class="reports-list"></div>
 </div>
@@ -1824,7 +1836,7 @@ function reportCardHtml(a){
  const total=items.reduce((n,i)=>n+i.qty*i.price,0);
  return `<article class="report-list-card eos-status-panel--${badgeStatus(a)}"><div class="report-list-main"><div class="report-list-top"><strong>${esc(a.id)}</strong><span class="report-badge ${open?'':'closed'}">${a.report?.needsReview?'Da rivedere':open?(a.report?.draft?'Bozza':a.status==='pending'?'Da verificare':'Da completare'):'Completato'}</span></div>
  <div class="report-list-meta">${formatDate(a.ts)} · ${formatTime(a.ts)} · ${esc(a.camera)} · <span class="eos-inline-status">${statusColorDot(a)} ${viewStatus(a)}</span>${a.critical?` · ${criticalTagHtml(a)}`:''}</div>
- <div class="report-list-outcome">${esc(reportOutcome(a))}${items.length?' · '+items.length+' prodotti ('+money(total)+')':''}</div></div>
+ <div class="report-list-outcome">${a.report?.closed||a.report?.draft||a.report?.needsReview?esc(reportOutcome(a)):''}${items.length?' · '+items.length+' prodotti ('+money(total)+')':''}</div></div>
  <button type="button" class="report-list-action ${open?'primary':''}" data-report-open="${esc(a.id)}">${a.report?.needsReview?'Rivedi rapporto':open?'Completa rapporto':'Apri rapporto'}</button></article>`;
 }
 
@@ -1996,7 +2008,7 @@ function openClassifyRecovery(id){
 
 function render(){renderHome();renderAnalysis();renderInventory();renderGuidePage();if(activeIncomingAlertId){const a=alertById(activeIncomingAlertId);if(!a||a.status!=='pending'||clipExpired(a))hideIncomingNotification();}}
 function nav(target){if(!['home','analysis','inventory','guide'].includes(target))return;screen=target;document.querySelectorAll('.screen').forEach(el=>el.classList.toggle('active',el.id==='page-'+target));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===target));window.scrollTo({top:0,behavior:'instant'});}
-function openModal(title,html,type,wide=false){if(activeIncomingAlertId){pendingIncomingAlertId=activeIncomingAlertId;hideIncomingNotification();}lastFocus=document.activeElement;modal=type;$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('dialog').classList.toggle('wide',wide);$('dialog').classList.toggle('support-dialog',type==='support');$('modalRoot').classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>$('closeModal').focus(),40);}
+function openModal(title,html,type,wide=false){if(activeIncomingAlertId){pendingIncomingAlertId=activeIncomingAlertId;hideIncomingNotification();}lastFocus=document.activeElement;modal=type;$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('modalBody').scrollTop=0;$('dialog').classList.toggle('wide',wide);$('dialog').classList.toggle('support-dialog',type==='support');$('modalRoot').classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>$('closeModal').focus(),40);}
 function closeMobileAux(){let el=$('mobileAuxMenu'),toggle=$('mobileAuxToggle');if(el)el.hidden=true;if(toggle)toggle.setAttribute('aria-expanded','false');}
 function toggleMobileAux(){const el=$('mobileAuxMenu');if(!el)return;el.hidden=!el.hidden;$('mobileAuxToggle').setAttribute('aria-expanded',String(!el.hidden));}
 function closeModal(){if(modal==='deterrence'){stopDeterrenceAudio();}let r=$('modalRoot');r.classList.remove('open');document.body.style.overflow='';modal='';selectedAlertId=null;if(lastFocus&&document.contains(lastFocus))lastFocus.focus();showPendingIncomingNotification();}
@@ -2016,7 +2028,7 @@ function detailHtml(a){
  ${reviewActions}${homeOperations}${guideButton}${criticalView}
  ${fromHome?'':`<section class="report-detail-box"><div class="report-detail-title"><h3>Gestione evento</h3><span class="report-badge ${reportIsOpen(a)?'':'closed'}">${a.report?.needsReview?'Da rivedere':a.report?.closed?'Completato':a.report?.draft?'Bozza':'Da completare'}</span></div>
  ${a.critical?`<div class="report-detail-critical">${criticalTagHtml(a)}</div>`:''}${a.report?.draft&&a.report?.outcome?`<p class="report-preselected-outcome">Esito indicato: ${esc(REPORT_OUTCOMES[a.report.outcome]||'')} · da completare nel rapporto</p>`:''}
- <div class="report-detail-actions"><button type="button" data-report-open="${esc(a.id)}">${a.report?.needsReview?'Rivedi rapporto':a.report?.closed?'Visualizza / modifica rapporto':a.report?.draft?'Continua rapporto':'Completa rapporto'}</button></div></section>`}
+ <div class="report-detail-actions"><button type="button" data-report-open="${esc(a.id)}">${a.report?.needsReview?'Rivedi rapporto':a.report?.closed?'Apri rapporto':a.report?.draft?'Continua rapporto':'Completa rapporto'}</button></div></section>`}
  ${logActionHtml(a)}`;
 }
 function showAlert(id){let a=alertById(id);if(!a)return;detailOrigin=screen;selectedAlertId=id;openModal(clipExpired(a)?'Esito segnalazione':'Dettaglio segnalazione',detailHtml(a),'detail');}
@@ -2387,7 +2399,7 @@ function openInfo(which){
   <div class="account-field"><span>Nome utente</span><strong>${esc(DEMO_USERS[currentStore]?.username||'EOS Intelligence')}</strong></div>
   <div class="account-field"><span>Punto vendita associato</span><strong>${esc(DEMO_USERS[currentStore]?.label||'Punto vendita 01')}</strong></div>
   <div class="account-field"><span>Password</span><strong>••••••••••••</strong></div>
-  <div class="account-field eos-build-ident"><span>Versione interfaccia</span><strong>7.8.13 · Home essenziale · Aggiorna</strong></div>
+  <div class="account-field eos-build-ident"><span>Versione interfaccia</span><strong>7.8.13 · Rapporti in consultazione · r3</strong></div>
  </div>
  <button class="outline-btn account-change" type="button" id="togglePasswordForm" aria-controls="passwordFormContainer" aria-expanded="false">Modifica password ${icon('chevron')}</button>
  <div id="passwordFormContainer" hidden>
@@ -2419,45 +2431,67 @@ function renderReportItemDraft(id){
  const a=alertById(id);if(!a)return;
  const existing=state.inventory.filter(i=>i.alertId===id);
  const slot=$('reportItemsSummary');if(!slot)return;
- slot.innerHTML=[...existing.map(i=>({name:i.name,qty:i.qty,price:i.price,stored:true})),...pendingReportItems].map(i=>`<div class="eos-item-row"><span><strong>${esc(i.name)}</strong> · ${i.qty} × ${money(i.price)}</span><span>${i.stored?'In inventario':'Da salvare'}</span></div>`).join('')||'<p class="hint">Nessuna merce associata.</p>';
+ const entries=[...existing.map(i=>({name:i.name,qty:i.qty,price:i.price,stored:true})),...pendingReportItems];
+ slot.innerHTML=entries.map(i=>`<div class="eos-item-row"><span><strong>${esc(i.name)}</strong> · ${i.qty} × ${money(i.price)}</span><span>${i.stored?'In inventario':'Da salvare'}</span></div>`).join('');
 }
-function openReport(id){
+function reportViewerField(label,value){
+ return `<div class="report-view-field"><strong>${esc(label)}</strong><div>${value}</div></div>`;
+}
+function openReport(id,edit=false){
  const a=alertById(id);if(!a)return;
  selectedAlertId=id;pendingReportItems=[];
  const r=a.report||{},acts=r.actions||[r.action].filter(Boolean),linked=state.inventory.filter(i=>i.alertId===id);
  const reportChoice=r.preliminaryOutcome!==undefined?r.preliminaryOutcome:r.outcome;
- const html=`<p class="report-modal-intro">Segnalazione <strong>${esc(id)}</strong> · ${esc(a.camera)} · ${esc(a.area||'Zona non specificata')} · ${formatDate(a.ts)}.</p>
- <div class="report-link-summary"><strong>Esito segnalazione:</strong> <span class="eos-inline-status">${statusColorDot(a)}${esc(viewStatus(a))}</span>${a.status==='pending'?'<br>La segnalazione è da verificare: puoi salvare una bozza del rapporto.':''}</div>
- <form id="reportForm" data-report-id="${esc(id)}">
+ const intro=`<p class="report-modal-intro">Segnalazione <strong>${esc(id)}</strong> · ${esc(a.camera)} · ${esc(a.area||'Zona non specificata')} · ${formatDate(a.ts)}</p>
+ <div class="report-link-summary"><strong>Esito segnalazione:</strong> <span class="eos-inline-status">${statusColorDot(a)}${esc(viewStatus(a))}</span></div>`;
+ // A completed report always opens read-only, until the operator expressly selects Modifica rapporto.
+ if(r.closed&&!edit){
+  const chosen=REPORT_OUTCOMES[r.outcome]||'Non indicato';
+  const actionLabels=acts.filter(Boolean).map(v=>`<span class="report-view-action">${esc(v==='Altro (specificare)'&&r.other?('Altro: '+r.other):v)}</span>`).join('');
+  const merce=linked.map(i=>`<div class="report-view-product"><span>${esc(i.name)} · ${i.qty} × ${money(i.price)}${i.recovery==='yes'?' · Recuperata':i.recovery==='no'?' · Non recuperata':''}</span></div>`).join('');
+  const html=`${intro}<div class="report-view" aria-label="Rapporto completato in sola lettura">
+  ${reportViewerField('Esito finale dell’evento',esc(chosen))}
+  ${reportViewerField('Azioni del personale',actionLabels||'Nessuna azione registrata')}
+  ${reportViewerField('Gestione della sicurezza',a.critical?'Escalation critica segnalata':'Non segnalata')}
+  ${a.criticalNotes?reportViewerField('Note sulla sicurezza',esc(a.criticalNotes)):''}
+  ${reportViewerField('Merce associata all’evento',merce||'Nessuna merce associata')}
+  ${r.notes?reportViewerField('Note operative',esc(r.notes).replace(/\n/g,'<br>')):''}
+  <div class="report-form-actions report-view-actions"><button type="button" class="primary-btn" data-report-modify="${esc(id)}">${icon('edit')} Modifica rapporto</button></div>
+  </div>`;
+  openModal('Rapporto evento',html,'report',true);
+  return;
+ }
+ const completedEdit=!!r.closed&&edit;
+ const html=`${intro}
+ <form id="reportForm" data-report-id="${esc(id)}" data-report-mode="${completedEdit?'edit-completed':'new-or-draft'}">
  <div class="report-form-section">1. Esito finale dell’evento</div>
  <div class="report-outcome-list">${Object.entries(REPORT_OUTCOMES).map(([value,label])=>`<label class="report-outcome-item"><input type="radio" name="reportOutcome" value="${value}" ${reportChoice===value?'checked':''}><span>${label}</span></label>`).join('')}</div>
  <div class="report-form-section">2. Azioni del personale (facoltative)</div>
  <div class="eos-checkbox-list">${REPORT_ACTIONS.map(v=>`<label class="eos-check-option"><input type="checkbox" name="reportActions" value="${esc(v)}" ${acts.includes(v)?'checked':''}><span>${esc(v)}</span></label>`).join('')}</div>
  <div class="form-group" id="reportOtherWrap" ${acts.includes('Altro (specificare)')?'':'hidden'}><label for="reportOther">Specifica l'altra azione</label><textarea id="reportOther" rows="2" maxlength="350">${esc(r.other||'')}</textarea></div>
  <div class="report-form-section">3. Gestione della sicurezza (facoltativa)</div>
- <p class="hint">Situazione critica: ${a.critical?'segnalata':'non segnalata'}</p>
  <label class="eos-check-option"><input type="checkbox" id="reportCritical" ${a.critical?'checked':''}><span>Situazione critica segnalata</span></label>
- <p class="hint">Se già segnalata dall'alert, questa informazione viene riportata automaticamente. La rimozione richiede conferma.</p>
  <div class="form-group"><label for="reportCriticalNotes">Note sulla sicurezza (facoltative)</label><textarea id="reportCriticalNotes" rows="2" maxlength="800">${esc(a.criticalNotes||'')}</textarea></div>
  <div class="report-form-section">4. Merce associata all’evento (facoltativa)</div><div id="reportItemsSummary" class="eos-items-list"></div>
  <button type="button" id="reportAddItemToggle" class="eos-full-btn outline-btn">${icon('plus')} Aggiungi merce</button>
  <div id="reportAddItemPane" class="eos-report-item-pane" hidden>
- <div class="form-group"><label for="reportItemName">Prodotto</label><input id="reportItemName" type="text" maxlength="85" placeholder="Es. Prodotto cosmetico"></div>
+ <div class="form-group"><label for="reportItemName">Prodotto</label><input id="reportItemName" type="text" maxlength="85" placeholder="Prodotto"></div>
  <div class="form-grid"><div class="form-group"><label for="reportItemQty">Quantità</label><input id="reportItemQty" type="number" value="1" min="1" max="100000" step="1"></div><div class="form-group"><label for="reportItemPrice">Valore unitario (€)</label><input id="reportItemPrice" type="number" min="0" step="0.01" max="1000000" placeholder="0,00"></div></div>
  <div class="form-group"><label>Merce recuperata?</label><div class="form-check-grid"><label><input type="radio" name="reportItemRecovered" value="yes"> Sì</label><label><input type="radio" name="reportItemRecovered" value="no"> No</label></div></div>
  <button type="button" class="primary-btn" id="reportStageItem">Aggiungi al rapporto</button></div>
- <div class="report-form-section">5. Note operative (facoltative)</div><div class="form-group"><textarea id="reportNotes" rows="4" maxlength="1500" placeholder="Riporta solo fatti osservabili e verificabili…">${esc(r.notes||'')}</textarea></div>
- <p class="report-form-note">Descrivi soltanto fatti osservabili. Confermare un gesto non significa accertare un furto.</p>
- <div class="report-form-actions"><button type="button" class="outline-btn" data-save-report-draft="${esc(id)}">Salva bozza</button><button type="submit" class="primary-btn">${a.status==='pending'?'Salva bozza':'Salva rapporto'}</button></div></form>`;
- openModal('Completa rapporto evento',html,'report',true);renderReportItemDraft(id);
+ <div class="report-form-section">5. Note operative (facoltative)</div><div class="form-group"><textarea id="reportNotes" rows="4" maxlength="1500" placeholder="Note operative">${esc(r.notes||'')}</textarea></div>
+ <div class="report-form-actions">${completedEdit?`<button type="button" class="outline-btn" data-report-cancel-edit="${esc(id)}">Annulla</button><button type="submit" class="primary-btn">Salva modifiche</button>`:a.status==='pending'?`<button type="submit" class="primary-btn">Salva bozza</button>`:`<button type="button" class="outline-btn" data-save-report-draft="${esc(id)}">Salva bozza</button><button type="submit" class="primary-btn">Completa rapporto</button>`}</div></form>`;
+ openModal(completedEdit?'Modifica rapporto':'Completa rapporto evento',html,'report',true);renderReportItemDraft(id);
 }
 function commitReport(id,draft=false){
  const a=alertById(id);if(!a)return;
  const form=$('reportForm');if(!form)return;
+ const wasCompleted=!!a.report?.closed;
+ const completedEdit=wasCompleted&&form.dataset.reportMode==='edit-completed';
  const selected=form.querySelector('input[name="reportOutcome"]:checked');
  const outcome=selected?.value||'';
- const isDraft=draft||a.status==='pending';
- if(!isDraft&&!Object.hasOwn(REPORT_OUTCOMES,outcome)){notify('Seleziona l’esito finale oppure salva una bozza');return;}
+ const isDraft=!completedEdit&&(draft||a.status==='pending');
+ if(!isDraft&&!Object.hasOwn(REPORT_OUTCOMES,outcome)){notify('Seleziona un esito finale');return;}
  const acts=[...form.querySelectorAll('input[name="reportActions"]:checked')].map(i=>i.value);
  const actions=acts.includes('Nessun intervento')?['Nessun intervento']:acts;
  const other=String($('reportOther')?.value||'').trim().slice(0,350);
@@ -2466,14 +2500,14 @@ function commitReport(id,draft=false){
  if(a.critical&&!critical&&!window.confirm('Rimuovere una situazione critica già segnalata? La correzione resterà registrata nello storico.'))return;
  const notes=String($('reportNotes')?.value||'').trim().slice(0,1500);
  const criticalNotes=String($('reportCriticalNotes')?.value||'').trim().slice(0,800);
- const prevCritical=!!a.critical;
- a.report={needsReview:false,closed:!isDraft,draft:isDraft,outcome:Object.hasOwn(REPORT_OUTCOMES,outcome)?outcome:null,actions,other,notes,completedAt:isDraft?null:Date.now(),updatedAt:Date.now()};
+ const prevCritical=!!a.critical, oldReport=a.report||{};
+ a.report={needsReview:false,closed:!isDraft,draft:isDraft,outcome:Object.hasOwn(REPORT_OUTCOMES,outcome)?outcome:null,actions,other,notes,completedAt:isDraft?null:(completedEdit?(oldReport.completedAt||Date.now()):Date.now()),updatedAt:Date.now()};
  a.critical=critical;a.criticalNotes=criticalNotes;
  if(prevCritical!==critical)recordAction(a,critical?'Escalation critica segnalata dal rapporto':'Escalation critica rimossa dal rapporto');
  for(const item of pendingReportItems){state.inventory.unshift({id:'INV-'+Date.now()+'-'+Math.floor(Math.random()*10000),alertId:id,eventId:id,...item});recordAction(a,'Merce registrata: '+item.name);}
  pendingReportItems=[];
- recordAction(a,isDraft?'Bozza rapporto salvata':'Rapporto evento: '+REPORT_OUTCOMES[outcome]);
- save();closeModal();render();nav('analysis');showAlert(id);notify(isDraft?'Bozza rapporto salvata':'Rapporto salvato');
+ recordAction(a,completedEdit?'Rapporto modificato · '+REPORT_OUTCOMES[outcome]:isDraft?'Bozza rapporto salvata':'Rapporto evento: '+REPORT_OUTCOMES[outcome]);
+ save();closeModal();render();nav('analysis');showAlert(id);notify(completedEdit?'Modifiche salvate':isDraft?'Bozza rapporto salvata':'Rapporto salvato');
 }
 
 window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;
@@ -2494,6 +2528,8 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
  if(btn.dataset.analysisTab){setAnalysisTab(btn.dataset.analysisTab);return;}
  if(btn.dataset.reportFilter){reportsFilter=btn.dataset.reportFilter;renderReports();return;}
  if(btn.dataset.reportOpen){openReport(btn.dataset.reportOpen);return;}
+ if(btn.dataset.reportModify){openReport(btn.dataset.reportModify,true);return;}
+ if(btn.dataset.reportCancelEdit){openReport(btn.dataset.reportCancelEdit,false);return;}
  if(btn.dataset.reportInventory){openReport(btn.dataset.reportInventory);return;}
  if(btn.dataset.saveReportDraft){commitReport(btn.dataset.saveReportDraft,true);return;}
  if(btn.dataset.page){if(modal)closeModal();if(btn.dataset.page==='guide'){guideReturnContext=null;guideActiveProcedure=null;renderGuidePage();}nav(btn.dataset.page);return;}
