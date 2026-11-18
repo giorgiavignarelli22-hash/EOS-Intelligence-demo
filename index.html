@@ -2,14 +2,14 @@
 
 <html lang="it"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#f5f8fb" name="theme-color"/>
-<meta name="eos-build" content="7.8.13-rapporti-consultazione-20261118-r3"/>
+<meta name="eos-build" content="7.8.13-inventario-export-compatto-20261118-r5"/>
 <script id="eos-auto-update">
 /* Static GitHub Pages: verify the deployed version without clearing local data. */
 (function(){
   'use strict';
   if (!/^https?:$/.test(window.location.protocol)) return;
   var PARAM = '__eos_fresh';
-  var currentVersion = '7.8.13-rapporti-consultazione-20261118-r3';
+  var currentVersion = '7.8.13-inventario-export-compatto-20261118-r5';
   var lastCheckTime = 0;
   var checking = false;
   var canonical;
@@ -1557,6 +1557,52 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 .report-view-actions button{font-size:13px;min-height:45px}
 .report-form-actions:has(>button:only-child){grid-template-columns:1fr}
 @media(max-width:620px){.report-view-field{padding:12px 0}.report-view-actions button{min-height:48px}}
+
+
+/* v7.8.13 r4 – layout report compatto e inventario editabile */
+.eos-export-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.eos-export-btn{border:1px solid #b8d5d9;background:#fff;color:#287a7b;font:inherit;font-weight:700;font-size:13px;border-radius:10px;padding:10px 13px;cursor:pointer;white-space:nowrap}
+.eos-export-btn:hover{background:#eff8f7}
+.reports-header{align-items:center;flex-wrap:wrap}
+.reports-header .eos-export-btn{margin-left:auto}
+.eos-edit-merch{display:inline-flex;align-items:center;justify-content:center;gap:6px;margin-top:9px;border:1px solid #bdd2db;background:#fff;border-radius:9px;padding:8px 10px;font:inherit;font-size:12px;font-weight:700;color:#2b6978;cursor:pointer}
+.eos-edit-merch svg{width:15px;height:15px}
+.eos-edit-merch-reference{font-size:13px;margin:0 0 16px;color:#648090}
+.eos-inventory-unknown-value{margin-top:5px;color:#60788a}
+#reportForm .report-form-section{margin:11px 0 7px}
+#reportForm .report-outcome-list{gap:6px;margin-bottom:9px}
+#reportForm .report-outcome-item{padding:9px 11px}
+#reportForm .eos-checkbox-list{gap:5px;margin:6px 0 10px}
+#reportForm .eos-check-option{padding:9px 11px}
+#reportForm .form-group{margin-bottom:10px}
+#reportForm .form-group label{margin-bottom:5px}
+#reportForm .eos-items-list{margin:5px 0}
+#reportForm .eos-full-btn{padding:9px 12px;min-height:42px}
+#reportForm .report-form-actions{margin-top:14px}
+#reportForm textarea{height:auto;min-height:0!important;max-height:none;overflow-y:hidden;resize:none;line-height:1.45;padding:10px 12px;box-sizing:border-box}
+#reportOther{min-height:43px!important}
+#reportNotes{min-height:70px!important}
+@media(max-width:620px){.reports-header{flex-direction:row;align-items:center;gap:8px}.reports-header .eos-export-btn{margin-left:auto}.reports-header .reports-pending-pill{width:100%}.eos-export-btn{font-size:12px;padding:8px 10px}}
+
+
+/* r5 – selezione recupero merce più compatta e coerente su smartphone */
+#reportAddItemPane{padding:11px 12px;margin-top:7px}
+#reportAddItemPane .form-group{gap:4px;margin-bottom:7px}
+#reportAddItemPane .form-check-grid{gap:7px;margin-top:2px}
+#reportAddItemPane .form-check-grid label{
+  padding:7px 10px;min-height:42px;gap:6px;border-radius:8px;
+  font-size:13px;line-height:1.25;justify-content:flex-start;
+}
+#reportAddItemPane .form-check-grid input[type="radio"]{
+  width:16px;height:16px;min-width:16px;min-height:16px;
+  padding:0;margin:0;flex:0 0 16px;accent-color:#278e89;
+}
+#reportAddItemPane #reportStageItem{margin-top:5px}
+@media(max-width:620px){
+ #reportAddItemPane{padding:10px 11px}
+ #reportAddItemPane .form-check-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ #reportAddItemPane .form-check-grid label{min-height:44px;padding:7px 9px}
+}
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
 <symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></symbol>
@@ -1628,7 +1674,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 <div class="kpi-grid analysis-kpis" id="analysisKpis"></div>
 <div class="card small-chart"><div class="chart-head"><h2>Ultimi 7 giorni</h2><span class="mini-subtle">Segnalazioni rilevate</span></div><div class="chart-bars" id="bars"></div><div class="chart-axis" id="barLabels"></div></div>
 <div aria-label="Filtra esiti" class="filter-row" id="analysisFilters"><button class="filter-chip active" data-filter="all">Tutte</button><button class="filter-chip" data-filter="pending">Da verificare</button><button class="filter-chip" data-filter="confirmed">Confermate</button><button class="filter-chip" data-filter="dismissed">Scartate</button><button class="filter-chip" data-filter="not_evaluable">Non valutabili</button></div>
-<div class="section-head analysis-section-title"><h2>Segnalazioni · ultime 48 ore</h2></div>
+<div class="section-head analysis-section-title eos-export-heading"><h2>Segnalazioni · ultime 48 ore</h2><button type="button" class="eos-export-btn" id="exportAnalysisAlerts" aria-label="Esporta segnalazioni in CSV">Esporta CSV</button></div>
 <div class="card analysis-list-card"><div id="recentAlerts"></div></div>
 <div class="older-section">
 <button aria-expanded="false" class="older-toggle" id="olderToggle"><span>Visualizza esiti precedenti</span><svg><use href="#i-chevron"></use></svg></button>
@@ -1639,12 +1685,12 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 </div>
 </div>
 <div id="analysisReportsPane" role="tabpanel" hidden>
- <div class="reports-header"><div><h2>Rapporti evento</h2></div><span class="reports-pending-pill" id="reportsPendingPill">0 da completare</span></div>
+ <div class="reports-header"><div><h2>Rapporti evento</h2></div><button type="button" class="eos-export-btn" id="exportAnalysisReports" aria-label="Esporta rapporti in CSV">Esporta CSV</button><span class="reports-pending-pill" id="reportsPendingPill">0 da completare</span></div>
  <div class="reports-filters"><label class="reports-search-wrap"><svg><use href="#i-search"></use></svg><input type="search" id="reportsSearch" placeholder="Cerca ID, telecamera o area…" autocomplete="off" aria-label="Cerca rapporti" /></label><div class="reports-filter-buttons" id="reportFilters"><button type="button" data-report-filter="all" class="active">Tutti</button><button type="button" data-report-filter="pending">Da completare</button><button type="button" data-report-filter="closed">Completati</button></div></div>
  <div id="reportsList" class="reports-list"></div>
 </div>
 </section>
-<section aria-label="Inventario" class="screen" id="page-inventory"><div class="page-header"><h1 class="page-title">Inventario</h1><button class="teal-btn inventory-head-btn" id="addItem"><svg><use href="#i-plus"></use></svg>Aggiungi prodotto</button></div><div class="inventory-stats" id="inventoryKpis"></div><div class="inventory-legacy-note" id="inventoryLegacyNote" hidden></div><div class="section-head"><h2>Prodotti registrati</h2><button class="text-action" id="exportInventory">Esporta CSV</button></div><div class="card"><div class="table-wrap desktop-table"><table aria-label="Merce registrata" class="data-table inventory-table"><thead><tr><th>Prodotto</th><th>Segnalazione</th><th>Quantità</th><th>Valore</th><th>Recupero</th><th></th></tr></thead><tbody id="inventoryTable"></tbody></table></div><div class="compact-rows" id="inventoryCardsMobile"></div></div></section>
+<section aria-label="Inventario" class="screen" id="page-inventory"><div class="page-header"><h1 class="page-title">Inventario</h1></div><div class="inventory-stats" id="inventoryKpis"></div><div class="inventory-legacy-note" id="inventoryLegacyNote" hidden></div><div class="section-head"><h2>Prodotti registrati</h2><button class="text-action" id="exportInventory">Esporta CSV</button></div><div class="card"><div class="table-wrap desktop-table"><table aria-label="Merce registrata" class="data-table inventory-table"><thead><tr><th>Prodotto</th><th>Segnalazione</th><th>Quantità</th><th>Valore</th><th>Recupero</th><th></th></tr></thead><tbody id="inventoryTable"></tbody></table></div><div class="compact-rows" id="inventoryCardsMobile"></div></div></section>
 <section aria-label="Guida operativa" class="screen" id="page-guide">
 <div class="page-header"><h1 class="page-title">Guida operativa</h1></div>
 <p class="guide-page-summary">Indicazioni chiare per verificare le segnalazioni e agire in sicurezza.</p>
@@ -1840,11 +1886,15 @@ function reportCardHtml(a){
  <button type="button" class="report-list-action ${open?'primary':''}" data-report-open="${esc(a.id)}">${a.report?.needsReview?'Rivedi rapporto':open?'Completa rapporto':'Apri rapporto'}</button></article>`;
 }
 
-function renderReports(){
+function filteredReportRows(){
  let rows=reportRows();
  if(reportsFilter==='pending')rows=rows.filter(reportIsOpen);
  if(reportsFilter==='closed')rows=rows.filter(a=>a.report?.closed);
  if(reportsSearch.trim()){const q=reportsSearch.trim().toLocaleLowerCase('it');rows=rows.filter(a=>[a.id,a.camera,a.area,reportOutcome(a)].join(' ').toLocaleLowerCase('it').includes(q));}
+ return rows;
+}
+function renderReports(){
+ const rows=filteredReportRows();
  const list=$('reportsList');list.innerHTML=rows.map(reportCardHtml).join('')||'<div class="reports-empty">Nessun rapporto corrisponde ai filtri selezionati.</div>';
  document.querySelectorAll('[data-report-filter]').forEach(b=>{let active=b.dataset.reportFilter===reportsFilter;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
  const search=$('reportsSearch');if(search&&search.value!==reportsSearch)search.value=reportsSearch;
@@ -1988,23 +2038,48 @@ function renderInventory(){
  $('inventoryKpis').innerHTML=inventoryKpi('Merce recuperata',totals.recoveredValue,'check','recovered')+inventoryKpi('Merce non recuperata',totals.notRecoveredValue,'box','notRecovered')+inventoryKpi('Valore complessivo',totals.totalValue,'analysis','total');
  const legacy=$('inventoryLegacyNote');
  legacy.hidden=totals.unclassified.length===0;
- legacy.innerHTML=totals.unclassified.length?`<span><strong>${money(totals.unclassifiedValue)} senza indicazione di recupero.</strong> Completa l'esito dei ${totals.unclassified.length} prodotti già registrati per classificarli correttamente.</span><button type="button" data-inventory-breakdown="unclassified">Completa recupero</button>`:'';
- $('inventoryTable').innerHTML=state.inventory.map(i=>`<tr><td><strong>${esc(i.name)}</strong></td><td><span class="eos-inline-status">${inventoryAlertDot(i)}${esc(i.alertId||i.eventId||'Senza alert')}</span></td><td>${i.qty}</td><td><strong>${money(itemValue(i))}</strong></td><td>${inventoryRecoveryLabel(i)}${i.recovery!=='yes'&&i.recovery!=='no'?` <button type="button" class="inventory-recovery-update" data-inventory-classify="${esc(i.id)}">Specifica</button>`:''}</td><td><button class="trash-btn" aria-label="Elimina ${esc(i.name)}" data-remove="${esc(i.id)}">${icon('trash')}</button></td></tr>`).join('')||'<tr><td colspan="6" class="empty">Nessun prodotto registrato.</td></tr>';
- $('inventoryCardsMobile').innerHTML=state.inventory.map(i=>`<div class="compact-row"><div><strong>${esc(i.name)}</strong><small class="eos-inline-status">${inventoryAlertDot(i)}${esc(i.alertId||i.eventId||'Senza alert')} · Quantità: ${i.qty}</small><small>Recuperata: ${inventoryRecoveryLabel(i)}</small>${i.recovery!=='yes'&&i.recovery!=='no'?`<button type="button" class="inventory-recovery-update" data-inventory-classify="${esc(i.id)}" style="margin-top:9px">Specifica recupero</button>`:''}</div><div class="right"><strong>${money(itemValue(i))}</strong><button class="trash-btn" data-remove="${esc(i.id)}" aria-label="Elimina ${esc(i.name)}">${icon('trash')}</button></div></div>`).join('')||'<div class="empty">Nessun prodotto registrato.</div>';
+ legacy.innerHTML=totals.unclassified.length?`<div><strong>Merce da aggiornare</strong><div class="eos-inventory-unknown-value">${money(totals.unclassifiedValue)} · ${totals.unclassified.length} ${totals.unclassified.length===1?'prodotto':'prodotti'} senza stato di recupero</div></div><button type="button" data-inventory-breakdown="unclassified">Vedi prodotti</button>`:'';
+ $('inventoryTable').innerHTML=state.inventory.map(i=>`<tr><td><strong>${esc(i.name)}</strong></td><td><span class="eos-inline-status">${inventoryAlertDot(i)}${esc(i.alertId||i.eventId||'Senza alert')}</span></td><td>${i.qty}</td><td><strong>${money(itemValue(i))}</strong></td><td>${inventoryRecoveryLabel(i)}</td><td><button class="eos-edit-merch" data-inventory-edit="${esc(i.id)}" aria-label="Modifica merce: ${esc(i.name)}">${icon('edit')} Modifica merce</button> <button class="trash-btn" aria-label="Elimina ${esc(i.name)}" data-remove="${esc(i.id)}">${icon('trash')}</button></td></tr>`).join('')||'<tr><td colspan="6" class="empty">Nessun prodotto registrato.</td></tr>';
+ $('inventoryCardsMobile').innerHTML=state.inventory.map(i=>`<div class="compact-row"><div><strong>${esc(i.name)}</strong><small class="eos-inline-status">${inventoryAlertDot(i)}${esc(i.alertId||i.eventId||'Senza alert')} · Quantità: ${i.qty}</small><small>Recuperata: ${inventoryRecoveryLabel(i)}</small><button type="button" class="eos-edit-merch" data-inventory-edit="${esc(i.id)}">${icon('edit')} Modifica merce</button></div><div class="right"><strong>${money(itemValue(i))}</strong><button class="trash-btn" data-remove="${esc(i.id)}" aria-label="Elimina ${esc(i.name)}">${icon('trash')}</button></div></div>`).join('')||'<div class="empty">Nessun prodotto registrato.</div>';
 }
 function openInventoryBreakdown(type){
  const totals=inventoryTotals();
- const defs={recovered:['Merce recuperata',totals.recovered,totals.recoveredValue],notRecovered:['Merce non recuperata',totals.notRecovered,totals.notRecoveredValue],total:['Valore complessivo',state.inventory,totals.totalValue],unclassified:['Recupero da completare',totals.unclassified,totals.unclassifiedValue]};
+ const defs={recovered:['Merce recuperata',totals.recovered,totals.recoveredValue],notRecovered:['Merce non recuperata',totals.notRecovered,totals.notRecoveredValue],total:['Valore complessivo',state.inventory,totals.totalValue],unclassified:['Merce da aggiornare',totals.unclassified,totals.unclassifiedValue]};
  const def=defs[type];if(!def)return;
  const [title,items,total]=def;
- const list=items.length?items.map(i=>`<div class="inventory-breakdown-row"><div class="inventory-breakdown-row-header"><strong>${esc(i.name)}</strong><b>${money(itemValue(i))}</b></div><div class="inventory-breakdown-meta"><span class="eos-inline-status">${inventoryAlertDot(i)}${esc(i.alertId||i.eventId||'Senza alert')}</span> · Quantità: ${i.qty} · Valore unitario: ${money(i.price)}<div>Merce recuperata: <span class="${i.recovery==='unknown'?'inventory-recovery-unknown':''}">${inventoryRecoveryLabel(i)}</span></div></div>${i.recovery!=='yes'&&i.recovery!=='no'?`<button type="button" class="inventory-recovery-update" data-inventory-classify="${esc(i.id)}">Specifica recupero</button>`:''}</div>`).join(''):'<p class="guide-empty">Nessun prodotto in questa categoria.</p>';
- const notice=type==='total'&&totals.unclassified.length?`<p class="hint">Nel totale sono inclusi ${money(totals.unclassifiedValue)} di prodotti il cui recupero non è ancora specificato.</p>`:'';
- openModal(title,`<div class="inventory-breakdown-summary"><span>Totale ${esc(title.toLowerCase())}</span><strong>${money(total)}</strong></div>${notice}<div class="inventory-breakdown-list">${list}</div>`,'inventorybreakdown');
+ const list=items.length?items.map(i=>`<div class="inventory-breakdown-row"><div class="inventory-breakdown-row-header"><strong>${esc(i.name)}</strong><b>${money(itemValue(i))}</b></div><div class="inventory-breakdown-meta"><span class="eos-inline-status">${inventoryAlertDot(i)}${esc(i.alertId||i.eventId||'Senza alert')}</span> · Quantità: ${i.qty} · Valore unitario: ${money(i.price)}<div>Merce recuperata: ${inventoryRecoveryLabel(i)}</div></div><button type="button" class="eos-edit-merch" data-inventory-edit="${esc(i.id)}">${icon('edit')} Modifica merce</button></div>`).join(''):'<p class="guide-empty">Nessun prodotto in questa categoria.</p>';
+ openModal(title,`<div class="inventory-breakdown-summary"><span>Totale ${esc(title.toLowerCase())}</span><strong>${money(total)}</strong></div><div class="inventory-breakdown-list">${list}</div>`,'inventorybreakdown');
 }
-function openClassifyRecovery(id){
- const item=state.inventory.find(i=>i.id===id);if(!item)return;
- openModal('Esito recupero',`<form id="classifyRecoveryForm" data-item-id="${esc(item.id)}"><p class="manual-help"><strong>${esc(item.name)}</strong> · ${money(itemValue(item))}</p><div class="form-group"><label>La merce è stata recuperata?</label><div class="form-check-grid"><label><input type="radio" name="recovery" value="yes" ${item.recovery==='yes'?'checked':''} required> Sì</label><label><input type="radio" name="recovery" value="no" ${item.recovery==='no'?'checked':''} required> No</label></div></div><div class="form-actions"><button type="button" class="outline-btn" data-close="1">Annulla</button><button type="submit" class="primary-btn">Salva esito</button></div></form>`,'inventoryclassify');
+function openEditInventoryItem(id){
+ const i=state.inventory.find(v=>v.id===id);if(!i)return;
+ const h=`<form id="editInventoryForm" data-item-id="${esc(i.id)}">
+  <p class="eos-edit-merch-reference">Segnalazione ${esc(i.alertId||i.eventId||'non collegata')}</p>
+  <div class="form-group"><label for="editItemName">Prodotto</label><input id="editItemName" type="text" maxlength="85" value="${esc(i.name)}" required></div>
+  <div class="form-grid"><div class="form-group"><label for="editItemQty">Quantità</label><input id="editItemQty" type="number" min="1" max="100000" step="1" value="${i.qty}" required></div><div class="form-group"><label for="editItemPrice">Prezzo unitario (€)</label><input id="editItemPrice" type="number" min="0" max="1000000" step="0.01" value="${i.price}" required></div></div>
+  <div class="form-group"><label for="editItemRecovery">Stato del recupero</label><select id="editItemRecovery"><option value="unknown" ${i.recovery!=='yes'&&i.recovery!=='no'?'selected':''}>Da definire</option><option value="yes" ${i.recovery==='yes'?'selected':''}>Recuperata</option><option value="no" ${i.recovery==='no'?'selected':''}>Non recuperata</option></select></div>
+  <div class="form-actions"><button type="button" class="outline-btn" data-close="1">Annulla</button><button type="submit" class="primary-btn">Salva modifiche</button></div></form>`;
+ openModal('Modifica merce',h,'inventoryedit');
 }
+function commitInventoryEdit(form){
+ const item=state.inventory.find(v=>v.id===form.dataset.itemId);if(!item)return;
+ const name=String($('editItemName').value||'').trim();
+ const qty=Number($('editItemQty').value),price=Number($('editItemPrice').value),recovery=$('editItemRecovery').value;
+ if(!name||!Number.isInteger(qty)||qty<1||qty>100000||!Number.isFinite(price)||price<0||price>1000000||!['yes','no','unknown'].includes(recovery)){notify('Controlla nome, quantità, prezzo e recupero');return;}
+ const old={name:item.name,qty:item.qty,price:item.price,recovery:item.recovery};
+ const changes=[];
+ if(old.name!==name)changes.push('nome: '+old.name+' → '+name);
+ if(old.qty!==qty)changes.push('quantità: '+old.qty+' → '+qty);
+ if(old.price!==price)changes.push('prezzo: '+money(old.price)+' → '+money(price));
+ if(old.recovery!==recovery)changes.push('recupero: '+(old.recovery||'unknown')+' → '+recovery);
+ if(!changes.length){closeModal();nav('inventory');notify('Nessuna modifica');return;}
+ Object.assign(item,{name,qty,price,recovery,updatedAt:Date.now()});
+ item.editHistory=Array.isArray(item.editHistory)?item.editHistory:[];
+ item.editHistory.unshift({ts:Date.now(),old,newValue:{name,qty,price,recovery}});
+ const a=item.alertId?alertById(item.alertId):null;
+ if(a)recordAction(a,'Merce modificata: '+item.name+' ('+changes.join('; ')+')');
+ save();closeModal();render();nav('inventory');notify('Merce e rapporto aggiornati');
+}
+
 
 function render(){renderHome();renderAnalysis();renderInventory();renderGuidePage();if(activeIncomingAlertId){const a=alertById(activeIncomingAlertId);if(!a||a.status!=='pending'||clipExpired(a))hideIncomingNotification();}}
 function nav(target){if(!['home','analysis','inventory','guide'].includes(target))return;screen=target;document.querySelectorAll('.screen').forEach(el=>el.classList.toggle('active',el.id==='page-'+target));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===target));window.scrollTo({top:0,behavior:'instant'});}
@@ -2379,16 +2454,6 @@ function openProcedure(origin='detail'){
  openModal('Guida operativa',h,'contextGuide',true);
 }
 
-function openAddItem(preselect=''){
- let confirmed=state.alerts.filter(a=>a.status==='confirmed');
- const manualEvents=[...new Set(state.inventory.filter(i=>!i.alertId&&i.eventId).map(i=>i.eventId))];
- let options=`<option value="manual">Nuovo furto accertato senza segnalazione del sistema</option>`
-  +manualEvents.map((id,n)=>`<option value="manual-existing:${esc(id)}">Aggiungi a furto manuale già registrato ${n+1}</option>`).join('')
-  +confirmed.map(a=>`<option value="${esc(a.id)}" ${a.id===preselect?'selected':''}>${esc(a.id)} · ${formatDate(a.ts)} · ${esc(a.camera)}</option>`).join('');
- let h=`<form id="itemForm"><div class="form-group"><label for="alertSelect">Collegamento</label><select id="alertSelect" required>${options}</select></div><div class="form-group"><label for="itemName">Prodotto</label><input type="text" id="itemName" autocomplete="off" maxlength="85" placeholder="Es. Prodotto cosmetico" required></div><div class="form-grid"><div class="form-group"><label for="itemQty">Quantità</label><input type="number" id="itemQty" min="1" max="100000" step="1" value="1" required></div><div class="form-group"><label for="itemPrice">Valore unitario (€)</label><input type="number" id="itemPrice" min="0" max="1000000" step="0.01" placeholder="0,00" required></div></div><div class="form-group"><label>Merce recuperata? <span aria-hidden="true">*</span></label><div class="form-check-grid"><label><input type="radio" name="recovery" value="yes" required> Sì</label><label><input type="radio" name="recovery" value="no" required> No</label></div></div><p class="hint">Registra soltanto furti effettivamente accertati.</p><div class="form-actions"><button type="button" class="outline-btn" data-close="1">Annulla</button><button class="primary-btn" type="submit">Salva prodotto</button></div></form>`;
- openModal('Registra prodotto',h,'inventoryform');
-}
-
 function supportRequestBody(){
  return 'Email per la risposta: '+$('supportEmail').value.trim()+'\nOggetto: '+$('supportReason').value+'\n\n'+$('supportMessage').value.trim();
 }
@@ -2399,7 +2464,7 @@ function openInfo(which){
   <div class="account-field"><span>Nome utente</span><strong>${esc(DEMO_USERS[currentStore]?.username||'EOS Intelligence')}</strong></div>
   <div class="account-field"><span>Punto vendita associato</span><strong>${esc(DEMO_USERS[currentStore]?.label||'Punto vendita 01')}</strong></div>
   <div class="account-field"><span>Password</span><strong>••••••••••••</strong></div>
-  <div class="account-field eos-build-ident"><span>Versione interfaccia</span><strong>7.8.13 · Rapporti in consultazione · r3</strong></div>
+  <div class="account-field eos-build-ident"><span>Versione interfaccia</span><strong>7.8.13 · Inventario e rapporti · r5</strong></div>
  </div>
  <button class="outline-btn account-change" type="button" id="togglePasswordForm" aria-controls="passwordFormContainer" aria-expanded="false">Modifica password ${icon('chevron')}</button>
  <div id="passwordFormContainer" hidden>
@@ -2424,6 +2489,34 @@ function openInfo(which){
  openModal(which==='account'?'Account':'Supporto',h,which);
 }
 function resetDemo(){if(!window.confirm('Ripristinare segnalazioni e inventario ai valori iniziali? Le modifiche saranno perse.'))return;cancelScheduledSimulation();hideIncomingNotification();pendingIncomingAlertId=null;state=demoSeed(currentStore);filter='all';showOlder=false;save();render();notify('Dati iniziali ripristinati');}
+function csvCell(value){
+ let str=String(value===undefined||value===null?'':value);
+ if(/^[\s]*[=+@\-\t\r]/.test(str))str="'"+str;
+ return '"'+str.replace(/"/g,'""')+'"';
+}
+function downloadCsv(filename,rows){
+ const csv='\uFEFF'+rows.map(row=>row.map(csvCell).join(';')).join('\r\n');
+ const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+ const link=document.createElement('a');link.href=url;link.download=filename;
+ document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);
+ notify('File CSV esportato');
+}
+function exportAnalysisAlerts(){
+ const now=Date.now();
+ const rows=getRows().filter(a=>matchesFilter(a)&&(showOlder||now-a.ts<48*MS_HOUR));
+ const data=[['ID segnalazione','Data','Ora','Telecamera','Area / zona','Esito segnalazione','Motivo scarto','Escalation critica','Esito finale rapporto','Rapporto','Video consultabile nella demo']];
+ for(const a of rows)data.push([a.id,formatDate(a.ts),formatTime(a.ts),a.camera,a.area||'',viewStatus(a),a.dismissReason||'',a.critical?'Sì':'No',a.report?.closed?(REPORT_OUTCOMES[a.report.outcome]||''):'',a.report?.closed?'Completato':a.report?.draft?'Bozza':'Da completare',clipExpired(a)?'No':'Sì (solo periodo previsto)']);
+ downloadCsv('EOS_Intelligence_segnalazioni.csv',data);
+}
+function exportAnalysisReports(){
+ const rows=filteredReportRows();
+ const data=[['ID segnalazione','Data','Ora','Telecamera','Area / zona','Esito segnalazione','Stato rapporto','Esito finale','Azioni del personale','Altro (azione)','Escalation critica','Note operative','Merce associata','Quantità totale','Valore merce EUR']];
+ for(const a of rows){
+  const r=a.report||{},items=state.inventory.filter(i=>i.alertId===a.id);
+  data.push([a.id,formatDate(a.ts),formatTime(a.ts),a.camera,a.area||'',viewStatus(a),r.needsReview?'Da rivedere':r.closed?'Completato':r.draft?'Bozza':'Da completare',REPORT_OUTCOMES[r.outcome]||'',(r.actions||[]).join(', '),r.other||'',a.critical?'Sì':'No',combinedReportNotes(a),items.map(i=>i.name+' x'+i.qty+' ('+inventoryRecoveryLabel(i)+')').join(' | '),items.reduce((n,i)=>n+i.qty,0),items.reduce((n,i)=>n+itemValue(i),0).toFixed(2)]);
+ }
+ downloadCsv('EOS_Intelligence_rapporti.csv',data);
+}
 function exportInventory(){let lines=[['Prodotto','Evento/Segnalazione','Quantità','Valore unitario EUR','Valore totale EUR','Merce recuperata']];for(let i of state.inventory)lines.push([i.name,i.alertId||i.eventId,i.qty,i.price.toFixed(2),(i.qty*i.price).toFixed(2),i.recovery==='yes'?'Si':i.recovery==='no'?'No':'Non noto']);let csv=lines.map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(';')).join('\r\n');let link=document.createElement('a');link.href=URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}));link.download='EOS_Intelligence_inventario.csv';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(link.href),2000);notify('Inventario esportato');}
 
 const REPORT_ACTIONS=['Nessun intervento','Osservazione a distanza','Responsabile avvisato','Intervento verbale del personale','Deterrenza vocale attivata','Supporto interno o sicurezza richiesto','Servizi di emergenza contattati','Altro (specificare)'];
@@ -2434,6 +2527,15 @@ function renderReportItemDraft(id){
  const entries=[...existing.map(i=>({name:i.name,qty:i.qty,price:i.price,stored:true})),...pendingReportItems];
  slot.innerHTML=entries.map(i=>`<div class="eos-item-row"><span><strong>${esc(i.name)}</strong> · ${i.qty} × ${money(i.price)}</span><span>${i.stored?'In inventario':'Da salvare'}</span></div>`).join('');
 }
+function combinedReportNotes(a){
+ const operational=String(a.report?.notes||'').trim(),legacy=String(a.criticalNotes||'').trim();
+ return legacy&&!operational.includes(legacy)?[operational,legacy].filter(Boolean).join('\n'):operational;
+}
+function autosizeReportTextarea(el){
+ if(!el||!el.matches?.('#reportForm textarea'))return;
+ el.style.height='auto';el.style.height=el.scrollHeight+'px';
+}
+function autosizeReportTextareas(){document.querySelectorAll('#reportForm textarea').forEach(autosizeReportTextarea);}
 function reportViewerField(label,value){
  return `<div class="report-view-field"><strong>${esc(label)}</strong><div>${value}</div></div>`;
 }
@@ -2453,9 +2555,9 @@ function openReport(id,edit=false){
   ${reportViewerField('Esito finale dell’evento',esc(chosen))}
   ${reportViewerField('Azioni del personale',actionLabels||'Nessuna azione registrata')}
   ${reportViewerField('Gestione della sicurezza',a.critical?'Escalation critica segnalata':'Non segnalata')}
-  ${a.criticalNotes?reportViewerField('Note sulla sicurezza',esc(a.criticalNotes)):''}
+  
   ${reportViewerField('Merce associata all’evento',merce||'Nessuna merce associata')}
-  ${r.notes?reportViewerField('Note operative',esc(r.notes).replace(/\n/g,'<br>')):''}
+  ${combinedReportNotes(a)?reportViewerField('Note operative',esc(combinedReportNotes(a)).replace(/\n/g,'<br>')):''}
   <div class="report-form-actions report-view-actions"><button type="button" class="primary-btn" data-report-modify="${esc(id)}">${icon('edit')} Modifica rapporto</button></div>
   </div>`;
   openModal('Rapporto evento',html,'report',true);
@@ -2468,10 +2570,9 @@ function openReport(id,edit=false){
  <div class="report-outcome-list">${Object.entries(REPORT_OUTCOMES).map(([value,label])=>`<label class="report-outcome-item"><input type="radio" name="reportOutcome" value="${value}" ${reportChoice===value?'checked':''}><span>${label}</span></label>`).join('')}</div>
  <div class="report-form-section">2. Azioni del personale (facoltative)</div>
  <div class="eos-checkbox-list">${REPORT_ACTIONS.map(v=>`<label class="eos-check-option"><input type="checkbox" name="reportActions" value="${esc(v)}" ${acts.includes(v)?'checked':''}><span>${esc(v)}</span></label>`).join('')}</div>
- <div class="form-group" id="reportOtherWrap" ${acts.includes('Altro (specificare)')?'':'hidden'}><label for="reportOther">Specifica l'altra azione</label><textarea id="reportOther" rows="2" maxlength="350">${esc(r.other||'')}</textarea></div>
+ <div class="form-group" id="reportOtherWrap" ${acts.includes('Altro (specificare)')?'':'hidden'}><label for="reportOther">Specifica l'altra azione</label><textarea id="reportOther" rows="1" maxlength="350">${esc(r.other||'')}</textarea></div>
  <div class="report-form-section">3. Gestione della sicurezza (facoltativa)</div>
  <label class="eos-check-option"><input type="checkbox" id="reportCritical" ${a.critical?'checked':''}><span>Situazione critica segnalata</span></label>
- <div class="form-group"><label for="reportCriticalNotes">Note sulla sicurezza (facoltative)</label><textarea id="reportCriticalNotes" rows="2" maxlength="800">${esc(a.criticalNotes||'')}</textarea></div>
  <div class="report-form-section">4. Merce associata all’evento (facoltativa)</div><div id="reportItemsSummary" class="eos-items-list"></div>
  <button type="button" id="reportAddItemToggle" class="eos-full-btn outline-btn">${icon('plus')} Aggiungi merce</button>
  <div id="reportAddItemPane" class="eos-report-item-pane" hidden>
@@ -2479,9 +2580,9 @@ function openReport(id,edit=false){
  <div class="form-grid"><div class="form-group"><label for="reportItemQty">Quantità</label><input id="reportItemQty" type="number" value="1" min="1" max="100000" step="1"></div><div class="form-group"><label for="reportItemPrice">Valore unitario (€)</label><input id="reportItemPrice" type="number" min="0" step="0.01" max="1000000" placeholder="0,00"></div></div>
  <div class="form-group"><label>Merce recuperata?</label><div class="form-check-grid"><label><input type="radio" name="reportItemRecovered" value="yes"> Sì</label><label><input type="radio" name="reportItemRecovered" value="no"> No</label></div></div>
  <button type="button" class="primary-btn" id="reportStageItem">Aggiungi al rapporto</button></div>
- <div class="report-form-section">5. Note operative (facoltative)</div><div class="form-group"><textarea id="reportNotes" rows="4" maxlength="1500" placeholder="Note operative">${esc(r.notes||'')}</textarea></div>
+ <div class="report-form-section">5. Note operative (facoltative)</div><div class="form-group"><textarea id="reportNotes" rows="2" maxlength="1500" placeholder="Note operative">${esc(combinedReportNotes(a))}</textarea></div>
  <div class="report-form-actions">${completedEdit?`<button type="button" class="outline-btn" data-report-cancel-edit="${esc(id)}">Annulla</button><button type="submit" class="primary-btn">Salva modifiche</button>`:a.status==='pending'?`<button type="submit" class="primary-btn">Salva bozza</button>`:`<button type="button" class="outline-btn" data-save-report-draft="${esc(id)}">Salva bozza</button><button type="submit" class="primary-btn">Completa rapporto</button>`}</div></form>`;
- openModal(completedEdit?'Modifica rapporto':'Completa rapporto evento',html,'report',true);renderReportItemDraft(id);
+ openModal(completedEdit?'Modifica rapporto':'Completa rapporto evento',html,'report',true);renderReportItemDraft(id);autosizeReportTextareas();
 }
 function commitReport(id,draft=false){
  const a=alertById(id);if(!a)return;
@@ -2499,10 +2600,9 @@ function commitReport(id,draft=false){
  const critical=$('reportCritical')?.checked||false;
  if(a.critical&&!critical&&!window.confirm('Rimuovere una situazione critica già segnalata? La correzione resterà registrata nello storico.'))return;
  const notes=String($('reportNotes')?.value||'').trim().slice(0,1500);
- const criticalNotes=String($('reportCriticalNotes')?.value||'').trim().slice(0,800);
- const prevCritical=!!a.critical, oldReport=a.report||{};
+  const prevCritical=!!a.critical, oldReport=a.report||{};
  a.report={needsReview:false,closed:!isDraft,draft:isDraft,outcome:Object.hasOwn(REPORT_OUTCOMES,outcome)?outcome:null,actions,other,notes,completedAt:isDraft?null:(completedEdit?(oldReport.completedAt||Date.now()):Date.now()),updatedAt:Date.now()};
- a.critical=critical;a.criticalNotes=criticalNotes;
+ a.critical=critical;a.criticalNotes='';
  if(prevCritical!==critical)recordAction(a,critical?'Escalation critica segnalata dal rapporto':'Escalation critica rimossa dal rapporto');
  for(const item of pendingReportItems){state.inventory.unshift({id:'INV-'+Date.now()+'-'+Math.floor(Math.random()*10000),alertId:id,eventId:id,...item});recordAction(a,'Merce registrata: '+item.name);}
  pendingReportItems=[];
@@ -2550,7 +2650,7 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
  if(btn.id==='homePlay'){notify('Riproduzione video non ancora disponibile.');return;}
  if(btn.dataset.filter){filter=btn.dataset.filter;renderAnalysis();return;}
  if(btn.dataset.inventoryBreakdown){openInventoryBreakdown(btn.dataset.inventoryBreakdown);return;}
- if(btn.dataset.inventoryClassify){openClassifyRecovery(btn.dataset.inventoryClassify);return;}
+ if(btn.dataset.inventoryEdit){openEditInventoryItem(btn.dataset.inventoryEdit);return;}
  if(btn.dataset.remove){if(window.confirm('Eliminare questo prodotto dall’inventario?')){state.inventory=state.inventory.filter(i=>i.id!==btn.dataset.remove);save();render();notify('Prodotto eliminato');}return;}
  if(btn.dataset.status){saveStatus(btn.dataset.status);return;}
  if(btn.id==='homeDeterrence'){openDeterrence(btn.dataset.homeId,'home');return;}
@@ -2589,8 +2689,10 @@ $('reportsSearch').addEventListener('input',e=>{reportsSearch=e.target.value;ren
    const wrap=$('reportOtherWrap');if(wrap)wrap.hidden=!other.checked;
   }
  });
-$('addItem').addEventListener('click',()=>openAddItem());
 $('exportInventory').addEventListener('click',exportInventory);
+$('exportAnalysisAlerts').addEventListener('click',exportAnalysisAlerts);
+$('exportAnalysisReports').addEventListener('click',exportAnalysisReports);
+document.addEventListener('input',e=>{if(e.target.matches('#reportForm textarea'))autosizeReportTextarea(e.target);});
 
 
 $('closeModal').addEventListener('click',closeGuideOrModal);$('modalBackdrop').addEventListener('click',closeGuideOrModal);
@@ -2622,24 +2724,7 @@ document.addEventListener('submit',async e=>{
  if(e.target.id==='dismissForm'){
    e.preventDefault();const inp=e.target.querySelector('input[name="reason"]:checked');commitDismiss(inp?inp.value:'');return;
  }
- if(e.target.id==='classifyRecoveryForm'){
-   e.preventDefault();
-   const item=state.inventory.find(i=>i.id===e.target.dataset.itemId);
-   const recovery=e.target.querySelector('input[name="recovery"]:checked')?.value;
-   if(!item||!['yes','no'].includes(recovery)){notify('Seleziona Sì oppure No');return;}
-   item.recovery=recovery;save();closeModal();renderInventory();nav('inventory');notify('Recupero aggiornato');return;
- }
- if(e.target.id==='itemForm'){
-   e.preventDefault();let selection=$('alertSelect').value,qty=Number($('itemQty').value),price=Number($('itemPrice').value),name=$('itemName').value.trim();
-   let recovery=e.target.querySelector('input[name="recovery"]:checked')?.value;
-   const manualExisting=selection.startsWith('manual-existing:');
-   const linked=selection!=='manual'&&!manualExisting;
-   if(!['yes','no'].includes(recovery)||!name||(manualExisting&&!state.inventory.some(i=>i.eventId===selection.slice(16)&&!i.alertId))||(linked&&(!alertById(selection)||alertById(selection).status!=='confirmed'))||!Number.isInteger(qty)||qty<1||qty>1e5||!Number.isFinite(price)||price<0||price>1e6){notify('Controlla i dati inseriti');return;}
-   const eventId=linked?selection:manualExisting?selection.slice(16):'MAN-'+Date.now();
-   state.inventory.unshift({id:'INV-'+Date.now()+'-'+Math.floor(Math.random()*10000),alertId:linked?selection:'',eventId,name,qty,price,recovery});
-   if(linked)recordAction(alertById(selection),'Prodotto registrato in inventario');
-   save();closeModal();render();nav('inventory');notify('Prodotto registrato');return;
- }
+ if(e.target.id==='editInventoryForm'){e.preventDefault();commitInventoryEdit(e.target);return;}
  if(e.target.id==='passwordForm'){e.preventDefault();if($('newPass').value!==$('repeatPass').value){notify('Le nuove password non coincidono');return;}notify('La modifica della password non è ancora disponibile.');return;}
  if(e.target.id==='supportForm'){
    e.preventDefault();
