@@ -2,14 +2,14 @@
 
 <html lang="it"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#f5f8fb" name="theme-color"/>
-<meta name="eos-build" content="7.8.13-home-analisi-statistiche-20261119-r10"/>
+<meta name="eos-build" content="7.8.13-esiti-guide-20261119-r11"/>
 <script id="eos-auto-update">
 /* Static GitHub Pages: verify the deployed version without clearing local data. */
 (function(){
   'use strict';
   if (!/^https?:$/.test(window.location.protocol)) return;
   var PARAM = '__eos_fresh';
-  var currentVersion = '7.8.13-home-analisi-statistiche-20261119-r10';
+  var currentVersion = '7.8.13-esiti-guide-20261119-r11';
   var lastCheckTime = 0;
   var checking = false;
   var canonical;
@@ -1793,6 +1793,50 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 #eosStatsStatusField[hidden]{display:none!important}
 #eosStatsInventoryKpis{margin-top:2px!important}
 @media(max-width:620px){#analysisKpis .kpi-card{min-height:100px}.eos-home-more{font-size:12px}}
+
+/* R11 — One outcome hierarchy for Home, lists, detail, guide. */
+.eos-event-accent{border-left:4px solid var(--eos-event-accent,#84939F)!important}
+.eos-reviewed-home-card{display:flex;min-height:92px;align-items:center;gap:14px;text-align:left;position:relative}
+.eos-reviewed-home-card .home-directory-main{display:flex;flex:1;flex-direction:column;gap:7px;min-width:0}
+.eos-reviewed-home-card .home-directory-main>strong{font-size:clamp(16px,3.6vw,20px);color:#23445a;line-height:1.3}
+.eos-reviewed-home-card .home-directory-meta{font-size:clamp(11px,2.5vw,13px);line-height:1.4;color:#6d8492}
+.eos-reviewed-home-card .home-directory-side{align-self:center;width:19px;flex:none;color:#5b8490}
+.eos-reviewed-home-card .home-directory-side svg{width:19px;height:19px}
+.eos-outcome-provisional{font-size:11px;font-weight:600;color:#72838c;line-height:1.4}
+.eos-reviewed-row{display:flex;gap:10px;align-items:center;justify-content:space-between;border:1px solid #dce6ea;border-radius:12px;padding:14px 15px;background:white;min-width:0}
+.eos-reviewed-row-body{display:grid;gap:6px;min-width:0;flex:1}
+.eos-reviewed-row-body>strong{font-size:16px;color:#24485d;line-height:1.3}
+.eos-reviewed-row-body small{font-size:12px;line-height:1.4;color:#728895}
+.eos-reviewed-row-body .eos-outcome-provisional{color:#5b788a}
+.eos-reviewed-row .line-btn{flex:none;font-size:13px;white-space:nowrap}
+.eos-reviewed-row .line-btn svg{width:13px;height:13px}
+.eos-review-status{font-weight:700;color:#506e7b}
+.eos-video-unavailable{display:flex;gap:5px;align-items:center;color:#8a98a0!important}
+.eos-video-unavailable svg{width:13px;height:13px}
+.eos-detail-outcome-summary{border-left:4px solid var(--eos-event-accent,#84939F);padding-left:12px}
+.eos-detail-outcome-summary .eos-detail-state{color:#627d8c;font-size:13px;margin-top:5px}
+.eos-outcome-filter{display:grid;gap:7px;margin-top:10px;color:#557384;font-size:13px;font-weight:700}
+.eos-outcome-filter select{max-width:none;width:100%;background:#fff;border:1px solid #cbdde2;border-radius:9px;color:#244a5b;min-height:44px;padding:8px 10px}
+.eos-change-reason[hidden]{display:none!important}
+.eos-slim-guide .eos-guide-steps-intro{border:1px solid #dae6e8;background:#fff;border-radius:13px;padding:13px 16px;margin-bottom:17px}
+.eos-slim-guide .eos-guide-steps-intro p{margin:8px 0;line-height:1.55;color:#435e70;font-size:14px}
+.eos-slim-guide .guide-procedures-grid{gap:10px}
+.eos-slim-guide .guide-procedure-card{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:75px;padding:15px 16px}
+.eos-slim-guide .guide-card-title{font-size:15px;line-height:1.35}
+.eos-slim-guide .guide-card-action{white-space:nowrap;font-size:12px;flex:none}
+.eos-slim-guide .guide-detail-block{padding:17px 18px;margin-bottom:12px}
+.eos-slim-guide .guide-detail-block h3{margin-bottom:10px}
+.eos-slim-guide .guide-compact-list{margin:0;padding-left:19px;line-height:1.6;color:#496577}
+.eos-slim-guide .guide-compact-list li+li{margin-top:7px}
+.eos-legend-subtitle{font-size:17px;color:#264b60;margin:24px 0 12px}
+.eos-guide-outcomes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.eos-guide-outcome{border:1px solid #d9e6e9;border-radius:10px;padding:12px;display:flex;align-items:center;gap:10px;background:#fff;color:#315366;font-size:14px;font-weight:600}
+.eos-guide-outcome i{width:12px;height:12px;border-radius:50%;flex:none}
+.eos-guide-footnote{margin:15px 0 0;font-size:13px;line-height:1.6;color:#516f80}
+#page-guide .guide-jump{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible;gap:7px;padding:2px 0 10px}
+#page-guide .guide-jump button{white-space:normal;min-width:0;min-height:52px;padding:8px 5px;text-align:center;font-size:clamp(10px,2.9vw,13px);line-height:1.25}
+@media(min-width:750px){#page-guide .guide-jump{display:flex;flex-wrap:wrap}#page-guide .guide-jump button{font-size:14px;padding:11px 17px}}
+@media(max-width:620px){.eos-guide-outcomes{grid-template-columns:1fr}.eos-slim-guide .guide-procedures-grid{grid-template-columns:1fr}.eos-reviewed-row{padding:12px 10px}.eos-reviewed-row-body>strong{font-size:14px}.eos-reviewed-row-body small{font-size:11px}.eos-reviewed-home-card .home-directory-main>strong{font-size:16px}}
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
 <symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></symbol>
@@ -1868,7 +1912,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
   <div class="eos-filter-panel">
    <div class="eos-filter-grid">
     <label>Periodo<select id="eosAlertPeriod"><option value="recent">Recenti</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutte le date</option></select></label>
-    <label>Stato<select id="eosAlertStatus"><option value="all">Tutti gli stati</option><option value="pending">Da verificare</option><option value="confirmed">Confermate</option><option value="dismissed">Scartate</option><option value="not_evaluable">Non valutabili</option><option value="expired">Scadute</option></select></label>
+    <label>Stato<select id="eosAlertStatus"><option value="all">Tutti gli stati</option><option value="pending">Da verificare</option><option value="confirmed">Confermate</option><option value="dismissed">Scartate</option><option value="expired">Scadute</option></select></label>
    </div>
    <div class="eos-filter-foot eos-filter-foot-clean"><button type="button" class="eos-clear-filters" id="eosAlertReset">Ripristina filtri</button></div>
   </div>
@@ -1910,7 +1954,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
   <div class="eos-pane-heading"><h2 id="eosStatsSectionTitle">Segnalazioni</h2></div>
   <div class="eos-filter-panel"><div class="eos-filter-grid">
    <label>Periodo<select id="eosStatsPeriod"><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutte le date</option></select></label>
-   <label id="eosStatsStatusField">Stato<select id="eosStatsStatus"><option value="all">Tutte</option><option value="pending">Da verificare</option><option value="confirmed">Confermate</option><option value="dismissed">Scartate</option><option value="not_evaluable">Non valutabili</option><option value="expired">Scadute</option></select></label>
+   <label id="eosStatsStatusField">Stato<select id="eosStatsStatus"><option value="all">Tutte</option><option value="pending">Da verificare</option><option value="confirmed">Confermate</option><option value="dismissed">Scartate</option><option value="expired">Scadute</option></select></label>
   </div></div>
   <div id="eosStatsMain">
    <div id="eosStatsAlerts">
@@ -1929,12 +1973,8 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 
 <div id="guideReturnBanner" class="guide-return-banner" hidden></div>
  <nav aria-label="Argomenti della guida" class="guide-jump">
-  <button type="button" data-guide-tab="procedures" class="active" aria-pressed="true">Procedure</button>
-  <button type="button" data-guide-tab="review" aria-pressed="false">Verifica segnalazioni</button>
-  <button type="button" data-guide-tab="situations" aria-pressed="false">Scenari</button>
+  <button type="button" data-guide-tab="procedures" class="active" aria-pressed="true">Procedure operative</button>
   <button type="button" data-guide-tab="legend" aria-pressed="false">Legenda degli stati</button>
-  <button type="button" data-guide-tab="avoid" aria-pressed="false">Cosa evitare</button>
-   <button type="button" data-guide-tab="faq" aria-pressed="false">FAQ</button>
   <button type="button" data-guide-tab="privacy" aria-pressed="false">Privacy e sicurezza</button>
  </nav>
 <div class="guide-dashboard" id="guideContent"></div>
@@ -1965,7 +2005,7 @@ const $=id=>document.getElementById(id);
 const icon=name=>`<svg aria-hidden="true"><use href="#i-${name}"/></svg>`;
 const esc=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const MS_HOUR=3600000, MS_DAY=86400000, STANDARD_CLIP_AGE=48*MS_HOUR, THEFT_CLIP_AGE=72*MS_HOUR;
-const statusLabels={pending:'Da verificare',confirmed:'Confermata',dismissed:'Scartata',not_evaluable:'Non valutabile'};
+const statusLabels={pending:'Da verificare',confirmed:'Confermata',dismissed:'Scartata'};
 const DEMO_USERS={
  demo:{username:'EOS Intelligence',password:'EOSIntelligence7!',label:'Punto vendita 01'}
 };
@@ -2050,13 +2090,13 @@ function loadStore(store){
  try{raw=localStorage.getItem(DEMO_STORAGE_PREFIX+store);if(!raw&&store==='seveso')raw=localStorage.getItem('eos-intelligence-dashboard-v6-demo');}catch(e){}
  let parsed=null;try{parsed=raw?JSON.parse(raw):null;}catch(e){}
  if(!parsed||!Array.isArray(parsed.alerts)||!Array.isArray(parsed.inventory))parsed=demoSeed(store);
- parsed.alerts=parsed.alerts.map(a=>({...a,events:Array.isArray(a.events)?a.events:[]}));
+ parsed.alerts=parsed.alerts.map(a=>({...a,status:a.status==='not_evaluable'?'dismissed':a.status,dismissReason:a.status==='not_evaluable'?'Video non valutabile':a.dismissReason,events:Array.isArray(a.events)?a.events:[]}));
  parsed.inventory=parsed.inventory.map(i=>({...i,recovery:['yes','no','unknown'].includes(i.recovery)?i.recovery:'unknown',eventId:i.eventId||(i.alertId||'MAN-'+i.id)}));
  return parsed;
 }
 let screen='home',filter='all',selectedAlertId=null,modal='',lastFocus=null,procedureOrigin='detail';
 let homeMode='pending',homeSelectedId=null,detailOrigin='analysis',pendingReportItems=[];
-let homeVerifiedDirectoryOpen=false,homeVerifiedState='',homeVerifiedPeriod='',homeVerifiedLimit=10;
+let homeVerifiedDirectoryOpen=false,homeVerifiedState='',homeVerifiedPeriod='',homeVerifiedOutcome='all',homeVerifiedLimit=10;
 let analysisTab='alerts',reportsFilter='all',reportsSearch='';
 let alertPeriod='recent',alertStatus='all',alertSearch='',alertOpenGroup=null,alertVisibleLimit=9;
 let reportPeriod='recent',reportStatus='all',reportOpenGroup=null,reportVisibleLimit=9,statsTab='alerts';
@@ -2087,7 +2127,7 @@ function clipExpired(a){
  if(Date.now()-a.ts>=clipLimit(a)){a.clipExpiredPermanent=true;return true;}
  return false;
 }
-function clipWindowLabel(a){return clipExpired(a)?'Video non disponibile':`Disponibilità prevista fino a ${isFinalTheft(a)?'72':'48'} ore`;}
+function clipWindowLabel(a){return clipExpired(a)?'Video non disponibile':'';}
 function alertById(id){return state.alerts.find(a=>a.id===id);}
 function inventoryIsTheft(id){return state.inventory.some(p=>p.alertId===id);}
 function countStatus(status){return state.alerts.filter(a=>a.status===status).length;}
@@ -2102,6 +2142,26 @@ function reportIsOpen(a){return !!a&&(!a.report?.closed||!!a.report?.needsReview
 function countReportsOpen(){return state.alerts.filter(a=>a.status!=='pending'&&reportIsOpen(a)).length;}
 const REPORT_OUTCOMES={theft:'Furto accertato',attempt:'Tentato furto accertato',no_theft:'Nessun furto accertato',undetermined:'Esito non determinabile'};
 function reportOutcome(a){return a.report?.needsReview?'Da rivedere · '+(REPORT_OUTCOMES[a.report.outcome]||'rapporto'):(a.report?.closed?(REPORT_OUTCOMES[a.report.outcome]||'Rapporto completato'):(a.report?.draft?'Bozza rapporto':'Rapporto da completare'));}
+
+// One interpretation for every surface: pending/dismissed/confirmed are states;
+// the verification choice is the outcome/reason. Only completed reports are definitive.
+const EOS_OUTCOME_COLORS={theft:'#DC8236',attempt:'#D8B044',no_theft:'#72978F',undetermined:'#84939F',later:'#84939F',dismissed:'#84939F',pending:'#D4A633'};
+const DISMISS_REASONS=['Movimento normale','Rilevamento errato','Video non valutabile','Altro'];
+function reviewOutcomeInfo(a){
+ if(!a||a.status==='pending')return {label:'Da verificare',color:EOS_OUTCOME_COLORS.pending,provisional:false,final:false};
+ if(a.status==='dismissed')return {label:a.dismissReason||'Altro',color:EOS_OUTCOME_COLORS.dismissed,provisional:false,final:true};
+ const definitive=!!(a.report?.closed&&!a.report.needsReview&&Object.hasOwn(REPORT_OUTCOMES,a.report?.outcome));
+ const selected=definitive?a.report.outcome:(a.reviewOutcome||a.report?.preliminaryOutcome||a.report?.outcome||'later');
+ const value=Object.hasOwn(REPORT_OUTCOMES,selected)?selected:'later';
+ return {label:REPORT_OUTCOMES[value]||'Da definire successivamente',color:EOS_OUTCOME_COLORS[value],provisional:!definitive,final:definitive};
+}
+function outcomeAccent(a){return `style="--eos-event-accent:${reviewOutcomeInfo(a).color};--eos-panel-accent:${reviewOutcomeInfo(a).color}"`;}
+function outcomeLabelHtml(a,includeProvisional=true){
+ const o=reviewOutcomeInfo(a);
+ return `<span class="eos-event-outcome">${esc(o.label)}</span>${includeProvisional&&o.provisional?'<span class="eos-outcome-provisional">Esito provvisorio</span>':''}`;
+}
+function reviewMetaHtml(a){return `<span class="eos-review-status">${esc(viewStatus(a))}</span> · ${esc(a.id)} · ${esc(a.camera)} · ${formatDate(a.ts)} · ${formatTime(a.ts)}`;}
+
 function reportAction(a){return (a.report?.actions||[a.report?.action].filter(Boolean)).join(', ')||'Non specificata';}
 function reportRows(){return getRows();}
 function updateReportBadges(){
@@ -2131,14 +2191,13 @@ function periodMatch(ts,period){
  const hours={recent:24,'48':48,'72':72,'7d':168,'30d':720,'90d':2160};
  return Number.isFinite(ts)&&Number.isFinite(age)&&age>=0&&age<hours[period]*MS_HOUR;
 }
-const STATS_STATUS_NAMES={all:'Segnalazioni rilevate',pending:'Da verificare',confirmed:'Confermate',dismissed:'Scartate',not_evaluable:'Non valutabili',expired:'Scadute'};
+const STATS_STATUS_NAMES={all:'Segnalazioni rilevate',pending:'Da verificare',confirmed:'Confermate',dismissed:'Scartate',expired:'Scadute'};
 function eventExpiredUnverified(a){return a.status==='pending'&&clipExpired(a);}
 function alertGroupOf(a,includeExpired){return eventExpiredUnverified(a)&&includeExpired?'expired':a.status;}
 const ALERT_GROUPS=[
  {id:'pending',label:'Da verificare',accent:'pending'},
  {id:'confirmed',label:'Confermate',accent:'confirmed'},
  {id:'dismissed',label:'Scartate',accent:'dismissed'},
- {id:'not_evaluable',label:'Non valutabili',accent:'not_evaluable'},
  {id:'expired',label:'Scadute',accent:'expired'}
 ];
 function effectiveAlertPeriod(){return alertPeriod;}
@@ -2231,7 +2290,7 @@ function filteredReportRowsForGroup(g){
 function reportCardHtml(a){
  const open=reportIsOpen(a),items=state.inventory.filter(i=>i.alertId===a.id),total=items.reduce((n,i)=>n+itemValue(i),0);
  const label=a.report?.needsReview?'Da rivedere':open?(a.report?.draft?'Bozza':'Da completare'):'Completato';
- return `<article class="report-list-card eos-status-panel--${badgeStatus(a)}"><div class="report-list-main"><div class="report-list-top"><strong>${esc(a.id)}</strong><span class="report-badge ${open?'':'closed'}">${label}</span></div><div class="report-list-meta">${formatDate(a.ts)} · ${formatTime(a.ts)} · ${esc(a.camera)} · <span class="eos-inline-status">${statusColorDot(a)} ${viewStatus(a)}</span>${clipExpired(a)?' · Video non disponibile':''}</div><div class="report-list-outcome">${a.report?.closed||a.report?.draft||a.report?.needsReview?esc(reportOutcome(a)):''}${items.length?' · '+items.length+' prodotti ('+money(total)+')':''}</div></div><button type="button" class="report-list-action ${open?'primary':''}" data-report-open="${esc(a.id)}">${a.report?.needsReview?'Rivedi rapporto':open?'Completa rapporto':'Apri rapporto'}</button></article>`;
+ return `<article class="report-list-card eos-status-panel--${badgeStatus(a)} eos-event-accent" ${outcomeAccent(a)}><div class="report-list-main"><div class="report-list-top"><strong>${esc(a.id)}</strong><span class="report-badge ${open?'':'closed'}">${label}</span></div><div class="report-list-meta">${formatDate(a.ts)} · ${formatTime(a.ts)} · ${esc(a.camera)} · <span class="eos-inline-status">${statusColorDot(a)} ${viewStatus(a)}</span>${clipExpired(a)?' · Video non disponibile':''}</div><div class="report-list-outcome">${a.report?.closed||a.report?.draft||a.report?.needsReview?esc(reportOutcome(a)):''}${items.length?' · '+items.length+' prodotti ('+money(total)+')':''}</div></div><button type="button" class="report-list-action ${open?'primary':''}" data-report-open="${esc(a.id)}">${a.report?.needsReview?'Rivedi rapporto':open?'Completa rapporto':'Apri rapporto'}</button></article>`;
 }
 
 function getRows(){return [...state.alerts].sort((a,b)=>b.ts-a.ts);}
@@ -2243,12 +2302,16 @@ function criticalTagHtml(a){return a.critical?`<span class="eos-critical-tag">${
 function statusColorDot(a){return `<span class="eos-status-dot eos-status-dot--${badgeStatus(a)}" aria-hidden="true"></span>`;}
 function inventoryAlertDot(i){const a=i.alertId?alertById(i.alertId):null;return a?`<span class="eos-status-dot eos-status-dot--${badgeStatus(a)}" title="${esc(viewStatus(a))}" aria-label="${esc(viewStatus(a))}"></span>`:'';}
 function rowHtml(a,older=false){
- const expired=clipExpired(a);
- if(older||expired)return `<article class="older-plain-row eos-status-panel--${badgeStatus(a)}"><div class="older-content"><strong>${esc(a.id)} · ${esc(a.camera)}</strong><small>${formatDate(a.ts)} · ${formatTime(a.ts)}${a.dismissReason?' · '+esc(a.dismissReason):''}</small><small class="clip-period-note">${icon('lock')} Video non disponibile</small>${criticalTagHtml(a)}</div><div class="older-actions"><span class="badge ${badgeStatus(a)}">${viewStatus(a)}</span><button class="line-btn" data-alert="${esc(a.id)}">Esito</button></div></article>`;
- return `<article class="alert-row ${badgeStatus(a)}"><div class="alert-media" aria-hidden="true">${icon('play')}</div>
- <div class="alert-main"><div class="alert-top"><span class="alert-name">${esc(alertName(a))}</span><span class="badge ${badgeStatus(a)}">${viewStatus(a)}</span></div>
- <div class="alert-meta"><span>${formatDate(a.ts)}</span><span class="dot-sep">•</span><span>${formatTime(a.ts)}</span><span class="dot-sep">•</span><span>${esc(a.camera)}</span></div><div class="clip-period-note">${clipWindowLabel(a)}</div>${criticalTagHtml(a)}</div>
- <div class="alert-right"><button class="line-btn" data-alert="${esc(a.id)}">Apri</button></div></article>`;
+ const expired=clipExpired(a),o=reviewOutcomeInfo(a);
+ if(a.status!=='pending')return `<article class="eos-reviewed-row eos-event-accent" ${outcomeAccent(a)}>
+  <div class="eos-reviewed-row-body"><strong>${esc(o.label)}</strong><small>${reviewMetaHtml(a)}</small>${o.provisional?'<small class="eos-outcome-provisional">Esito provvisorio</small>':''}
+  ${expired?`<small class="eos-video-unavailable">${icon('lock')} Video non disponibile</small>`:''}${criticalTagHtml(a)}</div>
+  <button class="line-btn" data-alert="${esc(a.id)}">Apri ${icon('arrow')}</button></article>`;
+ if(expired||older)return `<article class="older-plain-row eos-event-accent" ${outcomeAccent(a)}><div class="older-content"><strong>${esc(a.id)} · ${esc(a.camera)}</strong><small>${formatDate(a.ts)} · ${formatTime(a.ts)}</small><small class="eos-video-unavailable">${icon('lock')} Video non disponibile</small></div><button class="line-btn" data-alert="${esc(a.id)}">Apri</button></article>`;
+ return `<article class="alert-row pending eos-event-accent" ${outcomeAccent(a)}><div class="alert-media" aria-hidden="true">${icon('play')}</div>
+  <div class="alert-main"><div class="alert-top"><span class="alert-name">${esc(alertName(a))}</span><span class="badge pending">Da verificare</span></div>
+  <div class="alert-meta"><span>${formatDate(a.ts)}</span><span class="dot-sep">•</span><span>${formatTime(a.ts)}</span><span class="dot-sep">•</span><span>${esc(a.camera)}</span></div>${criticalTagHtml(a)}</div>
+  <div class="alert-right"><button class="line-btn" data-alert="${esc(a.id)}">Apri</button></div></article>`;
 }
 
 function hideIncomingNotification(){
@@ -2308,7 +2371,7 @@ window.EOSIntelligenceUI=Object.freeze({receiveAlert:receiveIncomingAlert});
 function homeEntries(){return getRows().filter(a=>homeMode==='pending'?(a.status==='pending'&&!clipExpired(a)):(a.status!=='pending'&&Date.now()-a.ts<48*MS_HOUR)).slice(0,homeMode==='verified'?5:undefined);}
 function verifiedHomeDirectoryRows(){
  if(!homeVerifiedState||!homeVerifiedPeriod)return [];
- return getRows().filter(a=>a.status!=='pending'&&periodMatch(a.ts,homeVerifiedPeriod)&&(homeVerifiedState==='all'||a.status===homeVerifiedState));
+ return getRows().filter(a=>a.status!=='pending'&&periodMatch(a.ts,homeVerifiedPeriod)&&(homeVerifiedState==='all'||a.status===homeVerifiedState)&&(homeVerifiedOutcome==='all'||(a.status==='confirmed'?(a.report?.closed&&!a.report?.needsReview?a.report.outcome:(a.reviewOutcome||a.report?.preliminaryOutcome||a.report?.outcome||'later'))===homeVerifiedOutcome:a.dismissReason===homeVerifiedOutcome)));
 }
 function renderHomeVerifiedDirectory(){
  const dir=$('homeVerifiedDirectory');
@@ -2316,16 +2379,18 @@ function renderHomeVerifiedDirectory(){
  if(!homeVerifiedDirectoryOpen){dir.hidden=true;$('homeTabs').hidden=false;$('homeFocus').hidden=false;return;}
  dir.hidden=false;$('homeTabs').hidden=true;$('homeFocus').hidden=true;
  const rows=verifiedHomeDirectoryRows(),ready=!!homeVerifiedState&&!!homeVerifiedPeriod;
+ const outcomes=homeVerifiedState==='confirmed'?[['all','Tutti gli esiti'],...Object.entries(REPORT_OUTCOMES).map(([key,name])=>[key,name]),['later','Da definire successivamente']]:homeVerifiedState==='dismissed'?[['all','Tutti i motivi'],...DISMISS_REASONS.map(x=>[x,x])]:[];
  dir.innerHTML=`<button type="button" class="eos-back-btn" data-home-verified-back>${icon('arrow')} Torna alla Home</button>
  <div class="eos-pane-heading"><h2>Segnalazioni verificate</h2></div>
  <div class="eos-filter-panel"><div class="eos-filter-grid">
-  <label>Stato<select id="homeVerifiedState"><option value="">Seleziona stato</option><option value="all">Tutte</option><option value="confirmed">Confermate</option><option value="dismissed">Scartate</option><option value="not_evaluable">Non valutabili</option></select></label>
+  <label>Stato<select id="homeVerifiedState"><option value="">Seleziona stato</option><option value="all">Tutte</option><option value="confirmed">Confermate</option><option value="dismissed">Scartate</option></select></label>
   <label>Periodo<select id="homeVerifiedPeriod"><option value="">Seleziona periodo</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="all">Tutte le date</option></select></label>
- </div></div>
- ${ready?`<div class="eos-detail-head"><h2>${homeVerifiedState==='all'?'Tutte le segnalazioni verificate':homeVerifiedState==='confirmed'?'Confermate':homeVerifiedState==='dismissed'?'Scartate':'Non valutabili'}</h2><span class="eos-detail-count">${rows.length}</span></div>
+ </div>${outcomes.length?`<label class="eos-outcome-filter">Esito / motivo<select id="homeVerifiedOutcome">${outcomes.map(([val,label])=>`<option value="${esc(val)}">${esc(label)}</option>`).join('')}</select></label>`:''}</div>
+ ${ready?`<div class="eos-detail-head"><h2>${homeVerifiedState==='all'?'Tutte le segnalazioni verificate':homeVerifiedState==='confirmed'?'Confermate':'Scartate'}</h2><span class="eos-detail-count">${rows.length}</span></div>
  <div class="eos-detail-list">${rows.length?rows.slice(0,homeVerifiedLimit).map(a=>rowHtml(a,clipExpired(a))).join(''):'<p class="eos-group-empty">Nessuna segnalazione corrisponde ai filtri selezionati.</p>'}</div>
  ${rows.length>homeVerifiedLimit?`<button type="button" class="eos-group-viewall" data-home-verified-more>Mostra altre segnalazioni (${rows.length-homeVerifiedLimit})</button>`:''}`:'<p class="eos-verified-hint">Seleziona stato e periodo per visualizzare le segnalazioni.</p>'}`;
  $('homeVerifiedState').value=homeVerifiedState;$('homeVerifiedPeriod').value=homeVerifiedPeriod;
+ if($('homeVerifiedOutcome'))$('homeVerifiedOutcome').value=homeVerifiedOutcome;
 }
 function renderHome(){
  const pending=getRows().filter(a=>a.status==='pending'&&!clipExpired(a));
@@ -2333,8 +2398,8 @@ function renderHome(){
  $('homePendingCount').textContent=pending.length;$('homeVerifiedCount').textContent=verified.length;
  document.querySelectorAll('[data-home-mode]').forEach(b=>{const active=b.dataset.homeMode===homeMode;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));});
  const rows=homeEntries();
- const sectionTitle=homeMode==='pending'?'Segnalazioni da verificare':'Segnalazioni verificate nelle ultime 48 ore';
- const listMarkup=rows.length?rows.map(a=>`<button type="button" class="home-directory-card eos-status-panel--${badgeStatus(a)}" data-alert="${esc(a.id)}" aria-label="Apri segnalazione ${esc(a.id)} ${esc(viewStatus(a))}"><span class="home-directory-main"><strong>${esc(alertName(a))}</strong><span class="home-directory-meta">${esc(a.id)} · ${esc(a.camera)} · ${esc(a.area||'Area non specificata')}</span><span class="home-directory-meta">${formatDate(a.ts)} · ${formatTime(a.ts)}</span>${a.critical?criticalTagHtml(a):''}</span><span class="home-directory-side"><span class="badge ${badgeStatus(a)}">${viewStatus(a)}</span><span class="home-open-link">Apri ${icon('arrow')}</span></span></button>`).join(''):`<article class="home-zero"><div class="home-zero-icon">${icon('check')}</div><h3>${homeMode==='pending'?'Nessuna segnalazione da verificare':'Nessuna segnalazione verificata nelle ultime 48 ore'}</h3></article>`;
+ const sectionTitle=homeMode==='pending'?'Segnalazioni da verificare':'Segnalazioni verificate';
+ const listMarkup=rows.length?rows.map(a=>homeMode==='verified'?`<button type="button" class="home-directory-card eos-reviewed-home-card eos-event-accent" ${outcomeAccent(a)} data-alert="${esc(a.id)}" aria-label="Apri segnalazione ${esc(a.id)}: ${esc(reviewOutcomeInfo(a).label)}"><span class="home-directory-main"><strong>${esc(reviewOutcomeInfo(a).label)}</strong><span class="home-directory-meta">${reviewMetaHtml(a)}</span>${reviewOutcomeInfo(a).provisional?'<span class="eos-outcome-provisional">Esito provvisorio</span>':''}${a.critical?criticalTagHtml(a):''}</span><span class="home-directory-side">${icon('arrow')}</span></button>`:`<button type="button" class="home-directory-card eos-status-panel--${badgeStatus(a)}" data-alert="${esc(a.id)}" aria-label="Apri segnalazione ${esc(a.id)}"><span class="home-directory-main"><strong>${esc(alertName(a))}</strong><span class="home-directory-meta">${esc(a.id)} · ${esc(a.camera)}</span><span class="home-directory-meta">${formatDate(a.ts)} · ${formatTime(a.ts)}</span></span><span class="home-directory-side"><span class="badge pending">Da verificare</span><span class="home-open-link">Apri ${icon('arrow')}</span></span></button>`).join(''):`<article class="home-zero"><div class="home-zero-icon">${icon('check')}</div><h3>${homeMode==='pending'?'Nessuna segnalazione da verificare':'Nessuna segnalazione verificata nelle ultime 48 ore'}</h3></article>`;
  $('homeFocus').innerHTML=`<section class="home-directory" aria-label="${sectionTitle}"><div class="home-directory-heading"><h2 class="home-directory-title">${sectionTitle}</h2><button type="button" id="homeRefresh" class="home-refresh-icon" aria-label="Aggiorna segnalazioni" title="Aggiorna segnalazioni">${icon('refresh')}</button></div>${listMarkup}
  ${homeMode==='verified'?`<button type="button" class="eos-home-more" data-home-verified-all>Visualizza tutte le segnalazioni verificate ${icon('arrow')}</button>`:''}</section>`;
  $('homeMiniList').innerHTML='';$('homeKpis').innerHTML='';renderHomeVerifiedDirectory();
@@ -2365,7 +2430,7 @@ function statsAlertRows(kind){
   if(kind==='all')return true;
   if(kind==='pending')return a.status==='pending'&&!expired;
   if(kind==='expired')return expired;
-  if(kind==='verified')return a.status==='confirmed'||a.status==='dismissed'||a.status==='not_evaluable';
+  if(kind==='verified')return a.status==='confirmed'||a.status==='dismissed';
   if(kind==='false')return a.status==='dismissed'&&['Movimento normale','Rilevamento errato'].includes(a.dismissReason);
   return a.status===kind;
  });
@@ -2430,7 +2495,7 @@ function renderStatsDetail(){
  if(!statsDetail)return;
  const isAlert=statsDetail.section==='alerts',key=statsDetail.key;
  const rows=isAlert?statsAlertRows(key):statsInventoryRows(key);
- const title=isAlert?({all:'Segnalazioni rilevate',pending:'Da verificare',verified:'Verificate',confirmed:'Confermate',dismissed:'Scartate',not_evaluable:'Non valutabili',expired:'Scadute',false:'Falsi positivi'}[key]):({recovered:'Merce recuperata',notRecovered:'Merce non recuperata',total:'Valore complessivo'}[key]);
+ const title=isAlert?({all:'Segnalazioni rilevate',pending:'Da verificare',verified:'Verificate',confirmed:'Confermate',dismissed:'Scartate',expired:'Scadute',false:'Falsi positivi'}[key]):({recovered:'Merce recuperata',notRecovered:'Merce non recuperata',total:'Valore complessivo'}[key]);
  const dateText={all:'Tutte le date','7d':'Ultimi 7 giorni','30d':'Ultimi 30 giorni','90d':'Ultimi 90 giorni'}[statsPeriod];
  const limited=rows.slice(0,statsDetailLimit),more=rows.length-limited.length;
  $('eosStatsDetail').innerHTML=`<button type="button" class="eos-back-btn" data-stats-back>${icon('arrow')} Torna alle Statistiche · ${isAlert?'Segnalazioni':'Inventario'}</button>
@@ -2542,9 +2607,9 @@ function detailHtml(a){
  const guideButton=`<button class="detail-guide-btn eos-full-btn" id="openProcedure">${icon('book')}Guida operativa ${icon('arrow')}</button>`;
  const criticalView=fromHome&&a.critical?`<div class="critical-review-panel">${criticalTagHtml(a)}</div>`:'';
  return `${exp?`<div class="manual-help history-video-note">${icon('lock')} Video non disponibile</div>`:`<div class="detail-video"><button class="video-play" id="playVideo" aria-label="Riproduci video evento">${icon('play')}</button><div class="video-caption"><span>Video evento</span><span>Video di prova non disponibile</span></div></div>`}
- <div class="detail-summary"><div><h3>${esc(alertName(a))}</h3><p>${esc(a.id)} · ${esc(a.camera)}${a.area?' · '+esc(a.area):''}</p></div><span class="badge ${badgeStatus(a)}">${viewStatus(a)}</span></div>
- <div class="detail-fields"><div class="field-pair"><span>Data e ora</span><strong>${formatDate(a.ts)} · ${formatTime(a.ts)}</strong></div><div class="field-pair"><span>Area / zona</span><strong>${esc(a.area||'Non specificata')}</strong></div><div class="field-pair"><span>Video</span><strong>${clipWindowLabel(a)}</strong></div></div>
- ${a.dismissReason?`<div class="manual-help"><b>Motivo dello scarto:</b> ${esc(a.dismissReason)}</div>`:''}
+ <div class="detail-summary eos-detail-outcome-summary" ${outcomeAccent(a)}><div><h3>${esc(a.status==='pending'?alertName(a):reviewOutcomeInfo(a).label)}</h3><p>${esc(a.id)} · ${esc(a.camera)}</p>${a.status!=='pending'?`<p class="eos-detail-state">${esc(viewStatus(a))}${reviewOutcomeInfo(a).provisional?' · Esito provvisorio':''}</p>`:''}</div>${a.status==='pending'?`<span class="badge pending">Da verificare</span>`:''}</div>
+ <div class="detail-fields"><div class="field-pair"><span>Data e ora</span><strong>${formatDate(a.ts)} · ${formatTime(a.ts)}</strong></div><div class="field-pair"><span>Area / zona</span><strong>${esc(a.area||'Non specificata')}</strong></div></div>
+
  
  ${reviewActions}${homeOperations}${guideButton}${criticalView}
  ${fromHome?'':`<section class="report-detail-box"><div class="report-detail-title"><h3>Gestione evento</h3><span class="report-badge ${reportIsOpen(a)?'':'closed'}">${a.report?.needsReview?'Da rivedere':a.report?.closed?'Completato':a.report?.draft?'Bozza':'Da completare'}</span></div>
@@ -2554,14 +2619,14 @@ function detailHtml(a){
 }
 function showAlert(id){let a=alertById(id);if(!a)return;detailOrigin=screen;selectedAlertId=id;openModal(clipExpired(a)?'Esito segnalazione':'Dettaglio segnalazione',detailHtml(a),'detail');}
 function warnLinkedChange(a){return !((a.report?.closed||a.report?.draft||state.inventory.some(i=>i.alertId===a.id))&&!window.confirm('Esistono rapporto o prodotti collegati. La modifica dell’esito non li cancellerà, ma potrebbe richiedere una revisione del rapporto. Continuare?'));}
-function applyOutcome(a,status,reason=''){
+function applyOutcome(a,status,reason='',selection=''){
  if(!warnLinkedChange(a))return false;
- const old=viewStatus(a);
- a.status=status;
- a.dismissReason=reason;
- recordAction(a,'Esito modificato: '+old+' → '+viewStatus(a));
- if(a.report?.closed)a.report.needsReview=true;
- save();render();showAlert(a.id);notify('Esito aggiornato');return true;
+ const old=viewStatus(a),oldOutcome=reviewOutcomeInfo(a).label;
+ a.status=status;a.dismissReason=status==='dismissed'?reason:'';a.reviewOutcome=status==='confirmed'?selection:null;
+ if(status==='confirmed'&&a.report&&!a.report.closed){a.report.outcome=Object.hasOwn(REPORT_OUTCOMES,selection)?selection:null;a.report.preliminaryOutcome=selection;}
+ if(a.report?.closed){a.report.needsReview=true;if(status==='confirmed')a.report.preliminaryOutcome=selection;}
+ recordAction(a,'Valutazione modificata: '+old+' ('+oldOutcome+') → '+viewStatus(a)+' ('+reviewOutcomeInfo(a).label+')');
+ save();render();showAlert(a.id);notify('Valutazione aggiornata');return true;
 }
 function saveStatus(status){const a=alertById(selectedAlertId);if(!a||!canReview(a)||a.status!=='pending')return;
  if(status==='dismissed'){openDismiss(a.id,'detail');return;}
@@ -2569,46 +2634,47 @@ function saveStatus(status){const a=alertById(selectedAlertId);if(!a||!canReview
 }
 function openConfirm(id,origin='detail'){
  const a=alertById(id);if(!a||a.status!=='pending'||!canReview(a))return;
- const selected=a.report?.outcome&&Object.hasOwn(REPORT_OUTCOMES,a.report.outcome)?a.report.outcome:'later';
+ const selected='';
  const choices=[...Object.entries(REPORT_OUTCOMES),['later','Da definire successivamente']];
  const html=`<form id="confirmForm" data-alert-id="${esc(id)}" data-origin="${esc(origin)}">
- <div class="report-form-section">Esito dell’evento (facoltativo)</div>
- <div class="report-outcome-list">${choices.map(([value,label])=>`<label class="report-outcome-item"><input type="radio" name="preliminaryOutcome" value="${value}" ${selected===value?'checked':''}><span>${esc(label)}</span></label>`).join('')}</div>
+ <div class="report-form-section">Esito dell’evento</div>
+ <div class="report-outcome-list">${choices.map(([value,label])=>`<label class="report-outcome-item"><input type="radio" name="preliminaryOutcome" required value="${value}" ${selected===value?'checked':''}><span>${esc(label)}</span></label>`).join('')}</div>
  <div class="form-actions"><button type="button" class="outline-btn" data-back-to-alert="${esc(id)}">Annulla</button><button type="submit" class="primary-btn">Conferma segnalazione</button></div></form>`;
  openModal('Conferma segnalazione',html,'confirm');
 }
 function commitConfirm(id,selection,origin='detail'){
  const a=alertById(id);if(!a||a.status!=='pending'||!canReview(a))return;
+ if(selection!=='later'&&!Object.hasOwn(REPORT_OUTCOMES,selection)){notify('Seleziona un esito della verifica');return;}
  const choice=Object.hasOwn(REPORT_OUTCOMES,selection)?selection:null;
- // La selezione iniziale è soltanto una bozza: non accerta un furto, non cambia i KPI e non estende la clip.
  const previous=a.report&&typeof a.report==='object'?a.report:null;
- if(previous?.closed){
-   a.report={...previous,needsReview:true,preliminaryOutcome:choice,updatedAt:Date.now()};
- }else if(choice||previous){
-   a.report={...(previous||{}),outcome:choice,closed:false,draft:true,needsReview:false,updatedAt:Date.now()};
- }
+ a.reviewOutcome=selection;
+ if(previous?.closed){a.report={...previous,needsReview:true,preliminaryOutcome:selection,updatedAt:Date.now()};}
+ else if(choice||previous){a.report={...(previous||{}),outcome:choice,preliminaryOutcome:selection,closed:false,draft:true,needsReview:false,updatedAt:Date.now()};}
  a.status='confirmed';a.dismissReason='';
- recordAction(a,'Segnalazione confermata');
- if(choice)recordAction(a,'Esito iniziale indicato: '+REPORT_OUTCOMES[choice]);
- save();render();
- // Dopo la conferma resta visibile il dettaglio dell'evento, senza uscire dalla Home o da Analisi.
- if(origin==='home'&&screen!=='home')nav('home');
- showAlert(id);notify('Segnalazione confermata'+(choice?' · Esito riportato nel rapporto':''));
+ recordAction(a,'Segnalazione confermata · Esito iniziale: '+(REPORT_OUTCOMES[choice]||'Da definire successivamente'));
+ save();render();if(origin==='home'&&screen!=='home')nav('home');showAlert(id);notify('Segnalazione confermata');
 }
 function openChangeOutcome(id){
  const a=alertById(id);if(!a||a.status==='pending'||clipExpired(a))return;
+ const chosen=a.status==='confirmed'?(a.reviewOutcome||a.report?.preliminaryOutcome||a.report?.outcome||'later'):(a.dismissReason||'Altro');
  const html=`<form id="changeOutcomeForm" data-alert-id="${esc(id)}">
- <div class="report-outcome-list">${[['confirmed','Confermata'],['dismissed','Scartata'],['not_evaluable','Video non valutabile']].map(([v,label])=>`<label class="report-outcome-item"><input type="radio" name="newAlertStatus" value="${v}" ${a.status===v?'checked':''}><span>${label}</span></label>`).join('')}</div>
- <div class="form-group"><label for="changedReason">Motivo / osservazione (facoltativo)</label><textarea id="changedReason" rows="2" maxlength="300" placeholder="Descrivi brevemente il motivo…"></textarea></div>
+ <div class="report-form-section">Valutazione della segnalazione</div>
+ <div class="report-outcome-list">${[['confirmed','Confermata'],['dismissed','Scartata']].map(([v,label])=>`<label class="report-outcome-item"><input type="radio" required name="newAlertStatus" value="${v}" ${a.status===v?'checked':''}><span>${label}</span></label>`).join('')}</div>
+ <div class="eos-change-reason" id="changeConfirmReasons"><div class="report-form-section">Esito iniziale</div><div class="report-outcome-list">${[...Object.entries(REPORT_OUTCOMES),['later','Da definire successivamente']].map(([v,label])=>`<label class="report-outcome-item"><input type="radio" name="changedConfirmation" value="${v}" ${a.status==='confirmed'&&chosen===v?'checked':''}><span>${label}</span></label>`).join('')}</div></div>
+ <div class="eos-change-reason" id="changeDismissReasons"><div class="report-form-section">Motivo dello scarto</div><div class="report-outcome-list">${DISMISS_REASONS.map(v=>`<label class="report-outcome-item"><input type="radio" name="changedDismissReason" value="${esc(v)}" ${a.status==='dismissed'&&chosen===v?'checked':''}><span>${esc(v)}</span></label>`).join('')}</div></div>
  <div class="form-actions"><button type="button" class="outline-btn" data-back-to-alert="${esc(id)}">Annulla</button><button type="submit" class="primary-btn">Salva modifica</button></div></form>`;
- openModal('Modifica esito',html,'changeOutcome');
+ openModal('Modifica valutazione',html,'changeOutcome');syncChangeOutcomeFields();
 }
-
+function syncChangeOutcomeFields(){
+ const form=$('changeOutcomeForm');if(!form)return;
+ const isConfirm=form.querySelector('[name="newAlertStatus"]:checked')?.value==='confirmed';
+ $('changeConfirmReasons').hidden=!isConfirm;$('changeDismissReasons').hidden=isConfirm;
+}
 function openDismiss(id,origin='detail'){
  let a=alertById(id);if(!canReview(a))return;dismissTarget=id;dismissOrigin=origin;
- const h=`<p class="small-label">Motivo dello scarto <span>· facoltativo</span></p>
+ const h=`<p class="small-label">Motivo dello scarto</p>
  <form id="dismissForm"><div class="dismiss-reasons">
- ${[['normal','Movimento normale'],['detection','Rilevamento errato'],['unclear','Video non valutabile'],['other','Altro']].map(([v,t])=>`<label class="dismiss-choice"><input type="radio" name="reason" value="${v}"><span>${t}</span></label>`).join('')}</div>
+ ${[['normal','Movimento normale'],['detection','Rilevamento errato'],['unclear','Video non valutabile'],['other','Altro']].map(([v,t])=>`<label class="dismiss-choice"><input type="radio" required name="reason" value="${v}"><span>${t}</span></label>`).join('')}</div>
  <div class="dismiss-actions"><button type="button" class="outline-btn" id="dismissCancel">Indietro</button><button type="submit" class="primary-btn">Conferma scarto</button></div></form>`;
  openModal('Scarta segnalazione',h,'dismiss');
 }
@@ -2616,11 +2682,11 @@ function commitDismiss(reason){
  const a=alertById(dismissTarget);if(!canReview(a))return;
  if(!warnLinkedChange(a))return;
  const old=viewStatus(a);
- a.status=reason==='unclear'?'not_evaluable':'dismissed';
+ a.status='dismissed';a.reviewOutcome=null;
  a.dismissReason=({normal:'Movimento normale',detection:'Rilevamento errato',unclear:'Video non valutabile',other:'Altro'})[reason]||'';
  recordAction(a,'Esito modificato: '+old+' → '+viewStatus(a)+(a.dismissReason?' · '+a.dismissReason:''));
  if(a.report?.closed)a.report.needsReview=true;
- const from=dismissOrigin,id=a.id;dismissTarget=null;homeSelectedId=null;save();render();closeModal();if(from==='detail')showAlert(id);notify(a.status==='not_evaluable'?'Segnalazione non valutabile':'Segnalazione scartata');
+ const from=dismissOrigin,id=a.id;dismissTarget=null;homeSelectedId=null;save();render();closeModal();if(from==='detail')showAlert(id);notify('Segnalazione scartata');
 }
 
 // Use a fixed MP3 message so the same voice is available on every device.
@@ -2706,7 +2772,7 @@ const GUIDE_PROCEDURES=[
  ],avoid:[
   'Non accusare pubblicamente la persona.',
   'Non chiedere di aprire borse o zaini e non effettuare perquisizioni.',
-  'Non seguire o bloccare fisicamente qualcuno sulla sola base dell’alert.'
+  'Non seguire o bloccare fisicamente qualcuno sulla sola base della segnalazione.'
  ],support:['Se il comportamento continua e il contesto richiede l’intervento del responsabile.','Se la situazione coinvolge più persone o non è gestibile in sicurezza.'],stop:['In presenza di minacce, aggressività o pericolo per clienti o personale.','Interrompi qualsiasi iniziativa rischiosa e segui il piano di emergenza.']},
  {id:'tasca',title:'Possibile occultamento in tasca',level:'attention',levelLabel:'Attenzione',intro:'Movimenti vicino alle tasche possono essere normali. La clip non basta per attribuire intenzioni.',do:[
   'Rivedi la sequenza osservando i movimenti prima e dopo il gesto.',
@@ -2716,7 +2782,7 @@ const GUIDE_PROCEDURES=[
  ],avoid:['Non fare supposizioni in base all’aspetto della persona.','Non richiedere controlli personali né improvvisare trattenimenti.'],support:['Se non è possibile chiarire la situazione con le procedure ordinarie.'],stop:['Quando si presenta un rischio per la sicurezza o un confronto ostile.']},
  {id:'ambiguo',title:'Gesto ambiguo o video poco chiaro',level:'review',levelLabel:'Verifica',intro:'La ripresa può non mostrare abbastanza elementi per una valutazione affidabile.',do:[
   'Verifica il video una seconda volta e considera soltanto gli elementi osservabili.',
-  'Se il contesto non è sufficiente, scegli “Video non valutabile”.',
+  'Se il contesto non è sufficiente, scegli «Scarta → Video non valutabile».',
   'Mantieni separati i casi non valutabili dagli errori certi del sistema.'
  ],avoid:['Non confermare automaticamente un furto o un gesto illecito.','Non classificare come falso positivo un video semplicemente incompleto.'],support:['Se occorre segnalare al responsabile una ripresa incompleta o un problema di inquadratura.'],stop:['Non avviare alcun intervento operativo basandoti su immagini non interpretabili.']},
  {id:'etichette',title:'Possibile manomissione di confezioni',level:'attention',levelLabel:'Attenzione',intro:'Un gesto su confezioni o etichette non equivale a una manomissione accertata.',do:[
@@ -2738,9 +2804,9 @@ const GUIDE_PROCEDURES=[
 const GUIDE_EXTRAS={
  borsa:{objective:'Valutare un gesto potenzialmente ambiguo senza attribuire automaticamente un furto.',say:'«Buongiorno, posso aiutarla a trovare qualcosa?»',sayNote:'Solo se una normale assistenza commerciale è appropriata. Non citare la segnalazione né formulare accuse.'},
  tasca:{objective:'Distinguere un movimento ordinario da un gesto che richiede ulteriori verifiche.',say:'«Ha bisogno di aiuto per trovare un prodotto?»',sayNote:'Formula la domanda soltanto come normale assistenza alla vendita, senza richiedere controlli personali.'},
- ambiguo:{objective:'Evitare conclusioni quando la ripresa non permette di capire il gesto.',say:'',sayNote:'Non serve avvicinare il cliente per chiarire un video poco leggibile. Registra “Video non valutabile” quando opportuno.'},
+ ambiguo:{objective:'Evitare conclusioni quando la ripresa non permette di capire il gesto.',say:'',sayNote:'Non serve avvicinare il cliente per chiarire un video poco leggibile. Se necessario, scegli «Scarta → Video non valutabile».'},
  etichette:{objective:'Documentare soltanto eventuali alterazioni effettivamente riscontrate.',say:'«Posso aiutarla con le informazioni su questo prodotto?»',sayNote:'È un esempio di assistenza commerciale, non un modo per contestare una presunta manomissione.'},
- uscita:{objective:'Valutare elementi concreti senza assumere che avvicinarsi all’uscita indichi un illecito.',say:'',sayNote:'Non avviare confronti all’uscita sulla sola base di una segnalazione AI.'},
+ uscita:{objective:'Valutare elementi concreti senza assumere che avvicinarsi all’uscita indichi un illecito.',say:'',sayNote:'Non avviare confronti all’uscita sulla sola base di una segnalazione.'},
  aggressione:{objective:'Proteggere clienti e personale prima di qualsiasi considerazione sulla merce.',say:'',sayNote:'Non cercare un confronto o una frase “giusta”: mantieni la distanza e applica il piano di sicurezza del negozio.'}
 };
 let guideReturnContext=null;
@@ -2788,44 +2854,26 @@ function criticalInstructionsHtml(fromAlert=false,a=null){
  return `<div class="critical-instructions"><div class="critical-warning"><h3>${icon('shield')} La sicurezza prima di tutto</h3><p>In presenza di minacce, aggressività o pericolo, interrompi ogni intervento e mantieni una distanza di sicurezza.</p></div>
  <div class="critical-box"><h3>${icon('check')} Cosa fare</h3><ul><li>Avvisa il responsabile del punto vendita.</li><li>Proteggi te stesso, colleghi e clienti senza esporti a rischi.</li><li>In caso di pericolo immediato, contatta i servizi di emergenza.</li></ul></div>
  <div class="critical-box"><h3>${icon('close')} Cosa evitare</h3><ul><li>Non affrontare, bloccare o inseguire la persona.</li><li>Non tentare di recuperare la merce.</li><li>Non attivare la deterrenza vocale se può aggravare la situazione.</li></ul></div>
- ${fromAlert?`<div class="critical-actions">${a?.critical?'<div class="eos-critical-tag">Escalation critica già segnalata</div>':`<button type="button" class="critical-submit" data-submit-critical="${esc(a?.id||'')}">${icon('shield')} Segnala escalation critica</button>`}<button type="button" class="critical-return-btn" data-back-to-alert="${esc(a?.id||'')}">${icon('arrow')} Torna alla segnalazione</button></div>`:'<div class="critical-actions"><button type="button" class="eos-guide-back" data-guide-back>← Torna alla Guida operativa</button></div>'}
+ ${fromAlert?`<div class="critical-actions">${a?.critical?'<div class="eos-critical-tag">Escalation critica già segnalata</div>':`<button type="button" class="critical-submit" data-submit-critical="${esc(a?.id||'')}">${icon('shield')} Segnala escalation critica</button>`}<button type="button" class="critical-return-btn" data-back-to-alert="${esc(a?.id||'')}">${icon('arrow-left')} Torna alla segnalazione</button></div>`:'<div class="critical-actions"><button type="button" class="eos-guide-back" data-guide-back>← Torna alla Guida operativa</button></div>'}
  </div>`;
 }
 function guideDetailHtml(item){
  if(item.id==='aggressione')return `<div class="guide-detail-container"><h2>Escalation critica</h2>${criticalInstructionsHtml(false)}</div>`;
- const extra=GUIDE_EXTRAS[item.id]||{};
- return `<div class="guide-detail-container" id="guide-detail">
- <button class="guide-back" type="button" data-guide-back>${icon('arrow')} Torna alle procedure</button>
- <section class="guide-procedure-heading"><div class="guide-procedure-heading-top"><span class="guide-detail-label">Procedura operativa</span><span class="guide-level guide-level-${item.level}">${esc(item.levelLabel)}</span></div><h2>${esc(item.title)}</h2><p>${esc(item.intro)}</p></section>
- <section class="guide-detail-block guide-fullwidth"><h3>${icon('book')} Come comportarsi, passo dopo passo</h3><ol class="guide-ordered-list">${item.do.map((t,i)=>`<li><span class="guide-sequence-num">${i+1}</span><span>${esc(t)}</span></li>`).join('')}</ol></section>
- <div class="guide-detail-columns"><section class="guide-detail-block guide-communication"><h3>${icon('user')} Comunicazione con il cliente</h3>${extra.say?`<div class="guide-example-quote">${esc(extra.say)}</div>`:''}<p>${esc(extra.sayNote||'Comunica in modo professionale e rispettoso, senza formulare accuse.')}</p></section><section class="guide-detail-block"><h3><span class="guide-block-icon bad">${icon('close')}</span>Cosa evitare</h3><ul class="guide-checklist danger">${guideList(item.avoid,'danger')}</ul></section></div>
- <div class="guide-detail-columns guide-bottom-columns"><section class="guide-detail-block guide-support"><h3>${icon('user')} Quando coinvolgere il responsabile</h3><ul class="guide-note-list">${item.support.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></section><section class="guide-detail-block guide-stop"><h3>${icon('shield')} Quando interrompere l’intervento</h3><ul class="guide-note-list">${item.stop.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></section></div>
- <div class="guide-detail-actions"><button type="button" class="primary-btn" data-guide-back>${icon('arrow')} Torna al manuale</button></div><p class="guide-detail-disclaimer">Le procedure approvate dal punto vendita e la formazione ricevuta prevalgono.</p></div>`;
+ return `<div class="guide-detail-container eos-slim-guide"><button class="guide-back" type="button" data-guide-back>${icon('arrow-left')} Torna alle procedure</button>
+ <section class="guide-procedure-heading"><h2>${esc(item.title)}</h2></section>
+ <section class="guide-detail-block"><h3>Cosa osservare</h3><p>${esc(item.intro)}</p></section>
+ <section class="guide-detail-block"><h3>Come comportarsi</h3><ul class="guide-compact-list">${item.do.slice(0,3).map(t=>`<li>${esc(t)}</li>`).join('')}</ul></section>
+ <section class="guide-detail-block"><h3>Quando chiedere supporto o interrompere</h3><ul class="guide-compact-list">${[...item.support.slice(0,1),...item.stop.slice(0,1)].map(t=>`<li>${esc(t)}</li>`).join('')}</ul></section></div>`;
 }
-function openCritical(id,origin='detail'){
- const a=alertById(id);if(!a)return;
- selectedAlertId=id;detailOrigin=origin;
- openModal('Escalation critica',`<p class="critical-event-meta">${esc(a.id)} · ${esc(a.camera)} · ${esc(a.area||'Area non specificata')}</p>${criticalInstructionsHtml(true,a)}`,'critical',true);
-}
-function openCriticalEdit(id){const a=alertById(id);if(!a)return;
- const html=`<form id="criticalEditForm" data-alert-id="${esc(id)}">
- <label class="report-outcome-item"><input type="checkbox" id="criticalEditFlag" ${a.critical?'checked':''}> Situazione critica segnalata</label>
- <div class="form-group"><label for="criticalEditNotes">Note (facoltative)</label><textarea id="criticalEditNotes" rows="3" maxlength="800" placeholder="Descrivi soltanto fatti verificabili">${esc(a.criticalNotes||'')}</textarea></div>
- <div class="form-actions"><button type="button" class="outline-btn" data-back-to-alert="${esc(id)}">Annulla</button><button type="submit" class="primary-btn">Salva</button></div></form>`;
- openModal('Gestione della sicurezza',html,'criticalEdit');
-}
-
 function guideProceduresHtml(){
  if(guideActiveProcedure){const obj=GUIDE_PROCEDURES.find(p=>p.id===guideActiveProcedure);if(obj)return guideDetailHtml(obj);guideActiveProcedure=null;}
- return `<div class="guide-library">
-  <div class="guide-search-bar"><label for="guideSearch">Cerca una procedura</label><div class="guide-search-input">${icon('search')}<input id="guideSearch" type="search" placeholder="Es. occultamento, uscita, sicurezza..." autocomplete="off" value="${esc(guideSearch)}"/></div></div>
-  <div class="guide-list-head"><h2>Procedure operative</h2></div>
-  <div class="guide-procedures-grid" id="guideProcedureGrid">${[...GUIDE_PROCEDURES].sort((a,b)=>({review:0,attention:1,critical:2}[a.level]??3)-({review:0,attention:1,critical:2}[b.level]??3)).map((p,i)=>`<button type="button" class="guide-procedure-card guide-procedure-card--${p.level}" data-guide-procedure="${p.id}" data-guide-search="${esc((p.title+' '+p.intro+' '+p.levelLabel).toLowerCase())}">
-   <span class="guide-card-upper"><span class="guide-procedure-icon">${icon(p.level==='critical'?'shield':p.level==='review'?'search':'book')}</span><span class="guide-level guide-level-${p.level}">${esc(p.levelLabel)}</span></span>
-   <span class="guide-card-title">${esc(p.title)}</span>
-   <span class="guide-card-action">Apri procedura ${icon('arrow')}</span>
-  </button>`).join('')}</div><p id="guideNoResults" class="guide-empty" hidden>Nessuna procedura trovata. Prova con altre parole.</p>
- </div>`;
+ return `<div class="guide-library eos-slim-guide">
+ <div class="guide-list-head"><h2>Procedure operative</h2></div>
+ <div class="eos-guide-steps-intro"><p><strong>1. Controlla il video</strong> · Valuta il gesto e il contesto, senza considerare una segnalazione una prova di furto.</p>
+ <p><strong>2. Valuta la situazione</strong> · Mantieni un approccio discreto e, se necessario, coinvolgi il responsabile.</p>
+ <p><strong>3. Registra la verifica</strong> · Conferma e indica l’esito, oppure scarta specificandone il motivo. L’esito del rapporto è definitivo solo quando completato.</p></div>
+ <div class="guide-procedures-grid" id="guideProcedureGrid">${[...GUIDE_PROCEDURES].sort((a,b)=>({review:0,attention:1,critical:2}[a.level]??3)-({review:0,attention:1,critical:2}[b.level]??3)).map(p=>`<button type="button" class="guide-procedure-card guide-procedure-card--${p.level}" data-guide-procedure="${p.id}">
+ <span class="guide-card-title">${esc(p.title)}</span><span class="guide-card-action">Apri ${icon('arrow')}</span></button>`).join('')}</div></div>`;
 }
 function filterGuideProcedures(){
  const search=guideSearch.trim().toLocaleLowerCase('it');let n=0;
@@ -2851,30 +2899,39 @@ function guideAvoidHtml(){return `<section class="guide-content-section"><div cl
  <div>${icon('close')}<span>Non considerare una segnalazione come prova automatica di un furto.</span></div>
  </div><div class="guide-safety-note">${icon('shield')} <span>In caso di minaccia, interrompi l’intervento e segui le procedure di sicurezza del negozio. Per un’emergenza reale, chiama il 112.</span></div></section>`;}
 function guideFaqHtml(){return `<section class="guide-content-section"><div class="guide-content-header"><h2>Domande frequenti</h2></div><div class="guide-card-accordions">${FAQ.map(([q,a])=>`<details class="guide-accordion"><summary><span class="guide-summary-icon">${icon('book')}</span><span>${esc(q)}</span>${icon('chevron')}</summary><p class="guide-accordion-body">${esc(a)}</p></details>`).join('')}</div></section>`;}
-function guidePrivacyHtml(){return `<section class="guide-content-section"><div class="guide-content-header"><h2>Privacy e sicurezza</h2></div>
- <div class="privacy-facts"><div class="privacy-fact">${icon('shield')}<div><h3>Accesso riservato</h3><p>Le segnalazioni devono essere consultate esclusivamente dal personale autorizzato e utilizzate solo per finalità di sicurezza del punto vendita.</p></div></div>
- <div class="privacy-fact">${icon('lock')}<div><h3>Riservatezza</h3><p>Evita di condividere video, immagini o informazioni relative alle persone coinvolte. Rispetta sempre la riservatezza e le procedure aziendali.</p></div></div></div></section>`;}
-
+function guidePrivacyHtml(){return `<section class="guide-content-section eos-slim-guide"><div class="guide-content-header"><h2>Privacy e sicurezza</h2></div>
+ <div class="privacy-facts">
+  <div class="privacy-fact">${icon('shield')}<div><h3>Accesso riservato</h3><p>Le segnalazioni devono essere consultate soltanto dal personale autorizzato per le finalità previste dal punto vendita.</p></div></div>
+  <div class="privacy-fact">${icon('lock')}<div><h3>Riservatezza</h3><p>Non condividere clip, immagini o informazioni tramite chat, dispositivi personali o canali non autorizzati.</p></div></div>
+  <div class="privacy-fact">${icon('shield')}<div><h3>Comportamento verso i clienti</h3><p>Una segnalazione non giustifica accuse, perquisizioni, inseguimenti o trattenimenti fisici.</p></div></div>
+  <div class="privacy-fact">${icon('lock')}<div><h3>Conservazione video</h3><p>Le clip ordinarie sono disponibili fino a 48 ore. Solo per furti accertati con rapporto completato la disponibilità può arrivare fino a 72 ore. Dopo la scadenza, rimangono consultabili i dati dell’evento senza il video.</p></div></div>
+  <div class="privacy-fact">${icon('shield')}<div><h3>Sicurezza delle persone</h3><p>In caso di minacce o aggressività, interrompi l’intervento e segui le procedure di emergenza del punto vendita. La sicurezza viene sempre prima del recupero della merce.</p></div></div>
+ </div><p class="eos-guide-footnote">Le procedure aziendali e la formazione ricevuta prevalgono sulle indicazioni generali della Guida.</p></section>`;}
 
 function guideLegendHtml(){
- const items=[
-  {key:'pending',title:'Da verificare',description:'La segnalazione è in attesa della verifica da parte del personale.'},
-  {key:'confirmed',title:'Confermata',description:'Il comportamento segnalato è stato confermato. Non significa necessariamente che sia stato accertato un furto.'},
-  {key:'dismissed',title:'Scartata',description:'La segnalazione è stata esaminata e non confermata.'},
-  {key:'not_evaluable',title:'Video non valutabile',description:'Le immagini non consentono di valutare il comportamento in modo affidabile.'},
-  {key:'critical',title:'Escalation critica segnalata',description:'È stata registrata una situazione critica relativa alla sicurezza delle persone.'}
+ const states=[
+  ['Da verificare','La segnalazione attende una valutazione.','#D4A633'],
+  ['Confermata','Il gesto sospetto è stato confermato: non equivale automaticamente a un furto.','#DC8C43'],
+  ['Scartata','Il gesto non è stato confermato. Si registra sempre il motivo, incluso «Video non valutabile».','#84939F'],
+  ['Scaduta','Non verificata prima della scadenza della clip; le informazioni restano consultabili.','#9F6971']
  ];
- return `<section class="guide-content-section eos-legend-section"><div class="guide-content-header"><h2>Legenda degli stati</h2></div>
- <div class="eos-legend-list">${items.map(item=>`<article class="eos-legend-card eos-legend-card--${item.key}"><div class="eos-legend-heading"><span class="eos-legend-dot" aria-hidden="true"></span><h3>${item.title}</h3></div><p>${item.description}</p></article>`).join('')}</div></section>`;
+ const outcomes=[
+  ['Furto accertato','#DC8236'],['Tentato furto accertato','#D8B044'],['Nessun furto accertato','#72978F'],
+  ['Esito non determinabile','#84939F'],['Da definire successivamente','#84939F']
+ ];
+ return `<section class="guide-content-section eos-legend-section eos-slim-guide"><h2>Legenda degli stati</h2>
+ <div class="eos-legend-list">${states.map(([title,description,color])=>`<article class="eos-legend-card" style="--eos-legend-accent:${color}"><div class="eos-legend-heading"><span class="eos-legend-dot"></span><h3>${title}</h3></div><p>${description}</p></article>`).join('')}</div>
+ <h3 class="eos-legend-subtitle">Esiti delle segnalazioni confermate</h3><div class="eos-guide-outcomes">${outcomes.map(([label,color])=>`<div class="eos-guide-outcome"><i style="background:${color}"></i><span>${label}</span></div>`).join('')}</div>
+ <p class="eos-guide-footnote"><strong>Esito provvisorio:</strong> registrato durante la conferma; diventa definitivo soltanto con il completamento del rapporto. Il motivo dello scarto è invece registrato direttamente al momento della verifica.</p>
+ <p class="eos-guide-footnote"><strong>Escalation critica:</strong> segnalazione aggiuntiva di sicurezza, distinta dallo stato e dall’esito. Il rosso è riservato a questa situazione.</p></section>`;
 }
-
 function renderGuidePage(){
  const banner=$('guideReturnBanner');
  if(banner){banner.hidden=!guideReturnContext;banner.innerHTML=guideReturnContext?guideReturnBannerHtml():'';}
  document.querySelectorAll('.guide-jump [data-guide-tab]').forEach(btn=>{
   const active=btn.dataset.guideTab===guideTab;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active));
  });
- const html=guideTab==='procedures'?guideProceduresHtml():guideTab==='review'?guideReviewHtml():guideTab==='situations'?guideSituationsHtml():guideTab==='legend'?guideLegendHtml():guideTab==='avoid'?guideAvoidHtml():guideTab==='faq'?guideFaqHtml():guidePrivacyHtml();
+ const html=guideTab==='legend'?guideLegendHtml():guideTab==='privacy'?guidePrivacyHtml():guideProceduresHtml();
  $('guideContent').innerHTML=html;
  if(guideTab==='procedures'&&!guideActiveProcedure)filterGuideProcedures();
 }
@@ -2882,18 +2939,18 @@ function openGuide(){closeModal();guideReturnContext=null;guideActiveProcedure=n
 function openProcedure(origin='detail'){
  procedureOrigin=origin;
  const a=alertById(selectedAlertId);
- const stage=a?.status==='confirmed'?'confirmed':a?.status==='dismissed'||a?.status==='not_evaluable'?'closed':'pending';
+ const stage=a?.status==='confirmed'?'confirmed':a?.status==='dismissed'?'closed':'pending';
  const steps=stage==='pending'?
-  [['Verifica attentamente la clip','Considera soltanto ciò che è visibile; l’AI non stabilisce se sia avvenuto un furto.'],['Mantieni un approccio discreto','Se opportuno, offri normale assistenza. Non formulare accuse né intervenire sulla sola segnalazione.'],['Registra la valutazione','Conferma il gesto, scarta oppure indica che il video non è valutabile.']]:
+  [['Verifica attentamente la clip','Considera soltanto ciò che è visibile; una segnalazione non dimostra un furto.'],['Mantieni un approccio discreto','Se opportuno, offri normale assistenza. Non formulare accuse né intervenire sulla sola segnalazione.'],['Registra la valutazione','Conferma il gesto indicando l’esito, oppure scarta specificando il motivo, incluso video non valutabile.']]:
   stage==='confirmed'?
   [['Distingui segnalazione e furto','La conferma del gesto non significa che un furto sia stato accertato.'],['Valuta il contesto in sicurezza','Se necessario, avvisa il responsabile e segui le procedure del negozio.'],['Completa il rapporto in seguito','In Analisi furti potrai registrare l’esito oppure chiudere senza esito accertato.']]:
   [['Rileggi l’esito registrato','Consulta le informazioni salvate senza attribuire nuovi significati alla clip.'],['Evita deduzioni non verificate','Le note devono descrivere soltanto fatti riscontrati.'],['Consulta il manuale se occorre','Per dubbi specifici usa le procedure operative approvate dal punto vendita.']];
  const scenarioOptions=GUIDE_PROCEDURES.map(p=>`<option value="${esc(p.id)}">${esc(p.title)}</option>`).join('');
  const h=`<div class="quick-guide-shell">
  <div class="quick-guide-steps">${steps.map((it,i)=>`<div class="quick-guide-step"><span class="step-num">${i+1}</span><div><h4>${esc(it[0])}</h4><p>${esc(it[1])}</p></div></div>`).join('')}</div>
- <div class="quick-guide-safety"><strong>${icon('shield')} Prima la sicurezza</strong><p>Non accusare, inseguire o affrontare fisicamente una persona sulla base di una segnalazione AI. In caso di rischio, segui le procedure del punto vendita.</p></div>
+ <div class="quick-guide-safety"><strong>${icon('shield')} Prima la sicurezza</strong><p>Non accusare, inseguire o affrontare fisicamente una persona sulla base di una segnalazione. In caso di rischio, segui le procedure del punto vendita.</p></div>
  <div class="quick-guide-deeper"><label for="guideScenarioChoice">Vuoi approfondire una situazione specifica?</label><select id="guideScenarioChoice"><option value="">Mostra tutte le procedure</option>${scenarioOptions}</select></div>
- <div class="quick-guide-actions"><button type="button" class="outline-btn" id="backToAlert">${icon('arrow')} ${origin==='home'?'Torna alla Home':'Torna alla segnalazione'}</button><button type="button" class="primary-btn" id="goCompleteGuide">Consulta la guida completa ${icon('arrow')}</button></div></div>`;
+ <div class="quick-guide-actions"><button type="button" class="outline-btn" id="backToAlert">${icon('arrow-left')} ${origin==='home'?'Torna alla Home':'Torna alla segnalazione'}</button><button type="button" class="primary-btn" id="goCompleteGuide">Consulta la guida completa ${icon('arrow')}</button></div></div>`;
  openModal('Guida operativa',h,'contextGuide',true);
 }
 
@@ -2907,7 +2964,7 @@ function openInfo(which){
   <div class="account-field"><span>Nome utente</span><strong>${esc(DEMO_USERS[currentStore]?.username||'EOS Intelligence')}</strong></div>
   <div class="account-field"><span>Punto vendita associato</span><strong>${esc(DEMO_USERS[currentStore]?.label||'Punto vendita 01')}</strong></div>
   <div class="account-field"><span>Password</span><strong>••••••••••••</strong></div>
-  <div class="account-field eos-build-ident"><span>Versione interfaccia</span><strong>7.8.13 · Statistiche Inventario a barre · r9e</strong></div>
+  <div class="account-field eos-build-ident"><span>Versione interfaccia</span><strong>7.8.13 · Esiti e Guida unificati · r11</strong></div>
  </div>
  <button class="outline-btn account-change" type="button" id="togglePasswordForm" aria-controls="passwordFormContainer" aria-expanded="false">Modifica password ${icon('chevron')}</button>
  <div id="passwordFormContainer" hidden>
@@ -2986,8 +3043,8 @@ function openReport(id,edit=false){
  const a=alertById(id);if(!a)return;
  selectedAlertId=id;pendingReportItems=[];
  const r=a.report||{},acts=r.actions||[r.action].filter(Boolean),linked=state.inventory.filter(i=>i.alertId===id);
- const reportChoice=r.preliminaryOutcome!==undefined?r.preliminaryOutcome:r.outcome;
- const intro=`<p class="report-modal-intro">Segnalazione <strong>${esc(id)}</strong> · ${esc(a.camera)} · ${esc(a.area||'Zona non specificata')} · ${formatDate(a.ts)}</p>
+ const reportChoice=r.preliminaryOutcome!==undefined?r.preliminaryOutcome:(r.outcome||a.reviewOutcome);
+ const intro=`<p class="report-modal-intro">Segnalazione <strong>${esc(id)}</strong> · ${esc(a.camera)} · ${formatDate(a.ts)}</p>
  <div class="report-link-summary"><strong>Esito segnalazione:</strong> <span class="eos-inline-status">${statusColorDot(a)}${esc(viewStatus(a))}</span></div>`;
  // A completed report always opens read-only, until the operator expressly selects Modifica rapporto.
  if(r.closed&&!edit){
@@ -3080,7 +3137,7 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
  
   if(btn.dataset.statsSection){statsPage=btn.dataset.statsSection;statsDetail=null;statsDetailLimit=8;renderAnalysis();window.scrollTo(0,0);return;}
   if(btn.hasAttribute('data-stats-section-back')){statsPage=null;statsDetail=null;renderStatsShell();window.scrollTo(0,0);return;}
-  if(btn.hasAttribute('data-home-verified-all')){homeVerifiedDirectoryOpen=true;homeVerifiedState='';homeVerifiedPeriod='';homeVerifiedLimit=10;renderHome();window.scrollTo(0,0);return;}
+  if(btn.hasAttribute('data-home-verified-all')){homeVerifiedDirectoryOpen=true;homeVerifiedState='';homeVerifiedPeriod='';homeVerifiedOutcome='all';homeVerifiedLimit=10;renderHome();window.scrollTo(0,0);return;}
   if(btn.hasAttribute('data-home-verified-back')){homeVerifiedDirectoryOpen=false;renderHome();window.scrollTo(0,0);return;}
   if(btn.hasAttribute('data-home-verified-more')){homeVerifiedLimit+=10;renderHomeVerifiedDirectory();return;}
 
@@ -3155,8 +3212,10 @@ $('guideContent').addEventListener('input',e=>{
  $('eosStatsPeriod').addEventListener('change',e=>{statsPeriod=e.target.value;statsDetailLimit=8;renderAnalysis();});
  $('eosStatsStatus').addEventListener('change',e=>{statsStatus=e.target.value;statsDetail=null;renderAnalysis();});
  document.addEventListener('change',e=>{
-  if(e.target.id==='homeVerifiedState'){homeVerifiedState=e.target.value;homeVerifiedLimit=10;renderHomeVerifiedDirectory();}
+  if(e.target.id==='homeVerifiedState'){homeVerifiedState=e.target.value;homeVerifiedOutcome='all';homeVerifiedLimit=10;renderHomeVerifiedDirectory();}
   if(e.target.id==='homeVerifiedPeriod'){homeVerifiedPeriod=e.target.value;homeVerifiedLimit=10;renderHomeVerifiedDirectory();}
+   if(e.target.id==='homeVerifiedOutcome'){homeVerifiedOutcome=e.target.value;homeVerifiedLimit=10;renderHomeVerifiedDirectory();}
+   if(e.target.name==='newAlertStatus')syncChangeOutcomeFields();
  });
  document.addEventListener('change',e=>{
   if(e.target.matches('input[name="reportActions"]')){
@@ -3176,14 +3235,16 @@ $('closeModal').addEventListener('click',closeGuideOrModal);$('modalBackdrop').a
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(modal)closeGuideOrModal();else closeMobileAux();}});
 document.addEventListener('submit',async e=>{
  if(e.target.id==='reportForm'){e.preventDefault();commitReport(e.target.dataset.reportId,false);return;}
- if(e.target.id==='confirmForm'){e.preventDefault();const form=e.target;const choice=form.querySelector('input[name="preliminaryOutcome"]:checked')?.value||'later';commitConfirm(form.dataset.alertId,choice,form.dataset.origin||'detail');return;}
-  if(e.target.id==='changeOutcomeForm'){
-   e.preventDefault();const a=alertById(e.target.dataset.alertId),choice=e.target.querySelector('[name="newAlertStatus"]:checked')?.value;
-   if(!a||!choice)return;
-   if(choice===a.status){showAlert(a.id);return;}
-   const reason=choice==='not_evaluable'?'Video non valutabile':choice==='dismissed'?(String($('changedReason').value||'').trim().slice(0,300)||'Altro'):'';
-   applyOutcome(a,choice,reason);return;
-  }
+ if(e.target.id==='confirmForm'){e.preventDefault();const form=e.target;const choice=form.querySelector('input[name="preliminaryOutcome"]:checked')?.value||'';commitConfirm(form.dataset.alertId,choice,form.dataset.origin||'detail');return;}
+   if(e.target.id==='changeOutcomeForm'){
+    e.preventDefault();const a=alertById(e.target.dataset.alertId),choice=e.target.querySelector('[name="newAlertStatus"]:checked')?.value;
+    if(!a||!choice)return;
+    const reason=choice==='dismissed'?e.target.querySelector('[name="changedDismissReason"]:checked')?.value:'';
+    const outcome=choice==='confirmed'?e.target.querySelector('[name="changedConfirmation"]:checked')?.value:'';
+    if((choice==='dismissed'&&!reason)||(choice==='confirmed'&&!outcome)){notify('Seleziona anche il motivo o l’esito');return;}
+    if(choice===a.status&&reason===(a.dismissReason||'')&&outcome===(a.reviewOutcome||'')){showAlert(a.id);return;}
+    applyOutcome(a,choice,reason,outcome);return;
+   }
   if(e.target.id==='criticalEditForm'){
    e.preventDefault();const a=alertById(e.target.dataset.alertId);if(!a)return;
    const yes=$('criticalEditFlag')?.checked||false;
@@ -3199,7 +3260,7 @@ document.addEventListener('submit',async e=>{
    $('loginError').hidden=true;enterStore(matched);notify('Accesso effettuato');return;
  }
  if(e.target.id==='dismissForm'){
-   e.preventDefault();const inp=e.target.querySelector('input[name="reason"]:checked');commitDismiss(inp?inp.value:'');return;
+   e.preventDefault();const inp=e.target.querySelector('input[name="reason"]:checked');if(!inp){notify('Seleziona il motivo dello scarto');return;}commitDismiss(inp.value);return;
  }
  if(e.target.id==='editInventoryForm'){e.preventDefault();commitInventoryEdit(e.target);return;}
  if(e.target.id==='passwordForm'){e.preventDefault();if($('newPass').value!==$('repeatPass').value){notify('Le nuove password non coincidono');return;}notify('La modifica della password non è ancora disponibile.');return;}
