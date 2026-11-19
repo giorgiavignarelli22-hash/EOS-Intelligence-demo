@@ -2,14 +2,14 @@
 
 <html lang="it"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#f5f8fb" name="theme-color"/>
-<meta name="eos-build" content="7.8.13-statistiche-barre-20261118-r9e"/>
+<meta name="eos-build" content="7.8.13-home-analisi-statistiche-20261119-r10"/>
 <script id="eos-auto-update">
 /* Static GitHub Pages: verify the deployed version without clearing local data. */
 (function(){
   'use strict';
   if (!/^https?:$/.test(window.location.protocol)) return;
   var PARAM = '__eos_fresh';
-  var currentVersion = '7.8.13-statistiche-barre-20261118-r9e';
+  var currentVersion = '7.8.13-home-analisi-statistiche-20261119-r10';
   var lastCheckTime = 0;
   var checking = false;
   var canonical;
@@ -1776,6 +1776,23 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
  #eosStatsInventoryKpis .eos-stat-bar-arrow svg{width:16px;height:16px;}
 }
 @media(max-width:430px){.eos-detail-head h2{font-size:19px}.eos-detail-count{font-size:11px;padding:5px 8px}.eos-back-btn{font-size:12px}.eos-detail-list .alert-row{padding:10px!important}}
+
+/* R10 — dedicated Home verified directory + section landing for Statistiche */
+#homeVerifiedDirectory[hidden],#homeTabs[hidden],#homeFocus[hidden],#page-home .page-header[hidden],#eosStatsLanding[hidden],#eosStatsSection[hidden]{display:none!important}
+.eos-home-verified-directory .eos-filter-panel{margin-bottom:15px}
+.eos-home-verified-directory .eos-detail-list{display:grid;gap:10px}
+.eos-home-verified-directory .eos-detail-list .alert-row,.eos-home-verified-directory .eos-detail-list .older-plain-row{margin:0}
+.eos-home-more{margin-top:14px;display:flex;justify-content:space-between;gap:12px;align-items:center;width:100%;padding:13px 15px;border:1px solid #bcd7d9;border-radius:11px;background:#fff;color:#176e79;font-weight:700;text-align:left;font-size:12px}
+.eos-home-more svg{width:17px;height:17px;flex:none}
+.eos-verified-hint{color:#708797;font-size:12px;padding:14px 4px;margin:0}
+#eosStatsMain[hidden],#eosStatsDetail[hidden]{display:none!important}
+#analysisKpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+#analysisKpis .kpi-card{min-height:110px}
+#analysisKpis.eos-stats-single{grid-template-columns:minmax(0,1fr)!important}
+#eosStatsLanding .eos-group-main{min-height:76px}
+#eosStatsStatusField[hidden]{display:none!important}
+#eosStatsInventoryKpis{margin-top:2px!important}
+@media(max-width:620px){#analysisKpis .kpi-card{min-height:100px}.eos-home-more{font-size:12px}}
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
 <symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></symbol>
@@ -1832,6 +1849,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
  <button type="button" class="home-tab" data-home-mode="verified" role="tab" aria-selected="false"><span>Verificate</span><strong id="homeVerifiedCount">0</strong></button>
 </div>
 <div aria-live="polite" class="home-focus" id="homeFocus"></div>
+<div id="homeVerifiedDirectory" class="eos-home-verified-directory" hidden></div>
 <div class="home-mini-list" id="homeMiniList" hidden></div>
 <div class="kpi-grid home-kpis" id="homeKpis" hidden></div>
 
@@ -1849,10 +1867,9 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
   <div class="eos-pane-heading"><h2>Segnalazioni</h2><button type="button" class="eos-export-btn" id="exportAnalysisAlerts">Esporta CSV</button></div>
   <div class="eos-filter-panel">
    <div class="eos-filter-grid">
-    <label>Periodo<select id="eosAlertPeriod"><option value="overview">Recenti</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="older">Oltre 72 ore</option><option value="all">Tutte le date</option></select></label>
+    <label>Periodo<select id="eosAlertPeriod"><option value="recent">Recenti</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutte le date</option></select></label>
     <label>Stato<select id="eosAlertStatus"><option value="all">Tutti gli stati</option><option value="pending">Da verificare</option><option value="confirmed">Confermate</option><option value="dismissed">Scartate</option><option value="not_evaluable">Non valutabili</option><option value="expired">Scadute</option></select></label>
    </div>
-   <label class="eos-search-box"><svg><use href="#i-search"></use></svg><input type="search" id="eosAlertSearch" autocomplete="off" placeholder="Cerca ID, telecamera o area…" aria-label="Cerca nelle segnalazioni"></label>
    <div class="eos-filter-foot eos-filter-foot-clean"><button type="button" class="eos-clear-filters" id="eosAlertReset">Ripristina filtri</button></div>
   </div>
   <div class="eos-groups" id="eosAlertGroups"></div>
@@ -1864,10 +1881,9 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
   <div class="eos-pane-heading"><h2>Rapporti evento</h2><button type="button" class="eos-export-btn" id="exportAnalysisReports">Esporta CSV</button><span class="reports-pending-pill" id="reportsPendingPill" hidden></span></div>
   <div class="eos-filter-panel">
    <div class="eos-filter-grid">
-    <label>Periodo<select id="eosReportPeriod"><option value="recent">Recenti</option><option value="72">Ultime 72 ore</option><option value="48">Ultime 48 ore</option><option value="older">Oltre 72 ore</option><option value="all">Tutte le date</option></select></label>
+    <label>Periodo<select id="eosReportPeriod"><option value="recent">Recenti</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutte le date</option></select></label>
     <label>Stato rapporto<select id="eosReportStatus"><option value="all">Tutti i rapporti</option><option value="open">Da completare</option><option value="closed">Completati</option></select></label>
    </div>
-   <label class="eos-search-box"><svg><use href="#i-search"></use></svg><input type="search" id="reportsSearch" autocomplete="off" placeholder="Cerca ID, telecamera o area…" aria-label="Cerca rapporti"></label>
    <div class="eos-filter-foot eos-filter-foot-clean"><button type="button" class="eos-clear-filters" id="eosReportReset">Ripristina filtri</button></div>
   </div>
   <div class="eos-groups" id="reportsList"></div>
@@ -1876,26 +1892,35 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 </div>
 <div id="analysisInventoryPane" role="tabpanel" class="eos-analysis-pane" hidden>
  <div class="eos-pane-heading"><h2>Inventario</h2></div>
- <div class="eos-filter-panel eos-period-only"><label>Periodo<select id="eosInventoryPeriod"><option value="recent">Recenti</option><option value="72">Ultime 72 ore</option><option value="48">Ultime 48 ore</option><option value="older">Oltre 72 ore</option><option value="all">Tutte le date</option></select></label></div>
+ <div class="eos-filter-panel eos-period-only"><label>Periodo<select id="eosInventoryPeriod"><option value="recent">Recenti</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutte le date</option></select></label></div>
  <div id="eosInventoryOverview" class="eos-groups"></div>
  <div id="eosInventoryDetail" class="eos-detail-page" hidden></div>
  <div id="eosInventorySlot" hidden></div>
 </div>
 <div id="analysisStatsPane" role="tabpanel" class="eos-analysis-pane" hidden>
- <div class="eos-pane-heading"><h2>Statistiche</h2></div>
- <div class="eos-filter-panel eos-period-only"><label>Periodo<select id="eosStatsPeriod"><option value="all">Tutte le date</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option></select></label></div>
- <div id="eosStatsMain">
-  <div class="eos-stats-subtabs" role="tablist" aria-label="Tipo di statistiche">
-   <button type="button" class="active" data-stats-tab="alerts" aria-selected="true" role="tab">Segnalazioni</button>
-   <button type="button" data-stats-tab="inventory" aria-selected="false" role="tab">Inventario</button>
+ <div id="eosStatsLanding">
+  <div class="eos-pane-heading"><h2>Statistiche</h2></div>
+  <div class="eos-groups">
+   <section class="eos-group-bar eos-group--closed"><button type="button" class="eos-group-main" data-stats-section="alerts"><span class="eos-group-label"><strong>Segnalazioni</strong></span><span class="eos-group-side"><svg><use href="#i-arrow"></use></svg></span></button></section>
+   <section class="eos-group-bar eos-group--closed"><button type="button" class="eos-group-main" data-stats-section="inventory"><span class="eos-group-label"><strong>Inventario</strong></span><span class="eos-group-side"><svg><use href="#i-arrow"></use></svg></span></button></section>
   </div>
-  <div id="eosStatsAlerts">
-   <div class="kpi-grid analysis-kpis" id="analysisKpis"></div>
-   <div class="card small-chart"><div class="chart-head"><h2>Ultimi 7 giorni</h2><span class="mini-subtle">Segnalazioni rilevate</span></div><div class="chart-bars" id="bars"></div><div class="chart-axis" id="barLabels"></div></div>
-  </div>
-  <div id="eosStatsInventory" hidden><div class="eos-inventory-stats" id="eosStatsInventoryKpis"></div></div>
  </div>
- <div id="eosStatsDetail" class="eos-detail-page" hidden></div>
+ <div id="eosStatsSection" hidden>
+  <button type="button" class="eos-back-btn" data-stats-section-back><svg><use href="#i-arrow"></use></svg> Torna alle Statistiche</button>
+  <div class="eos-pane-heading"><h2 id="eosStatsSectionTitle">Segnalazioni</h2></div>
+  <div class="eos-filter-panel"><div class="eos-filter-grid">
+   <label>Periodo<select id="eosStatsPeriod"><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutte le date</option></select></label>
+   <label id="eosStatsStatusField">Stato<select id="eosStatsStatus"><option value="all">Tutte</option><option value="pending">Da verificare</option><option value="confirmed">Confermate</option><option value="dismissed">Scartate</option><option value="not_evaluable">Non valutabili</option><option value="expired">Scadute</option></select></label>
+  </div></div>
+  <div id="eosStatsMain">
+   <div id="eosStatsAlerts">
+    <div class="kpi-grid analysis-kpis" id="analysisKpis"></div>
+    <div class="card small-chart"><div class="chart-head"><h2 id="eosChartTitle">Andamento delle segnalazioni</h2><span class="mini-subtle" id="eosChartSubtitle">Ultimi 30 giorni</span></div><div class="chart-bars" id="bars"></div><div class="chart-axis" id="barLabels"></div></div>
+   </div>
+   <div id="eosStatsInventory" hidden><div class="eos-inventory-stats" id="eosStatsInventoryKpis"></div></div>
+  </div>
+  <div id="eosStatsDetail" class="eos-detail-page" hidden></div>
+ </div>
 </div>
 </section>
 <section aria-label="Inventario" class="screen" id="page-inventory"><div class="inventory-legacy-note" id="inventoryLegacyNote" hidden></div><div class="section-head"><h2>Prodotti registrati</h2><button class="text-action" id="exportInventory">Esporta CSV</button></div><div class="card"><div class="table-wrap desktop-table"><table aria-label="Merce registrata" class="data-table inventory-table"><thead><tr><th>Prodotto</th><th>Segnalazione</th><th>Quantità</th><th>Valore</th><th>Recupero</th><th></th></tr></thead><tbody id="inventoryTable"></tbody></table></div><div class="compact-rows" id="inventoryCardsMobile"></div></div></section>
@@ -2031,13 +2056,14 @@ function loadStore(store){
 }
 let screen='home',filter='all',selectedAlertId=null,modal='',lastFocus=null,procedureOrigin='detail';
 let homeMode='pending',homeSelectedId=null,detailOrigin='analysis',pendingReportItems=[];
+let homeVerifiedDirectoryOpen=false,homeVerifiedState='',homeVerifiedPeriod='',homeVerifiedLimit=10;
 let analysisTab='alerts',reportsFilter='all',reportsSearch='';
-let alertPeriod='overview',alertStatus='all',alertSearch='',alertOpenGroup=null,alertVisibleLimit=9;
+let alertPeriod='recent',alertStatus='all',alertSearch='',alertOpenGroup=null,alertVisibleLimit=9;
 let reportPeriod='recent',reportStatus='all',reportOpenGroup=null,reportVisibleLimit=9,statsTab='alerts';
 let alertDetailGroup=null,alertDetailAll=false,alertDetailLimit=8;
 let reportDetailGroup=null,reportDetailAll=false,reportDetailLimit=8;
 let inventoryPeriod='recent',inventoryDetailGroup=null,inventoryDetailAll=false,inventoryDetailLimit=8;
-let statsPeriod='all',statsDetail=null,statsDetailLimit=8;
+let statsPeriod='30d',statsStatus='all',statsPage=null,statsDetail=null,statsDetailLimit=8;
 let activeIncomingAlertId=null,pendingIncomingAlertId=null;
 const SIMULATED_ALERT_DELAY_MS=4000;
 let simulatedAlertTimer=null;
@@ -2050,7 +2076,7 @@ function syncLogin(){
 
 }
 function enterStore(store){cancelScheduledSimulation();hideIncomingNotification();pendingIncomingAlertId=null;currentStore=store;state=loadStore(store);try{sessionStorage.setItem(DEMO_SESSION_KEY,store);}catch(e){}
- filter='all';showOlder=false;analysisTab='alerts';reportsFilter='all';reportsSearch='';alertPeriod='overview';alertStatus='all';alertSearch='';alertOpenGroup=null;reportPeriod='recent';reportStatus='all';reportOpenGroup=null;statsTab='alerts';alertDetailGroup=null;reportDetailGroup=null;inventoryPeriod='recent';inventoryDetailGroup=null;statsPeriod='all';statsDetail=null;syncLogin();render();nav('home');}
+ filter='all';showOlder=false;analysisTab='alerts';reportsFilter='all';reportsSearch='';alertPeriod='recent';alertStatus='all';alertSearch='';alertOpenGroup=null;reportPeriod='recent';reportStatus='all';reportOpenGroup=null;statsTab='alerts';alertDetailGroup=null;reportDetailGroup=null;inventoryPeriod='recent';inventoryDetailGroup=null;statsPeriod='30d';statsDetail=null;statsStatus='all';statsPage=null;homeVerifiedDirectoryOpen=false;homeVerifiedState='';homeVerifiedPeriod='';syncLogin();render();nav('home');}
 function leaveStore(){cancelScheduledSimulation();hideIncomingNotification();pendingIncomingAlertId=null;stopDeterrenceAudio();currentStore='';try{sessionStorage.removeItem(DEMO_SESSION_KEY);}catch(e){}closeModal();$('loginForm').reset();$('loginError').hidden=true;syncLogin();}
 try{let saved=sessionStorage.getItem(DEMO_SESSION_KEY);if(saved&&DEMO_USERS[saved]){currentStore=saved;state=loadStore(saved);}}catch(e){}
 
@@ -2086,6 +2112,7 @@ function updateReportBadges(){
 }
 function setAnalysisTab(tab){
  analysisTab=['alerts','reports','inventory','stats'].includes(tab)?tab:'alerts';
+ if(analysisTab!=='stats'){statsPage=null;statsDetail=null;}
  for(const [name,id] of [['alerts','analysisAlertsPane'],['reports','analysisReportsPane'],['inventory','analysisInventoryPane'],['stats','analysisStatsPane']]){
   const pane=$(id);if(pane)pane.hidden=name!==analysisTab;
  }
@@ -2096,6 +2123,15 @@ function setStatsTab(tab){
  $('eosStatsAlerts').hidden=statsTab!=='alerts';$('eosStatsInventory').hidden=statsTab!=='inventory';
  document.querySelectorAll('[data-stats-tab]').forEach(b=>{let active=b.dataset.statsTab===statsTab;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));});
 }
+
+const OPERATION_PERIOD_LABELS={recent:'Ultime 24 ore','48':'Ultime 48 ore','72':'Ultime 72 ore','7d':'Ultimi 7 giorni','30d':'Ultimi 30 giorni','90d':'Ultimi 90 giorni',all:'Tutte le date'};
+function periodMatch(ts,period){
+ if(period==='all')return true;
+ const age=Date.now()-ts;
+ const hours={recent:24,'48':48,'72':72,'7d':168,'30d':720,'90d':2160};
+ return Number.isFinite(ts)&&Number.isFinite(age)&&age>=0&&age<hours[period]*MS_HOUR;
+}
+const STATS_STATUS_NAMES={all:'Segnalazioni rilevate',pending:'Da verificare',confirmed:'Confermate',dismissed:'Scartate',not_evaluable:'Non valutabili',expired:'Scadute'};
 function eventExpiredUnverified(a){return a.status==='pending'&&clipExpired(a);}
 function alertGroupOf(a,includeExpired){return eventExpiredUnverified(a)&&includeExpired?'expired':a.status;}
 const ALERT_GROUPS=[
@@ -2105,64 +2141,44 @@ const ALERT_GROUPS=[
  {id:'not_evaluable',label:'Non valutabili',accent:'not_evaluable'},
  {id:'expired',label:'Scadute',accent:'expired'}
 ];
-function effectiveAlertPeriod(){return alertPeriod==='overview'&&(alertStatus!=='all'||alertSearch.trim())?'all':alertPeriod;}
+function effectiveAlertPeriod(){return alertPeriod;}
 function visibleAlertGroups(){
- const p=effectiveAlertPeriod();let groups=ALERT_GROUPS.filter(g=>p==='overview'||p==='all'||p==='older'||g.id!=='expired');
- if(alertStatus!=='all')groups=groups.filter(g=>g.id===alertStatus||(alertStatus==='pending'&&g.id==='expired'&&(p==='all'||p==='older'||p==='overview')));
+ let groups=ALERT_GROUPS.filter(g=>alertPeriod!=='48'||g.id!=='expired');
+ if(alertStatus!=='all')groups=groups.filter(g=>g.id===alertStatus);
  return groups;
 }
 function alertsForGroup(group){
- const p=effectiveAlertPeriod(),now=Date.now();
- let rows=getRows().filter(a=>{
-  const age=now-a.ts;
-  if(p==='overview'){
-   return group==='expired'?eventExpiredUnverified(a):age<48*MS_HOUR&&!eventExpiredUnverified(a)&&a.status===group;
-  }
-  if(p==='48'&&age>=48*MS_HOUR)return false;
-  if(p==='72'&&age>=72*MS_HOUR)return false;
-  if(p==='older'&&age<72*MS_HOUR)return false;
-  return alertGroupOf(a,p==='all'||p==='older')===group;
+ return getRows().filter(a=>{
+  if(alertPeriod==='recent')return group==='expired'?eventExpiredUnverified(a):periodMatch(a.ts,'recent')&&!eventExpiredUnverified(a)&&a.status===group;
+  if(!periodMatch(a.ts,alertPeriod))return false;
+  return alertGroupOf(a,true)===group;
  });
- if(alertSearch.trim()){
-  const q=alertSearch.trim().toLocaleLowerCase('it');
-  rows=rows.filter(a=>[a.id,a.camera,a.area,a.label,a.dismissReason,viewStatus(a)].join(' ').toLocaleLowerCase('it').includes(q));
- }
- return rows;
 }
 function filteredAlertRows(){
- return getRows().filter(a=>visibleAlertGroups().some(g=>g.id===alertGroupOf(a,effectiveAlertPeriod()==='all'||effectiveAlertPeriod()==='older'||effectiveAlertPeriod()==='overview')&&alertsForGroup(g.id).includes(a))&&(alertOpenGroup===null||alertGroupOf(a,effectiveAlertPeriod()==='all'||effectiveAlertPeriod()==='older'||effectiveAlertPeriod()==='overview')===alertOpenGroup));
+ const rows=visibleAlertGroups().flatMap(g=>alertsForGroup(g.id));
+ return rows.filter(a=>!alertOpenGroup||alertGroupOf(a,true)===alertOpenGroup).sort((a,b)=>b.ts-a.ts);
 }
 function renderAlertGroups(){
- const groups=visibleAlertGroups(),p=effectiveAlertPeriod();
+ const groups=visibleAlertGroups();
  $('eosAlertPeriod').value=alertPeriod;$('eosAlertStatus').value=alertStatus;
- if($('eosAlertSearch').value!==alertSearch)$('eosAlertSearch').value=alertSearch;
  $('eosAlertGroups').innerHTML=groups.map(g=>{
   const rows=alertsForGroup(g.id);
-  const desc=p==='overview'?(g.id==='expired'?'Non verificate entro 48 ore':'Ultime 48 ore'):p==='all'?(g.id==='expired'?'Non verificate entro 48 ore':'Tutte le date'):p==='older'?'Oltre 72 ore':`Ultime ${p} ore`;
+  const desc=g.id==='expired'&&alertPeriod==='recent'?'Non verificate entro 48 ore':OPERATION_PERIOD_LABELS[alertPeriod];
   return `<section class="eos-group-bar eos-group--${g.accent}">
-    <button type="button" class="eos-group-main" data-alert-group="${g.id}" aria-label="Apri segnalazioni ${g.label.toLowerCase()}">
-      <span class="eos-group-label"><strong>${g.label}</strong><small>${desc}</small></span><span class="eos-group-side"><span class="eos-group-count">${rows.length}</span>${icon('arrow')}</span>
-    </button>
-  </section>`;
- }).join('')||'<div class="eos-group-empty">Nessuna categoria corrisponde ai filtri scelti.</div>';
- $('eosAlertOverview').hidden=!!alertDetailGroup;
- $('eosAlertDetail').hidden=!alertDetailGroup;
+   <button type="button" class="eos-group-main" data-alert-group="${g.id}" aria-label="Apri segnalazioni ${g.label.toLowerCase()}">
+   <span class="eos-group-label"><strong>${g.label}</strong><small>${desc}</small></span><span class="eos-group-side"><span class="eos-group-count">${rows.length}</span>${icon('arrow')}</span></button></section>`;
+ }).join('')||'<p class="eos-group-empty">Nessuna categoria corrisponde ai filtri scelti.</p>';
+ $('eosAlertOverview').hidden=!!alertDetailGroup;$('eosAlertDetail').hidden=!alertDetailGroup;
  if(alertDetailGroup)renderAlertDetail();
 }
 function alertCategoryRows(group,all=false){
- if(!all)return alertsForGroup(group);
- const now=Date.now();let rows=getRows().filter(a=>alertGroupOf(a,true)===group);
- if(alertSearch.trim()){
-  const q=alertSearch.trim().toLocaleLowerCase('it');
-  rows=rows.filter(a=>[a.id,a.camera,a.area,a.label,a.dismissReason,viewStatus(a)].join(' ').toLocaleLowerCase('it').includes(q));
- }
- return rows;
+ return all?getRows().filter(a=>alertGroupOf(a,true)===group):alertsForGroup(group);
 }
 function renderAlertDetail(){
  if(!alertDetailGroup)return;
  const group=ALERT_GROUPS.find(g=>g.id===alertDetailGroup);if(!group)return;
  const rows=alertCategoryRows(group.id,alertDetailAll),limited=rows.slice(0,alertDetailLimit),more=rows.length-limited.length;
- const p=effectiveAlertPeriod();const periodLabel=alertDetailAll?'Tutte le date':p==='overview'?'Ultime 48 ore':p==='all'?'Tutte le date':p==='older'?'Oltre 72 ore':`Ultime ${p} ore`;
+ const p=effectiveAlertPeriod();const periodLabel=alertDetailAll?'Tutte le date':OPERATION_PERIOD_LABELS[p];
  $('eosAlertDetail').innerHTML=`<button type="button" class="eos-back-btn" data-alert-back>${icon('arrow')} Torna alle Segnalazioni</button>
  <div class="eos-detail-head"><h2>${group.label}</h2><span class="eos-detail-count">${rows.length} ${rows.length===1?'segnalazione':'segnalazioni'}</span></div>
  <p class="eos-detail-period">${group.id==='expired'?'Non verificate entro 48 ore · Video non disponibile':periodLabel}</p>
@@ -2172,25 +2188,19 @@ function renderAlertDetail(){
 }
 function reportEligible(a){return a.status!=='pending'||!!a.report?.draft||!!a.report?.closed||!!a.report?.needsReview;}
 function filteredReportRows(){
- const now=Date.now();let rows=getRows().filter(reportEligible);
- if(reportPeriod==='recent'||reportPeriod==='72')rows=rows.filter(a=>now-a.ts<72*MS_HOUR);
- else if(reportPeriod==='48')rows=rows.filter(a=>now-a.ts<48*MS_HOUR);
- else if(reportPeriod==='older')rows=rows.filter(a=>now-a.ts>=72*MS_HOUR);
- if(reportsSearch.trim()){
-  const q=reportsSearch.trim().toLocaleLowerCase('it');rows=rows.filter(a=>[a.id,a.camera,a.area,reportOutcome(a)].join(' ').toLocaleLowerCase('it').includes(q));
- }
+ let rows=getRows().filter(a=>reportEligible(a)&&periodMatch(a.ts,reportPeriod));
  rows=rows.filter(a=>reportStatus==='all'||(reportStatus==='open'?reportIsOpen(a):!reportIsOpen(a)));
  if(reportOpenGroup)rows=rows.filter(a=>reportOpenGroup==='open'?reportIsOpen(a):!reportIsOpen(a));
  return rows;
 }
 function renderReports(){
  $('eosReportPeriod').value=reportPeriod;$('eosReportStatus').value=reportStatus;
- if($('reportsSearch').value!==reportsSearch)$('reportsSearch').value=reportsSearch;
+ 
  const visible=['open','closed'].filter(g=>reportStatus==='all'||g===reportStatus);
  $('reportsList').innerHTML=visible.map(g=>{
   const rows=filteredReportRowsForGroup(g);
   return `<section class="eos-group-bar eos-group--${g}"><button type="button" class="eos-group-main" data-report-group="${g}" aria-label="Apri rapporti ${g==='open'?'da completare':'completati'}">
-   <span class="eos-group-label"><strong>${g==='open'?'Da completare':'Completati'}</strong><small>${reportPeriod==='all'?'Tutte le date':reportPeriod==='older'?'Oltre 72 ore':reportPeriod==='recent'?'Ultime 72 ore':`Ultime ${reportPeriod} ore`}</small></span>
+   <span class="eos-group-label"><strong>${g==='open'?'Da completare':'Completati'}</strong><small>${OPERATION_PERIOD_LABELS[reportPeriod]}</small></span>
    <span class="eos-group-side"><span class="eos-group-count">${rows.length}</span>${icon('arrow')}</span></button></section>`;
  }).join('')||'<p class="eos-group-empty">Nessun rapporto per questo stato.</p>';
  $('eosReportOverview').hidden=!!reportDetailGroup;
@@ -2207,7 +2217,7 @@ function renderReportDetail(){
  if(!reportDetailGroup)return;
  const label=reportDetailGroup==='open'?'Da completare':'Completati';
  const rows=reportCategoryRows(reportDetailGroup,reportDetailAll),limited=rows.slice(0,reportDetailLimit),more=rows.length-limited.length;
- const periodLabel=reportDetailAll?'Tutte le date':reportPeriod==='all'?'Tutte le date':reportPeriod==='older'?'Oltre 72 ore':reportPeriod==='recent'?'Ultime 72 ore':`Ultime ${reportPeriod} ore`;
+ const periodLabel=reportDetailAll?'Tutte le date':OPERATION_PERIOD_LABELS[reportPeriod];
  $('eosReportDetail').innerHTML=`<button type="button" class="eos-back-btn" data-report-back>${icon('arrow')} Torna ai Rapporti</button>
  <div class="eos-detail-head"><h2>${label}</h2><span class="eos-detail-count">${rows.length} ${rows.length===1?'rapporto':'rapporti'}</span></div>
  <p class="eos-detail-period">${periodLabel}</p>
@@ -2295,24 +2305,39 @@ function openIncomingAlert(){
 // This does not connect to AWS, listen for external events, or trigger push notifications.
 window.EOSIntelligenceUI=Object.freeze({receiveAlert:receiveIncomingAlert});
 
-function homeEntries(){return getRows().filter(a=>homeMode==='pending'?(a.status==='pending'&&!clipExpired(a)):(a.status!=='pending'&&Date.now()-a.ts<48*MS_HOUR));}
+function homeEntries(){return getRows().filter(a=>homeMode==='pending'?(a.status==='pending'&&!clipExpired(a)):(a.status!=='pending'&&Date.now()-a.ts<48*MS_HOUR)).slice(0,homeMode==='verified'?5:undefined);}
+function verifiedHomeDirectoryRows(){
+ if(!homeVerifiedState||!homeVerifiedPeriod)return [];
+ return getRows().filter(a=>a.status!=='pending'&&periodMatch(a.ts,homeVerifiedPeriod)&&(homeVerifiedState==='all'||a.status===homeVerifiedState));
+}
+function renderHomeVerifiedDirectory(){
+ const dir=$('homeVerifiedDirectory');
+ $('page-home').querySelector('.page-header').hidden=homeVerifiedDirectoryOpen;
+ if(!homeVerifiedDirectoryOpen){dir.hidden=true;$('homeTabs').hidden=false;$('homeFocus').hidden=false;return;}
+ dir.hidden=false;$('homeTabs').hidden=true;$('homeFocus').hidden=true;
+ const rows=verifiedHomeDirectoryRows(),ready=!!homeVerifiedState&&!!homeVerifiedPeriod;
+ dir.innerHTML=`<button type="button" class="eos-back-btn" data-home-verified-back>${icon('arrow')} Torna alla Home</button>
+ <div class="eos-pane-heading"><h2>Segnalazioni verificate</h2></div>
+ <div class="eos-filter-panel"><div class="eos-filter-grid">
+  <label>Stato<select id="homeVerifiedState"><option value="">Seleziona stato</option><option value="all">Tutte</option><option value="confirmed">Confermate</option><option value="dismissed">Scartate</option><option value="not_evaluable">Non valutabili</option></select></label>
+  <label>Periodo<select id="homeVerifiedPeriod"><option value="">Seleziona periodo</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="all">Tutte le date</option></select></label>
+ </div></div>
+ ${ready?`<div class="eos-detail-head"><h2>${homeVerifiedState==='all'?'Tutte le segnalazioni verificate':homeVerifiedState==='confirmed'?'Confermate':homeVerifiedState==='dismissed'?'Scartate':'Non valutabili'}</h2><span class="eos-detail-count">${rows.length}</span></div>
+ <div class="eos-detail-list">${rows.length?rows.slice(0,homeVerifiedLimit).map(a=>rowHtml(a,clipExpired(a))).join(''):'<p class="eos-group-empty">Nessuna segnalazione corrisponde ai filtri selezionati.</p>'}</div>
+ ${rows.length>homeVerifiedLimit?`<button type="button" class="eos-group-viewall" data-home-verified-more>Mostra altre segnalazioni (${rows.length-homeVerifiedLimit})</button>`:''}`:'<p class="eos-verified-hint">Seleziona stato e periodo per visualizzare le segnalazioni.</p>'}`;
+ $('homeVerifiedState').value=homeVerifiedState;$('homeVerifiedPeriod').value=homeVerifiedPeriod;
+}
 function renderHome(){
  const pending=getRows().filter(a=>a.status==='pending'&&!clipExpired(a));
  const verified=getRows().filter(a=>a.status!=='pending'&&Date.now()-a.ts<48*MS_HOUR);
- $('homePendingCount').textContent=pending.length;
- $('homeVerifiedCount').textContent=verified.length;
+ $('homePendingCount').textContent=pending.length;$('homeVerifiedCount').textContent=verified.length;
  document.querySelectorAll('[data-home-mode]').forEach(b=>{const active=b.dataset.homeMode===homeMode;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));});
  const rows=homeEntries();
  const sectionTitle=homeMode==='pending'?'Segnalazioni da verificare':'Segnalazioni verificate nelle ultime 48 ore';
- const listMarkup=rows.length
-  ? rows.map(a=>`<button type="button" class="home-directory-card eos-status-panel--${badgeStatus(a)}" data-alert="${esc(a.id)}" aria-label="Apri segnalazione ${esc(a.id)} ${esc(viewStatus(a))}"><span class="home-directory-main"><strong>${esc(alertName(a))}</strong><span class="home-directory-meta">${esc(a.id)} · ${esc(a.camera)} · ${esc(a.area||'Area non specificata')}</span><span class="home-directory-meta">${formatDate(a.ts)} · ${formatTime(a.ts)}</span>${a.critical?criticalTagHtml(a):''}</span><span class="home-directory-side"><span class="badge ${badgeStatus(a)}">${viewStatus(a)}</span><span class="home-open-link">Apri ${icon('arrow')}</span></span></button>`).join('')
-  : `<article class="home-zero"><div class="home-zero-icon">${icon('check')}</div><h3>${homeMode==='pending'?'Nessuna segnalazione da verificare':'Nessuna segnalazione verificata nelle ultime 48 ore'}</h3></article>`;
- $('homeFocus').innerHTML=`<section class="home-directory" aria-label="${sectionTitle}">
- <div class="home-directory-heading"><h2 class="home-directory-title">${sectionTitle}</h2><button type="button" id="homeRefresh" class="home-refresh-icon" aria-label="Aggiorna segnalazioni" title="Aggiorna segnalazioni">${icon('refresh')}</button></div>
- ${listMarkup}
- </section>`;
- $('homeMiniList').innerHTML='';
- $('homeKpis').innerHTML='';
+ const listMarkup=rows.length?rows.map(a=>`<button type="button" class="home-directory-card eos-status-panel--${badgeStatus(a)}" data-alert="${esc(a.id)}" aria-label="Apri segnalazione ${esc(a.id)} ${esc(viewStatus(a))}"><span class="home-directory-main"><strong>${esc(alertName(a))}</strong><span class="home-directory-meta">${esc(a.id)} · ${esc(a.camera)} · ${esc(a.area||'Area non specificata')}</span><span class="home-directory-meta">${formatDate(a.ts)} · ${formatTime(a.ts)}</span>${a.critical?criticalTagHtml(a):''}</span><span class="home-directory-side"><span class="badge ${badgeStatus(a)}">${viewStatus(a)}</span><span class="home-open-link">Apri ${icon('arrow')}</span></span></button>`).join(''):`<article class="home-zero"><div class="home-zero-icon">${icon('check')}</div><h3>${homeMode==='pending'?'Nessuna segnalazione da verificare':'Nessuna segnalazione verificata nelle ultime 48 ore'}</h3></article>`;
+ $('homeFocus').innerHTML=`<section class="home-directory" aria-label="${sectionTitle}"><div class="home-directory-heading"><h2 class="home-directory-title">${sectionTitle}</h2><button type="button" id="homeRefresh" class="home-refresh-icon" aria-label="Aggiorna segnalazioni" title="Aggiorna segnalazioni">${icon('refresh')}</button></div>${listMarkup}
+ ${homeMode==='verified'?`<button type="button" class="eos-home-more" data-home-verified-all>Visualizza tutte le segnalazioni verificate ${icon('arrow')}</button>`:''}</section>`;
+ $('homeMiniList').innerHTML='';$('homeKpis').innerHTML='';renderHomeVerifiedDirectory();
 }
 // In questa prova statica i dati provengono dal browser; nessun server EOS viene interrogato.
 // Rileggere i dati salvati permette di riflettere modifiche di altre schede della stessa origine.
@@ -2331,47 +2356,84 @@ function saveHomeStatus(id,status){const a=alertById(id);if(!a||a.status!=='pend
 
 function statWithinPeriod(ts){
  if(statsPeriod==='all')return true;
- const ages={'48':48*MS_HOUR,'72':72*MS_HOUR,'7d':7*24*MS_HOUR,'30d':30*24*MS_HOUR};
- return Number.isFinite(ts)&&Date.now()-ts>=0&&Date.now()-ts<ages[statsPeriod];
+ return periodMatch(ts,statsPeriod);
 }
 function statsAlertRows(kind){
- return getRows().filter(a=>statWithinPeriod(a.ts)&&(kind==='all'||(kind==='confirmed'&&a.status==='confirmed')||(kind==='false'&&a.status==='dismissed'&&['Movimento normale','Rilevamento errato'].includes(a.dismissReason))));
+ return getRows().filter(a=>{
+  if(!statWithinPeriod(a.ts))return false;
+  const expired=eventExpiredUnverified(a);
+  if(kind==='all')return true;
+  if(kind==='pending')return a.status==='pending'&&!expired;
+  if(kind==='expired')return expired;
+  if(kind==='verified')return a.status==='confirmed'||a.status==='dismissed'||a.status==='not_evaluable';
+  if(kind==='false')return a.status==='dismissed'&&['Movimento normale','Rilevamento errato'].includes(a.dismissReason);
+  return a.status===kind;
+ });
 }
 function inventoryTimestamp(item){const a=item.alertId?alertById(item.alertId):null;return a?.ts||item.createdAt||item.updatedAt||0;}
-function inventoryWithinPeriod(item,period){
- if(period==='all')return true;
- const normalized=period==='recent'?'72':period;
- const hrs=normalized==='older'?72:parseInt(normalized,10);
- const age=Date.now()-inventoryTimestamp(item);
- return Number.isFinite(age)&&(normalized==='older'?age>=72*MS_HOUR:age>=0&&age<hrs*MS_HOUR);
-}
+function inventoryWithinPeriod(item,period){return periodMatch(inventoryTimestamp(item),period);}
 function statsInventoryRows(kind){return state.inventory.filter(i=>statWithinPeriod(inventoryTimestamp(i))&&(kind==='total'||(kind==='recovered'&&i.recovery==='yes')||(kind==='notRecovered'&&i.recovery==='no')));}
 function renderChart(){
- let days=[];let n=new Date();for(let i=6;i>=0;i--){let d=new Date(n.getFullYear(),n.getMonth(),n.getDate()-i);days.push({d,key:d.toDateString(),num:0});}
- for(let a of statsAlertRows('all')){let key=new Date(a.ts).toDateString();let day=days.find(d=>d.key===key);if(day)day.num++;}
- let max=Math.max(...days.map(d=>d.num),1);
- $('bars').innerHTML=days.map(d=>`<div class="chart-col"><div class="chart-bar" style="height:${d.num?Math.max(5,Math.round(d.num/max*88)):0}px" title="${d.num} segnalazioni"></div></div>`).join('');
- $('barLabels').innerHTML=days.map(d=>`<span>${new Date(d.d).toLocaleDateString('it-IT',{weekday:'short'})}</span>`).join('');
+ const rows=statsAlertRows(statsStatus);
+ const now=new Date(),startOfToday=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+ let bins=[];
+ if(statsPeriod==='7d'){
+  for(let i=6;i>=0;i--){let d=new Date(startOfToday);d.setDate(d.getDate()-i);let e=new Date(d);e.setDate(e.getDate()+1);
+   bins.push({start:+d,end:+e,label:d.toLocaleDateString('it-IT',{weekday:'short'})});}
+ }else if(statsPeriod==='30d'){
+  for(let i=4;i>=0;i--){let e=new Date(startOfToday);e.setDate(e.getDate()+1-i*7);let d=new Date(e);d.setDate(d.getDate()-7);
+   const cutoff=Date.now()-30*24*MS_HOUR;
+   bins.push({start:Math.max(+d,cutoff),end:+e,label:d.toLocaleDateString('it-IT',{day:'2-digit',month:'2-digit'})});}
+ }else if(statsPeriod==='90d'){
+  for(let i=2;i>=0;i--){let e=new Date(startOfToday);e.setDate(e.getDate()+1-i*30);let d=new Date(e);d.setDate(d.getDate()-30);
+   bins.push({start:Math.max(+d,Date.now()-90*24*MS_HOUR),end:+e,label:d.toLocaleDateString('it-IT',{day:'2-digit',month:'2-digit'})});}
+ }else{
+  const sorted=getRows().map(a=>a.ts).filter(Number.isFinite);
+  const earliest=sorted.length?Math.min(...sorted):Date.now();
+  let d=new Date(new Date(earliest).getFullYear(),new Date(earliest).getMonth(),1);
+  for(let i=0;i<48&&+d<=Date.now();i++){let e=new Date(d.getFullYear(),d.getMonth()+1,1);
+   bins.push({start:+d,end:+e,label:d.toLocaleDateString('it-IT',{month:'short',year:'2-digit'})});d=e;}
+ }
+ for(const b of bins)b.num=rows.filter(a=>a.ts>=b.start&&a.ts<b.end).length;
+ const max=Math.max(1,...bins.map(b=>b.num));
+ $('bars').innerHTML=bins.map(b=>`<div class="chart-col"><div class="chart-bar" style="height:${b.num?Math.max(5,Math.round(b.num/max*88)):0}px" title="${b.num} segnalazioni · ${b.label}" aria-label="${b.num} segnalazioni in ${b.label}"></div></div>`).join('');
+ $('barLabels').innerHTML=bins.map(b=>`<span>${esc(b.label)}</span>`).join('');
+ $('eosChartTitle').textContent='Andamento · '+STATS_STATUS_NAMES[statsStatus];
+ $('eosChartSubtitle').textContent={"7d":"Ultimi 7 giorni","30d":"Ultimi 30 giorni","90d":"Ultimi 90 giorni",all:"Tutte le date"}[statsPeriod];
 }
 function matchesFilter(a){return filter==='all'||a.status===filter;}
 function statKpi(label,value,type){return `<button type="button" class="kpi-card eos-stat-click" data-stat-alert="${type}" aria-label="Visualizza ${value} ${esc(label.toLowerCase())}"><span class="kpi-top"><span>${esc(label)}</span>${icon('arrow')}</span><strong class="kpi-value">${value}</strong></button>`;}
+function renderStatsShell(){
+ const section=!!statsPage;
+ $('eosStatsLanding').hidden=section;$('eosStatsSection').hidden=!section;
+ if(!section)return;
+ $('eosStatsSectionTitle').textContent=statsPage==='alerts'?'Segnalazioni':'Inventario';
+ $('eosStatsStatusField').hidden=statsPage!=='alerts';
+ $('eosStatsPeriod').value=statsPeriod;$('eosStatsStatus').value=statsStatus;
+ setStatsTab(statsPage);
+ $('eosStatsMain').hidden=!!statsDetail;$('eosStatsDetail').hidden=!statsDetail;
+}
 function renderAnalysis(){
- $('analysisKpis').innerHTML=statKpi('Segnalazioni',statsAlertRows('all').length,'all')+statKpi('Confermate',statsAlertRows('confirmed').length,'confirmed')+statKpi('Falsi positivi',statsAlertRows('false').length,'false');
- renderChart();renderAlertGroups();renderReports();renderInventoryOverview();updateReportBadges();setAnalysisTab(analysisTab);setStatsTab(statsTab);
+ const mainKpis=statsStatus==='all'?
+  statKpi('Segnalazioni rilevate',statsAlertRows('all').length,'all')+statKpi('Verificate',statsAlertRows('verified').length,'verified')+statKpi('Falsi positivi',statsAlertRows('false').length,'false')+statKpi('Scadute',statsAlertRows('expired').length,'expired'):
+  statKpi(STATS_STATUS_NAMES[statsStatus],statsAlertRows(statsStatus).length,statsStatus);
+ $('analysisKpis').classList.toggle('eos-stats-single',statsStatus!=='all');
+ $('analysisKpis').innerHTML=mainKpis;
+ renderChart();renderAlertGroups();renderReports();renderInventoryOverview();updateReportBadges();setAnalysisTab(analysisTab);
  const statsDefs=[['Merce recuperata','recovered'],['Merce non recuperata','notRecovered'],['Valore complessivo','total']];
  $('eosStatsInventoryKpis').innerHTML=statsDefs.map(([label,key])=>{const amount=money(statsInventoryRows(key).reduce((sum,i)=>sum+itemValue(i),0));return `<button type="button" class="eos-inventory-stat eos-stat-click" data-stat-inventory="${key}" aria-label="Visualizza prodotti: ${label}, ${amount}"><span class="eos-stat-bar-label">${label}</span><strong class="eos-stat-bar-value">${amount}</strong><span class="eos-stat-bar-arrow">${icon('arrow')}</span></button>`;}).join('');
- if($('eosStatsPeriod'))$('eosStatsPeriod').value=statsPeriod;
- renderStatsDetail();
+ renderStatsShell();renderStatsDetail();
 }
 function renderStatsDetail(){
+ if(!statsPage)return;
  $('eosStatsMain').hidden=!!statsDetail;$('eosStatsDetail').hidden=!statsDetail;
  if(!statsDetail)return;
  const isAlert=statsDetail.section==='alerts',key=statsDetail.key;
  const rows=isAlert?statsAlertRows(key):statsInventoryRows(key);
- const title=isAlert?({all:'Segnalazioni',confirmed:'Confermate',false:'Falsi positivi'}[key]):({recovered:'Merce recuperata',notRecovered:'Merce non recuperata',total:'Valore complessivo'}[key]);
- const dateText={all:'Tutte le date','48':'Ultime 48 ore','72':'Ultime 72 ore','7d':'Ultimi 7 giorni','30d':'Ultimi 30 giorni'}[statsPeriod];
+ const title=isAlert?({all:'Segnalazioni rilevate',pending:'Da verificare',verified:'Verificate',confirmed:'Confermate',dismissed:'Scartate',not_evaluable:'Non valutabili',expired:'Scadute',false:'Falsi positivi'}[key]):({recovered:'Merce recuperata',notRecovered:'Merce non recuperata',total:'Valore complessivo'}[key]);
+ const dateText={all:'Tutte le date','7d':'Ultimi 7 giorni','30d':'Ultimi 30 giorni','90d':'Ultimi 90 giorni'}[statsPeriod];
  const limited=rows.slice(0,statsDetailLimit),more=rows.length-limited.length;
- $('eosStatsDetail').innerHTML=`<button type="button" class="eos-back-btn" data-stats-back>${icon('arrow')} Torna alle Statistiche</button>
+ $('eosStatsDetail').innerHTML=`<button type="button" class="eos-back-btn" data-stats-back>${icon('arrow')} Torna alle Statistiche · ${isAlert?'Segnalazioni':'Inventario'}</button>
  <div class="eos-detail-head"><h2>${title}</h2><span class="eos-detail-count">${rows.length} ${isAlert?'segnalazioni':'prodotti'}</span></div>
  <p class="eos-detail-period">${dateText}</p>
  <div class="eos-detail-list">${limited.length?limited.map(r=>isAlert?rowHtml(r,clipExpired(r)):inventoryProductCard(r)).join(''):'<p class="eos-group-empty">Nessun elemento per il periodo selezionato.</p>'}</div>
@@ -2403,7 +2465,7 @@ function renderInventoryOverview(){
  if($('eosInventoryPeriod'))$('eosInventoryPeriod').value=inventoryPeriod;
  const groups=[['unknown','Merce da aggiornare','Prodotti con recupero da definire','pending'],['products','Prodotti registrati','Merce inserita nei rapporti','closed']];
  $('eosInventoryOverview').innerHTML=groups.map(([id,title,desc,accent])=>`<section class="eos-group-bar eos-group--${accent}">
- <button type="button" class="eos-group-main" data-inventory-group="${id}"><span class="eos-group-label"><strong>${title}</strong><small>${inventoryPeriod==='all'?'Tutte le date':inventoryPeriod==='older'?'Oltre 72 ore':inventoryPeriod==='recent'?'Ultime 72 ore':'Ultime '+inventoryPeriod+' ore'}</small></span>
+ <button type="button" class="eos-group-main" data-inventory-group="${id}"><span class="eos-group-label"><strong>${title}</strong><small>${OPERATION_PERIOD_LABELS[inventoryPeriod]}</small></span>
  <span class="eos-group-side"><span class="eos-group-count">${inventoryGroupRows(id).length}</span>${icon('arrow')}</span></button></section>`).join('');
  $('eosInventoryOverview').hidden=!!inventoryDetailGroup;$('eosInventoryDetail').hidden=!inventoryDetailGroup;
  if(inventoryDetailGroup)renderInventoryDetail();
@@ -2412,7 +2474,7 @@ function renderInventoryDetail(){
  if(!inventoryDetailGroup)return;
  const label=inventoryDetailGroup==='unknown'?'Merce da aggiornare':'Prodotti registrati';
  const rows=inventoryGroupRows(inventoryDetailGroup,inventoryDetailAll),limited=rows.slice(0,inventoryDetailLimit),more=rows.length-limited.length;
- const periodText=inventoryDetailAll?'Tutte le date':inventoryPeriod==='all'?'Tutte le date':inventoryPeriod==='older'?'Oltre 72 ore':inventoryPeriod==='recent'?'Ultime 72 ore':`Ultime ${inventoryPeriod} ore`;
+ const periodText=inventoryDetailAll?'Tutte le date':OPERATION_PERIOD_LABELS[inventoryPeriod];
  $('eosInventoryDetail').innerHTML=`<button type="button" class="eos-back-btn" data-inventory-back>${icon('arrow')} Torna all’Inventario</button>
  <div class="eos-detail-head"><h2>${label}</h2><span class="eos-detail-count">${rows.length} ${rows.length===1?'prodotto':'prodotti'}</span></div>
  <p class="eos-detail-period">${periodText}</p>
@@ -2466,7 +2528,7 @@ function commitInventoryEdit(form){
 
 
 function render(){renderHome();renderAnalysis();renderInventory();renderGuidePage();if(activeIncomingAlertId){const a=alertById(activeIncomingAlertId);if(!a||a.status!=='pending'||clipExpired(a))hideIncomingNotification();}}
-function nav(target){if(target==='inventory'){analysisTab='inventory';target='analysis';setAnalysisTab('inventory');}if(!['home','analysis','guide'].includes(target))return;screen=target;document.querySelectorAll('.screen').forEach(el=>el.classList.toggle('active',el.id==='page-'+target));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===target));window.scrollTo({top:0,behavior:'instant'});}
+function nav(target){if(target==='inventory'){analysisTab='inventory';target='analysis';setAnalysisTab('inventory');}if(!['home','analysis','guide'].includes(target))return;if(target==='home'&&homeVerifiedDirectoryOpen){homeVerifiedDirectoryOpen=false;renderHome();}screen=target;document.querySelectorAll('.screen').forEach(el=>el.classList.toggle('active',el.id==='page-'+target));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===target));window.scrollTo({top:0,behavior:'instant'});}
 function openModal(title,html,type,wide=false){if(activeIncomingAlertId){pendingIncomingAlertId=activeIncomingAlertId;hideIncomingNotification();}lastFocus=document.activeElement;modal=type;$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('modalBody').scrollTop=0;$('dialog').classList.toggle('wide',wide);$('dialog').classList.toggle('support-dialog',type==='support');$('modalRoot').classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>$('closeModal').focus(),40);}
 function closeMobileAux(){let el=$('mobileAuxMenu'),toggle=$('mobileAuxToggle');if(el)el.hidden=true;if(toggle)toggle.setAttribute('aria-expanded','false');}
 function toggleMobileAux(){const el=$('mobileAuxMenu');if(!el)return;el.hidden=!el.hidden;$('mobileAuxToggle').setAttribute('aria-expanded',String(!el.hidden));}
@@ -3006,7 +3068,7 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
  if(btn.id==='simulateIncomingAlert'){simulateIncomingAlert();return;}
  if(btn.id==='resetDemo'){resetDemo();return;}
  if(!currentStore)return;
- if(btn.dataset.analysisTab){alertDetailGroup=null;reportDetailGroup=null;inventoryDetailGroup=null;statsDetail=null;setAnalysisTab(btn.dataset.analysisTab);renderAnalysis();return;}
+ if(btn.dataset.analysisTab){alertDetailGroup=null;reportDetailGroup=null;inventoryDetailGroup=null;statsDetail=null;statsPage=null;setAnalysisTab(btn.dataset.analysisTab);renderAnalysis();return;}
  if(btn.dataset.reportFilter){reportsFilter=btn.dataset.reportFilter;renderReports();return;}
  if(btn.dataset.reportOpen){openReport(btn.dataset.reportOpen);return;}
  if(btn.dataset.reportModify){openReport(btn.dataset.reportModify,true);return;}
@@ -3014,11 +3076,15 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
  if(btn.dataset.reportInventory){openReport(btn.dataset.reportInventory);return;}
  if(btn.dataset.saveReportDraft){commitReport(btn.dataset.saveReportDraft,true);return;}
  if(btn.dataset.page){if(modal)closeModal();if(btn.dataset.page==='guide'){guideReturnContext=null;guideActiveProcedure=null;renderGuidePage();}nav(btn.dataset.page);return;}
- if(btn.id==='viewRecent'){alertPeriod='overview';alertStatus='all';alertSearch='';alertOpenGroup=null;analysisTab='alerts';nav('analysis');renderAnalysis();return;}
+ if(btn.id==='viewRecent'){alertPeriod='recent';alertStatus='all';alertSearch='';alertOpenGroup=null;analysisTab='alerts';nav('analysis');renderAnalysis();return;}
  
-   if(btn.dataset.analysisTab){alertDetailGroup=null;reportDetailGroup=null;inventoryDetailGroup=null;statsDetail=null;setAnalysisTab(btn.dataset.analysisTab);renderAnalysis();return;}
-  if(btn.dataset.statsTab){statsDetail=null;setStatsTab(btn.dataset.statsTab);renderStatsDetail();return;}
-  if(btn.id==='eosAlertReset'){alertPeriod='overview';alertStatus='all';alertSearch='';alertOpenGroup=null;alertDetailGroup=null;renderAlertGroups();return;}
+  if(btn.dataset.statsSection){statsPage=btn.dataset.statsSection;statsDetail=null;statsDetailLimit=8;renderAnalysis();window.scrollTo(0,0);return;}
+  if(btn.hasAttribute('data-stats-section-back')){statsPage=null;statsDetail=null;renderStatsShell();window.scrollTo(0,0);return;}
+  if(btn.hasAttribute('data-home-verified-all')){homeVerifiedDirectoryOpen=true;homeVerifiedState='';homeVerifiedPeriod='';homeVerifiedLimit=10;renderHome();window.scrollTo(0,0);return;}
+  if(btn.hasAttribute('data-home-verified-back')){homeVerifiedDirectoryOpen=false;renderHome();window.scrollTo(0,0);return;}
+  if(btn.hasAttribute('data-home-verified-more')){homeVerifiedLimit+=10;renderHomeVerifiedDirectory();return;}
+
+  if(btn.id==='eosAlertReset'){alertPeriod='recent';alertStatus='all';alertSearch='';alertOpenGroup=null;alertDetailGroup=null;renderAlertGroups();return;}
   if(btn.id==='eosReportReset'){reportPeriod='recent';reportStatus='all';reportsSearch='';reportOpenGroup=null;reportDetailGroup=null;renderReports();return;}
   if(btn.dataset.alertGroup){alertDetailGroup=btn.dataset.alertGroup;alertDetailAll=false;alertDetailLimit=8;renderAlertGroups();window.scrollTo(0,0);return;}
   if(btn.hasAttribute('data-alert-back')){alertDetailGroup=null;alertDetailAll=false;renderAlertGroups();window.scrollTo(0,0);return;}
@@ -3036,7 +3102,7 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
   if(btn.dataset.statInventory){statsTab='inventory';statsDetail={section:'inventory',key:btn.dataset.statInventory};statsDetailLimit=8;renderStatsDetail();window.scrollTo(0,0);return;}
   if(btn.hasAttribute('data-stats-back')){statsDetail=null;renderStatsDetail();window.scrollTo(0,0);return;}
   if(btn.hasAttribute('data-stats-more')){statsDetailLimit+=10;renderStatsDetail();return;}
-  if(btn.dataset.homeMode){homeMode=btn.dataset.homeMode;homeSelectedId=null;renderHome();return;}
+  if(btn.dataset.homeMode){homeMode=btn.dataset.homeMode;homeSelectedId=null;homeVerifiedDirectoryOpen=false;renderHome();return;}
  if(btn.id==='homeRefresh'){refreshPreviewData();return;}
  if(btn.dataset.homeCritical){openCritical(btn.dataset.homeCritical,'home');return;}
  if(btn.dataset.openCritical){openCritical(btn.dataset.openCritical,detailOrigin);return;}
@@ -3081,14 +3147,17 @@ document.addEventListener('click',e=>{const wrap=e.target.closest('.top-menu-wra
 $('guideContent').addEventListener('input',e=>{
  if(e.target.id==='guideSearch'){guideSearch=e.target.value;filterGuideProcedures();}
 });
-$('reportsSearch').addEventListener('input',e=>{reportsSearch=e.target.value; if(reportPeriod==='recent'&&reportsSearch.trim())reportPeriod='all';reportDetailGroup=null;renderReports();});
- $('eosAlertSearch').addEventListener('input',e=>{alertSearch=e.target.value;if(alertPeriod==='overview'&&alertSearch.trim())alertPeriod='all';alertDetailGroup=null;renderAlertGroups();});
  $('eosAlertPeriod').addEventListener('change',e=>{alertPeriod=e.target.value;alertDetailGroup=null;renderAlertGroups();});
- $('eosAlertStatus').addEventListener('change',e=>{alertStatus=e.target.value;if(alertPeriod==='overview'&&alertStatus!=='all')alertPeriod='all';alertDetailGroup=null;renderAlertGroups();});
+ $('eosAlertStatus').addEventListener('change',e=>{alertStatus=e.target.value;alertDetailGroup=null;renderAlertGroups();});
  $('eosReportPeriod').addEventListener('change',e=>{reportPeriod=e.target.value;reportDetailGroup=null;renderReports();});
  $('eosReportStatus').addEventListener('change',e=>{reportStatus=e.target.value;reportDetailGroup=null;renderReports();});
  $('eosInventoryPeriod').addEventListener('change',e=>{inventoryPeriod=e.target.value;inventoryDetailAll=false;renderInventoryOverview();});
  $('eosStatsPeriod').addEventListener('change',e=>{statsPeriod=e.target.value;statsDetailLimit=8;renderAnalysis();});
+ $('eosStatsStatus').addEventListener('change',e=>{statsStatus=e.target.value;statsDetail=null;renderAnalysis();});
+ document.addEventListener('change',e=>{
+  if(e.target.id==='homeVerifiedState'){homeVerifiedState=e.target.value;homeVerifiedLimit=10;renderHomeVerifiedDirectory();}
+  if(e.target.id==='homeVerifiedPeriod'){homeVerifiedPeriod=e.target.value;homeVerifiedLimit=10;renderHomeVerifiedDirectory();}
+ });
  document.addEventListener('change',e=>{
   if(e.target.matches('input[name="reportActions"]')){
    const boxes=[...document.querySelectorAll('input[name="reportActions"]')];
