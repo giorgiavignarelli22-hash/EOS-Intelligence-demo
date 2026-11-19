@@ -2,14 +2,14 @@
 
 <html lang="it"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#f5f8fb" name="theme-color"/>
-<meta name="eos-build" content="7.8.13-esiti-guide-20261119-r11"/>
+<meta name="eos-build" content="7.8.13-palette-mirata-20261120-r15"/>
 <script id="eos-auto-update">
 /* Static GitHub Pages: verify the deployed version without clearing local data. */
 (function(){
   'use strict';
   if (!/^https?:$/.test(window.location.protocol)) return;
   var PARAM = '__eos_fresh';
-  var currentVersion = '7.8.13-esiti-guide-20261119-r11';
+  var currentVersion = '7.8.13-palette-mirata-20261120-r15';
   var lastCheckTime = 0;
   var checking = false;
   var canonical;
@@ -1407,11 +1407,11 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 
 /* EOS Intelligence 7.8.13 -- unified visual status legend, trial only. */
 :root{
- --eos-state-pending:#D9AC32;
- --eos-state-confirmed:#E78B37;
- --eos-state-dismissed:#84919C;
- --eos-state-not_evaluable:#647F93;
- --eos-state-unreviewed:#84919C;
+ --eos-state-pending:#87949F;
+ --eos-state-confirmed:#87949F;
+ --eos-state-dismissed:#87949F;
+ --eos-state-not_evaluable:#87949F;
+ --eos-state-unreviewed:#87949F;
  --eos-state-critical:#D74D55;
 }
 .eos-status-dot{display:inline-block;width:10px;height:10px;border-radius:50%;flex:0 0 auto;background:#a2adb5;vertical-align:middle}
@@ -1442,7 +1442,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 .home-featured-head .home-status-dot{box-shadow:0 0 0 3px rgba(255,255,255,.8)}
 .home-mini-card[class*="eos-status-panel--"]{border-left:3px solid var(--eos-panel-accent)}
 .home-tab[data-home-mode="pending"]{border-left:3px solid var(--eos-state-pending)}
-.home-tab[data-home-mode="verified"]{border-left:3px solid #8ca4b2}
+.home-tab[data-home-mode="verified"]{border-left:3px solid var(--eos-state-confirmed)}
 .alert-row.pending{border-left:3px solid var(--eos-state-pending)}
 .alert-row.confirmed{border-left:3px solid var(--eos-state-confirmed)}
 .alert-row.dismissed{border-left:3px solid var(--eos-state-dismissed)}
@@ -1457,7 +1457,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 #dialog:has(.detail-summary .badge.dismissed){--eos-dialog-dot:var(--eos-state-dismissed)}
 #dialog:has(.detail-summary .badge.not_evaluable){--eos-dialog-dot:var(--eos-state-not_evaluable)}
 #dialog:has(.detail-summary .badge.unreviewed){--eos-dialog-dot:var(--eos-state-unreviewed)}
-#dialog:has(.detail-summary) .dialog-head h2::after{content:"";display:inline-block;width:11px;height:11px;background:var(--eos-dialog-dot,#8a9baa);border-radius:50%;margin-left:12px;vertical-align:middle}
+#dialog:has(.detail-summary) .dialog-head h2::after{content:none;display:none}
 #page-guide .guide-procedure-card--review{border-color:var(--eos-state-pending)}
 #page-guide .guide-procedure-card--attention{border-color:var(--eos-state-confirmed)}
 #page-guide .guide-procedure-card--critical,#page-guide .guide-procedure-card:has(.guide-level-critical){border-color:var(--eos-state-critical)}
@@ -1810,7 +1810,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 .eos-reviewed-row-body .eos-outcome-provisional{color:#5b788a}
 .eos-reviewed-row .line-btn{flex:none;font-size:13px;white-space:nowrap}
 .eos-reviewed-row .line-btn svg{width:13px;height:13px}
-.eos-review-status{font-weight:700;color:#506e7b}
+.eos-review-status{font-weight:700;color:#31576C}
 .eos-video-unavailable{display:flex;gap:5px;align-items:center;color:#8a98a0!important}
 .eos-video-unavailable svg{width:13px;height:13px}
 .eos-detail-outcome-summary{border-left:4px solid var(--eos-event-accent,#84939F);padding-left:12px}
@@ -1837,6 +1837,128 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 #page-guide .guide-jump button{white-space:normal;min-width:0;min-height:52px;padding:8px 5px;text-align:center;font-size:clamp(10px,2.9vw,13px);line-height:1.25}
 @media(min-width:750px){#page-guide .guide-jump{display:flex;flex-wrap:wrap}#page-guide .guide-jump button{font-size:14px;padding:11px 17px}}
 @media(max-width:620px){.eos-guide-outcomes{grid-template-columns:1fr}.eos-slim-guide .guide-procedures-grid{grid-template-columns:1fr}.eos-reviewed-row{padding:12px 10px}.eos-reviewed-row-body>strong{font-size:14px}.eos-reviewed-row-body small{font-size:11px}.eos-reviewed-home-card .home-directory-main>strong{font-size:16px}}
+/* r11b — Statistiche esiti evento: una segnalazione = un caso, con dettaglio provvisorio/definitivo. */
+#eosStatsOutcomeKpis.eos-outcome-stats{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin:0;}
+#eosStatsOutcomeKpis .eos-outcome-stat.eos-stat-click{
+ appearance:none;display:grid;position:relative;width:100%;min-width:0;min-height:70px;
+ grid-template-columns:minmax(0,1fr) auto 20px;align-items:center;gap:12px;
+ padding:14px 16px 14px 29px;border:1px solid #d1e0e7;border-radius:12px;
+ text-align:left;background:#fff;cursor:pointer;box-shadow:none;
+}
+#eosStatsOutcomeKpis .eos-outcome-stat::before{content:'';position:absolute;left:12px;top:18px;bottom:18px;width:4px;border-radius:5px;background:var(--eos-outcome-stat-color,#82929d);}
+#eosStatsOutcomeKpis .eos-outcome-stat .eos-stat-bar-label{min-width:0;font-size:clamp(13px,3.6vw,16px);line-height:1.35;color:#566f7c;font-weight:500;}
+#eosStatsOutcomeKpis .eos-outcome-stat .eos-stat-bar-value{font-size:clamp(18px,4.7vw,23px);line-height:1.25;color:#174a5a;font-weight:800;white-space:nowrap;font-variant-numeric:tabular-nums;}
+#eosStatsOutcomeKpis .eos-outcome-stat .eos-stat-bar-arrow{display:flex;align-items:center;justify-content:center;color:#278a85;}
+#eosStatsOutcomeKpis .eos-outcome-stat .eos-stat-bar-arrow svg{width:18px;height:18px;stroke:currentColor;fill:none;}
+@media(max-width:355px){#eosStatsOutcomeKpis .eos-outcome-stat.eos-stat-click{gap:7px;padding-right:10px;padding-left:23px;grid-template-columns:minmax(0,1fr) auto 16px;}#eosStatsOutcomeKpis .eos-outcome-stat::before{left:9px;}#eosStatsOutcomeKpis .eos-outcome-stat .eos-stat-bar-value{font-size:17px;}}
+#eosStatsOutcomeKpis .eos-outcome-stat::before{background:var(--eos-outcome-stat-color,#82929d);}
+#eosStatsOutcomeKpis .eos-outcome-stat .eos-stat-bar-label{display:flex;flex-direction:column;align-items:flex-start;gap:3px;}
+#eosStatsOutcomeKpis .eos-stats-status-breakdown{color:#748591;font-size:11px;line-height:1.25;font-weight:450;}
+.eos-outcome-stats-note{font-size:12px;color:#6d7c86;line-height:1.5;margin:12px 0 0;}
+
+/* R12 — revisioni SOLO LABORATORIO. Stati, esiti, motivi e guida separati. */
+:root{--eos-state-expired:#87949F}
+.badge.pending{background:#f3f5f6;color:#647682;border-color:#dce3e7}
+.badge.confirmed{background:#f3f5f6;color:#31576C;border-color:#dce3e7}
+.badge.dismissed{background:#f3f5f6;color:#31576C;border-color:#dce3e7}
+.badge.expired{background:#f3f5f6;color:#647682;border-color:#dce3e7}
+#page-home .home-tab[data-home-mode="verified"]{border-left:4px solid #368E8A}
+#page-home .home-tab[data-home-mode="pending"]{border-left:4px solid #368E8A}
+#page-home .home-tab[data-home-mode="verified"].active{border-color:#368E8A;background:#eaf7f6}
+#page-home .home-tab[data-home-mode="pending"].active{border-color:#368E8A;background:#eaf7f6}
+#page-home .home-tab[data-home-mode="pending"].active strong{color:#2d7070}
+#dialog:has(.detail-summary) .dialog-head h2::after{content:none!important;display:none!important}
+.eos-reviewed-state{display:block;font-weight:720;letter-spacing:.01em;color:#56748a;font-size:13px;line-height:1.25}
+.eos-reviewed-state--confirmed{color:#31576C}
+.eos-reviewed-state--dismissed{color:#31576C}
+.eos-reviewed-row-body .eos-reviewed-state{font-size:13px}
+.eos-reviewed-row-body>strong{font-weight:750;font-size:16px}
+.eos-reviewed-home-card .home-directory-main{gap:6px}
+.eos-reviewed-home-card .home-directory-main>strong{font-size:clamp(16px,3.6vw,20px)}
+.eos-reviewed-row .eos-reviewed-refs,.eos-reviewed-home-card .home-directory-meta{font-size:12px;color:#728694;line-height:1.45}
+.eos-outcome-progress{font-size:11.5px;line-height:1.55;color:#607a8b;font-weight:560;display:block}
+.eos-reviewed-row-body .eos-outcome-progress{font-size:11.5px}
+.eos-detail-outcome-summary .eos-detail-state .eos-reviewed-state{font-size:14px}
+.eos-detail-outcome-summary .eos-outcome-progress{margin:7px 0 0;font-size:12px}
+.eos-privacy-policy-note{padding-top:12px;border-top:1px solid #e5ecef;margin-top:14px!important;color:#496878!important}
+/* Legenda r12: una vera pagina completa a sezioni, righe compatte, una sola lingua grafica. */
+#page-guide .guide-content-section.eos-legend-v12{padding:0;border:0;background:transparent;box-shadow:none;display:grid;gap:17px}
+.eos-legend-v12 .eos-legend-intro{padding:3px 0 1px}
+.eos-legend-v12 .eos-legend-intro h2{font-size:23px;line-height:1.25;letter-spacing:-.4px;color:#1e4359;font-weight:740;margin:0 0 9px}
+.eos-legend-v12 .eos-legend-intro p{font-size:14px;line-height:1.55;color:#577486;margin:0;max-width:620px}
+.eos-legend-v12 .eos-legend-panel{border:1.5px solid #c9dbe3;border-radius:16px;background:#fff;overflow:hidden;box-shadow:0 3px 12px rgba(15,53,78,.025)}
+.eos-legend-v12 .eos-legend-panel>h3{margin:0;padding:16px 20px;border-bottom:1px solid #e5edf1;background:#fafcfd;color:#244a5f;font-size:16px;line-height:1.3;font-weight:750}
+.eos-legend-v12 .eos-legend-lines{padding:0 19px}
+.eos-legend-v12 .eos-legend-line{display:flex;gap:14px;align-items:flex-start;min-height:69px;padding:15px 2px}
+.eos-legend-v12 .eos-legend-line+.eos-legend-line{border-top:1px solid #e8eef2}
+.eos-legend-v12 .eos-legend-line-mark{height:31px;width:4px;flex:none;margin-top:1px;border-radius:4px;background:var(--legend-color,#718699)}
+.eos-legend-v12 .eos-legend-line-text{min-width:0}
+.eos-legend-v12 .eos-legend-line h4{color:#244458;font-size:15px;line-height:1.35;font-weight:740;margin:0}
+.eos-legend-v12 .eos-legend-line p{color:#617c8b;font-size:13px;line-height:1.5;margin:4px 0 0}
+.eos-legend-v12 .eos-legend-report-lines{padding:0 19px}
+.eos-legend-v12 .eos-legend-report-lines>div{display:flex;align-items:flex-start;gap:13px;padding:16px 2px}
+.eos-legend-v12 .eos-legend-report-lines>div+div{border-top:1px solid #e8eef2}
+.eos-legend-v12 .eos-legend-report-symbol{width:30px;height:30px;flex:none;background:#f0f6f8;border-radius:9px;color:#477b90;display:grid;place-items:center}
+.eos-legend-v12 .eos-legend-report-symbol svg{height:17px;width:17px}
+.eos-legend-v12 .eos-legend-report-lines p{margin:0;display:grid;gap:4px}
+.eos-legend-v12 .eos-legend-report-lines strong{font-size:15px;color:#244458}
+.eos-legend-v12 .eos-legend-report-lines p span{font-size:13px;color:#617c8b;line-height:1.5}
+.eos-legend-v12 .eos-legend-critical{display:flex;align-items:flex-start;gap:13px;padding:19px;border:1.5px solid #dda5ad;border-radius:16px;background:#fffafa}
+.eos-legend-v12 .eos-legend-critical-icon{flex:none;width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:#fff0f1;color:#b6404a}
+.eos-legend-v12 .eos-legend-critical-icon svg{height:18px;width:18px}
+.eos-legend-v12 .eos-legend-critical h3{color:#99404a;font-size:16px;line-height:1.3;margin:0 0 6px}
+.eos-legend-v12 .eos-legend-critical p{font-size:13px;line-height:1.55;margin:0;color:#785e66}
+@media(min-width:820px){.eos-legend-v12 .eos-legend-intro p{font-size:15px}.eos-legend-v12 .eos-legend-lines{padding:2px 25px}.eos-legend-v12 .eos-legend-line{padding:16px 1px}.eos-legend-v12 .eos-legend-line p{font-size:14px}}
+@media(max-width:620px){
+ #page-guide .guide-content-section.eos-legend-v12{gap:13px}
+ .eos-legend-v12 .eos-legend-intro{padding:0 2px 1px}
+ .eos-legend-v12 .eos-legend-intro h2{font-size:21px}
+ .eos-legend-v12 .eos-legend-intro p{font-size:13px}
+ .eos-legend-v12 .eos-legend-panel>h3{font-size:15px;padding:14px 15px}
+ .eos-legend-v12 .eos-legend-lines,.eos-legend-v12 .eos-legend-report-lines{padding:0 13px}
+ .eos-legend-v12 .eos-legend-line{min-height:0;padding:13px 1px;gap:12px}
+ .eos-legend-v12 .eos-legend-line h4{font-size:14px}
+ .eos-legend-v12 .eos-legend-line p{font-size:12.5px}
+ .eos-legend-v12 .eos-legend-report-lines>div{gap:11px;padding:13px 1px}
+ .eos-legend-v12 .eos-legend-report-lines strong{font-size:14px}
+ .eos-legend-v12 .eos-legend-report-lines p span{font-size:12.5px}
+ .eos-legend-v12 .eos-legend-critical{padding:15px;gap:11px}
+}
+
+
+/* R13 — Test grafico storico; r14 neutralizza tutti gli altri colori semantici. */
+/* Colori di navigazione e CTA turchesi non comunicano un esito; escalation critica invariata da r11b. */
+#page-home .home-tab[data-home-mode="verified"]{border-left-color:#368E8A}
+#page-home .home-tab[data-home-mode="verified"].active{border-color:#368E8A;background:#eaf7f6}
+.home-tab[data-home-mode="verified"] strong{color:#2d7070}
+.eos-legend-v12 .eos-legend-panel{border-color:#d9e4e9;box-shadow:none}
+.eos-legend-v12 .eos-legend-panel>h3{background:#fcfdfd}
+.eos-legend-v12 .eos-legend-line-mark{width:4px}
+#page-guide .guide-evaluation-item--confirmed,#page-guide .guide-evaluation-item--dismissed,#page-guide .guide-evaluation-item--unclear{border-color:#d8e3e8}
+#page-guide .guide-evaluation-item--confirmed .guide-evaluation-icon{background:#f1f5f7;color:#607986}
+#page-guide .guide-evaluation-item--dismissed .guide-evaluation-icon{background:#f1f5f7;color:#607986}
+#page-guide .guide-evaluation-item--unclear .guide-evaluation-icon{background:#f1f5f7;color:#607986}
+
+/* R14 — Procedure ordinarie neutre; criticità di sicurezza rossa, senza alterare escalation. */
+#page-guide .guide-procedure-card--review,
+#page-guide .guide-procedure-card--attention,
+#page-guide .guide-procedure-card:has(.guide-level-attention){border-color:#d8e3e8;background:#fff}
+#page-guide .guide-procedure-card--review .guide-procedure-icon,
+#page-guide .guide-procedure-card--attention .guide-procedure-icon{color:#627b89}
+#page-guide .guide-level-review,
+#page-guide .guide-level-attention{border-color:#d8e3e8;color:#627b89;background:#fff}
+#page-guide .guide-evaluation-item--confirmed,
+#page-guide .guide-evaluation-item--dismissed,
+#page-guide .guide-evaluation-item--unclear{border-color:#d8e3e8}
+#page-guide .guide-evaluation-item--confirmed .guide-evaluation-icon,
+#page-guide .guide-evaluation-item--dismissed .guide-evaluation-icon,
+#page-guide .guide-evaluation-item--unclear .guide-evaluation-icon{background:#f1f5f7;color:#607986}
+.eos-legend-v12 .eos-legend-report-symbol{background:#f1f5f7;color:#697d88}
+.badge.not_evaluable,.badge.unreviewed{background:#f3f5f6;color:#647682;border-color:#dce3e7}
+/* R15 — Palette mirata: blu per nomi degli stati Confermata/Scartata; giallo rilevamento errato;
+   verde nessun furto accertato. I tab superiori Home sono entrambi turchesi di brand.
+   Escalation critica invariata dalla r11b. */
+
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
 <symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></symbol>
@@ -1946,6 +2068,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
   <div class="eos-pane-heading"><h2>Statistiche</h2></div>
   <div class="eos-groups">
    <section class="eos-group-bar eos-group--closed"><button type="button" class="eos-group-main" data-stats-section="alerts"><span class="eos-group-label"><strong>Segnalazioni</strong></span><span class="eos-group-side"><svg><use href="#i-arrow"></use></svg></span></button></section>
+   <section class="eos-group-bar eos-group--closed"><button type="button" class="eos-group-main" data-stats-section="outcomes"><span class="eos-group-label"><strong>Esiti degli eventi</strong></span><span class="eos-group-side"><svg><use href="#i-arrow"></use></svg></span></button></section>
    <section class="eos-group-bar eos-group--closed"><button type="button" class="eos-group-main" data-stats-section="inventory"><span class="eos-group-label"><strong>Inventario</strong></span><span class="eos-group-side"><svg><use href="#i-arrow"></use></svg></span></button></section>
   </div>
  </div>
@@ -1962,6 +2085,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
     <div class="card small-chart"><div class="chart-head"><h2 id="eosChartTitle">Andamento delle segnalazioni</h2><span class="mini-subtle" id="eosChartSubtitle">Ultimi 30 giorni</span></div><div class="chart-bars" id="bars"></div><div class="chart-axis" id="barLabels"></div></div>
    </div>
    <div id="eosStatsInventory" hidden><div class="eos-inventory-stats" id="eosStatsInventoryKpis"></div></div>
+   <div id="eosStatsOutcomes" hidden><div class="eos-inventory-stats eos-outcome-stats" id="eosStatsOutcomeKpis"></div><p class="eos-outcome-stats-note">Gli esiti provvisori sono inclusi e distinti da quelli con rapporto completato.</p></div>
   </div>
   <div id="eosStatsDetail" class="eos-detail-page" hidden></div>
  </div>
@@ -2135,24 +2259,41 @@ function countStatus(status){return state.alerts.filter(a=>a.status===status).le
 function countFalsePositives(){return state.alerts.filter(a=>a.status==='dismissed'&&['Movimento normale','Rilevamento errato'].includes(a.dismissReason)).length;}
 function countPending(){return state.alerts.filter(a=>a.status==='pending'&&!clipExpired(a)).length;}
 function theftCount(){
- // KPI: only a completed report explicitly identifying an established theft counts.
- return state.alerts.filter(a=>a.report?.closed && !a.report.needsReview && a.report.outcome==='theft').length;
+ // Un singolo evento viene contato anche quando il furto è stato indicato alla verifica
+ // e il rapporto non è ancora completato. La clip conserva regole diverse: isFinalTheft.
+ return state.alerts.filter(a=>countedEventOutcome(a)?.value==='theft').length;
 }
 function reportIsOpen(a){return !!a&&(!a.report?.closed||!!a.report?.needsReview);}
 function countReportsOpen(){return state.alerts.filter(a=>a.status!=='pending'&&reportIsOpen(a)).length;}
 const REPORT_OUTCOMES={theft:'Furto accertato',attempt:'Tentato furto accertato',no_theft:'Nessun furto accertato',undetermined:'Esito non determinabile'};
+// Conteggi statistici: include esiti indicati alla verifica anche senza rapporto completato.
+// Ogni segnalazione conta una sola volta. Il rapporto finale, quando valido, prevale.
+function countedEventOutcome(a){
+ if(!a||a.status!=='confirmed')return null;
+ if(a.report?.closed&&!a.report?.needsReview&&Object.hasOwn(REPORT_OUTCOMES,a.report.outcome)){
+  return {value:a.report.outcome,provisional:false};
+ }
+ const draftOutcome=a.report?.draft&&Object.hasOwn(REPORT_OUTCOMES,a.report.outcome)?a.report.outcome:null;
+ const value=draftOutcome||(a.reviewOutcome||a.report?.preliminaryOutcome||a.report?.outcome);
+ if(!Object.hasOwn(REPORT_OUTCOMES,value))return null;
+ return {value,provisional:true};
+}
+function eventOutcomeRows(value){
+ return getRows().filter(a=>statWithinPeriod(a.ts)&&countedEventOutcome(a)?.value===value).sort((a,b)=>b.ts-a.ts);
+}
 function reportOutcome(a){return a.report?.needsReview?'Da rivedere · '+(REPORT_OUTCOMES[a.report.outcome]||'rapporto'):(a.report?.closed?(REPORT_OUTCOMES[a.report.outcome]||'Rapporto completato'):(a.report?.draft?'Bozza rapporto':'Rapporto da completare'));}
 
 // One interpretation for every surface: pending/dismissed/confirmed are states;
 // the verification choice is the outcome/reason. Only completed reports are definitive.
-const EOS_OUTCOME_COLORS={theft:'#DC8236',attempt:'#D8B044',no_theft:'#72978F',undetermined:'#84939F',later:'#84939F',dismissed:'#84939F',pending:'#D4A633'};
+const EOS_OUTCOME_COLORS={theft:'#D28446',attempt:'#D28446',no_theft:'#6B927A',undetermined:'#87949F',later:'#87949F',dismissed:'#87949F',pending:'#87949F'};
+const EOS_DISMISS_REASON_COLORS={'Movimento normale':'#87949F','Rilevamento errato':'#C5A047','Video non valutabile':'#87949F','Altro':'#87949F'};
 const DISMISS_REASONS=['Movimento normale','Rilevamento errato','Video non valutabile','Altro'];
 function reviewOutcomeInfo(a){
  if(!a||a.status==='pending')return {label:'Da verificare',color:EOS_OUTCOME_COLORS.pending,provisional:false,final:false};
- if(a.status==='dismissed')return {label:a.dismissReason||'Altro',color:EOS_OUTCOME_COLORS.dismissed,provisional:false,final:true};
- const definitive=!!(a.report?.closed&&!a.report.needsReview&&Object.hasOwn(REPORT_OUTCOMES,a.report?.outcome));
- const selected=definitive?a.report.outcome:(a.reviewOutcome||a.report?.preliminaryOutcome||a.report?.outcome||'later');
- const value=Object.hasOwn(REPORT_OUTCOMES,selected)?selected:'later';
+ if(a.status==='dismissed'){const reason=a.dismissReason||'Altro';return {label:reason,color:EOS_DISMISS_REASON_COLORS[reason]||EOS_OUTCOME_COLORS.dismissed,provisional:false,final:true};}
+ const recorded=countedEventOutcome(a);
+ const definitive=!!recorded&&!recorded.provisional;
+ const value=recorded?.value||'later';
  return {label:REPORT_OUTCOMES[value]||'Da definire successivamente',color:EOS_OUTCOME_COLORS[value],provisional:!definitive,final:definitive};
 }
 function outcomeAccent(a){return `style="--eos-event-accent:${reviewOutcomeInfo(a).color};--eos-panel-accent:${reviewOutcomeInfo(a).color}"`;}
@@ -2161,6 +2302,16 @@ function outcomeLabelHtml(a,includeProvisional=true){
  return `<span class="eos-event-outcome">${esc(o.label)}</span>${includeProvisional&&o.provisional?'<span class="eos-outcome-provisional">Esito provvisorio</span>':''}`;
 }
 function reviewMetaHtml(a){return `<span class="eos-review-status">${esc(viewStatus(a))}</span> · ${esc(a.id)} · ${esc(a.camera)} · ${formatDate(a.ts)} · ${formatTime(a.ts)}`;}
+function reviewReferenceHtml(a){return `${esc(a.id)} · ${esc(a.camera)} · ${formatDate(a.ts)} · ${formatTime(a.ts)}`;}
+function reviewStateHtml(a){return `<span class="eos-reviewed-state eos-reviewed-state--${a.status}">${esc(viewStatus(a))}</span>`;}
+function reviewProgressHtml(a){
+ if(!a||a.status!=='confirmed')return '';
+ const o=reviewOutcomeInfo(a);
+ if(!countedEventOutcome(a))return `<span class="eos-outcome-progress">Esito da definire · Rapporto da completare</span>`;
+ const label=o.provisional?'Esito provvisorio':'Esito definitivo';
+ const report=o.provisional?(a.report?.needsReview?'Rapporto da rivedere':'Rapporto da completare'):'Rapporto completato';
+ return `<span class="eos-outcome-progress">${label} · ${report}</span>`;
+}
 
 function reportAction(a){return (a.report?.actions||[a.report?.action].filter(Boolean)).join(', ')||'Non specificata';}
 function reportRows(){return getRows();}
@@ -2179,8 +2330,8 @@ function setAnalysisTab(tab){
  document.querySelectorAll('[data-analysis-tab]').forEach(b=>{let active=b.dataset.analysisTab===analysisTab;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));});
 }
 function setStatsTab(tab){
- statsTab=tab==='inventory'?'inventory':'alerts';
- $('eosStatsAlerts').hidden=statsTab!=='alerts';$('eosStatsInventory').hidden=statsTab!=='inventory';
+ statsTab=['alerts','inventory','outcomes'].includes(tab)?tab:'alerts';
+ $('eosStatsAlerts').hidden=statsTab!=='alerts';$('eosStatsInventory').hidden=statsTab!=='inventory';$('eosStatsOutcomes').hidden=statsTab!=='outcomes';
  document.querySelectorAll('[data-stats-tab]').forEach(b=>{let active=b.dataset.statsTab===statsTab;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));});
 }
 
@@ -2304,7 +2455,7 @@ function inventoryAlertDot(i){const a=i.alertId?alertById(i.alertId):null;return
 function rowHtml(a,older=false){
  const expired=clipExpired(a),o=reviewOutcomeInfo(a);
  if(a.status!=='pending')return `<article class="eos-reviewed-row eos-event-accent" ${outcomeAccent(a)}>
-  <div class="eos-reviewed-row-body"><strong>${esc(o.label)}</strong><small>${reviewMetaHtml(a)}</small>${o.provisional?'<small class="eos-outcome-provisional">Esito provvisorio</small>':''}
+  <div class="eos-reviewed-row-body">${reviewStateHtml(a)}<strong>${esc(o.label)}</strong><small class="eos-reviewed-refs">${reviewReferenceHtml(a)}</small>${reviewProgressHtml(a)}
   ${expired?`<small class="eos-video-unavailable">${icon('lock')} Video non disponibile</small>`:''}${criticalTagHtml(a)}</div>
   <button class="line-btn" data-alert="${esc(a.id)}">Apri ${icon('arrow')}</button></article>`;
  if(expired||older)return `<article class="older-plain-row eos-event-accent" ${outcomeAccent(a)}><div class="older-content"><strong>${esc(a.id)} · ${esc(a.camera)}</strong><small>${formatDate(a.ts)} · ${formatTime(a.ts)}</small><small class="eos-video-unavailable">${icon('lock')} Video non disponibile</small></div><button class="line-btn" data-alert="${esc(a.id)}">Apri</button></article>`;
@@ -2399,7 +2550,7 @@ function renderHome(){
  document.querySelectorAll('[data-home-mode]').forEach(b=>{const active=b.dataset.homeMode===homeMode;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));});
  const rows=homeEntries();
  const sectionTitle=homeMode==='pending'?'Segnalazioni da verificare':'Segnalazioni verificate';
- const listMarkup=rows.length?rows.map(a=>homeMode==='verified'?`<button type="button" class="home-directory-card eos-reviewed-home-card eos-event-accent" ${outcomeAccent(a)} data-alert="${esc(a.id)}" aria-label="Apri segnalazione ${esc(a.id)}: ${esc(reviewOutcomeInfo(a).label)}"><span class="home-directory-main"><strong>${esc(reviewOutcomeInfo(a).label)}</strong><span class="home-directory-meta">${reviewMetaHtml(a)}</span>${reviewOutcomeInfo(a).provisional?'<span class="eos-outcome-provisional">Esito provvisorio</span>':''}${a.critical?criticalTagHtml(a):''}</span><span class="home-directory-side">${icon('arrow')}</span></button>`:`<button type="button" class="home-directory-card eos-status-panel--${badgeStatus(a)}" data-alert="${esc(a.id)}" aria-label="Apri segnalazione ${esc(a.id)}"><span class="home-directory-main"><strong>${esc(alertName(a))}</strong><span class="home-directory-meta">${esc(a.id)} · ${esc(a.camera)}</span><span class="home-directory-meta">${formatDate(a.ts)} · ${formatTime(a.ts)}</span></span><span class="home-directory-side"><span class="badge pending">Da verificare</span><span class="home-open-link">Apri ${icon('arrow')}</span></span></button>`).join(''):`<article class="home-zero"><div class="home-zero-icon">${icon('check')}</div><h3>${homeMode==='pending'?'Nessuna segnalazione da verificare':'Nessuna segnalazione verificata nelle ultime 48 ore'}</h3></article>`;
+ const listMarkup=rows.length?rows.map(a=>homeMode==='verified'?`<button type="button" class="home-directory-card eos-reviewed-home-card eos-event-accent" ${outcomeAccent(a)} data-alert="${esc(a.id)}" aria-label="Apri segnalazione ${esc(a.id)}: ${esc(reviewOutcomeInfo(a).label)}"><span class="home-directory-main">${reviewStateHtml(a)}<strong>${esc(reviewOutcomeInfo(a).label)}</strong><span class="home-directory-meta">${reviewReferenceHtml(a)}</span>${reviewProgressHtml(a)}${a.critical?criticalTagHtml(a):''}</span><span class="home-directory-side">${icon('arrow')}</span></button>`:`<button type="button" class="home-directory-card eos-status-panel--${badgeStatus(a)}" data-alert="${esc(a.id)}" aria-label="Apri segnalazione ${esc(a.id)}"><span class="home-directory-main"><strong>${esc(alertName(a))}</strong><span class="home-directory-meta">${esc(a.id)} · ${esc(a.camera)}</span><span class="home-directory-meta">${formatDate(a.ts)} · ${formatTime(a.ts)}</span></span><span class="home-directory-side"><span class="badge pending">Da verificare</span><span class="home-open-link">Apri ${icon('arrow')}</span></span></button>`).join(''):`<article class="home-zero"><div class="home-zero-icon">${icon('check')}</div><h3>${homeMode==='pending'?'Nessuna segnalazione da verificare':'Nessuna segnalazione verificata nelle ultime 48 ore'}</h3></article>`;
  $('homeFocus').innerHTML=`<section class="home-directory" aria-label="${sectionTitle}"><div class="home-directory-heading"><h2 class="home-directory-title">${sectionTitle}</h2><button type="button" id="homeRefresh" class="home-refresh-icon" aria-label="Aggiorna segnalazioni" title="Aggiorna segnalazioni">${icon('refresh')}</button></div>${listMarkup}
  ${homeMode==='verified'?`<button type="button" class="eos-home-more" data-home-verified-all>Visualizza tutte le segnalazioni verificate ${icon('arrow')}</button>`:''}</section>`;
  $('homeMiniList').innerHTML='';$('homeKpis').innerHTML='';renderHomeVerifiedDirectory();
@@ -2472,7 +2623,7 @@ function renderStatsShell(){
  const section=!!statsPage;
  $('eosStatsLanding').hidden=section;$('eosStatsSection').hidden=!section;
  if(!section)return;
- $('eosStatsSectionTitle').textContent=statsPage==='alerts'?'Segnalazioni':'Inventario';
+ $('eosStatsSectionTitle').textContent=statsPage==='alerts'?'Segnalazioni':statsPage==='outcomes'?'Esiti degli eventi':'Inventario';
  $('eosStatsStatusField').hidden=statsPage!=='alerts';
  $('eosStatsPeriod').value=statsPeriod;$('eosStatsStatus').value=statsStatus;
  setStatsTab(statsPage);
@@ -2487,21 +2638,26 @@ function renderAnalysis(){
  renderChart();renderAlertGroups();renderReports();renderInventoryOverview();updateReportBadges();setAnalysisTab(analysisTab);
  const statsDefs=[['Merce recuperata','recovered'],['Merce non recuperata','notRecovered'],['Valore complessivo','total']];
  $('eosStatsInventoryKpis').innerHTML=statsDefs.map(([label,key])=>{const amount=money(statsInventoryRows(key).reduce((sum,i)=>sum+itemValue(i),0));return `<button type="button" class="eos-inventory-stat eos-stat-click" data-stat-inventory="${key}" aria-label="Visualizza prodotti: ${label}, ${amount}"><span class="eos-stat-bar-label">${label}</span><strong class="eos-stat-bar-value">${amount}</strong><span class="eos-stat-bar-arrow">${icon('arrow')}</span></button>`;}).join('');
+ $('eosStatsOutcomeKpis').innerHTML=Object.entries(REPORT_OUTCOMES).map(([key,label])=>{
+  const rows=eventOutcomeRows(key),provisional=rows.filter(a=>countedEventOutcome(a).provisional).length,definitive=rows.length-provisional;
+  return `<button type="button" class="eos-inventory-stat eos-stat-click eos-outcome-stat" data-stat-outcome="${key}" style="--eos-outcome-stat-color:${EOS_OUTCOME_COLORS[key]}" aria-label="Visualizza ${rows.length} eventi con esito ${esc(label)}; ${provisional} provvisori, ${definitive} definitivi"><span class="eos-stat-bar-label">${esc(label)}<small class="eos-stats-status-breakdown">${definitive} ${definitive===1?'definitivo':'definitivi'} · ${provisional} ${provisional===1?'provvisorio':'provvisori'}</small></span><strong class="eos-stat-bar-value">${rows.length}</strong><span class="eos-stat-bar-arrow">${icon('arrow')}</span></button>`;
+ }).join('');
  renderStatsShell();renderStatsDetail();
 }
 function renderStatsDetail(){
  if(!statsPage)return;
  $('eosStatsMain').hidden=!!statsDetail;$('eosStatsDetail').hidden=!statsDetail;
  if(!statsDetail)return;
- const isAlert=statsDetail.section==='alerts',key=statsDetail.key;
- const rows=isAlert?statsAlertRows(key):statsInventoryRows(key);
- const title=isAlert?({all:'Segnalazioni rilevate',pending:'Da verificare',verified:'Verificate',confirmed:'Confermate',dismissed:'Scartate',expired:'Scadute',false:'Falsi positivi'}[key]):({recovered:'Merce recuperata',notRecovered:'Merce non recuperata',total:'Valore complessivo'}[key]);
+ const isAlert=statsDetail.section==='alerts',isOutcome=statsDetail.section==='outcomes',key=statsDetail.key;
+ const rows=isAlert?statsAlertRows(key):isOutcome?eventOutcomeRows(key):statsInventoryRows(key);
+ const title=isAlert?({all:'Segnalazioni rilevate',pending:'Da verificare',verified:'Verificate',confirmed:'Confermate',dismissed:'Scartate',expired:'Scadute',false:'Falsi positivi'}[key]):isOutcome?REPORT_OUTCOMES[key]:({recovered:'Merce recuperata',notRecovered:'Merce non recuperata',total:'Valore complessivo'}[key]);
  const dateText={all:'Tutte le date','7d':'Ultimi 7 giorni','30d':'Ultimi 30 giorni','90d':'Ultimi 90 giorni'}[statsPeriod];
  const limited=rows.slice(0,statsDetailLimit),more=rows.length-limited.length;
- $('eosStatsDetail').innerHTML=`<button type="button" class="eos-back-btn" data-stats-back>${icon('arrow')} Torna alle Statistiche · ${isAlert?'Segnalazioni':'Inventario'}</button>
- <div class="eos-detail-head"><h2>${title}</h2><span class="eos-detail-count">${rows.length} ${isAlert?'segnalazioni':'prodotti'}</span></div>
+ const sectionName=isAlert?'Segnalazioni':isOutcome?'Esiti degli eventi':'Inventario';
+ $('eosStatsDetail').innerHTML=`<button type="button" class="eos-back-btn" data-stats-back>${icon('arrow')} Torna alle Statistiche · ${sectionName}</button>
+ <div class="eos-detail-head"><h2>${title}</h2><span class="eos-detail-count">${rows.length} ${isAlert||isOutcome?'segnalazioni':'prodotti'}</span></div>
  <p class="eos-detail-period">${dateText}</p>
- <div class="eos-detail-list">${limited.length?limited.map(r=>isAlert?rowHtml(r,clipExpired(r)):inventoryProductCard(r)).join(''):'<p class="eos-group-empty">Nessun elemento per il periodo selezionato.</p>'}</div>
+ <div class="eos-detail-list">${limited.length?limited.map(r=>isAlert||isOutcome?rowHtml(r,clipExpired(r)):inventoryProductCard(r)).join(''):'<p class="eos-group-empty">Nessun elemento per il periodo selezionato.</p>'}</div>
  ${more>0?`<button type="button" class="eos-group-viewall" data-stats-more>Mostra altri (${more})</button>`:''}`;
 }
 function itemValue(i){return i.qty*i.price;}
@@ -2607,7 +2763,7 @@ function detailHtml(a){
  const guideButton=`<button class="detail-guide-btn eos-full-btn" id="openProcedure">${icon('book')}Guida operativa ${icon('arrow')}</button>`;
  const criticalView=fromHome&&a.critical?`<div class="critical-review-panel">${criticalTagHtml(a)}</div>`:'';
  return `${exp?`<div class="manual-help history-video-note">${icon('lock')} Video non disponibile</div>`:`<div class="detail-video"><button class="video-play" id="playVideo" aria-label="Riproduci video evento">${icon('play')}</button><div class="video-caption"><span>Video evento</span><span>Video di prova non disponibile</span></div></div>`}
- <div class="detail-summary eos-detail-outcome-summary" ${outcomeAccent(a)}><div><h3>${esc(a.status==='pending'?alertName(a):reviewOutcomeInfo(a).label)}</h3><p>${esc(a.id)} · ${esc(a.camera)}</p>${a.status!=='pending'?`<p class="eos-detail-state">${esc(viewStatus(a))}${reviewOutcomeInfo(a).provisional?' · Esito provvisorio':''}</p>`:''}</div>${a.status==='pending'?`<span class="badge pending">Da verificare</span>`:''}</div>
+ <div class="detail-summary eos-detail-outcome-summary" ${outcomeAccent(a)}><div><h3>${esc(a.status==='pending'?alertName(a):reviewOutcomeInfo(a).label)}</h3><p>${esc(a.id)} · ${esc(a.camera)}</p>${a.status!=='pending'?`<p class="eos-detail-state">${reviewStateHtml(a)}</p>${reviewProgressHtml(a)}`:''}</div>${a.status==='pending'?`<span class="badge pending">Da verificare</span>`:''}</div>
  <div class="detail-fields"><div class="field-pair"><span>Data e ora</span><strong>${formatDate(a.ts)} · ${formatTime(a.ts)}</strong></div><div class="field-pair"><span>Area / zona</span><strong>${esc(a.area||'Non specificata')}</strong></div></div>
 
  
@@ -2905,25 +3061,41 @@ function guidePrivacyHtml(){return `<section class="guide-content-section eos-sl
   <div class="privacy-fact">${icon('lock')}<div><h3>Riservatezza</h3><p>Non condividere clip, immagini o informazioni tramite chat, dispositivi personali o canali non autorizzati.</p></div></div>
   <div class="privacy-fact">${icon('shield')}<div><h3>Comportamento verso i clienti</h3><p>Una segnalazione non giustifica accuse, perquisizioni, inseguimenti o trattenimenti fisici.</p></div></div>
   <div class="privacy-fact">${icon('lock')}<div><h3>Conservazione video</h3><p>Le clip ordinarie sono disponibili fino a 48 ore. Solo per furti accertati con rapporto completato la disponibilità può arrivare fino a 72 ore. Dopo la scadenza, rimangono consultabili i dati dell’evento senza il video.</p></div></div>
-  <div class="privacy-fact">${icon('shield')}<div><h3>Sicurezza delle persone</h3><p>In caso di minacce o aggressività, interrompi l’intervento e segui le procedure di emergenza del punto vendita. La sicurezza viene sempre prima del recupero della merce.</p></div></div>
- </div><p class="eos-guide-footnote">Le procedure aziendali e la formazione ricevuta prevalgono sulle indicazioni generali della Guida.</p></section>`;}
+  <div class="privacy-fact">${icon('shield')}<div><h3>Sicurezza delle persone</h3><p>In caso di minacce o aggressività, interrompi l’intervento e segui le procedure di emergenza del punto vendita. La sicurezza viene sempre prima del recupero della merce.</p><p class="eos-privacy-policy-note">Le procedure aziendali e la formazione ricevuta prevalgono sulle indicazioni generali della Guida.</p></div></div>
+ </div></section>`;}
 
 function guideLegendHtml(){
  const states=[
-  ['Da verificare','La segnalazione attende una valutazione.','#D4A633'],
-  ['Confermata','Il gesto sospetto è stato confermato: non equivale automaticamente a un furto.','#DC8C43'],
-  ['Scartata','Il gesto non è stato confermato. Si registra sempre il motivo, incluso «Video non valutabile».','#84939F'],
-  ['Scaduta','Non verificata prima della scadenza della clip; le informazioni restano consultabili.','#9F6971']
+  ['Da verificare','Da controllare: non è ancora stata registrata una verifica.','pending'],
+  ['Confermata','Il gesto sospetto è stato riconosciuto; non significa automaticamente furto.','confirmed'],
+  ['Scartata','La segnalazione non è confermata; viene indicato un motivo.','dismissed'],
+  ['Scaduta','La verifica non è stata fatta prima della scadenza della clip. I dati restano consultabili.','expired']
  ];
  const outcomes=[
-  ['Furto accertato','#DC8236'],['Tentato furto accertato','#D8B044'],['Nessun furto accertato','#72978F'],
-  ['Esito non determinabile','#84939F'],['Da definire successivamente','#84939F']
+  ['Furto accertato','theft','Il furto è stato accertato sulla base dei riscontri disponibili.'],
+  ['Tentato furto accertato','attempt','È stato accertato un tentativo di furto.'],
+  ['Nessun furto accertato','no_theft','La verifica non ha accertato un furto.'],
+  ['Esito non determinabile','undetermined','Gli elementi disponibili non permettono di stabilire l’esito.'],
+  ['Da definire successivamente','later','La valutazione dell’esito rimane aperta.']
  ];
- return `<section class="guide-content-section eos-legend-section eos-slim-guide"><h2>Legenda degli stati</h2>
- <div class="eos-legend-list">${states.map(([title,description,color])=>`<article class="eos-legend-card" style="--eos-legend-accent:${color}"><div class="eos-legend-heading"><span class="eos-legend-dot"></span><h3>${title}</h3></div><p>${description}</p></article>`).join('')}</div>
- <h3 class="eos-legend-subtitle">Esiti delle segnalazioni confermate</h3><div class="eos-guide-outcomes">${outcomes.map(([label,color])=>`<div class="eos-guide-outcome"><i style="background:${color}"></i><span>${label}</span></div>`).join('')}</div>
- <p class="eos-guide-footnote"><strong>Esito provvisorio:</strong> registrato durante la conferma; diventa definitivo soltanto con il completamento del rapporto. Il motivo dello scarto è invece registrato direttamente al momento della verifica.</p>
- <p class="eos-guide-footnote"><strong>Escalation critica:</strong> segnalazione aggiuntiva di sicurezza, distinta dallo stato e dall’esito. Il rosso è riservato a questa situazione.</p></section>`;
+ const reasons=[
+  ['Movimento normale','Gesto ordinario, senza elementi sospetti.'],
+  ['Rilevamento errato','Il movimento segnalato non corrisponde all’evento previsto.'],
+  ['Video non valutabile','La clip non consente una valutazione: non è un falso positivo.'],
+  ['Altro','Motivo diverso da quelli elencati.']
+ ];
+ const legendRow=(label,description,color)=>`<div class="eos-legend-line" style="--legend-color:${color}"><span class="eos-legend-line-mark" aria-hidden="true"></span><div class="eos-legend-line-text"><h4>${esc(label)}</h4><p>${esc(description)}</p></div></div>`;
+ return `<section class="guide-content-section eos-legend-section eos-legend-v12 eos-slim-guide" aria-label="Legenda degli stati e degli esiti">
+  <div class="eos-legend-intro"><h2>Legenda degli stati</h2><p>Lo stato indica la verifica della segnalazione. L’esito descrive la valutazione dell’evento.</p></div>
+  <div class="eos-legend-panel"><h3>Stati della segnalazione</h3><div class="eos-legend-lines">${states.map(([name,description,key])=>legendRow(name,description,({pending:'#87949F',confirmed:'#31576C',dismissed:'#31576C',expired:'#87949F'})[key])).join('')}</div></div>
+  <div class="eos-legend-panel"><h3>Esiti dopo la conferma</h3><div class="eos-legend-lines">${outcomes.map(([name,key,description])=>legendRow(name,description,EOS_OUTCOME_COLORS[key])).join('')}</div></div>
+  <div class="eos-legend-panel"><h3>Motivi dello scarto</h3><div class="eos-legend-lines">${reasons.map(([name,description])=>legendRow(name,description,EOS_DISMISS_REASON_COLORS[name])).join('')}</div></div>
+  <div class="eos-legend-panel eos-legend-report-panel"><h3>Esito e rapporto</h3><div class="eos-legend-report-lines">
+    <div><span class="eos-legend-report-symbol">${icon('clock')}</span><p><strong>Provvisorio</strong><span>L’esito è indicato alla conferma, ma il rapporto non è completato.</span></p></div>
+    <div><span class="eos-legend-report-symbol">${icon('check')}</span><p><strong>Definitivo</strong><span>Il rapporto è stato completato: lo stesso evento non viene contato due volte.</span></p></div>
+   </div></div>
+  <div class="eos-legend-critical"><span class="eos-legend-critical-icon">${icon('shield')}</span><div><h3>Escalation critica</h3><p>È una segnalazione aggiuntiva di sicurezza, non uno stato né un esito. Il rosso è riservato a questa situazione.</p></div></div>
+ </section>`;
 }
 function renderGuidePage(){
  const banner=$('guideReturnBanner');
@@ -2964,7 +3136,7 @@ function openInfo(which){
   <div class="account-field"><span>Nome utente</span><strong>${esc(DEMO_USERS[currentStore]?.username||'EOS Intelligence')}</strong></div>
   <div class="account-field"><span>Punto vendita associato</span><strong>${esc(DEMO_USERS[currentStore]?.label||'Punto vendita 01')}</strong></div>
   <div class="account-field"><span>Password</span><strong>••••••••••••</strong></div>
-  <div class="account-field eos-build-ident"><span>Versione interfaccia</span><strong>7.8.13 · Esiti e Guida unificati · r11</strong></div>
+  <div class="account-field eos-build-ident"><span>Versione interfaccia</span><strong>7.8.13 · Palette mirata · r15</strong></div>
  </div>
  <button class="outline-btn account-change" type="button" id="togglePasswordForm" aria-controls="passwordFormContainer" aria-expanded="false">Modifica password ${icon('chevron')}</button>
  <div id="passwordFormContainer" hidden>
@@ -3157,6 +3329,7 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
   if(btn.hasAttribute('data-inventory-detail-more')){inventoryDetailLimit+=10;renderInventoryDetail();return;}
   if(btn.dataset.statAlert){statsTab='alerts';statsDetail={section:'alerts',key:btn.dataset.statAlert};statsDetailLimit=8;renderStatsDetail();window.scrollTo(0,0);return;}
   if(btn.dataset.statInventory){statsTab='inventory';statsDetail={section:'inventory',key:btn.dataset.statInventory};statsDetailLimit=8;renderStatsDetail();window.scrollTo(0,0);return;}
+  if(btn.dataset.statOutcome){statsTab='outcomes';statsDetail={section:'outcomes',key:btn.dataset.statOutcome};statsDetailLimit=8;renderStatsDetail();window.scrollTo(0,0);return;}
   if(btn.hasAttribute('data-stats-back')){statsDetail=null;renderStatsDetail();window.scrollTo(0,0);return;}
   if(btn.hasAttribute('data-stats-more')){statsDetailLimit+=10;renderStatsDetail();return;}
   if(btn.dataset.homeMode){homeMode=btn.dataset.homeMode;homeSelectedId=null;homeVerifiedDirectoryOpen=false;renderHome();return;}
