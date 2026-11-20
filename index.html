@@ -2,14 +2,14 @@
 
 <html lang="it"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#f5f8fb" name="theme-color"/>
-<meta name="eos-build" content="7.8.13-home-storico-coerenza-20261120-r19"/>
+<meta name="eos-build" content="7.8.13-merce-filtri-coerenza-20261120-r20"/>
 <script id="eos-auto-update">
 /* Static GitHub Pages: verify the deployed version without clearing local data. */
 (function(){
   'use strict';
   if (!/^https?:$/.test(window.location.protocol)) return;
   var PARAM = '__eos_fresh';
-  var currentVersion = '7.8.13-home-storico-coerenza-20261120-r19';
+  var currentVersion = '7.8.13-merce-filtri-coerenza-20261120-r20';
   var lastCheckTime = 0;
   var checking = false;
   var canonical;
@@ -2218,6 +2218,23 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 #reportMerchSection[hidden]{display:none}
 #page-analysis .analysis-section-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media(max-width:600px){.eos-history-filter-grid{grid-template-columns:1fr;gap:10px}.eos-history-filters{padding:13px}.eos-history-head{margin:0 0 13px}.history-directory-card{padding:14px 13px}.eos-home-history-link{margin-top:13px}}
+
+/* EOS 7.8.13 r20 — compact merchandise editor, mobile safe */
+.eos-r20-merchline{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border:1px solid #e0e9ed;border-radius:9px;background:#fff;padding:11px 12px;margin:8px 0;color:#31576C}
+.eos-r20-merchline-main{display:flex;flex-direction:column;gap:3px;min-width:0;font-size:13px}
+.eos-r20-merchline-main span{font-size:12px;color:#65808d}
+.eos-r20-merchline-buttons{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.eos-r20-merchline-buttons button{width:auto!important;min-height:36px;font-size:12px;padding:8px 12px}
+.eos-r20-merch-totals{background:#f1f6f8;border:1px solid #dbe8ea;border-radius:9px;padding:12px;margin:10px 0;color:#31576C;font-size:13px;line-height:1.75}
+.eos-r20-merch-totals small{display:block;color:#607b86;line-height:1.5;margin-top:6px}
+.eos-r20-archived-row{display:flex;justify-content:space-between;align-items:center;gap:9px;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid #e3eaed;font-size:12px}
+.eos-r20-archived-row button{font-size:12px;width:auto}
+@media(max-width:450px){.eos-r20-merchline{align-items:stretch}.eos-r20-merchline-buttons{width:100%}}
+
+/* r20: visibilità coerente con l'attributo HTML hidden, anche sui form-group display:grid */
+[hidden]{display:none!important}
+#analysisInventoryPane .eos-pane-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+#analysisInventoryPane .eos-pane-heading #exportInventory{font-size:12px}
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
 <symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></symbol>
@@ -2276,7 +2293,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 <section class="screen" id="page-history" aria-label="Storico segnalazioni">
 <div class="page-header"><h1 class="page-title">Storico segnalazioni</h1></div>
 <div class="eos-history-shell"><div class="eos-history-filters eos-filter-panel"><div class="eos-history-filter-grid">
-<label>Periodo<select id="historyPeriod"><option value="recent">Recenti · ultime 24 ore</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutte le date</option></select></label>
+<label>Periodo<select id="historyPeriod"><option value="recent">Ultime 24 ore</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutto il periodo</option></select></label>
 <label>Stato<select id="historyStatus"><option value="all">Tutti gli stati</option><option value="confirmed">Confermate</option><option value="dismissed">Scartate</option><option value="expired">Scadute</option></select></label>
 <label>Esito<select id="historyOutcome"><option value="all">Tutti gli esiti</option></select></label>
 </div></div>
@@ -2296,7 +2313,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
   <div class="eos-pane-heading"><h2>Rapporti evento</h2><button type="button" class="eos-export-btn" id="exportAnalysisReports">Esporta CSV</button><span class="reports-pending-pill" id="reportsPendingPill" hidden></span></div>
   <div class="eos-filter-panel">
    <div class="eos-filter-grid">
-    <label>Periodo<select id="eosReportPeriod"><option value="recent">Recenti</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutte le date</option></select></label>
+    <label>Periodo<select id="eosReportPeriod"><option value="recent">Ultime 24 ore</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutto il periodo</option></select></label>
     <label>Stato rapporto<select id="eosReportStatus"><option value="all">Tutti i rapporti</option><option value="open">Da completare</option><option value="closed">Completati</option></select></label>
    </div>
    <div class="eos-filter-foot eos-filter-foot-clean"><button type="button" class="eos-clear-filters" id="eosReportReset">Ripristina filtri</button></div>
@@ -2306,8 +2323,8 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
  <div id="eosReportDetail" class="eos-detail-page" hidden></div>
 </div>
 <div id="analysisInventoryPane" role="tabpanel" class="eos-analysis-pane" hidden>
- <div class="eos-pane-heading"><h2>Inventario</h2></div>
- <div class="eos-filter-panel eos-period-only"><label>Periodo<select id="eosInventoryPeriod"><option value="recent">Recenti</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutte le date</option></select></label></div>
+ <div class="eos-pane-heading"><h2>Inventario</h2><button type="button" class="text-action" id="exportInventory">Esporta CSV</button></div>
+ <div class="eos-filter-panel eos-period-only"><label>Periodo<select id="eosInventoryPeriod"><option value="recent">Ultime 24 ore</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutto il periodo</option></select></label></div>
  <div id="eosInventoryOverview" class="eos-groups"></div>
  <div id="eosInventoryDetail" class="eos-detail-page" hidden></div>
  <div id="eosInventorySlot" hidden></div>
@@ -2325,7 +2342,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
   <button type="button" class="eos-back-btn" data-stats-section-back><svg><use href="#i-arrow"></use></svg> Torna alle Statistiche</button>
   <div class="eos-pane-heading"><h2 id="eosStatsSectionTitle">Segnalazioni</h2></div>
   <div class="eos-filter-panel"><div class="eos-filter-grid">
-   <label>Periodo<select id="eosStatsPeriod"><option value="recent">Recenti</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutte le date</option></select></label>
+   <label>Periodo<select id="eosStatsPeriod"><option value="recent">Ultime 24 ore</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutto il periodo</option></select></label>
    <label id="eosStatsStatusField">Stato<select id="eosStatsStatus"><option value="all">Tutte</option><option value="pending">Da verificare</option><option value="confirmed">Confermate</option><option value="dismissed">Scartate</option><option value="expired">Scadute</option></select></label>
   </div></div>
   <div id="eosStatsMain">
@@ -2340,7 +2357,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
  </div>
 </div>
 </section>
-<section aria-label="Inventario" class="screen" id="page-inventory"><div class="inventory-legacy-note" id="inventoryLegacyNote" hidden></div><div class="section-head"><h2>Prodotti registrati</h2><button class="text-action" id="exportInventory">Esporta CSV</button></div><div class="card"><div class="table-wrap desktop-table"><table aria-label="Merce registrata" class="data-table inventory-table"><thead><tr><th>Prodotto</th><th>Segnalazione</th><th>Quantità</th><th>Valore</th><th>Recupero</th><th></th></tr></thead><tbody id="inventoryTable"></tbody></table></div><div class="compact-rows" id="inventoryCardsMobile"></div></div></section>
+<section aria-label="Inventario" class="screen" id="page-inventory"><div class="inventory-legacy-note" id="inventoryLegacyNote" hidden></div><div class="section-head"><h2>Prodotti registrati</h2><button class="text-action" id="exportInventoryLegacy" hidden>Esporta CSV</button></div><div class="card"><div class="table-wrap desktop-table"><table aria-label="Merce registrata" class="data-table inventory-table"><thead><tr><th>Prodotto</th><th>Segnalazione</th><th>Quantità</th><th>Valore</th><th>Recupero</th><th></th></tr></thead><tbody id="inventoryTable"></tbody></table></div><div class="compact-rows" id="inventoryCardsMobile"></div></div></section>
 <section aria-label="Guida operativa" class="screen" id="page-guide">
 <div class="page-header"><h1 class="page-title">Guida operativa</h1></div>
 
@@ -2465,7 +2482,7 @@ function loadStore(store){
  let parsed=null;try{parsed=raw?JSON.parse(raw):null;}catch(e){}
  if(!parsed||!Array.isArray(parsed.alerts)||!Array.isArray(parsed.inventory))parsed=demoSeed(store);
  parsed.alerts=parsed.alerts.map(a=>({...a,status:a.status==='not_evaluable'?'dismissed':a.status,dismissReason:a.status==='not_evaluable'?'Video non valutabile':a.dismissReason,events:Array.isArray(a.events)?a.events:[]}));
- parsed.inventory=parsed.inventory.map(i=>({...i,recovery:['yes','no','unknown'].includes(i.recovery)?i.recovery:'unknown',eventId:i.eventId||(i.alertId||'MAN-'+i.id),createdAt:i.createdAt||i.updatedAt||parsed.alerts.find(a=>a.id===i.alertId)?.ts||Date.now()}));
+ parsed.inventory=parsed.inventory.map(i=>({...i,recovery:['yes','no','unknown','partial'].includes(i.recovery)?i.recovery:'unknown',recoveredQty:Number.isInteger(i.recoveredQty)?Math.max(0,Math.min(Number(i.qty)||0,i.recoveredQty)):(i.recovery==='yes'?Number(i.qty)||0:0),eventId:i.eventId||(i.alertId||'MAN-'+i.id),createdAt:i.createdAt||i.updatedAt||parsed.alerts.find(a=>a.id===i.alertId)?.ts||Date.now()}));
  // R19 non elimina dati storici: conserva nel registro le informazioni incompatibili.
  for(const a of parsed.alerts){
   if(a.status==='dismissed'&&a.report?.outcome){
@@ -2477,35 +2494,36 @@ function loadStore(store){
  for(const i of parsed.inventory){
   const a=parsed.alerts.find(a=>a.id===i.alertId);
   const outcome=a?.report?.closed&&!a.report?.needsReview?a.report?.outcome:(a?.reviewOutcome||a?.report?.outcome);
-  if(!i.archivedAt&&(i.recovery!=='no'||a?.status!=='confirmed'||outcome!=='theft'||a?.report?.needsReview)){
+  if(!i.archivedAt&&(a?.status!=='confirmed'||!a?.report?.closed||a?.report?.needsReview||!['theft','attempt'].includes(outcome)||outcome==='attempt'&&i.qty>i.recoveredQty)){ 
    i.archivedAt=Date.now();i.archiveReason='Rettifica r19: merce non riconducibile a furto accertato e non recuperato';
   }
  }
  return parsed;
 }
 let screen='home',filter='all',selectedAlertId=null,modal='',lastFocus=null,procedureOrigin='detail';
-let homeSelectedId=null,detailOrigin='history',pendingReportItems=[];
+let homeSelectedId=null,detailOrigin='history',pendingReportItems=[],stagedMerchEditIndex=-1;
 let homeVerifiedDirectoryOpen=false;
 let analysisTab='reports',reportsFilter='all',reportsSearch='';
 let alertPeriod='recent',alertStatus='all',alertSearch='',alertOpenGroup=null,alertVisibleLimit=9;
-let reportPeriod='recent',reportStatus='all',reportOpenGroup=null,reportVisibleLimit=9,statsTab='alerts';
+let reportPeriod='7d',reportStatus='all',reportOpenGroup=null,reportVisibleLimit=9,statsTab='alerts';
 let alertDetailGroup=null,alertDetailAll=false,alertDetailLimit=8;
 let reportDetailGroup=null,reportDetailAll=false,reportDetailLimit=8;
-let inventoryPeriod='recent',inventoryDetailGroup=null,inventoryDetailAll=false,inventoryDetailLimit=8;
-let statsPeriod='recent',statsStatus='all',statsPage=null,statsDetail=null,statsDetailLimit=8;
+let inventoryPeriod='7d',inventoryDetailGroup=null,inventoryDetailAll=false,inventoryDetailLimit=8;
+let statsPeriod='7d',statsStatus='all',statsPage=null,statsDetail=null,statsDetailLimit=8;
 let activeIncomingAlertId=null,pendingIncomingAlertId=null;
 const SIMULATED_ALERT_DELAY_MS=4000;
 let simulatedAlertTimer=null;
 function cancelScheduledSimulation(){
  if(simulatedAlertTimer!==null){clearTimeout(simulatedAlertTimer);simulatedAlertTimer=null;}
 }
+function operatorName(){return DEMO_USERS[currentStore]?.username||'Operatore del laboratorio';}
 function save(){if(!currentStore)return;try{localStorage.setItem(DEMO_STORAGE_PREFIX+currentStore,JSON.stringify(state));}catch(e){}}
 function syncLogin(){
  document.body.classList.toggle('login-mode',!currentStore);
 
 }
 function enterStore(store){cancelScheduledSimulation();hideIncomingNotification();pendingIncomingAlertId=null;currentStore=store;state=loadStore(store);save();try{sessionStorage.setItem(DEMO_SESSION_KEY,store);}catch(e){}
- filter='all';showOlder=false;analysisTab='reports';reportsFilter='all';reportsSearch='';alertPeriod='recent';alertStatus='all';alertSearch='';alertOpenGroup=null;reportPeriod='recent';reportStatus='all';reportOpenGroup=null;statsTab='alerts';alertDetailGroup=null;reportDetailGroup=null;inventoryPeriod='recent';inventoryDetailGroup=null;statsPeriod='recent';statsDetail=null;statsStatus='all';statsPage=null;homeVerifiedDirectoryOpen=false;homeShowAllPending=false;historyPeriod='recent';historyStatus='all';historyOutcome='all';historyVisibleLimit=10;syncLogin();render();nav('home');}
+ filter='all';showOlder=false;analysisTab='reports';reportsFilter='all';reportsSearch='';alertPeriod='recent';alertStatus='all';alertSearch='';alertOpenGroup=null;reportPeriod='7d';reportStatus='all';reportOpenGroup=null;statsTab='alerts';alertDetailGroup=null;reportDetailGroup=null;inventoryPeriod='7d';inventoryDetailGroup=null;statsPeriod='7d';statsDetail=null;statsStatus='all';statsPage=null;homeVerifiedDirectoryOpen=false;homeShowAllPending=false;historyPeriod='7d';historyStatus='all';historyOutcome='all';historyVisibleLimit=10;syncLogin();render();nav('home');}
 function leaveStore(){cancelScheduledSimulation();hideIncomingNotification();pendingIncomingAlertId=null;stopDeterrenceAudio();currentStore='';try{sessionStorage.removeItem(DEMO_SESSION_KEY);}catch(e){}closeModal();$('loginForm').reset();$('loginError').hidden=true;syncLogin();}
 try{let saved=sessionStorage.getItem(DEMO_SESSION_KEY);if(saved&&DEMO_USERS[saved]){currentStore=saved;state=loadStore(saved);}}catch(e){}
 
@@ -2518,40 +2536,60 @@ function clipExpired(a){
 }
 function clipWindowLabel(a){return clipExpired(a)?'Video non disponibile':'';}
 function alertById(id){return state.alerts.find(a=>a.id===id);}
+function merchRecoveredQty(i){
+ const q=Number(i?.qty)||0;
+ return Number.isInteger(i?.recoveredQty)?Math.max(0,Math.min(q,i.recoveredQty)):i?.recovery==='yes'?q:0;
+}
+function merchStatus(q,rec){return rec===q?'yes':rec===0?'no':'partial';}
+function validMerchEvent(a){return !!a&&a.status==='confirmed'&&a.report?.closed===true&&!a.report?.needsReview&&['theft','attempt'].includes(a.report.outcome);}
+function reportMerchItems(a){return a?state.inventory.filter(i=>i.alertId===a.id&&!i.archivedAt&&validMerchEvent(a)):[];}
 function inventoryActive(i){
  const a=i.alertId?alertById(i.alertId):null;
- return !i.archivedAt&&i.recovery==='no'&&!!a&&a.status==='confirmed'&&countedEventOutcome(a)?.value==='theft'&&!a.report?.needsReview;
+ return !i.archivedAt&&validMerchEvent(a)&&a.report.outcome==='theft'&&Number(i.qty)>merchRecoveredQty(i);
 }
-function activeInventory(){return state.inventory.filter(inventoryActive);}
+function activeInventory(){return state.inventory.filter(inventoryActive).map(i=>({...i,totalQty:i.qty,qty:i.qty-merchRecoveredQty(i),recoveredQty:merchRecoveredQty(i),recovery:'no'}));}
+function recoveredMerch(){return state.inventory.filter(i=>!i.archivedAt&&validMerchEvent(alertById(i.alertId))&&merchRecoveredQty(i)>0).map(i=>({...i,totalQty:i.qty,qty:merchRecoveredQty(i),recoveredQty:merchRecoveredQty(i),recovery:'yes'}));}
+function reportMerchSnapshot(i){return {sourceId:i.sourceId||i.id||null, name:String(i.name||''),qty:Number(i.qty)||0,price:Number(i.price)||0,recoveredQty:merchRecoveredQty(i)};}
+function merchandiseValue(items,key){return Math.round(items.reduce((n,i)=>n+(key==='recovered'?merchRecoveredQty(i):key==='lost'?i.qty-merchRecoveredQty(i):i.qty)*i.price*100,0))/100;}
+function merchandiseCount(items,key){return items.reduce((n,i)=>n+(key==='recovered'?merchRecoveredQty(i):key==='lost'?i.qty-merchRecoveredQty(i):i.qty),0);}
+function actionableMerch(){
+ return state.alerts.flatMap(a=>{
+  if(!a.report||(!a.report.draft&&!a.report.needsReview)||a.status==='pending')return [];
+  return (a.report.itemsDraft||[]).map((i,n)=>({...reportMerchSnapshot(i),id:'draft-'+a.id+'-'+n,alertId:a.id,eventId:a.id,createdAt:a.report.updatedAt||a.ts,updatedAt:a.report.updatedAt||a.ts,reportDraft:true}));
+ });
+}
 function inventoryIsTheft(id){return activeInventory().some(p=>p.alertId===id);}
 function snapshotReport(a,reason){
  if(!a?.report)return;
  a.reportHistory=Array.isArray(a.reportHistory)?a.reportHistory:[];
  const r=a.report;
- a.reportHistory.unshift({ts:Date.now(),reason,report:{closed:!!r.closed,draft:!!r.draft,needsReview:!!r.needsReview,outcome:r.outcome||null,notes:r.notes||'',actions:[...(r.actions||[])],completedAt:r.completedAt||null}});
+ a.reportHistory.unshift({ts:Date.now(),operator:operatorName(),reason,report:{closed:!!r.closed,draft:!!r.draft,needsReview:!!r.needsReview,outcome:r.outcome||null,notes:r.notes||'',actions:[...(r.actions||[])],completedAt:r.completedAt||null}});
  a.reportHistory=a.reportHistory.slice(0,24);
 }
 function archiveInvalidInventory(id,reason){
  const a=alertById(id);let count=0;
  for(const i of state.inventory){
   if(i.alertId!==id||i.archivedAt)continue;
-  if(!inventoryActive(i)){
-   i.archivedAt=Date.now();i.archiveReason=reason||'Registrazione non più compatibile con una perdita effettiva';count++;
+  if(!validMerchEvent(a)||a.report.outcome==='attempt'&&i.qty>merchRecoveredQty(i)){
+   i.archivedAt=Date.now();i.archiveReason=reason||'Registrazione non più compatibile con un rapporto definitivo';count++;
   }
  }
- if(count&&a)recordAction(a,`${count} ${count===1?'prodotto spostato':'prodotti spostati'} nello storico delle rettifiche: ${reason}`);
+ if(count&&a)recordAction(a,`${count} registrazioni archiviate: ${reason}`);
  return count;
 }
 function reviewReportAfterCorrection(a,reason){
  if(a.report){
+  const previous=state.inventory.filter(i=>i.alertId===a.id&&!i.archivedAt).map(reportMerchSnapshot);
   snapshotReport(a,reason);
   a.report={...a.report,closed:false,draft:true,needsReview:true,completedAt:null,
+   itemsDraft:a.status==='confirmed'?previous:[],
    outcome:a.status==='confirmed'&&Object.hasOwn(REPORT_OUTCOMES,a.reviewOutcome)?a.reviewOutcome:null,
    preliminaryOutcome:a.status==='confirmed'?a.reviewOutcome:null,updatedAt:Date.now()};
  }
- archiveInvalidInventory(a.id,reason);
+ for(const i of state.inventory.filter(i=>i.alertId===a.id&&!i.archivedAt)){
+  i.archivedAt=Date.now();i.archiveReason=reason+' · Da rivedere';
+ }
 }
-
 function countStatus(status){return state.alerts.filter(a=>a.status===status).length;}
 // Solo gli scarti con un motivo esplicito e pertinente sono falsi positivi.
 function countFalsePositives(){return state.alerts.filter(a=>a.status==='dismissed'&&['Movimento normale','Rilevamento errato'].includes(a.dismissReason)).length;}
@@ -2633,7 +2671,7 @@ function setStatsTab(tab){
  document.querySelectorAll('[data-stats-tab]').forEach(b=>{let active=b.dataset.statsTab===statsTab;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));});
 }
 
-const OPERATION_PERIOD_LABELS={recent:'Ultime 24 ore','48':'Ultime 48 ore','72':'Ultime 72 ore','7d':'Ultimi 7 giorni','30d':'Ultimi 30 giorni','90d':'Ultimi 90 giorni',all:'Tutte le date'};
+const OPERATION_PERIOD_LABELS={recent:'Ultime 24 ore','48':'Ultime 48 ore','72':'Ultime 72 ore','7d':'Ultimi 7 giorni','30d':'Ultimi 30 giorni','90d':'Ultimi 90 giorni',all:'Tutto il periodo'};
 function periodMatch(ts,period){
  if(period==='all')return true;
  const age=Date.now()-ts;
@@ -2696,7 +2734,7 @@ function renderAlertDetail(){
 }
 function reportEligible(a){return a.status==='confirmed'||(a.status==='dismissed'&&!!a.report);}
 function filteredReportRows(){
- let rows=getRows().filter(a=>reportEligible(a)&&periodMatch(a.ts,reportPeriod));
+ let rows=getRows().filter(a=>reportEligible(a)&&(periodMatch(a.ts,reportPeriod)||reportIsOpen(a))); // I rapporti aperti non scompaiono per il filtro temporale
  rows=rows.filter(a=>reportStatus==='all'||(reportStatus==='open'?reportIsOpen(a):!reportIsOpen(a)));
  if(reportOpenGroup)rows=rows.filter(a=>reportOpenGroup==='open'?reportIsOpen(a):!reportIsOpen(a));
  return rows;
@@ -2728,7 +2766,7 @@ function renderReportDetail(){
  const periodLabel=reportDetailAll?'Tutte le date':OPERATION_PERIOD_LABELS[reportPeriod];
  $('eosReportDetail').innerHTML=`<button type="button" class="eos-back-btn" data-report-back>${icon('arrow')} Torna ai Rapporti</button>
  <div class="eos-detail-head"><h2>${label}</h2><span class="eos-detail-count">${rows.length} ${rows.length===1?'rapporto':'rapporti'}</span></div>
- <p class="eos-detail-period">${periodLabel}</p>
+ <p class="eos-detail-period">${periodLabel}${reportDetailGroup==='open'?' · Rapporti aperti sempre accessibili, anche fuori periodo':''}</p>
  <div class="eos-detail-list">${limited.length?limited.map(reportCardHtml).join(''):'<p class="eos-group-empty">Nessun rapporto in questa categoria per il periodo scelto.</p>'}</div>
  ${more>0?`<button type="button" class="eos-group-viewall" data-report-detail-more>Mostra altri rapporti (${more})</button>`:''}
  ${!reportDetailAll&&reportPeriod!=='all'?`<button type="button" class="eos-group-viewall eos-secondary-link" data-report-detail-all>Visualizza tutti i rapporti ${label.toLowerCase()}</button>`:''}`;
@@ -2739,17 +2777,17 @@ function filteredReportRowsForGroup(g){
 function reportCardHtml(a){
  const open=reportIsOpen(a),items=activeInventory().filter(i=>i.alertId===a.id),total=items.reduce((n,i)=>n+itemValue(i),0);
  const label=a.report?.needsReview?'Da rivedere':open?(a.report?.draft?'Bozza':'Da completare'):'Completato';
- return `<article class="report-list-card eos-status-panel--${badgeStatus(a)} eos-event-accent" ${outcomeAccent(a)}><div class="report-list-main"><div class="report-list-top"><strong>${esc(a.id)}</strong><span class="report-badge ${open?'':'closed'}">${label}</span></div><div class="report-list-meta">${formatDate(a.ts)} · ${formatTime(a.ts)} · ${esc(a.camera)} · <span class="eos-inline-status">${statusColorDot(a)} ${viewStatus(a)}</span>${clipExpired(a)?' · Video non disponibile':''}</div><div class="report-list-outcome">${a.report?.closed||a.report?.draft||a.report?.needsReview?esc(reportOutcome(a)):''}${items.length?' · '+items.length+' prodotti ('+money(total)+')':''}</div></div><button type="button" class="report-list-action ${open?'primary':''}" data-report-open="${esc(a.id)}">${a.report?.needsReview?'Rivedi rapporto':open?'Completa rapporto':'Apri rapporto'}</button></article>`;
+ return `<article class="report-list-card eos-status-panel--${badgeStatus(a)} eos-event-accent" ${outcomeAccent(a)}><div class="report-list-main"><div class="report-list-top"><strong>${esc(a.id)}</strong><span class="report-badge ${open?'':'closed'}">${label}</span></div><div class="report-list-meta">${formatDate(a.ts)} · ${formatTime(a.ts)} · ${esc(a.camera)} · <span class="eos-inline-status">${statusColorDot(a)} ${viewStatus(a)}</span>${clipExpired(a)?' · Video non disponibile':''}</div><div class="report-list-outcome">${a.report?.closed||a.report?.draft||a.report?.needsReview?esc(reportOutcome(a)):''}${items.length?' · '+items.length+' articoli non recuperati ('+money(total)+')':''}</div></div><button type="button" class="report-list-action ${open?'primary':''}" data-report-open="${esc(a.id)}">${a.report?.needsReview?'Rivedi rapporto':open?'Completa rapporto':'Apri rapporto'}</button></article>`;
 }
 
 function getRows(){return [...state.alerts].sort((a,b)=>b.ts-a.ts);}
-function recordAction(a,label){a.events=a.events||[];a.events.unshift({ts:Date.now(),label});a.events=a.events.slice(0,12);}
+function recordAction(a,label){a.events=a.events||[];a.events.unshift({ts:Date.now(),operator:operatorName(),label});a.events=a.events.slice(0,12);}
 function logActionHtml(a){
  const events=a.events||[];
  const archived=state.inventory.filter(i=>i.alertId===a.id&&i.archivedAt);
  const revisions=Array.isArray(a.reportHistory)?a.reportHistory:[];
- const eventsHtml=events.length?`<div class="alert-action-history"><h3>Attività registrate</h3>${events.slice(0,4).map(e=>`<p>${formatDate(e.ts)} · ${formatTime(e.ts)} — ${esc(e.label)}</p>`).join('')}</div>`:'';
- const log=(archived.length||revisions.length)?`<details class="eos-revision-log"><summary>Rettifiche precedenti (${revisions.length+archived.length})</summary>${revisions.map(v=>`<p>${formatDate(v.ts)} · ${formatTime(v.ts)} — ${esc(v.reason)} · Esito precedente: ${esc(REPORT_OUTCOMES[v.report?.outcome]||'senza esito di furto')}</p>`).join('')}${archived.map(i=>`<p>${esc(i.name)} · ${i.qty} × ${money(i.price)} · Non conteggiato (${esc(i.archiveReason||'Rettifica')})</p>`).join('')}</details>`:'';
+ const eventsHtml=events.length?`<div class="alert-action-history"><h3>Attività registrate</h3>${events.slice(0,4).map(e=>`<p>${formatDate(e.ts)} · ${formatTime(e.ts)} — ${e.operator?esc(e.operator)+' · ':''}${esc(e.label)}</p>`).join('')}</div>`:'';
+ const log=(archived.length||revisions.length)?`<details class="eos-revision-log"><summary>Rettifiche precedenti (${revisions.length+archived.length})</summary>${revisions.map(v=>`<p>${formatDate(v.ts)} · ${formatTime(v.ts)} — ${v.operator?esc(v.operator)+' · ':''}${esc(v.reason)} · Esito precedente: ${esc(REPORT_OUTCOMES[v.report?.outcome]||'senza esito di furto')}</p>`).join('')}${archived.map(i=>`<p>${esc(i.name)} · ${i.qty} × ${money(i.price)} · Recuperati ${merchRecoveredQty(i)} · Non conteggiato (${esc(i.archiveReason||'Rettifica')})</p>`).join('')}</details>`:'';
  return eventsHtml+log;
 }
 
@@ -2824,7 +2862,7 @@ function openIncomingAlert(){
 // This does not connect to AWS, listen for external events, or trigger push notifications.
 window.EOSIntelligenceUI=Object.freeze({receiveAlert:receiveIncomingAlert});
 
-let historyPeriod='recent',historyStatus='all',historyOutcome='all',historyVisibleLimit=10,homeShowAllPending=false;
+let historyPeriod='7d',historyStatus='all',historyOutcome='all',historyVisibleLimit=10,homeShowAllPending=false;
 function historyStatusOf(a){return eventExpiredUnverified(a)?'expired':a.status;}
 function historyRows(){
  return getRows().filter(a=>historyStatusOf(a)!=='pending'&&periodMatch(a.ts,historyPeriod)).filter(a=>historyStatus==='all'||historyStatusOf(a)===historyStatus).filter(a=>{
@@ -2897,41 +2935,35 @@ function statsAlertRows(kind){
 }
 function inventoryTimestamp(item){const a=item.alertId?alertById(item.alertId):null;return Math.max(item.updatedAt||0,item.createdAt||0)||a?.ts||0;}
 function inventoryWithinPeriod(item,period){return periodMatch(inventoryTimestamp(item),period);}
-function statsInventoryRows(kind){return activeInventory().filter(i=>statWithinPeriod(inventoryTimestamp(i))&&(kind==='total'||kind==='notRecovered'||kind==='recovered'&&false));}
+function statsInventoryRows(kind){
+ const list=kind==='recovered'?recoveredMerch():activeInventory();
+ return list.filter(i=>statWithinPeriod(inventoryTimestamp(i)));
+}
 function renderChart(){
- const rows=statsAlertRows(statsStatus);
- const now=new Date(),startOfToday=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+ const rows=statsAlertRows(statsStatus),now=Date.now(),hours=statsPeriod==='recent'?24:statsPeriod==='48'?48:statsPeriod==='72'?72:null;
  let bins=[];
- if(statsPeriod==='recent'){
-  // Intervalli completi sulle ultime 24 ore, senza confonderli con la conservazione delle clip.
-  const end=Date.now(),begin=end-24*MS_HOUR;
-  for(let i=0;i<6;i++){
-   const d=begin+i*4*MS_HOUR,e=d+4*MS_HOUR;
-   bins.push({start:d,end:e,label:new Date(d).toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})});
-  }
+ if(hours){
+  const count=6,interval=hours/count*MS_HOUR,start=now-hours*MS_HOUR;
+  for(let i=0;i<count;i++){const b=start+i*interval,e=b+interval;
+   bins.push({start:b,end:e,label:new Date(b).toLocaleDateString('it-IT',{day:'2-digit',month:'2-digit'})+' '+new Date(b).toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})});}
  }else if(statsPeriod==='7d'){
-  for(let i=6;i>=0;i--){let d=new Date(startOfToday);d.setDate(d.getDate()-i);let e=new Date(d);e.setDate(e.getDate()+1);
-   bins.push({start:+d,end:+e,label:d.toLocaleDateString('it-IT',{weekday:'short'})});}
- }else if(statsPeriod==='30d'){
-  for(let i=4;i>=0;i--){let e=new Date(startOfToday);e.setDate(e.getDate()+1-i*7);let d=new Date(e);d.setDate(d.getDate()-7);
-   const cutoff=Date.now()-30*24*MS_HOUR;
-   bins.push({start:Math.max(+d,cutoff),end:+e,label:d.toLocaleDateString('it-IT',{day:'2-digit',month:'2-digit'})});}
- }else if(statsPeriod==='90d'){
-  for(let i=2;i>=0;i--){let e=new Date(startOfToday);e.setDate(e.getDate()+1-i*30);let d=new Date(e);d.setDate(d.getDate()-30);
-   bins.push({start:Math.max(+d,Date.now()-90*24*MS_HOUR),end:+e,label:d.toLocaleDateString('it-IT',{day:'2-digit',month:'2-digit'})});}
+  const step=24*MS_HOUR,start=now-7*step;
+  for(let i=0;i<7;i++){const b=start+i*step;bins.push({start:b,end:b+step,label:new Date(b).toLocaleDateString('it-IT',{day:'2-digit',month:'2-digit'})});}
+ }else if(statsPeriod==='30d'||statsPeriod==='90d'){
+  const days=statsPeriod==='30d'?30:90,count=statsPeriod==='30d'?6:9,step=days*MS_HOUR*24/count,start=now-days*24*MS_HOUR;
+  for(let i=0;i<count;i++){const b=start+i*step;bins.push({start:b,end:b+step,label:new Date(b).toLocaleDateString('it-IT',{day:'2-digit',month:'2-digit'})});}
  }else{
-  const sorted=getRows().map(a=>a.ts).filter(Number.isFinite);
-  const earliest=sorted.length?Math.min(...sorted):Date.now();
+  const ts=getRows().map(a=>a.ts).filter(Number.isFinite),earliest=ts.length?Math.min(...ts):now;
   let d=new Date(new Date(earliest).getFullYear(),new Date(earliest).getMonth(),1);
-  for(let i=0;i<48&&+d<=Date.now();i++){let e=new Date(d.getFullYear(),d.getMonth()+1,1);
+  for(let i=0;i<48&&+d<=now;i++){let e=new Date(d.getFullYear(),d.getMonth()+1,1);
    bins.push({start:+d,end:+e,label:d.toLocaleDateString('it-IT',{month:'short',year:'2-digit'})});d=e;}
  }
- for(const b of bins)b.num=rows.filter(a=>{const ts=a.ts;return ts>=b.start&&ts<b.end;}).length;
+ for(const b of bins)b.num=rows.filter(a=>a.ts>=b.start&&a.ts<b.end).length;
  const max=Math.max(1,...bins.map(b=>b.num));
  $('bars').innerHTML=bins.map(b=>`<div class="chart-col"><div class="chart-bar" style="height:${b.num?Math.max(5,Math.round(b.num/max*88)):0}px" title="${b.num} segnalazioni · ${b.label}" aria-label="${b.num} segnalazioni in ${b.label}"></div></div>`).join('');
  $('barLabels').innerHTML=bins.map(b=>`<span>${esc(b.label)}</span>`).join('');
  $('eosChartTitle').textContent='Andamento · '+STATS_STATUS_NAMES[statsStatus];
- $('eosChartSubtitle').textContent={"recent":"Ultime 24 ore","7d":"Ultimi 7 giorni","30d":"Ultimi 30 giorni","90d":"Ultimi 90 giorni",all:"Tutte le date"}[statsPeriod];
+ $('eosChartSubtitle').textContent=OPERATION_PERIOD_LABELS[statsPeriod];
 }
 function matchesFilter(a){return filter==='all'||a.status===filter;}
 function statKpi(label,value,type){return `<button type="button" class="kpi-card eos-stat-click" data-stat-alert="${type}" aria-label="Visualizza ${value} ${esc(label.toLowerCase())}"><span class="kpi-top"><span>${esc(label)}</span>${icon('arrow')}</span><strong class="kpi-value">${value}</strong></button>`;}
@@ -2952,8 +2984,8 @@ function renderAnalysis(){
  $('analysisKpis').classList.toggle('eos-stats-single',statsStatus!=='all');
  $('analysisKpis').innerHTML=mainKpis;
  renderChart();renderReports();renderInventoryOverview();updateReportBadges();setAnalysisTab(analysisTab);
- const statsDefs=[['Perdite registrate','notRecovered'],['Valore delle perdite','total']];
- $('eosStatsInventoryKpis').innerHTML=statsDefs.map(([label,key])=>{const amount=money(statsInventoryRows(key).reduce((sum,i)=>sum+itemValue(i),0));return `<button type="button" class="eos-inventory-stat eos-stat-click" data-stat-inventory="${key}" aria-label="Visualizza prodotti: ${label}, ${amount}"><span class="eos-stat-bar-label">${label}</span><strong class="eos-stat-bar-value">${amount}</strong><span class="eos-stat-bar-arrow">${icon('arrow')}</span></button>`;}).join('');
+ const statsDefs=[['Articoli non recuperati','notRecovered','qty'],['Valore commerciale non recuperato','total','money'],['Articoli recuperati','recovered','qty'],['Valore commerciale recuperato','recovered','money']];
+ $('eosStatsInventoryKpis').innerHTML=statsDefs.map(([label,key,unit])=>{const items=statsInventoryRows(key),amount=unit==='qty'?items.reduce((sum,i)=>sum+i.qty,0)+'':money(items.reduce((sum,i)=>sum+itemValue(i),0));return `<button type="button" class="eos-inventory-stat eos-stat-click" data-stat-inventory="${key}" aria-label="Visualizza prodotti: ${label}, ${amount}"><span class="eos-stat-bar-label">${label}</span><strong class="eos-stat-bar-value">${amount}</strong><span class="eos-stat-bar-arrow">${icon('arrow')}</span></button>`;}).join('');
  $('eosStatsOutcomeKpis').innerHTML=Object.entries(REPORT_OUTCOMES).map(([key,label])=>{
   const rows=eventOutcomeRows(key),provisional=rows.filter(a=>countedEventOutcome(a).provisional).length,definitive=rows.length-provisional;
   return `<button type="button" class="eos-inventory-stat eos-stat-click eos-outcome-stat" data-stat-outcome="${key}" style="--eos-outcome-stat-color:${EOS_OUTCOME_COLORS[key]}" aria-label="Visualizza ${rows.length} eventi con esito ${esc(label)}; ${provisional} provvisori, ${definitive} definitivi"><span class="eos-stat-bar-label">${esc(label)}<small class="eos-stats-status-breakdown">${definitive} ${definitive===1?'definitivo':'definitivi'} · ${provisional} ${provisional===1?'provvisorio':'provvisori'}</small></span><strong class="eos-stat-bar-value">${rows.length}</strong><span class="eos-stat-bar-arrow">${icon('arrow')}</span></button>`;
@@ -2966,8 +2998,8 @@ function renderStatsDetail(){
  if(!statsDetail)return;
  const isAlert=statsDetail.section==='alerts',isOutcome=statsDetail.section==='outcomes',key=statsDetail.key;
  const rows=isAlert?statsAlertRows(key):isOutcome?eventOutcomeRows(key):statsInventoryRows(key);
- const title=isAlert?({all:'Segnalazioni rilevate',pending:'Da verificare',verified:'Verificate',confirmed:'Confermate',dismissed:'Scartate',expired:'Scadute',false:'Falsi positivi'}[key]):isOutcome?REPORT_OUTCOMES[key]:({recovered:'Merce recuperata',notRecovered:'Perdite registrate',total:'Valore delle perdite'}[key]);
- const dateText={recent:'Ultime 24 ore',all:'Tutte le date','7d':'Ultimi 7 giorni','30d':'Ultimi 30 giorni','90d':'Ultimi 90 giorni'}[statsPeriod];
+ const title=isAlert?({all:'Segnalazioni rilevate',pending:'Da verificare',verified:'Verificate',confirmed:'Confermate',dismissed:'Scartate',expired:'Scadute',false:'Falsi positivi'}[key]):isOutcome?REPORT_OUTCOMES[key]:({recovered:'Merce recuperata',notRecovered:'Articoli non recuperati',total:'Valore commerciale non recuperato'}[key]);
+ const dateText=OPERATION_PERIOD_LABELS[statsPeriod];
  const limited=rows.slice(0,statsDetailLimit),more=rows.length-limited.length;
  const sectionName=isAlert?'Segnalazioni':isOutcome?'Esiti degli eventi':'Inventario';
  $('eosStatsDetail').innerHTML=`<button type="button" class="eos-back-btn" data-stats-back>${icon('arrow')} Torna alle Statistiche · ${sectionName}</button>
@@ -2979,9 +3011,9 @@ function renderStatsDetail(){
 function itemValue(i){return i.qty*i.price;}
 function inventoryTotals(){
  const sum=items=>Math.round(items.reduce((acc,i)=>acc+Math.round(itemValue(i)*100),0))/100;
- const recovered=[];
+ const recovered=recoveredMerch();
  const notRecovered=activeInventory();
- const unclassified=[];
+ const unclassified=actionableMerch();
  return {recovered,notRecovered,unclassified,totalValue:sum(activeInventory()),recoveredValue:sum(recovered),notRecoveredValue:sum(notRecovered),unclassifiedValue:sum(unclassified)};
 }
 function inventoryKpi(label,amount,iconName,type){
@@ -2995,12 +3027,13 @@ function inventoryProductCard(i){
 }
 function inventoryRecoveryLabel(i){return i.recovery==='yes'?'Sì':i.recovery==='no'?'No':'Non specificato';}
 function inventoryGroupRows(group,all=false){
- return activeInventory().filter(i=>(group==='unknown'?false:true)&&(all||inventoryWithinPeriod(i,inventoryPeriod)))
-  .sort((a,b)=>inventoryTimestamp(b)-inventoryTimestamp(a));
+ const items=group==='unknown'?actionableMerch():activeInventory();
+ return items.filter(i=>all||inventoryWithinPeriod(i,inventoryPeriod)).sort((a,b)=>inventoryTimestamp(b)-inventoryTimestamp(a));
 }
+function inventoryActionCard(i){return `<article class="eos-merch-card eos-inventory-result"><div class="eos-merch-top"><strong>${esc(i.name)}</strong><b>Da verificare</b></div><div class="eos-merch-meta">Segnalazione ${esc(i.alertId)} · Quantità: ${i.qty} · Recuperata: ${merchRecoveredQty(i)} · Bozza non conteggiata</div><div class="eos-merch-actions"><button type="button" class="eos-edit-merch" data-report-open="${esc(i.alertId)}">Rivedi rapporto</button></div></article>`;}
 function renderInventoryOverview(){
  if($('eosInventoryPeriod'))$('eosInventoryPeriod').value=inventoryPeriod;
- const groups=[['unknown','Merce da aggiornare','Prodotti con recupero da definire','pending'],['products','Prodotti registrati','Merce inserita nei rapporti','closed']];
+ const groups=[...(inventoryGroupRows('unknown').length?[['unknown','Merce da aggiornare','Merce nei rapporti in bozza o da rivedere · non conteggiata','pending']]:[]),['products','Prodotti registrati','Merce non recuperata','closed']];
  $('eosInventoryOverview').innerHTML=groups.map(([id,title,desc,accent])=>`<section class="eos-group-bar eos-group--${accent}">
  <button type="button" class="eos-group-main" data-inventory-group="${id}"><span class="eos-group-label"><strong>${title}</strong></span>
  <span class="eos-group-side"><span class="eos-group-count">${inventoryGroupRows(id).length}</span>${icon('arrow')}</span></button></section>`).join('');
@@ -3015,7 +3048,7 @@ function renderInventoryDetail(){
  $('eosInventoryDetail').innerHTML=`<button type="button" class="eos-back-btn" data-inventory-back>${icon('arrow')} Torna all’Inventario</button>
  <div class="eos-detail-head"><h2>${label}</h2><span class="eos-detail-count">${rows.length} ${rows.length===1?'prodotto':'prodotti'}</span></div>
  <p class="eos-detail-period">${periodText}</p>
- <div class="eos-detail-list">${limited.length?limited.map(inventoryProductCard).join(''):'<p class="eos-group-empty">Nessun prodotto in questa categoria per il periodo selezionato.</p>'}</div>
+ <div class="eos-detail-list">${limited.length?limited.map(i=>inventoryDetailGroup==='unknown'?inventoryActionCard(i):inventoryProductCard(i)).join(''):'<p class="eos-group-empty">Nessun prodotto in questa categoria per il periodo selezionato.</p>'}</div>
  ${more>0?`<button type="button" class="eos-group-viewall" data-inventory-detail-more>Mostra altri prodotti (${more})</button>`:''}
  ${!inventoryDetailAll&&inventoryPeriod!=='all'?`<button type="button" class="eos-group-viewall eos-secondary-link" data-inventory-detail-all>Visualizza tutti i ${inventoryDetailGroup==='unknown'?'prodotti da aggiornare':'prodotti registrati'}</button>`:''}`;
 }
@@ -3034,36 +3067,33 @@ function openInventoryBreakdown(type){
  openModal(title,`<div class="inventory-breakdown-summary"><span>Totale ${esc(title.toLowerCase())}</span><strong>${money(total)}</strong></div><div class="inventory-breakdown-list">${list}</div>`,'inventorybreakdown');
 }
 function openEditInventoryItem(id){
- const i=activeInventory().find(v=>v.id===id);if(!i)return;
+ const i=state.inventory.find(v=>v.id===id&&!v.archivedAt&&validMerchEvent(alertById(v.alertId)));if(!i)return;
+ const rec=merchRecoveredQty(i),status=merchStatus(i.qty,rec);
  const h=`<form id="editInventoryForm" data-item-id="${esc(i.id)}">
   <p class="eos-edit-merch-reference">Segnalazione ${esc(i.alertId||i.eventId||'non collegata')}</p>
   <div class="form-group"><label for="editItemName">Prodotto</label><input id="editItemName" type="text" maxlength="85" value="${esc(i.name)}" required></div>
-  <div class="form-grid"><div class="form-group"><label for="editItemQty">Quantità</label><input id="editItemQty" type="number" min="1" max="100000" step="1" value="${i.qty}" required></div><div class="form-group"><label for="editItemPrice">Prezzo unitario (€)</label><input id="editItemPrice" type="number" min="0" max="1000000" step="0.01" value="${i.price}" required></div></div>
-  <div class="form-group"><label for="editItemRecovery">Stato del recupero</label><select id="editItemRecovery"><option value="unknown" ${i.recovery!=='yes'&&i.recovery!=='no'?'selected':''}>Da definire</option><option value="yes" ${i.recovery==='yes'?'selected':''}>Recuperata</option><option value="no" ${i.recovery==='no'?'selected':''}>Non recuperata</option></select></div>
-  <div class="form-actions"><button type="button" class="outline-btn" data-close="1">Annulla</button><button type="submit" class="primary-btn">Salva modifiche</button></div></form>`;
+  <div class="form-grid"><div class="form-group"><label for="editItemQty">Quantità coinvolta</label><input id="editItemQty" type="number" min="1" max="100000" step="1" value="${i.qty}" required></div><div class="form-group"><label for="editItemPrice">Prezzo unitario di vendita (€)</label><input id="editItemPrice" type="number" min="0" max="1000000" step="0.01" value="${i.price}" required></div></div>
+  <div class="form-group"><label for="editItemRecovery">Merce recuperata?</label><select id="editItemRecovery"><option value="yes" ${status==='yes'?'selected':''}>Sì, tutta</option><option value="no" ${status==='no'?'selected':''}>No</option><option value="partial" ${status==='partial'?'selected':''}>In parte</option></select></div>
+  <div class="form-group" id="editItemRecoveredWrap" ${status==='partial'?'':'hidden'}><label for="editItemRecovered">Quantità recuperata</label><input id="editItemRecovered" type="number" min="1" max="100000" step="1" value="${rec}"></div>
+  <div class="form-group"><label for="editItemReason">Motivo della rettifica</label><input id="editItemReason" maxlength="220" placeholder="Descrivi brevemente la correzione" required></div>
+  <div class="form-actions"><button type="button" class="outline-btn" data-close="1">Annulla</button><button type="submit" class="primary-btn">Salva rettifica</button></div></form>`;
  openModal('Modifica merce',h,'inventoryedit');
 }
 function commitInventoryEdit(form){
- const item=activeInventory().find(v=>v.id===form.dataset.itemId);if(!item)return;
- const name=String($('editItemName').value||'').trim();
- const qty=Number($('editItemQty').value),price=Number($('editItemPrice').value),recovery=$('editItemRecovery').value;
- if(!name||!Number.isInteger(qty)||qty<1||qty>100000||!Number.isFinite(price)||price<0||price>1000000||!['yes','no','unknown'].includes(recovery)){notify('Controlla nome, quantità, prezzo e recupero');return;}
- const old={name:item.name,qty:item.qty,price:item.price,recovery:item.recovery};
- const changes=[];
- if(old.name!==name)changes.push('nome: '+old.name+' → '+name);
- if(old.qty!==qty)changes.push('quantità: '+old.qty+' → '+qty);
- if(old.price!==price)changes.push('prezzo: '+money(old.price)+' → '+money(price));
- if(old.recovery!==recovery)changes.push('recupero: '+(old.recovery||'unknown')+' → '+recovery);
- if(!changes.length){closeModal();nav('inventory');notify('Nessuna modifica');return;}
- Object.assign(item,{name,qty,price,recovery,updatedAt:Date.now()});if(recovery!=='no'){item.archivedAt=Date.now();item.archiveReason='Merce recuperata: non è più una perdita';}
- item.editHistory=Array.isArray(item.editHistory)?item.editHistory:[];
- item.editHistory.unshift({ts:Date.now(),old,newValue:{name,qty,price,recovery}});
- const a=item.alertId?alertById(item.alertId):null;
- if(a)recordAction(a,'Merce modificata: '+item.name+' ('+changes.join('; ')+')');
- save();closeModal();render();nav('inventory');notify('Merce e rapporto aggiornati');
+ const item=state.inventory.find(v=>v.id===form.dataset.itemId&&!v.archivedAt);if(!item)return;
+ const a=alertById(item.alertId);if(!validMerchEvent(a)){notify('Completa prima il rapporto da rivedere');return;}
+ const name=String($('editItemName').value||'').trim(),qty=Number($('editItemQty').value),price=Number($('editItemPrice').value),choice=$('editItemRecovery').value;
+ const rec=choice==='yes'?qty:choice==='no'?0:Number($('editItemRecovered')?.value),reason=String($('editItemReason')?.value||'').trim();
+ if(!name||!Number.isInteger(qty)||qty<1||qty>100000||!Number.isFinite(price)||price<0||price>1000000||!Number.isInteger(rec)||rec<0||rec>qty||choice==='partial'&&(rec===0||rec===qty)){notify('Controlla prodotto, quantità, prezzo e recupero');return;}
+ if(a.report.outcome==='attempt'&&rec<qty){notify('Un tentato furto non può registrare merce definitivamente sottratta: rivedi l’esito oppure il recupero.');return;}
+ const old=reportMerchSnapshot(item),next={name,qty,price,recoveredQty:rec};
+ if(JSON.stringify({name:old.name,qty:old.qty,price:old.price,recoveredQty:old.recoveredQty})===JSON.stringify(next)){closeModal();notify('Nessuna modifica');return;}
+ if(!reason){notify('Indica il motivo della rettifica');return;}
+ Object.assign(item,next,{recovery:merchStatus(qty,rec),updatedAt:Date.now()});
+ item.editHistory=Array.isArray(item.editHistory)?item.editHistory:[];item.editHistory.unshift({ts:Date.now(),operator:operatorName(),old,newValue:{...next},reason});
+ recordAction(a,'Rettifica merce '+item.name+': '+reason);
+ save();closeModal();render();nav('analysis');setAnalysisTab('inventory');notify('Rettifica registrata; rapporto, inventario e statistiche aggiornati');
 }
-
-
 function render(){renderHome();renderHistory();renderAnalysis();renderInventory();renderGuidePage();if(activeIncomingAlertId){const a=alertById(activeIncomingAlertId);if(!a||a.status!=='pending'||clipExpired(a))hideIncomingNotification();}}
 function nav(target){if(target==='inventory'){analysisTab='inventory';target='analysis';setAnalysisTab('inventory');}if(!['home','history','analysis','guide'].includes(target))return;screen=target;document.querySelectorAll('.screen').forEach(el=>el.classList.toggle('active',el.id==='page-'+target));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===target));if(target==='history')renderHistory();window.scrollTo({top:0,behavior:'instant'});}
 function openModal(title,html,type,wide=false){if(activeIncomingAlertId){pendingIncomingAlertId=activeIncomingAlertId;hideIncomingNotification();}lastFocus=document.activeElement;modal=type;$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('modalBody').scrollTop=0;$('dialog').classList.toggle('wide',wide);$('dialog').classList.toggle('support-dialog',type==='support');$('modalRoot').classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>$('closeModal').focus(),40);}
@@ -3500,23 +3530,36 @@ function exportAnalysisAlerts(){
  downloadCsv('EOS_Intelligence_segnalazioni.csv',data);
 }
 function exportAnalysisReports(){
- const rows=filteredReportRows();
- const data=[['ID segnalazione','Data','Ora','Telecamera','Area / zona','Esito segnalazione','Stato rapporto','Esito finale','Azioni del personale','Altro (azione)','Escalation critica','Note operative','Merce associata','Quantità totale','Valore merce EUR']];
+ const rows=filteredReportRows(),data=[['ID segnalazione','Data evento','Ora','Telecamera','Area / zona','Stato evento','Stato rapporto','Esito finale','Azioni del personale','Altro (azione)','Escalation critica','Note operative','Merce coinvolta','Quantità coinvolta','Valore commerciale coinvolto EUR','Quantità recuperata','Valore commerciale recuperato EUR','Quantità non recuperata','Valore commerciale non recuperato EUR']];
  for(const a of rows){
-  const r=a.report||{},items=activeInventory().filter(i=>i.alertId===a.id);
-  data.push([a.id,formatDate(a.ts),formatTime(a.ts),a.camera,a.area||'',viewStatus(a),r.needsReview?'Da rivedere':r.closed?'Completato':r.draft?'Bozza':'Da completare',REPORT_OUTCOMES[r.outcome]||'',(r.actions||[]).join(', '),r.other||'',a.critical?'Sì':'No',combinedReportNotes(a),items.map(i=>i.name+' x'+i.qty+' ('+inventoryRecoveryLabel(i)+')').join(' | '),items.reduce((n,i)=>n+i.qty,0),items.reduce((n,i)=>n+itemValue(i),0).toFixed(2)]);
+  const report=a.report||{},items=report.closed?reportMerchItems(a):report.itemsDraft||[];
+  data.push([a.id,formatDate(a.ts),formatTime(a.ts),a.camera,a.area||'',viewStatus(a),report.needsReview?'Da rivedere':report.closed?'Completato':report.draft?'Bozza':'Da completare',REPORT_OUTCOMES[report.outcome]||'',(report.actions||[]).join(', '),report.other||'',a.critical?'Sì':'No',combinedReportNotes(a),items.map(i=>i.name+' ×'+i.qty+' (recuperati '+merchRecoveredQty(i)+')').join(' | '),merchandiseCount(items),merchandiseValue(items).toFixed(2),merchandiseCount(items,'recovered'),merchandiseValue(items,'recovered').toFixed(2),merchandiseCount(items,'lost'),merchandiseValue(items,'lost').toFixed(2)]);
  }
  downloadCsv('EOS_Intelligence_rapporti.csv',data);
 }
-function exportInventory(){let lines=[['Prodotto','Evento/Segnalazione','Quantità','Valore unitario EUR','Valore totale EUR','Merce recuperata']];for(let i of activeInventory())lines.push([i.name,i.alertId||i.eventId,i.qty,i.price.toFixed(2),(i.qty*i.price).toFixed(2),i.recovery==='yes'?'Si':i.recovery==='no'?'No':'Non noto']);let csv=lines.map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(';')).join('\r\n');let link=document.createElement('a');link.href=URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}));link.download='EOS_Intelligence_inventario.csv';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(link.href),2000);notify('Inventario esportato');}
-
+function exportInventory(){
+ const lines=[['Prodotto','Evento/Segnalazione','Quantità non recuperata','Prezzo unitario di vendita EUR','Valore commerciale non recuperato EUR','Data evento','Ultima registrazione/rettifica']];
+ for(const i of activeInventory()){const a=alertById(i.alertId);lines.push([i.name,i.alertId||i.eventId,i.qty,i.price.toFixed(2),itemValue(i).toFixed(2),a?formatDate(a.ts):'',formatDate(inventoryTimestamp(i))]);}
+ downloadCsv('EOS_Intelligence_inventario.csv',lines);
+}
 const REPORT_ACTIONS=['Nessun intervento','Osservazione a distanza','Responsabile avvisato','Intervento verbale del personale','Deterrenza vocale attivata','Supporto interno o sicurezza richiesto','Servizi di emergenza contattati','Altro (specificare)'];
 function renderReportItemDraft(id){
- const a=alertById(id);if(!a)return;
- const existing=activeInventory().filter(i=>i.alertId===id);
- const slot=$('reportItemsSummary');if(!slot)return;
- const entries=[...existing.map(i=>({name:i.name,qty:i.qty,price:i.price,stored:true})),...pendingReportItems];
- slot.innerHTML=entries.map(i=>`<div class="eos-item-row"><span><strong>${esc(i.name)}</strong> · ${i.qty} × ${money(i.price)}</span><span>${i.stored?'In inventario':'Da salvare'}</span></div>`).join('');
+ const a=alertById(id),slot=$('reportItemsSummary');if(!a||!slot)return;
+ const items=pendingReportItems,recovered=merchandiseValue(items,'recovered'),lost=merchandiseValue(items,'lost');
+ const total=merchandiseValue(items),nTotal=merchandiseCount(items),nRecovered=merchandiseCount(items,'recovered'),nLost=merchandiseCount(items,'lost');
+ slot.innerHTML=items.length?items.map((i,n)=>`<div class="eos-r20-merchline"><div class="eos-r20-merchline-main"><strong>${esc(i.name)}</strong><span>${i.qty} × ${money(i.price)} · Recuperati ${merchRecoveredQty(i)} · Non recuperati ${i.qty-merchRecoveredQty(i)}</span></div><div class="eos-r20-merchline-buttons"><button type="button" class="outline-btn" data-merch-edit-index="${n}">Modifica</button><button type="button" class="outline-btn" data-merch-remove-index="${n}">Rimuovi</button></div></div>`).join(''):'<p class="report-item-hint">Nessun prodotto inserito. La registrazione della merce è facoltativa.</p>';
+ const sums=$('reportItemsTotals');if(sums)sums.innerHTML=items.length?`<strong>Riepilogo merce</strong><div>Coinvolta: ${nTotal} articoli · ${money(total)}</div><div>Recuperata: ${nRecovered} · ${money(recovered)}</div><div>Non recuperata: ${nLost} · ${money(lost)}</div><small>Solo gli articoli non recuperati di un furto accertato entreranno nell’Inventario dopo il completamento del rapporto.</small>`:'';
+}
+function reportRecoveryInput(){
+ const qty=Number($('reportItemQty')?.value)||0,sel=$('reportItemRecovery')?.value||'no',rec=sel==='yes'?qty:sel==='no'?0:Number($('reportItemRecovered')?.value)||0;
+ const wrap=$('reportItemRecoveredWrap');if(wrap)wrap.hidden=sel!=='partial';
+ const note=$('reportItemRecoveryPreview');if(note)note.textContent=qty>0&&rec>=0&&rec<=qty?`Recuperati: ${rec} · Non recuperati: ${qty-rec}`:'Controlla quantità coinvolta e recuperata';
+}
+function resetReportMerchEditor(){
+ stagedMerchEditIndex=-1;
+ const pane=$('reportAddItemPane');if(pane)pane.hidden=true;
+ for(const [id,val] of [['reportItemName',''],['reportItemQty','1'],['reportItemPrice',''],['reportItemRecovery','no'],['reportItemRecovered','1']]){const el=$(id);if(el)el.value=val;}
+ const btn=$('reportStageItem');if(btn)btn.textContent='Aggiungi al rapporto';reportRecoveryInput();
 }
 function combinedReportNotes(a){
  const operational=String(a.report?.notes||'').trim(),legacy=String(a.criticalNotes||'').trim();
@@ -3532,89 +3575,118 @@ function reportViewerField(label,value){
 }
 function openReport(id,edit=false){
  const a=alertById(id);if(!a||a.status==='pending'){notify('Prima verifica la segnalazione');return;}
- selectedAlertId=id;pendingReportItems=[];
- const r=a.report||{},acts=r.actions||[r.action].filter(Boolean),linked=activeInventory().filter(i=>i.alertId===id);
+ selectedAlertId=id;stagedMerchEditIndex=-1;
+ const r=a.report||{},acts=r.actions||[r.action].filter(Boolean),linked=reportMerchItems(a);
+ pendingReportItems=(r.draft||r.needsReview)?(r.itemsDraft||[]).map(reportMerchSnapshot):linked.map(reportMerchSnapshot);
  const reportChoice=a.status==='confirmed'?(r.needsReview?(a.reviewOutcome||r.preliminaryOutcome):r.preliminaryOutcome!==undefined?r.preliminaryOutcome:(r.outcome||a.reviewOutcome)):null;
  const intro=`<p class="report-modal-intro">Segnalazione <strong>${esc(id)}</strong> · ${esc(a.camera)} · ${formatDate(a.ts)}</p>
  <div class="report-link-summary"><strong>Esito segnalazione:</strong> <span class="eos-inline-status">${statusColorDot(a)}${esc(viewStatus(a))}</span></div>`;
- // A completed report always opens read-only, until the operator expressly selects Modifica rapporto.
  if(r.closed&&!edit){
   const chosen=a.status==='dismissed'?'Scartata · '+(a.dismissReason||'Motivo non indicato'):(REPORT_OUTCOMES[r.outcome]||'Non indicato');
   const actionLabels=acts.filter(Boolean).map(v=>`<span class="report-view-action">${esc(v==='Altro (specificare)'&&r.other?('Altro: '+r.other):v)}</span>`).join('');
-  const merce=linked.map(i=>`<div class="report-view-product"><span>${esc(i.name)} · ${i.qty} × ${money(i.price)}${i.recovery==='yes'?' · Recuperata':i.recovery==='no'?' · Non recuperata':''}</span></div>`).join('');
+  const merchList=linked.map(i=>`<div class="report-view-product"><span><strong>${esc(i.name)}</strong> · Coinvolti ${i.qty} × ${money(i.price)} · Recuperati ${merchRecoveredQty(i)} · Non recuperati ${i.qty-merchRecoveredQty(i)}</span></div>`).join('');
+  const sums=linked.length?`<p><strong>Valore coinvolto:</strong> ${money(merchandiseValue(linked))} · <strong>Recuperato:</strong> ${money(merchandiseValue(linked,'recovered'))} · <strong>Non recuperato:</strong> ${money(merchandiseValue(linked,'lost'))}</p>`:'';
   const html=`${intro}<div class="report-view" aria-label="Rapporto completato in sola lettura">
   ${reportViewerField('Esito finale dell’evento',esc(chosen))}
   ${reportViewerField('Azioni del personale',actionLabels||'Nessuna azione registrata')}
   ${reportViewerField('Gestione della sicurezza',a.critical?'Escalation critica segnalata':'Non segnalata')}
-  
-  ${reportViewerField('Perdite effettive registrate',merce||'Nessuna perdita di merce registrata')}
+  ${reportViewerField('Merce coinvolta, recuperata e non recuperata',merchList+sums||'Nessuna merce registrata')}
   ${combinedReportNotes(a)?reportViewerField('Note operative',esc(combinedReportNotes(a)).replace(/\n/g,'<br>')):''}
   <div class="report-form-actions report-view-actions"><button type="button" class="primary-btn" data-report-modify="${esc(id)}">${icon('edit')} Modifica rapporto</button></div>
   </div>`;
-  openModal('Rapporto evento',html,'report',true);
-  return;
+  openModal('Rapporto evento',html,'report',true);return;
  }
  const completedEdit=!!r.closed&&edit;
+ const archived=state.inventory.filter(i=>i.alertId===id&&i.archivedAt).slice(-12).reverse();
  const html=`${intro}
  <form id="reportForm" data-report-id="${esc(id)}" data-report-mode="${completedEdit?'edit-completed':'new-or-draft'}">
- <div class="report-form-section">1. ${a.status==='dismissed'?'Motivo dello scarto':'Esito finale dell’evento'}</div>
-  ${a.status==='dismissed'?`<div class="report-outcome-list"><p class="report-choice-info">${esc(a.dismissReason||'Motivo non specificato')} · Per cambiare la verifica usa «Modifica verifica» nello Storico.</p></div>`:`<div class="report-outcome-list">${Object.entries(REPORT_OUTCOMES).map(([value,label])=>`<label class="report-outcome-item"><input type="radio" name="reportOutcome" value="${value}" ${reportChoice===value?'checked':''}><span>${label}</span></label>`).join('')}</div>`}
- <div class="report-form-section">2. Azioni del personale (facoltative)</div>
+ <div class="report-form-section">${a.status==='dismissed'?'Motivo dello scarto':'Esito finale dell’evento'}</div>
+ ${a.status==='dismissed'?`<div class="report-outcome-list"><p class="report-choice-info">${esc(a.dismissReason||'Motivo non specificato')} · Per cambiare la verifica usa «Modifica verifica» nello Storico.</p></div>`:`<div class="report-outcome-list">${Object.entries(REPORT_OUTCOMES).map(([value,label])=>`<label class="report-outcome-item"><input type="radio" name="reportOutcome" value="${value}" ${reportChoice===value?'checked':''}><span>${label}</span></label>`).join('')}</div>`}
+ <div class="report-form-section">Azioni del personale (facoltative)</div>
  <div class="eos-checkbox-list">${REPORT_ACTIONS.map(v=>`<label class="eos-check-option"><input type="checkbox" name="reportActions" value="${esc(v)}" ${acts.includes(v)?'checked':''}><span>${esc(v)}</span></label>`).join('')}</div>
  <div class="form-group" id="reportOtherWrap" ${acts.includes('Altro (specificare)')?'':'hidden'}><label for="reportOther">Specifica l'altra azione</label><textarea id="reportOther" rows="1" maxlength="350">${esc(r.other||'')}</textarea></div>
- <div class="report-form-section">3. Gestione della sicurezza (facoltativa)</div>
+ <div class="report-form-section">Gestione della sicurezza (facoltativa)</div>
  <label class="eos-check-option"><input type="checkbox" id="reportCritical" ${a.critical?'checked':''}><span>Situazione critica segnalata</span></label>
- <div id="reportMerchSection" ${a.status!=='confirmed'||reportChoice!=='theft'?'hidden':''}><div class="report-form-section">4. Merce effettivamente sottratta e non recuperata (facoltativa)</div><div id="reportItemsSummary" class="eos-items-list"></div>
- <button type="button" id="reportAddItemToggle" class="eos-full-btn outline-btn">${icon('plus')} Aggiungi perdita</button>
+ <div id="reportMerchSection" ${a.status!=='confirmed'||!['theft','attempt'].includes(reportChoice)?'hidden':''}>
+ <div class="report-form-section">Merce coinvolta (facoltativa)</div>
+ <p class="report-item-hint">Valori commerciali calcolati sul prezzo di vendita al pubblico. La merce recuperata resta nel rapporto; l’Inventario contabilizza solo la merce non recuperata del furto accertato.</p>
+ <div id="reportItemsSummary" class="eos-items-list"></div><div id="reportItemsTotals" class="eos-r20-merch-totals"></div>
+ <button type="button" id="reportAddItemToggle" class="eos-full-btn outline-btn">${icon('plus')} Aggiungi merce</button>
  <div id="reportAddItemPane" class="eos-report-item-pane" hidden>
  <div class="form-group"><label for="reportItemName">Prodotto</label><input id="reportItemName" type="text" maxlength="85" placeholder="Prodotto"></div>
- <div class="form-grid"><div class="form-group"><label for="reportItemQty">Quantità</label><input id="reportItemQty" type="number" value="1" min="1" max="100000" step="1"></div><div class="form-group"><label for="reportItemPrice">Valore unitario (€)</label><input id="reportItemPrice" type="number" min="0" step="0.01" max="1000000" placeholder="0,00"></div></div>
- <p class="report-item-hint">Inserisci soltanto i prodotti non recuperati. La merce recuperata può essere descritta nelle note.</p>
- <button type="button" class="primary-btn" id="reportStageItem">Aggiungi al rapporto</button></div></div>
- <div class="report-form-section">5. Note operative (facoltative)</div><div class="form-group"><textarea id="reportNotes" rows="2" maxlength="1500" placeholder="">${esc(combinedReportNotes(a))}</textarea></div>
+ <div class="form-grid"><div class="form-group"><label for="reportItemQty">Quantità coinvolta</label><input id="reportItemQty" type="number" value="1" min="1" max="100000" step="1"></div><div class="form-group"><label for="reportItemPrice">Prezzo unitario di vendita (€)</label><input id="reportItemPrice" type="number" min="0" step="0.01" max="1000000" placeholder="0,00"></div></div>
+ <div class="form-group"><label for="reportItemRecovery">Merce recuperata?</label><select id="reportItemRecovery"><option value="no">No</option><option value="yes">Sì, tutta</option><option value="partial">In parte</option></select></div>
+ <div class="form-group" id="reportItemRecoveredWrap" hidden><label for="reportItemRecovered">Quantità recuperata</label><input id="reportItemRecovered" type="number" value="1" min="1" max="100000" step="1"></div>
+ <p class="report-item-hint" id="reportItemRecoveryPreview">Recuperati: 0 · Non recuperati: 1</p>
+ <div class="eos-r20-merchline-buttons"><button type="button" class="primary-btn" id="reportStageItem">Aggiungi al rapporto</button><button type="button" class="outline-btn" data-merch-cancel>Chiudi</button></div></div>
+ ${archived.length?`<details class="eos-revision-log"><summary>Registrazioni archiviate · da rivedere se necessario (${archived.length})</summary>${archived.map(i=>`<div class="eos-r20-archived-row"><span>${esc(i.name)} · ${i.qty} pezzi · ${esc(i.archiveReason||'Rettifica')}</span><button type="button" class="outline-btn" data-merch-restore="${esc(i.id)}">Riprendi nel rapporto</button></div>`).join('')}</details>`:''}
+ </div>
+ <div class="report-form-section">Note operative (facoltative)</div><div class="form-group"><textarea id="reportNotes" rows="2" maxlength="1500" placeholder="">${esc(combinedReportNotes(a))}</textarea></div>
+ ${completedEdit?`<div class="form-group"><label for="reportRevisionReason">Motivo della rettifica (se modifichi merce o esito)</label><input id="reportRevisionReason" maxlength="220" placeholder="Es. recupero successivo o correzione quantità"></div>`:''}
  <div class="report-form-actions">${completedEdit?`<button type="button" class="outline-btn" data-report-cancel-edit="${esc(id)}">Annulla</button><button type="submit" class="primary-btn">Salva modifiche</button>`:`<button type="button" class="outline-btn" data-save-report-draft="${esc(id)}">Salva bozza</button><button type="submit" class="primary-btn">Completa rapporto</button>`}</div></form>`;
- openModal(completedEdit?'Modifica rapporto':'Completa rapporto evento',html,'report',true);renderReportItemDraft(id);autosizeReportTextareas();
+ openModal(completedEdit?'Modifica rapporto':'Completa rapporto evento',html,'report',true);
+ const merch=$('reportMerchSection'),actions=[...document.querySelectorAll('#reportForm .report-form-section')].find(el=>el.textContent.includes('Azioni del personale'));
+ if(merch&&actions)actions.before(merch); // La merce compare subito dopo l’esito, non sotto una lunga lista di azioni
+ renderReportItemDraft(id);autosizeReportTextareas();reportRecoveryInput();
+}
+function reconcileReportMerchandise(a,items,reason){
+ const now=Date.now(),original=state.inventory.filter(i=>i.alertId===a.id&&!i.archivedAt),selectedIds=new Set(items.map(i=>i.sourceId).filter(Boolean));
+ for(const old of original){if(!selectedIds.has(old.id)){
+  old.archivedAt=now;old.updatedAt=now;old.archiveReason=reason+' · Rimossa dal rapporto';
+  recordAction(a,'Merce archiviata: '+old.name+' · '+reason);
+ }}
+ for(const item of items){
+  const src=item.sourceId?state.inventory.find(i=>i.id===item.sourceId):null;
+  const props={name:item.name,qty:item.qty,price:item.price,recoveredQty:merchRecoveredQty(item),recovery:merchStatus(item.qty,merchRecoveredQty(item))};
+  if(src&&!src.archivedAt&&src.alertId===a.id){
+   const old=reportMerchSnapshot(src);
+   if(['name','qty','price','recoveredQty'].some(k=>old[k]!==props[k])){
+    src.editHistory=src.editHistory||[];src.editHistory.unshift({ts:now,operator:operatorName(),old,newValue:{...props},reason});
+    Object.assign(src,props,{updatedAt:now});recordAction(a,'Rettifica merce: '+item.name+' · '+reason);
+   }
+  }else{
+   const id='INV-'+now+'-'+Math.floor(Math.random()*1e9);
+   state.inventory.unshift({id,alertId:a.id,eventId:a.id,...props,createdAt:now,updatedAt:now,...(src?{restoredFromId:src.id}:{}),editHistory:src?[{ts:now,operator:operatorName(),reason:'Ripresa documentata: '+reason,old:reportMerchSnapshot(src),newValue:{...props}}]:[]});
+   recordAction(a,(src?'Merce ripresa e revisionata: ':'Merce registrata: ')+item.name);
+  }
+ }
 }
 function commitReport(id,draft=false){
  const a=alertById(id),form=$('reportForm');if(!a||!form||a.status==='pending'){notify('Verifica prima la segnalazione');return;}
- const completedEdit=form.dataset.reportMode==='edit-completed';
- const selected=form.querySelector('input[name="reportOutcome"]:checked');
- const outcome=a.status==='confirmed'?(selected?.value||''):null;
- const isDraft=!completedEdit&&draft;
+ const completedEdit=form.dataset.reportMode==='edit-completed',selected=form.querySelector('input[name="reportOutcome"]:checked');
+ const outcome=a.status==='confirmed'?(selected?.value||''):null,isDraft=!completedEdit&&draft,merchAllowed=a.status==='confirmed'&&['theft','attempt'].includes(outcome);
  if(a.status==='confirmed'&&!isDraft&&!Object.hasOwn(REPORT_OUTCOMES,outcome)){notify('Seleziona un esito finale');return;}
  if(a.status==='dismissed'&&selected){notify('Una segnalazione scartata non può avere un esito di furto');return;}
- if(pendingReportItems.length&&(a.status!=='confirmed'||outcome!=='theft')){notify('Le perdite si registrano solo per un furto accertato. Rimuovi la merce non compatibile.');return;}
- if(isDraft&&pendingReportItems.length){notify('Completa il rapporto prima di registrare le perdite, oppure non aggiungere merce alla bozza');return;}
- const acts=[...form.querySelectorAll('input[name="reportActions"]:checked')].map(i=>i.value);
- const actions=acts.includes('Nessun intervento')?['Nessun intervento']:acts;
+ if(!merchAllowed&&pendingReportItems.length){notify('Rimuovi la merce: puoi registrarla soltanto con Furto accertato o Tentato furto accertato.');return;}
+ const staged=pendingReportItems.map(reportMerchSnapshot);
+ for(const i of staged){if(!i.name.trim()||!Number.isInteger(i.qty)||i.qty<1||i.qty>100000||!Number.isFinite(i.price)||i.price<0||i.price>1e6||!Number.isInteger(i.recoveredQty)||i.recoveredQty<0||i.recoveredQty>i.qty){notify('Controlla i dati della merce');return;}}
+ if(!isDraft&&outcome==='attempt'&&staged.some(i=>i.recoveredQty<i.qty)){notify('Tentato furto: risulta merce non recuperata. Verifica e modifica il recupero oppure l’esito prima di completare il rapporto.');return;}
+ const acts=[...form.querySelectorAll('input[name="reportActions"]:checked')].map(i=>i.value),actions=acts.includes('Nessun intervento')?['Nessun intervento']:acts;
  const other=String($('reportOther')?.value||'').trim().slice(0,350);
  if(actions.includes('Altro (specificare)')&&!other){notify('Specifica l’azione selezionata come Altro');return;}
  const critical=$('reportCritical')?.checked||false;
  if(a.critical&&!critical&&!window.confirm('Rimuovere una situazione critica già segnalata? La correzione resterà registrata nello storico.'))return;
- const notes=String($('reportNotes')?.value||'').trim().slice(0,1500);
- const prevCritical=!!a.critical,oldReport=a.report||{};
- if(oldReport.closed||oldReport.needsReview||oldReport.draft)snapshotReport(a,'Modifica rapporto');
- a.report={needsReview:false,closed:!isDraft,draft:isDraft,
+ const notes=String($('reportNotes')?.value||'').trim().slice(0,1500),oldReport=a.report||{},prevCritical=!!a.critical;
+ const oldCurrent=state.inventory.filter(i=>i.alertId===id&&!i.archivedAt).map(reportMerchSnapshot);
+ const merchChanged=JSON.stringify(oldCurrent.map(i=>({...i})).sort((x,y)=>String(x.sourceId).localeCompare(String(y.sourceId))))!==JSON.stringify(staged.map(i=>({...i})).sort((x,y)=>String(x.sourceId).localeCompare(String(y.sourceId))));
+ const reason=String($('reportRevisionReason')?.value||'').trim().slice(0,220);
+ if(completedEdit&&(merchChanged||outcome!==oldReport.outcome)&&!reason){notify('Indica il motivo della rettifica di merce o esito');return;}
+ if(oldReport.closed||oldReport.needsReview||oldReport.draft)snapshotReport(a,completedEdit?'Rettifica rapporto: '+(reason||'Correzione dettagli'):isDraft?'Aggiornamento bozza':'Completamento rapporto');
+ a.report={needsReview:isDraft&&!!oldReport.needsReview,closed:!isDraft,draft:isDraft,
   outcome:a.status==='confirmed'&&Object.hasOwn(REPORT_OUTCOMES,outcome)?outcome:null,
-  preliminaryOutcome:a.status==='confirmed'?outcome:null,
+  preliminaryOutcome:a.status==='confirmed'?outcome:null,itemsDraft:isDraft?staged:[],
   actions,other,notes,completedAt:isDraft?null:(completedEdit?(oldReport.completedAt||Date.now()):Date.now()),updatedAt:Date.now()};
  if(a.status==='confirmed'&&Object.hasOwn(REPORT_OUTCOMES,outcome))a.reviewOutcome=outcome;
  if(a.status==='dismissed')a.reviewOutcome=null;
  a.critical=critical;a.criticalNotes='';
  if(prevCritical!==critical)recordAction(a,critical?'Escalation critica segnalata dal rapporto':'Escalation critica rimossa dal rapporto');
- if(!isDraft){
-  for(const item of pendingReportItems){
-   const ts=Date.now();state.inventory.unshift({id:'INV-'+ts+'-'+Math.floor(Math.random()*10000),alertId:id,eventId:id,...item,recovery:'no',createdAt:ts,updatedAt:ts});
-   recordAction(a,'Perdita registrata: '+item.name);
-  }
- }else if(pendingReportItems.length){notify('Salva il rapporto completo per registrare le perdite');}
+ if(!isDraft)reconcileReportMerchandise(a,staged,reason||'Rapporto completato');
  pendingReportItems=[];
  archiveInvalidInventory(id,'Rettifica esito o rapporto');
  recordAction(a,completedEdit?'Rapporto modificato'+(outcome?' · '+REPORT_OUTCOMES[outcome]:' · Scartata'):isDraft?'Bozza rapporto salvata':'Rapporto evento completato'+(outcome?' · '+REPORT_OUTCOMES[outcome]:' · Scartata'));
  save();closeModal();render();if(screen==='analysis')setAnalysisTab('reports');showAlert(id);
- notify(completedEdit?'Modifiche salvate':isDraft?'Bozza rapporto salvata':'Rapporto salvato');
+ notify(completedEdit?'Modifiche salvate':isDraft?'Bozza rapporto e merce salvate (non conteggiate)':'Rapporto salvato');
 }
-
 window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;
  if(btn.hasAttribute('data-return-alert')){returnToGuideAlert();return;}
  if(btn.dataset.guideTab){guideTab=btn.dataset.guideTab;guideActiveProcedure=null;guideSearch='';renderGuidePage();return;}
@@ -3638,14 +3710,14 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
  if(btn.dataset.reportInventory){openReport(btn.dataset.reportInventory);return;}
  if(btn.dataset.saveReportDraft){commitReport(btn.dataset.saveReportDraft,true);return;}
  if(btn.dataset.page){if(modal)closeModal();if(btn.dataset.page==='guide'){guideReturnContext=null;guideActiveProcedure=null;renderGuidePage();}nav(btn.dataset.page);return;}
- if(btn.id==='viewRecent'){historyPeriod='recent';historyStatus='all';historyOutcome='all';historyVisibleLimit=10;nav('history');return;}
+ if(btn.id==='viewRecent'){historyPeriod='7d';historyStatus='all';historyOutcome='all';historyVisibleLimit=10;nav('history');return;}
  
   if(btn.dataset.statsSection){statsPage=btn.dataset.statsSection;statsDetail=null;statsDetailLimit=8;renderAnalysis();window.scrollTo(0,0);return;}
   if(btn.hasAttribute('data-stats-section-back')){statsPage=null;statsDetail=null;renderStatsShell();window.scrollTo(0,0);return;}
    if(btn.hasAttribute('data-home-pending-toggle')){homeShowAllPending=!homeShowAllPending;renderHome();return;}
    if(btn.id==='historyShowMore'){historyVisibleLimit+=10;renderHistory();return;}
   if(btn.id==='eosAlertReset'){alertPeriod='recent';alertStatus='all';alertSearch='';alertOpenGroup=null;alertDetailGroup=null;renderAlertGroups();return;}
-  if(btn.id==='eosReportReset'){reportPeriod='recent';reportStatus='all';reportsSearch='';reportOpenGroup=null;reportDetailGroup=null;renderReports();return;}
+  if(btn.id==='eosReportReset'){reportPeriod='7d';reportStatus='all';reportsSearch='';reportOpenGroup=null;reportDetailGroup=null;renderReports();return;}
   if(btn.dataset.alertGroup){alertDetailGroup=btn.dataset.alertGroup;alertDetailAll=false;alertDetailLimit=8;renderAlertGroups();window.scrollTo(0,0);return;}
   if(btn.hasAttribute('data-alert-back')){alertDetailGroup=null;alertDetailAll=false;renderAlertGroups();window.scrollTo(0,0);return;}
   if(btn.hasAttribute('data-alert-detail-all')){alertDetailAll=true;alertDetailLimit=8;renderAlertDetail();return;}
@@ -3679,7 +3751,7 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
  
  if(btn.dataset.inventoryBreakdown){openInventoryBreakdown(btn.dataset.inventoryBreakdown);return;}
  if(btn.dataset.inventoryEdit){openEditInventoryItem(btn.dataset.inventoryEdit);return;}
- if(btn.dataset.remove){if(window.confirm('Eliminare questo prodotto dall’inventario?')){state.inventory=state.inventory.filter(i=>i.id!==btn.dataset.remove);save();render();notify('Prodotto eliminato');}return;}
+ if(btn.dataset.remove){const i=state.inventory.find(v=>v.id===btn.dataset.remove&&!v.archivedAt);if(i){const reason=window.prompt('Motivo della rimozione della registrazione (sarà conservata nello storico):');if(reason?.trim()){i.archivedAt=Date.now();i.archiveReason='Rimozione documentata: '+reason.trim().slice(0,220);i.updatedAt=Date.now();const a=alertById(i.alertId);if(a)recordAction(a,'Merce rimossa: '+i.name+' · '+reason.trim().slice(0,120));save();render();notify('Registrazione archiviata con motivazione');}}return;}
  if(btn.dataset.status){saveStatus(btn.dataset.status);return;}
  if(btn.id==='homeDeterrence'){openDeterrence(btn.dataset.homeId,'home');return;}
  if(btn.id==='openDeterrence'){openDeterrence(selectedAlertId,'detail');return;}
@@ -3691,15 +3763,19 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
  if(btn.id==='goCompleteGuide'){openFullGuideFromAlert();return;}
  if(btn.id==='backToAlert'){if(procedureOrigin==='home'){closeModal();nav('home');}else if(selectedAlertId)showAlert(selectedAlertId);return;}
  if(btn.id==='recordFromAlert'){openReport(selectedAlertId);return;}
- if(btn.id==='reportAddItemToggle'){const pane=$('reportAddItemPane');pane.hidden=!pane.hidden;return;}
+ if(btn.id==='reportAddItemToggle'){resetReportMerchEditor();$('reportAddItemPane').hidden=false;return;}
+ if(btn.dataset.merchEditIndex!==undefined){const index=Number(btn.dataset.merchEditIndex),item=pendingReportItems[index];if(!item)return;stagedMerchEditIndex=index;$('reportAddItemPane').hidden=false;$('reportItemName').value=item.name;$('reportItemQty').value=item.qty;$('reportItemPrice').value=item.price;$('reportItemRecovery').value=merchStatus(item.qty,merchRecoveredQty(item));$('reportItemRecovered').value=merchRecoveredQty(item);$('reportStageItem').textContent='Aggiorna riga';reportRecoveryInput();return;}
+ if(btn.dataset.merchRemoveIndex!==undefined){pendingReportItems.splice(Number(btn.dataset.merchRemoveIndex),1);resetReportMerchEditor();renderReportItemDraft($('reportForm')?.dataset.reportId);return;}
+ if(btn.hasAttribute('data-merch-cancel')){resetReportMerchEditor();return;}
+ if(btn.dataset.merchRestore){const a=alertById($('reportForm')?.dataset.reportId),i=state.inventory.find(i=>i.id===btn.dataset.merchRestore&&i.archivedAt&&i.alertId===a?.id);if(!i)return;if(!['theft','attempt'].includes(document.querySelector('input[name="reportOutcome"]:checked')?.value)){notify('Seleziona prima Furto accertato o Tentato furto accertato');return;}if(pendingReportItems.some(v=>v.sourceId===i.id)){notify('Registrazione già presente nella bozza');return;}if(window.confirm('Riprendere questa registrazione archiviata nel rapporto? Sarà conteggiata solo dopo il salvataggio definitivo.')){pendingReportItems.push(reportMerchSnapshot(i));renderReportItemDraft(a.id);notify('Registrazione aggiunta alla revisione del rapporto');}return;}
  if(btn.id==='reportStageItem'){
   const id=$('reportForm')?.dataset.reportId;
-  const name=String($('reportItemName')?.value||'').trim();const qty=Number($('reportItemQty')?.value),price=Number($('reportItemPrice')?.value);
-  const recovery='no';
-  if(!name||!Number.isInteger(qty)||qty<1||qty>100000||!Number.isFinite(price)||price<0||price>1e6||!['yes','no'].includes(recovery)){notify('Completa prodotto, quantità, valore e recupero');return;}
-  pendingReportItems.push({name,qty,price,recovery});renderReportItemDraft(id);
-  $('reportItemName').value='';$('reportItemQty').value='1';$('reportItemPrice').value='';
-  notify('Merce aggiunta al rapporto; salva per registrarla');return;
+  const name=String($('reportItemName')?.value||'').trim(),qty=Number($('reportItemQty')?.value),price=Number($('reportItemPrice')?.value),choice=$('reportItemRecovery')?.value;
+  const rec=choice==='yes'?qty:choice==='no'?0:Number($('reportItemRecovered')?.value);
+  if(!name||!Number.isInteger(qty)||qty<1||qty>100000||!Number.isFinite(price)||price<0||price>1e6||!Number.isInteger(rec)||rec<0||rec>qty||choice==='partial'&&(rec===0||rec===qty)){notify('Controlla prodotto, quantità, prezzo e recupero (parziale maggiore di zero e inferiore al totale)');return;}
+  const index=stagedMerchEditIndex,item={name,qty,price,recoveredQty:rec,...(index>=0&&pendingReportItems[index]?.sourceId?{sourceId:pendingReportItems[index].sourceId}:{})};
+  if(index>=0)pendingReportItems[index]=item;else pendingReportItems.push(item);
+  resetReportMerchEditor();renderReportItemDraft(id);notify(index>=0?'Riga aggiornata nella compilazione':'Merce aggiunta alla compilazione; salva il rapporto o la bozza');return;
  }
  if(btn.id==='playVideo'){notify('Riproduzione video non ancora disponibile.');return;}
  if(btn.dataset.close){closeModal();return;}
@@ -3721,8 +3797,9 @@ $('guideContent').addEventListener('input',e=>{
   if(e.target.id==='historyOutcome'){historyOutcome=e.target.value;historyVisibleLimit=10;renderHistory();}
   if(e.target.name==='newAlertStatus')syncChangeOutcomeFields();
   if(e.target.name==='reportOutcome'){
-   const wrap=$('reportMerchSection');if(wrap)wrap.hidden=e.target.value!=='theft';
+   const wrap=$('reportMerchSection');if(wrap)wrap.hidden=!['theft','attempt'].includes(e.target.value);
   }
+  if(['reportItemRecovery','editItemRecovery'].includes(e.target.id)){if(e.target.id==='reportItemRecovery')reportRecoveryInput();else $('editItemRecoveredWrap').hidden=e.target.value!=='partial';}
  });
  document.addEventListener('change',e=>{
   if(e.target.matches('input[name="reportActions"]')){
@@ -3735,7 +3812,7 @@ $('guideContent').addEventListener('input',e=>{
 $('exportInventory').addEventListener('click',exportInventory);$('historyExport').addEventListener('click',exportAnalysisAlerts);
 
 $('exportAnalysisReports').addEventListener('click',exportAnalysisReports);
-document.addEventListener('input',e=>{if(e.target.matches('#reportForm textarea'))autosizeReportTextarea(e.target);});
+document.addEventListener('input',e=>{if(e.target.matches('#reportForm textarea'))autosizeReportTextarea(e.target);if(['reportItemQty','reportItemPrice','reportItemRecovered'].includes(e.target.id))reportRecoveryInput();});
 
 
 $('closeModal').addEventListener('click',closeGuideOrModal);$('modalBackdrop').addEventListener('click',closeGuideOrModal);
