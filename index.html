@@ -2,14 +2,14 @@
 
 <html lang="it"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#f5f8fb" name="theme-color"/>
-<meta name="eos-build" content="7.8.13-navigazione-guida-escalation-20261121-r21"/>
+<meta name="eos-build" content="7.8.13-uniformita-pulizia-20261121-r22"/>
 <script id="eos-auto-update">
 /* Static GitHub Pages: verify the deployed version without clearing local data. */
 (function(){
   'use strict';
   if (!/^https?:$/.test(window.location.protocol)) return;
   var PARAM = '__eos_fresh';
-  var currentVersion = '7.8.13-navigazione-guida-escalation-20261121-r21';
+  var currentVersion = '7.8.13-uniformita-pulizia-20261121-r22';
   var lastCheckTime = 0;
   var checking = false;
   var canonical;
@@ -2279,6 +2279,92 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
  .eos-nav-back{font-size:12px!important}
 }
 
+
+/* r22 — Unica grammatica visiva leggera per navigazione secondaria.
+   Pulsanti X, decisioni ed esportazioni mantengono i rispettivi riquadri. */
+.eos-nav-back,#page-guide .guide-back.eos-nav-back,#page-analysis .eos-back-btn.eos-nav-back{
+  display:inline-flex!important;align-items:center!important;justify-content:flex-start!important;gap:7px!important;
+  width:auto!important;min-height:32px!important;padding:3px 0!important;margin:0 0 13px!important;
+  border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;
+  color:#31576C!important;font-size:13px!important;font-weight:700!important;line-height:1.35!important;text-decoration:none!important;
+}
+.eos-nav-back:hover,#page-guide .guide-back.eos-nav-back:hover,#page-analysis .eos-back-btn.eos-nav-back:hover{
+  color:#1c4358!important;background:transparent!important;text-decoration:underline!important;
+}
+.eos-nav-back svg,#page-guide .guide-back.eos-nav-back svg,#page-analysis .eos-back-btn.eos-nav-back svg{
+  width:17px!important;height:17px!important;transform:none!important;stroke:currentColor!important;fill:none!important;flex-shrink:0;
+}
+/* Tutti i collegamenti di consultazione sono link visivi, non scatole. */
+#page-home .eos-home-history-link,#page-home .eos-home-more,
+#page-analysis .eos-group-viewall,#page-history .eos-group-viewall{
+  display:inline-flex;align-items:center;justify-content:flex-start;gap:9px;
+  width:auto;max-width:100%;min-height:34px;padding:5px 0;margin-top:14px;
+  border:0;border-radius:0;background:transparent;box-shadow:none;
+  color:#31576C;font-size:13px;font-weight:700;text-align:left;cursor:pointer;
+}
+#page-home .eos-home-history-link:hover,#page-home .eos-home-more:hover,
+#page-analysis .eos-group-viewall:hover,#page-history .eos-group-viewall:hover{background:transparent;color:#1c4358;text-decoration:underline}
+#page-home .eos-home-history-link svg,#page-home .eos-home-more svg{width:17px;height:17px;flex:none}
+/* Conteggi senza pill/etichette corniciate (il testo resta accessibile). */
+#page-analysis .eos-group-count,#page-analysis .eos-detail-count,.eos-history-count{
+  display:inline;min-height:0;min-width:0;padding:0;margin:0;border:0;border-radius:0;background:transparent;
+  color:#587282;font-weight:700;font-size:12px;line-height:1.4;box-shadow:none;white-space:nowrap;
+}
+#page-analysis .eos-group-side{gap:10px}
+.eos-history-count{font-weight:500}
+.eos-history-count strong{font-weight:750}
+#page-analysis .eos-detail-head{align-items:baseline;flex-wrap:wrap;row-gap:4px;margin-bottom:14px}
+#page-analysis .eos-detail-head h2{margin:0}
+/* Rapporto, inventario e statistiche non ripetono il periodo già selezionato nel filtro. */
+#page-analysis .eos-detail-period{font-size:12px}
+/* L'azione di modifica merce deve stare sulla stessa riga del cestino, in posizione prevedibile. */
+#page-analysis .eos-merch-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:nowrap;gap:13px;margin-top:2px}
+#page-analysis .eos-merch-actions .eos-edit-merch{display:inline-flex!important;align-items:center!important;gap:6px!important;min-width:auto!important;min-height:36px!important;margin:0!important;padding:7px 10px!important;line-height:1.2!important;white-space:nowrap}
+#page-analysis .eos-merch-actions .trash-btn{flex:none;width:36px;min-width:36px;height:36px;margin:0;padding:7px;display:inline-flex;align-items:center;justify-content:center}
+/* Procedure e Privacy: stessa densità, stessa gerarchia, icona a sinistra e testo compatto. */
+#page-guide .eos-r21-procedure,#page-guide .eos-r22-privacy{max-width:850px}
+#page-guide .eos-r21-procedure-title,#page-guide .eos-r22-privacy .guide-content-header h2{
+  font-size:19px;line-height:1.35;font-weight:750;color:#1e4257;margin:0 0 12px;
+}
+#page-guide .eos-r22-privacy .guide-content-header{margin:0!important}
+#page-guide .eos-r22-privacy{padding:0!important;margin:0!important;background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important}
+#guideReturnBanner{background:transparent!important;border:0!important;border-radius:0!important;padding:0!important;box-shadow:none!important;margin:0 0 14px!important}
+#page-guide .eos-r21-procedure-content,#page-guide .eos-r22-privacy .privacy-facts{display:grid;gap:10px}
+#page-guide .eos-guide-action-card,#page-guide .eos-r22-privacy .privacy-fact{
+  display:flex;align-items:flex-start;gap:11px;
+  padding:13px 14px;border:1px solid #dce7ed;border-radius:12px;box-shadow:none;background:#fff;
+}
+#page-guide .eos-guide-action-card .eos-guide-icon{color:#368E8A;display:inline-flex;flex:none;margin-top:1px}
+#page-guide .eos-guide-action-card--danger .eos-guide-icon{color:#B45F64}
+#page-guide .eos-guide-action-card--safety .eos-guide-icon{color:#31576C}
+#page-guide .eos-guide-action-card .eos-guide-icon svg,#page-guide .eos-r22-privacy .privacy-fact>svg{
+  color:inherit;width:18px;height:18px;flex:none;margin-top:0;stroke:currentColor;fill:none;
+}
+#page-guide .eos-r22-privacy .privacy-fact>svg{color:#368E8A;margin-top:1px}
+#page-guide .eos-guide-card-copy,#page-guide .eos-r22-privacy .privacy-fact>div{flex:1;min-width:0}
+#page-guide .eos-guide-action-card .eos-guide-card-copy h3,#page-guide .eos-r22-privacy .privacy-fact h3{
+  display:block;font-size:14px;line-height:1.35;font-weight:730;color:#31576C;margin:0 0 7px;
+}
+#page-guide .eos-guide-card-copy p,#page-guide .eos-guide-card-copy li,#page-guide .eos-r22-privacy .privacy-fact p{
+  font-size:13px;line-height:1.52;color:#4f6878;margin:0;
+}
+#page-guide .eos-guide-card-copy ul{padding-left:19px;margin:0}
+#page-guide .eos-guide-card-copy li{margin-bottom:5px}
+#page-guide .eos-guide-card-copy li:last-child{margin-bottom:0}
+#page-guide .eos-r22-privacy .privacy-fact p+p{margin-top:9px}
+#page-guide .eos-r22-privacy .eos-privacy-policy-note{padding-top:9px;border-top:1px solid #e7edf0}
+#page-guide .eos-r21-procedure .critical-warning,#page-guide .eos-r21-procedure .critical-box{
+  padding:13px 14px;border-radius:12px;
+}
+#page-guide .eos-r21-procedure .critical-instructions h3{font-size:14px}
+#page-guide .eos-r21-procedure .critical-instructions li,#page-guide .eos-r21-procedure .critical-instructions p{font-size:13px;line-height:1.52}
+@media(max-width:620px){
+ #page-guide .eos-r21-procedure-title,#page-guide .eos-r22-privacy .guide-content-header h2{font-size:18px}
+ #page-guide .eos-guide-action-card,#page-guide .eos-r22-privacy .privacy-fact{padding:12px 13px;gap:10px}
+ #page-guide .eos-guide-card-copy p,#page-guide .eos-guide-card-copy li,#page-guide .eos-r22-privacy .privacy-fact p{font-size:12.5px;line-height:1.48}
+ .eos-nav-back{font-size:12px!important}
+}
+
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
 <symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></symbol>
@@ -2383,7 +2469,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
   </div>
  </div>
  <div id="eosStatsSection" hidden>
-  <button type="button" class="eos-back-btn eos-nav-back" data-stats-section-back><svg><use href="#i-arrow-left"></use></svg> Torna alle Statistiche</button>
+  <button type="button" class="eos-back-btn eos-nav-back" data-stats-section-back><svg><use href="#i-arrow-left"></use></svg><span id="eosStatsBackLabel">Torna alle statistiche</span></button>
   <div class="eos-pane-heading"><h2 id="eosStatsSectionTitle">Segnalazioni</h2></div>
   <div class="eos-filter-panel"><div class="eos-filter-grid">
    <label>Periodo<select id="eosStatsPeriod"><option value="recent">Ultime 24 ore</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutto il periodo</option></select></label>
@@ -2768,10 +2854,10 @@ function renderAlertDetail(){
  if(!alertDetailGroup)return;
  const group=ALERT_GROUPS.find(g=>g.id===alertDetailGroup);if(!group)return;
  const rows=alertCategoryRows(group.id,alertDetailAll),limited=rows.slice(0,alertDetailLimit),more=rows.length-limited.length;
- const p=effectiveAlertPeriod();const periodLabel=alertDetailAll?'Tutte le date':OPERATION_PERIOD_LABELS[p];
+ const p=effectiveAlertPeriod();
  $('eosAlertDetail').innerHTML=`<button type="button" class="eos-back-btn eos-nav-back" data-alert-back>${icon('arrow-left')} Torna alle Segnalazioni</button>
  <div class="eos-detail-head"><h2>${group.label}</h2><span class="eos-detail-count">${rows.length} ${rows.length===1?'segnalazione':'segnalazioni'}</span></div>
- <p class="eos-detail-period">${group.id==='expired'?'Non verificate entro 48 ore · Video non disponibile':periodLabel}</p>
+ ${group.id==='expired'?'<p class="eos-detail-period">Non verificate entro 48 ore · Video non disponibile</p>':''}
  <div class="eos-detail-list">${limited.length?limited.map(a=>rowHtml(a,clipExpired(a))).join(''):'<p class="eos-group-empty">Nessuna segnalazione in questa categoria per il periodo scelto.</p>'}</div>
  ${more>0?`<button type="button" class="eos-group-viewall" data-alert-detail-more>Mostra altre segnalazioni (${more})</button>`:''}
  ${!alertDetailAll&&p!=='all'?`<button type="button" class="eos-group-viewall eos-secondary-link" data-alert-detail-all>Visualizza tutte le segnalazioni ${group.label.toLowerCase()}</button>`:''}`;
@@ -2807,10 +2893,8 @@ function renderReportDetail(){
  if(!reportDetailGroup)return;
  const label=reportDetailGroup==='open'?'Da completare':'Completati';
  const rows=reportCategoryRows(reportDetailGroup,reportDetailAll),limited=rows.slice(0,reportDetailLimit),more=rows.length-limited.length;
- const periodLabel=reportDetailAll?'Tutte le date':OPERATION_PERIOD_LABELS[reportPeriod];
  $('eosReportDetail').innerHTML=`<button type="button" class="eos-back-btn eos-nav-back" data-report-back>${icon('arrow-left')} Torna ai Rapporti</button>
  <div class="eos-detail-head"><h2>${label}</h2><span class="eos-detail-count">${rows.length} ${rows.length===1?'rapporto':'rapporti'}</span></div>
- <p class="eos-detail-period">${periodLabel}${reportDetailGroup==='open'?' · Rapporti aperti sempre accessibili, anche fuori periodo':''}</p>
  <div class="eos-detail-list">${limited.length?limited.map(reportCardHtml).join(''):'<p class="eos-group-empty">Nessun rapporto in questa categoria per il periodo scelto.</p>'}</div>
  ${more>0?`<button type="button" class="eos-group-viewall" data-report-detail-more>Mostra altri rapporti (${more})</button>`:''}
  ${!reportDetailAll&&reportPeriod!=='all'?`<button type="button" class="eos-group-viewall eos-secondary-link" data-report-detail-all>Visualizza tutti i rapporti ${label.toLowerCase()}</button>`:''}`;
@@ -2931,7 +3015,7 @@ function renderHistory(){
  outcome.disabled=historyStatus==='expired';
  const rows=historyRows(),shown=rows.slice(0,historyVisibleLimit);
  $('historyCount').textContent=rows.length;
- list.innerHTML=shown.length?shown.map(a=>`<button type="button" class="home-directory-card history-directory-card eos-status-panel--${badgeStatus(a)}" data-alert="${esc(a.id)}" aria-label="Apri segnalazione ${esc(a.id)}"><span class="home-directory-main">${reviewStateHtml(a)}<strong class="eos-event-outcome" style="--eos-event-accent:${reviewOutcomeInfo(a).color}">${esc(historyStatusOf(a)==='expired'?'Scaduta senza verifica':reviewOutcomeInfo(a).label)}</strong><span class="home-directory-meta">${esc(a.id)} · ${esc(a.camera)} · ${esc(a.area||'Zona non indicata')}</span><span class="home-directory-meta">${formatDate(a.ts)} · ${formatTime(a.ts)}</span>${a.status==='confirmed'?reviewProgressHtml(a):''}${criticalTagHtml(a)}</span><span class="home-directory-side">${icon('arrow')}</span></button>`).join(''):'<div class="home-zero"><h3>Nessuna segnalazione nel periodo selezionato</h3></div>';
+ list.innerHTML=shown.length?shown.map(a=>`<button type="button" class="home-directory-card history-directory-card eos-status-panel--${badgeStatus(a)} eos-event-accent" ${outcomeAccent(a)} data-alert="${esc(a.id)}" aria-label="Apri segnalazione ${esc(a.id)}"><span class="home-directory-main">${reviewStateHtml(a)}<strong class="eos-event-outcome" style="--eos-event-accent:${reviewOutcomeInfo(a).color}">${esc(historyStatusOf(a)==='expired'?'Scaduta senza verifica':reviewOutcomeInfo(a).label)}</strong><span class="home-directory-meta">${esc(a.id)} · ${esc(a.camera)} · ${esc(a.area||'Zona non indicata')}</span><span class="home-directory-meta">${formatDate(a.ts)} · ${formatTime(a.ts)}</span>${a.status==='confirmed'?reviewProgressHtml(a):''}${criticalTagHtml(a)}</span><span class="home-directory-side">${icon('arrow')}</span></button>`).join(''):'<div class="home-zero"><h3>Nessuna segnalazione nel periodo selezionato</h3></div>';
  $('historyShowMore').hidden=rows.length<=historyVisibleLimit;
  $('historyShowMore').textContent=`Mostra altre segnalazioni (${Math.max(0,rows.length-historyVisibleLimit)})`;
 }
@@ -3016,6 +3100,7 @@ function renderStatsShell(){
  $('eosStatsLanding').hidden=section;$('eosStatsSection').hidden=!section;
  if(!section)return;
  $('eosStatsSectionTitle').textContent=statsPage==='alerts'?'Segnalazioni':statsPage==='outcomes'?'Esiti degli eventi':'Inventario';
+ $('eosStatsBackLabel').textContent=statsDetail?'Torna alle statistiche · '+$('eosStatsSectionTitle').textContent:'Torna alle statistiche';
  $('eosStatsStatusField').hidden=statsPage!=='alerts';
  $('eosStatsPeriod').value=statsPeriod;$('eosStatsStatus').value=statsStatus;
  setStatsTab(statsPage);
@@ -3039,16 +3124,14 @@ function renderAnalysis(){
 function renderStatsDetail(){
  if(!statsPage)return;
  $('eosStatsMain').hidden=!!statsDetail;$('eosStatsDetail').hidden=!statsDetail;
- if(!statsDetail)return;
+ if(!statsDetail){if($('eosStatsBackLabel'))$('eosStatsBackLabel').textContent='Torna alle statistiche';return;}
+ if($('eosStatsBackLabel'))$('eosStatsBackLabel').textContent='Torna alle statistiche · '+(statsPage==='alerts'?'Segnalazioni':statsPage==='outcomes'?'Esiti degli eventi':'Inventario');
  const isAlert=statsDetail.section==='alerts',isOutcome=statsDetail.section==='outcomes',key=statsDetail.key;
  const rows=isAlert?statsAlertRows(key):isOutcome?eventOutcomeRows(key):statsInventoryRows(key);
  const title=isAlert?({all:'Segnalazioni rilevate',pending:'Da verificare',verified:'Verificate',confirmed:'Confermate',dismissed:'Scartate',expired:'Scadute',false:'Falsi positivi'}[key]):isOutcome?REPORT_OUTCOMES[key]:({recovered:'Merce recuperata',notRecovered:'Articoli non recuperati',total:'Valore commerciale non recuperato'}[key]);
- const dateText=OPERATION_PERIOD_LABELS[statsPeriod];
  const limited=rows.slice(0,statsDetailLimit),more=rows.length-limited.length;
  const sectionName=isAlert?'Segnalazioni':isOutcome?'Esiti degli eventi':'Inventario';
- $('eosStatsDetail').innerHTML=`<button type="button" class="eos-back-btn eos-nav-back" data-stats-back>${icon('arrow-left')} Torna alle Statistiche · ${sectionName}</button>
- <div class="eos-detail-head"><h2>${title}</h2><span class="eos-detail-count">${rows.length} ${isAlert||isOutcome?'segnalazioni':'prodotti'}</span></div>
- <p class="eos-detail-period">${dateText}</p>
+ $('eosStatsDetail').innerHTML=` <div class="eos-detail-head"><h2>${title}</h2><span class="eos-detail-count">${rows.length} ${isAlert||isOutcome?'segnalazioni':'prodotti'}</span></div>
  <div class="eos-detail-list">${limited.length?limited.map(r=>isAlert||isOutcome?rowHtml(r,clipExpired(r)):inventoryProductCard(r)).join(''):'<p class="eos-group-empty">Nessun elemento per il periodo selezionato.</p>'}</div>
  ${more>0?`<button type="button" class="eos-group-viewall" data-stats-more>Mostra altri (${more})</button>`:''}`;
 }
@@ -3088,10 +3171,8 @@ function renderInventoryDetail(){
  if(!inventoryDetailGroup)return;
  const label=inventoryDetailGroup==='unknown'?'Merce da aggiornare':'Prodotti registrati';
  const rows=inventoryGroupRows(inventoryDetailGroup,inventoryDetailAll),limited=rows.slice(0,inventoryDetailLimit),more=rows.length-limited.length;
- const periodText=inventoryDetailAll?'Tutte le date':OPERATION_PERIOD_LABELS[inventoryPeriod];
  $('eosInventoryDetail').innerHTML=`<button type="button" class="eos-back-btn eos-nav-back" data-inventory-back>${icon('arrow-left')} Torna all’Inventario</button>
  <div class="eos-detail-head"><h2>${label}</h2><span class="eos-detail-count">${rows.length} ${rows.length===1?'prodotto':'prodotti'}</span></div>
- <p class="eos-detail-period">${periodText}</p>
  <div class="eos-detail-list">${limited.length?limited.map(i=>inventoryDetailGroup==='unknown'?inventoryActionCard(i):inventoryProductCard(i)).join(''):'<p class="eos-group-empty">Nessun prodotto in questa categoria per il periodo selezionato.</p>'}</div>
  ${more>0?`<button type="button" class="eos-group-viewall" data-inventory-detail-more>Mostra altri prodotti (${more})</button>`:''}
  ${!inventoryDetailAll&&inventoryPeriod!=='all'?`<button type="button" class="eos-group-viewall eos-secondary-link" data-inventory-detail-all>Visualizza tutti i ${inventoryDetailGroup==='unknown'?'prodotti da aggiornare':'prodotti registrati'}</button>`:''}`;
@@ -3432,14 +3513,14 @@ function criticalInstructionsHtml(fromAlert=false,a=null){
  </div>`;
 }
 function guideProcedureBlock(title,items,kind='neutral'){
- return `<section class="eos-guide-action-card eos-guide-action-card--${kind}"><h3>${kind==='danger'?icon('close'):kind==='safety'?icon('shield'):icon('check')} ${esc(title)}</h3><ul>${items.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></section>`;
+ return `<section class="eos-guide-action-card eos-guide-action-card--${kind}"><span class="eos-guide-icon" aria-hidden="true">${kind==='danger'?icon('close'):kind==='safety'?icon('shield'):icon('check')}</span><div class="eos-guide-card-copy"><h3>${esc(title)}</h3><ul>${items.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></div></section>`;
 }
 function guideDetailHtml(item){
  const backText=item.id==='aggressione'?'Torna alla Guida operativa':'Torna alle procedure';
  return `<div class="guide-detail-container eos-r21-procedure"><button class="guide-back eos-nav-back" type="button" data-guide-back>${icon('arrow-left')} ${backText}</button>
  <h2 class="eos-r21-procedure-title">${esc(item.title)}</h2>
  ${item.id==='aggressione' ? criticalInstructionsHtml(false) : `<div class="eos-r21-procedure-content">
- <section class="eos-guide-action-card"><h3>${icon('search')} Cosa osservare</h3><p>${esc(item.intro)}</p></section>
+ <section class="eos-guide-action-card"><span class="eos-guide-icon" aria-hidden="true">${icon('search')}</span><div class="eos-guide-card-copy"><h3>Cosa osservare</h3><p>${esc(item.intro)}</p></div></section>
  ${guideProcedureBlock('Cosa fare',item.do,'neutral')}
  ${guideProcedureBlock('Cosa evitare',item.avoid,'danger')}
  ${guideProcedureBlock('Quando richiedere supporto',item.support,'neutral')}
@@ -3478,7 +3559,7 @@ function guideAvoidHtml(){return `<section class="guide-content-section"><div cl
  <div>${icon('close')}<span>Non considerare una segnalazione come prova automatica di un furto.</span></div>
  </div><div class="guide-safety-note">${icon('shield')} <span>In caso di minaccia, interrompi l’intervento e segui le procedure di sicurezza del negozio. Per un’emergenza reale, chiama il 112.</span></div></section>`;}
 function guideFaqHtml(){return `<section class="guide-content-section"><div class="guide-content-header"><h2>Domande frequenti</h2></div><div class="guide-card-accordions">${FAQ.map(([q,a])=>`<details class="guide-accordion"><summary><span class="guide-summary-icon">${icon('book')}</span><span>${esc(q)}</span>${icon('chevron')}</summary><p class="guide-accordion-body">${esc(a)}</p></details>`).join('')}</div></section>`;}
-function guidePrivacyHtml(){return `<section class="guide-content-section eos-slim-guide"><div class="guide-content-header"><h2>Privacy e sicurezza</h2></div>
+function guidePrivacyHtml(){return `<section class="guide-content-section eos-slim-guide eos-r22-privacy"><div class="guide-content-header"><h2>Privacy e sicurezza</h2></div>
  <div class="privacy-facts">
   <div class="privacy-fact">${icon('shield')}<div><h3>Accesso riservato</h3><p>Le segnalazioni devono essere consultate soltanto dal personale autorizzato per le finalità previste dal punto vendita.</p></div></div>
   <div class="privacy-fact">${icon('lock')}<div><h3>Riservatezza</h3><p>Non condividere clip, immagini o informazioni tramite chat, dispositivi personali o canali non autorizzati.</p></div></div>
@@ -3789,7 +3870,7 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
  if(btn.id==='viewRecent'){historyPeriod='7d';historyStatus='all';historyOutcome='all';historyVisibleLimit=10;nav('history');return;}
  
   if(btn.dataset.statsSection){statsPage=btn.dataset.statsSection;statsDetail=null;statsDetailLimit=8;renderAnalysis();window.scrollTo(0,0);return;}
-  if(btn.hasAttribute('data-stats-section-back')){statsPage=null;statsDetail=null;renderStatsShell();window.scrollTo(0,0);return;}
+  if(btn.hasAttribute('data-stats-section-back')){if(statsDetail){statsDetail=null;renderStatsDetail();}else{statsPage=null;statsDetail=null;renderStatsShell();}window.scrollTo(0,0);return;}
    if(btn.hasAttribute('data-home-pending-toggle')){homeShowAllPending=!homeShowAllPending;renderHome();return;}
    if(btn.id==='historyShowMore'){historyVisibleLimit+=10;renderHistory();return;}
   if(btn.id==='eosAlertReset'){alertPeriod='recent';alertStatus='all';alertSearch='';alertOpenGroup=null;alertDetailGroup=null;renderAlertGroups();return;}
