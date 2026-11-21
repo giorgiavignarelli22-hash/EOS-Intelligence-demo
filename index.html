@@ -2,14 +2,14 @@
 
 <html lang="it"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#f5f8fb" name="theme-color"/>
-<meta name="eos-build" content="7.8.13-merce-filtri-coerenza-20261120-r20"/>
+<meta name="eos-build" content="7.8.13-navigazione-guida-escalation-20261121-r21"/>
 <script id="eos-auto-update">
 /* Static GitHub Pages: verify the deployed version without clearing local data. */
 (function(){
   'use strict';
   if (!/^https?:$/.test(window.location.protocol)) return;
   var PARAM = '__eos_fresh';
-  var currentVersion = '7.8.13-merce-filtri-coerenza-20261120-r20';
+  var currentVersion = '7.8.13-navigazione-guida-escalation-20261121-r21';
   var lastCheckTime = 0;
   var checking = false;
   var canonical;
@@ -2235,6 +2235,50 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 [hidden]{display:none!important}
 #analysisInventoryPane .eos-pane-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 #analysisInventoryPane .eos-pane-heading #exportInventory{font-size:12px}
+
+/* r21: single visual grammar for back navigation; a left arrow is never rotated. */
+.eos-nav-back,#page-guide .guide-back.eos-nav-back,#page-analysis .eos-back-btn.eos-nav-back{
+ display:inline-flex!important;align-items:center;justify-content:flex-start;gap:9px;
+ width:auto;max-width:100%;min-height:42px;padding:10px 13px;margin:0 0 14px;
+ background:#fff!important;border:1px solid #c9d9e2!important;border-radius:10px!important;
+ color:#31576C!important;font:inherit;font-size:13px!important;font-weight:700!important;
+ line-height:1.3;cursor:pointer;text-align:left;text-decoration:none;box-shadow:none!important;
+}
+.eos-nav-back svg,#page-guide .guide-back.eos-nav-back svg,#page-analysis .eos-back-btn.eos-nav-back svg{
+ width:17px!important;height:17px!important;flex-shrink:0;stroke:currentColor;fill:none;transform:none!important;
+}
+.eos-nav-back:hover,#page-guide .guide-back.eos-nav-back:hover{background:#f4f8fa!important;border-color:#9fb9c7!important}
+.eos-nav-back:focus-visible{outline:3px solid #368E8A;outline-offset:2px}
+#guideReturnBanner .eos-nav-back{margin-bottom:12px}
+/* r21: full procedures use the compact, safety-first escalation design. */
+#page-guide .eos-r21-procedure{display:flex;flex-direction:column;gap:0;max-width:850px}
+#page-guide .eos-r21-procedure-title{font-size:20px;line-height:1.32;color:#1e4257;margin:0 0 12px}
+#page-guide .eos-r21-procedure-content{display:grid;gap:10px}
+#page-guide .eos-guide-action-card{background:#fff;border:1px solid #dce7ed;border-radius:12px;padding:14px 16px}
+#page-guide .eos-guide-action-card h3{display:flex;align-items:center;gap:8px;margin:0 0 7px;font-size:14px;color:#31576C;line-height:1.35}
+#page-guide .eos-guide-action-card h3 svg{width:16px;height:16px;flex-shrink:0;stroke:currentColor;fill:none}
+#page-guide .eos-guide-action-card p,#page-guide .eos-guide-action-card li{font-size:13px;line-height:1.52;color:#4f6878}
+#page-guide .eos-guide-action-card p{margin:0}
+#page-guide .eos-guide-action-card ul{padding-left:19px;margin:0}
+#page-guide .eos-guide-action-card li{margin:0 0 4px}
+#page-guide .eos-guide-action-card li:last-child{margin-bottom:0}
+#page-guide .eos-r21-procedure .critical-instructions{gap:10px}
+#page-guide .eos-r21-procedure .critical-warning,#page-guide .eos-r21-procedure .critical-box{padding:14px 16px}
+#page-guide .eos-r21-procedure .critical-instructions li{line-height:1.52;margin:3px 0}
+.eos-critical-dialog .critical-instructions{gap:10px}
+.eos-critical-dialog .critical-warning,.eos-critical-dialog .critical-box{padding:14px 16px}
+.eos-critical-dialog .critical-instructions li{line-height:1.52;margin:3px 0}
+.eos-critical-dialog .critical-actions .eos-critical-edit{border:1px solid #c9d9e2;background:#fff;border-radius:9px;padding:11px;color:#31576C;font-weight:700;cursor:pointer}
+.quick-guide-shell>.eos-nav-back{margin-bottom:12px}
+.quick-guide-shell .quick-guide-actions{display:flex;justify-content:stretch;gap:0}
+.quick-guide-shell .quick-guide-actions #goCompleteGuide{width:100%}
+@media(max-width:620px){
+ #page-guide .eos-r21-procedure-title{font-size:18px}
+ #page-guide .eos-guide-action-card{padding:12px 13px}
+ #page-guide .eos-guide-action-card li,#page-guide .eos-guide-action-card p{font-size:12.5px}
+ .eos-nav-back{font-size:12px!important}
+}
+
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
 <symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></symbol>
@@ -2339,7 +2383,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
   </div>
  </div>
  <div id="eosStatsSection" hidden>
-  <button type="button" class="eos-back-btn" data-stats-section-back><svg><use href="#i-arrow"></use></svg> Torna alle Statistiche</button>
+  <button type="button" class="eos-back-btn eos-nav-back" data-stats-section-back><svg><use href="#i-arrow-left"></use></svg> Torna alle Statistiche</button>
   <div class="eos-pane-heading"><h2 id="eosStatsSectionTitle">Segnalazioni</h2></div>
   <div class="eos-filter-panel"><div class="eos-filter-grid">
    <label>Periodo<select id="eosStatsPeriod"><option value="recent">Ultime 24 ore</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutto il periodo</option></select></label>
@@ -2725,7 +2769,7 @@ function renderAlertDetail(){
  const group=ALERT_GROUPS.find(g=>g.id===alertDetailGroup);if(!group)return;
  const rows=alertCategoryRows(group.id,alertDetailAll),limited=rows.slice(0,alertDetailLimit),more=rows.length-limited.length;
  const p=effectiveAlertPeriod();const periodLabel=alertDetailAll?'Tutte le date':OPERATION_PERIOD_LABELS[p];
- $('eosAlertDetail').innerHTML=`<button type="button" class="eos-back-btn" data-alert-back>${icon('arrow')} Torna alle Segnalazioni</button>
+ $('eosAlertDetail').innerHTML=`<button type="button" class="eos-back-btn eos-nav-back" data-alert-back>${icon('arrow-left')} Torna alle Segnalazioni</button>
  <div class="eos-detail-head"><h2>${group.label}</h2><span class="eos-detail-count">${rows.length} ${rows.length===1?'segnalazione':'segnalazioni'}</span></div>
  <p class="eos-detail-period">${group.id==='expired'?'Non verificate entro 48 ore · Video non disponibile':periodLabel}</p>
  <div class="eos-detail-list">${limited.length?limited.map(a=>rowHtml(a,clipExpired(a))).join(''):'<p class="eos-group-empty">Nessuna segnalazione in questa categoria per il periodo scelto.</p>'}</div>
@@ -2764,7 +2808,7 @@ function renderReportDetail(){
  const label=reportDetailGroup==='open'?'Da completare':'Completati';
  const rows=reportCategoryRows(reportDetailGroup,reportDetailAll),limited=rows.slice(0,reportDetailLimit),more=rows.length-limited.length;
  const periodLabel=reportDetailAll?'Tutte le date':OPERATION_PERIOD_LABELS[reportPeriod];
- $('eosReportDetail').innerHTML=`<button type="button" class="eos-back-btn" data-report-back>${icon('arrow')} Torna ai Rapporti</button>
+ $('eosReportDetail').innerHTML=`<button type="button" class="eos-back-btn eos-nav-back" data-report-back>${icon('arrow-left')} Torna ai Rapporti</button>
  <div class="eos-detail-head"><h2>${label}</h2><span class="eos-detail-count">${rows.length} ${rows.length===1?'rapporto':'rapporti'}</span></div>
  <p class="eos-detail-period">${periodLabel}${reportDetailGroup==='open'?' · Rapporti aperti sempre accessibili, anche fuori periodo':''}</p>
  <div class="eos-detail-list">${limited.length?limited.map(reportCardHtml).join(''):'<p class="eos-group-empty">Nessun rapporto in questa categoria per il periodo scelto.</p>'}</div>
@@ -3002,7 +3046,7 @@ function renderStatsDetail(){
  const dateText=OPERATION_PERIOD_LABELS[statsPeriod];
  const limited=rows.slice(0,statsDetailLimit),more=rows.length-limited.length;
  const sectionName=isAlert?'Segnalazioni':isOutcome?'Esiti degli eventi':'Inventario';
- $('eosStatsDetail').innerHTML=`<button type="button" class="eos-back-btn" data-stats-back>${icon('arrow')} Torna alle Statistiche · ${sectionName}</button>
+ $('eosStatsDetail').innerHTML=`<button type="button" class="eos-back-btn eos-nav-back" data-stats-back>${icon('arrow-left')} Torna alle Statistiche · ${sectionName}</button>
  <div class="eos-detail-head"><h2>${title}</h2><span class="eos-detail-count">${rows.length} ${isAlert||isOutcome?'segnalazioni':'prodotti'}</span></div>
  <p class="eos-detail-period">${dateText}</p>
  <div class="eos-detail-list">${limited.length?limited.map(r=>isAlert||isOutcome?rowHtml(r,clipExpired(r)):inventoryProductCard(r)).join(''):'<p class="eos-group-empty">Nessun elemento per il periodo selezionato.</p>'}</div>
@@ -3045,7 +3089,7 @@ function renderInventoryDetail(){
  const label=inventoryDetailGroup==='unknown'?'Merce da aggiornare':'Prodotti registrati';
  const rows=inventoryGroupRows(inventoryDetailGroup,inventoryDetailAll),limited=rows.slice(0,inventoryDetailLimit),more=rows.length-limited.length;
  const periodText=inventoryDetailAll?'Tutte le date':OPERATION_PERIOD_LABELS[inventoryPeriod];
- $('eosInventoryDetail').innerHTML=`<button type="button" class="eos-back-btn" data-inventory-back>${icon('arrow')} Torna all’Inventario</button>
+ $('eosInventoryDetail').innerHTML=`<button type="button" class="eos-back-btn eos-nav-back" data-inventory-back>${icon('arrow-left')} Torna all’Inventario</button>
  <div class="eos-detail-head"><h2>${label}</h2><span class="eos-detail-count">${rows.length} ${rows.length===1?'prodotto':'prodotti'}</span></div>
  <p class="eos-detail-period">${periodText}</p>
  <div class="eos-detail-list">${limited.length?limited.map(i=>inventoryDetailGroup==='unknown'?inventoryActionCard(i):inventoryProductCard(i)).join(''):'<p class="eos-group-empty">Nessun prodotto in questa categoria per il periodo selezionato.</p>'}</div>
@@ -3321,24 +3365,33 @@ function guideReturnBannerHtml(){
  if(!ctx)return '';
  const a=alertById(ctx.id);
  if(!a)return '';
- return `<button type="button" class="outline-btn guide-return-button" data-return-alert>${icon('arrow')} ${ctx.origin==='home'?'Torna alla Home':'Torna alla segnalazione'}</button>`;
+ return `<button type="button" class="eos-nav-back guide-return-button" data-return-alert>${icon('arrow-left')} Torna alla segnalazione</button>`;
 }
 function returnToGuideAlert(){
  const ctx=guideReturnContext;guideReturnContext=null;
  guideActiveProcedure=null;
  if(!ctx)return;
  const a=alertById(ctx.id);
- if(!a){nav('analysis');return;}
- if(ctx.origin==='home'){
-  const pending=state.alerts.filter(x=>x.status==='pending'&&!clipExpired(x)).sort((x,y)=>y.ts-x.ts);
-  if(pending.some(x=>x.id===ctx.id)){nav('home');showAlert(ctx.id);return;}
- }
- nav('analysis');showAlert(ctx.id);
+ if(!a){nav('history');return;}
+ const destination=['home','history','analysis'].includes(ctx.origin)?ctx.origin:'history';
+ nav(destination);
+ showAlert(ctx.id);
 }
 function closeGuideOrModal(){
  if(modal==='contextGuide'){
-  if(procedureOrigin==='detail'&&selectedAlertId){const id=selectedAlertId;showAlert(id);return;}
+  if(selectedAlertId){showAlert(selectedAlertId);return;}
   closeModal();nav('home');return;
+ }
+ if(['confirm','dismiss','changeOutcome','critical','criticalEdit'].includes(modal)){
+  const id=modal==='dismiss'?dismissTarget:
+   (document.querySelector('#confirmForm')?.dataset.alertId ||
+    document.querySelector('#changeOutcomeForm')?.dataset.alertId ||
+    document.querySelector('#criticalEditForm')?.dataset.alertId || selectedAlertId);
+  if(id && alertById(id)){
+   if(modal==='dismiss')dismissTarget=null;
+   showAlert(id);
+   return;
+  }
  }
  closeModal();
 }
@@ -3346,7 +3399,7 @@ function openFullGuideFromAlert(){
  const a=alertById(selectedAlertId);
  const sel=$('guideScenarioChoice');
  const chosen=sel&&GUIDE_PROCEDURES.some(p=>p.id===sel.value)?sel.value:null;
- const ctx=a?{id:a.id,origin:procedureOrigin==='home'?'home':'detail'}:null;
+ const ctx=a?{id:a.id,origin:detailOrigin}:null;
  closeModal();
  guideReturnContext=ctx;
  guideTab='procedures';guideActiveProcedure=chosen;guideSearch='';
@@ -3356,20 +3409,43 @@ let guideTab='procedures';
 let guideActiveProcedure=null;
 let guideSearch='';
 function guideList(items,cls){return items.map(t=>`<li>${icon(cls==='danger'?'close':'check')}<span>${esc(t)}</span></li>`).join('');}
+// Critical escalation belongs to this local laboratory only; recording it does not dispatch a real emergency notification.
+function openCritical(id=selectedAlertId){
+ const a=alertById(id);if(!a)return;
+ selectedAlertId=id;
+ const content=`<div class="eos-critical-dialog"><button type="button" class="eos-nav-back" data-back-to-alert="${esc(id)}">${icon('arrow-left')} Torna alla segnalazione</button>
+ ${criticalInstructionsHtml(true,a)}</div>`;
+ openModal('Escalation critica',content,'critical',true);
+}
+function openCriticalEdit(id=selectedAlertId){
+ const a=alertById(id);if(!a)return;
+ selectedAlertId=id;
+ const html=`<div class="eos-critical-dialog"><button type="button" class="eos-nav-back" data-back-to-alert="${esc(id)}">${icon('arrow-left')} Torna alla segnalazione</button>
+ <form id="criticalEditForm" data-alert-id="${esc(id)}"><label class="eos-check-option"><input type="checkbox" id="criticalEditFlag" ${a.critical?'checked':''}> Escalation critica segnalata</label><div class="form-group"><label for="criticalEditNotes">Note operative (facoltative)</label><textarea id="criticalEditNotes" maxlength="800" rows="3">${esc(a.criticalNotes||'')}</textarea></div><button type="submit" class="primary-btn">Salva rettifica</button></form></div>`;
+ openModal('Rettifica escalation critica',html,'criticalEdit',true);
+}
 function criticalInstructionsHtml(fromAlert=false,a=null){
  return `<div class="critical-instructions"><div class="critical-warning"><h3>${icon('shield')} La sicurezza prima di tutto</h3><p>In presenza di minacce, aggressività o pericolo, interrompi ogni intervento e mantieni una distanza di sicurezza.</p></div>
  <div class="critical-box"><h3>${icon('check')} Cosa fare</h3><ul><li>Avvisa il responsabile del punto vendita.</li><li>Proteggi te stesso, colleghi e clienti senza esporti a rischi.</li><li>In caso di pericolo immediato, contatta i servizi di emergenza.</li></ul></div>
  <div class="critical-box"><h3>${icon('close')} Cosa evitare</h3><ul><li>Non affrontare, bloccare o inseguire la persona.</li><li>Non tentare di recuperare la merce.</li><li>Non attivare la deterrenza vocale se può aggravare la situazione.</li></ul></div>
- ${fromAlert?`<div class="critical-actions">${a?.critical?'<div class="eos-critical-tag">Escalation critica già segnalata</div>':`<button type="button" class="critical-submit" data-submit-critical="${esc(a?.id||'')}">${icon('shield')} Segnala escalation critica</button>`}<button type="button" class="critical-return-btn" data-back-to-alert="${esc(a?.id||'')}">${icon('arrow-left')} Torna alla segnalazione</button></div>`:'<div class="critical-actions"><button type="button" class="eos-guide-back" data-guide-back>← Torna alla Guida operativa</button></div>'}
+ ${fromAlert?`<div class="critical-actions">${a?.critical?`<div class="eos-critical-tag">Escalation critica già segnalata</div><button type="button" class="eos-critical-edit" data-edit-critical="${esc(a.id)}">Modifica segnalazione critica</button>`:`<button type="button" class="critical-submit" data-submit-critical="${esc(a?.id||'')}">${icon('shield')} Segnala escalation critica</button>`}</div>`:''}
  </div>`;
 }
+function guideProcedureBlock(title,items,kind='neutral'){
+ return `<section class="eos-guide-action-card eos-guide-action-card--${kind}"><h3>${kind==='danger'?icon('close'):kind==='safety'?icon('shield'):icon('check')} ${esc(title)}</h3><ul>${items.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></section>`;
+}
 function guideDetailHtml(item){
- if(item.id==='aggressione')return `<div class="guide-detail-container"><h2>Escalation critica</h2>${criticalInstructionsHtml(false)}</div>`;
- return `<div class="guide-detail-container eos-slim-guide"><button class="guide-back" type="button" data-guide-back>${icon('arrow-left')} Torna alle procedure</button>
- <section class="guide-procedure-heading"><h2>${esc(item.title)}</h2></section>
- <section class="guide-detail-block"><h3>Cosa osservare</h3><p>${esc(item.intro)}</p></section>
- <section class="guide-detail-block"><h3>Come comportarsi</h3><ul class="guide-compact-list">${item.do.slice(0,3).map(t=>`<li>${esc(t)}</li>`).join('')}</ul></section>
- <section class="guide-detail-block"><h3>Quando chiedere supporto o interrompere</h3><ul class="guide-compact-list">${[...item.support.slice(0,1),...item.stop.slice(0,1)].map(t=>`<li>${esc(t)}</li>`).join('')}</ul></section></div>`;
+ const backText=item.id==='aggressione'?'Torna alla Guida operativa':'Torna alle procedure';
+ return `<div class="guide-detail-container eos-r21-procedure"><button class="guide-back eos-nav-back" type="button" data-guide-back>${icon('arrow-left')} ${backText}</button>
+ <h2 class="eos-r21-procedure-title">${esc(item.title)}</h2>
+ ${item.id==='aggressione' ? criticalInstructionsHtml(false) : `<div class="eos-r21-procedure-content">
+ <section class="eos-guide-action-card"><h3>${icon('search')} Cosa osservare</h3><p>${esc(item.intro)}</p></section>
+ ${guideProcedureBlock('Cosa fare',item.do,'neutral')}
+ ${guideProcedureBlock('Cosa evitare',item.avoid,'danger')}
+ ${guideProcedureBlock('Quando richiedere supporto',item.support,'neutral')}
+ ${guideProcedureBlock('Quando interrompere',item.stop,'safety')}
+ </div>`}
+ </div>`;
 }
 function guideProceduresHtml(){
  if(guideActiveProcedure){const obj=GUIDE_PROCEDURES.find(p=>p.id===guideActiveProcedure);if(obj)return guideDetailHtml(obj);guideActiveProcedure=null;}
@@ -3438,7 +3514,7 @@ function guideLegendHtml(){
  return `<section class="guide-content-section eos-slim-guide eos-r17-legend" aria-label="Legenda degli stati e degli esiti">
   <div class="guide-content-header"><h2>Stati ed esiti</h2></div>
   <div class="eos-r17-legend-sheet">
-   ${accordion('Stati della segnalazione',states.map(([name,description,key])=>legendItem(name,description,({pending:'#31576C',confirmed:'#31576C',dismissed:'#31576C',expired:'#31576C'})[key])).join(''))}
+   ${accordion('Stati della segnalazione',states.map(([name,description,key])=>legendItem(name,description,({pending:'#368E8A',confirmed:'#31576C',dismissed:'#31576C',expired:'#87949F'})[key])).join(''))}
    ${accordion('Esiti dopo la conferma',outcomes.map(([name,key,description])=>legendItem(name,description,EOS_OUTCOME_COLORS[key])).join(''))}
    ${accordion('Motivi dello scarto',reasons.map(([name,description])=>legendItem(name,description,EOS_DISMISS_REASON_COLORS[name])).join(''))}
    ${accordion('Esito e rapporto',reportRows)}
@@ -3468,10 +3544,11 @@ function openProcedure(origin='detail'){
   [['Rileggi l’esito registrato','Consulta le informazioni salvate senza attribuire nuovi significati alla clip.'],['Evita deduzioni non verificate','Le note devono descrivere soltanto fatti riscontrati.'],['Consulta il manuale se occorre','Per dubbi specifici usa le procedure operative approvate dal punto vendita.']];
  const scenarioOptions=GUIDE_PROCEDURES.map(p=>`<option value="${esc(p.id)}">${esc(p.title)}</option>`).join('');
  const h=`<div class="quick-guide-shell">
+ <button type="button" class="eos-nav-back" id="backToAlert">${icon('arrow-left')} ${origin==='home'?'Torna alla Home':'Torna alla segnalazione'}</button>
  <div class="quick-guide-steps">${steps.map((it,i)=>`<div class="quick-guide-step"><span class="step-num">${i+1}</span><div><h4>${esc(it[0])}</h4><p>${esc(it[1])}</p></div></div>`).join('')}</div>
  <div class="quick-guide-safety"><strong>${icon('shield')} Prima la sicurezza</strong><p>Non accusare, inseguire o affrontare fisicamente una persona sulla base di una segnalazione. In caso di rischio, segui le procedure del punto vendita.</p></div>
  <div class="quick-guide-deeper"><label for="guideScenarioChoice">Vuoi approfondire una situazione specifica?</label><select id="guideScenarioChoice"><option value="">Mostra tutte le procedure</option>${scenarioOptions}</select></div>
- <div class="quick-guide-actions"><button type="button" class="outline-btn" id="backToAlert">${icon('arrow-left')} ${origin==='home'?'Torna alla Home':'Torna alla segnalazione'}</button><button type="button" class="primary-btn" id="goCompleteGuide">Consulta la guida completa ${icon('arrow')}</button></div></div>`;
+ <div class="quick-guide-actions"><button type="button" class="primary-btn" id="goCompleteGuide">Consulta la guida completa ${icon('arrow')}</button></div></div>`;
  openModal('Guida operativa',h,'contextGuide',true);
 }
 
@@ -3485,7 +3562,7 @@ function openInfo(which){
   <div class="account-field"><span>Nome utente</span><strong>${esc(DEMO_USERS[currentStore]?.username||'EOS Intelligence')}</strong></div>
   <div class="account-field"><span>Punto vendita associato</span><strong>${esc(DEMO_USERS[currentStore]?.label||'Punto vendita 01')}</strong></div>
   <div class="account-field"><span>Password</span><strong>••••••••••••</strong></div>
-  <div class="account-field eos-build-ident"><span>Versione interfaccia</span><strong>7.8.13 · Revisione coerenza · r16</strong></div>
+  <div class="account-field eos-build-ident"><span>Versione interfaccia</span><strong>7.8.13 · Laboratorio r21</strong></div>
  </div>
  <button class="outline-btn account-change" type="button" id="togglePasswordForm" aria-controls="passwordFormContainer" aria-expanded="false">Modifica password ${icon('chevron')}</button>
  <div id="passwordFormContainer" hidden>
@@ -3609,7 +3686,6 @@ function openReport(id,edit=false){
  <label class="eos-check-option"><input type="checkbox" id="reportCritical" ${a.critical?'checked':''}><span>Situazione critica segnalata</span></label>
  <div id="reportMerchSection" ${a.status!=='confirmed'||!['theft','attempt'].includes(reportChoice)?'hidden':''}>
  <div class="report-form-section">Merce coinvolta (facoltativa)</div>
- <p class="report-item-hint">Valori commerciali calcolati sul prezzo di vendita al pubblico. La merce recuperata resta nel rapporto; l’Inventario contabilizza solo la merce non recuperata del furto accertato.</p>
  <div id="reportItemsSummary" class="eos-items-list"></div><div id="reportItemsTotals" class="eos-r20-merch-totals"></div>
  <button type="button" id="reportAddItemToggle" class="eos-full-btn outline-btn">${icon('plus')} Aggiungi merce</button>
  <div id="reportAddItemPane" class="eos-report-item-pane" hidden>
