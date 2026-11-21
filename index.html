@@ -2,14 +2,14 @@
 
 <html lang="it"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#f5f8fb" name="theme-color"/>
-<meta name="eos-build" content="7.8.13-audit-correzioni-20261121-r23"/>
+<meta name="eos-build" content="7.8.13-revisione-layout-20261121-r23-ui1"/>
 <script id="eos-auto-update">
 /* Static GitHub Pages: verify the deployed version without clearing local data. */
 (function(){
   'use strict';
   if (!/^https?:$/.test(window.location.protocol)) return;
   var PARAM = '__eos_fresh';
-  var currentVersion = '7.8.13-audit-correzioni-20261121-r23';
+  var currentVersion = '7.8.13-revisione-layout-20261121-r23-ui1';
   var lastCheckTime = 0;
   var checking = false;
   var canonical;
@@ -2365,6 +2365,80 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
  .eos-nav-back{font-size:12px!important}
 }
 
+
+
+/* 7.8.13 R23 — revisione esclusivamente grafica, laboratorio indipendente. */
+/* Un modello unico per tutte le intestazioni contenuto: titolo, CSV, numero risultati. */
+#page-analysis .eos-content-heading,#page-history .eos-history-head,
+#page-analysis #eosReportOverview .eos-pane-heading,
+#page-analysis #eosInventoryOverviewHeading{
+ display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:12px;
+}
+#page-analysis .eos-content-heading{margin:0 0 6px}
+#page-analysis .eos-content-heading h2{font-size:20px;line-height:1.25;color:#253f50;margin:0;min-width:0}
+#page-analysis .eos-content-count{margin:0 0 16px;font-size:13px;color:#657d8a;font-weight:650}
+#page-analysis .eos-pane-heading .eos-export-btn,
+#page-analysis .eos-content-heading .eos-export-btn,
+#page-history .eos-history-head .eos-export-btn{
+ display:inline-flex;align-items:center;justify-content:center;min-height:37px;padding:8px 12px;
+ margin:0;font-size:12px!important;line-height:1.2;border:1px solid #b9d2d8;border-radius:10px;
+ color:#307b7c;background:white;font-weight:700;white-space:nowrap;
+}
+#page-analysis .eos-pane-heading .eos-export-btn:hover,
+#page-analysis .eos-content-heading .eos-export-btn:hover,
+#page-history .eos-history-head .eos-export-btn:hover{background:#eef8f7}
+#page-analysis #eosInventoryOverviewHeading[hidden],
+#page-analysis #eosInventoryDetailHeading[hidden]{display:none!important}
+#page-analysis #eosInventoryDetailHeading{margin:0}
+#page-analysis #eosInventoryDetailHeading .eos-nav-back{margin-bottom:18px!important}
+#page-analysis #eosInventoryDetail .eos-detail-list{margin-top:0}
+/* Storico: conteggio sotto al titolo, mai accanto all'esportazione. */
+#page-history .eos-history-head{margin-bottom:16px;align-items:start}
+#page-history .eos-history-head-main{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0}
+#page-history .eos-history-head h2{font-size:19px;line-height:1.25;margin:0}
+#page-history .eos-history-count{background:none!important;border:0!important;padding:0!important;font-size:13px;color:#617b89;font-weight:600}
+/* Inventario: azioni allineate, senza rettangolo vistoso per Modifica. */
+#page-analysis .eos-inventory-result{padding-bottom:14px}
+#page-analysis .eos-inventory-result .eos-merch-actions{
+ display:flex;justify-content:flex-end;align-items:center;flex-wrap:nowrap;gap:8px;margin-top:8px;
+}
+#page-analysis .eos-inventory-result .eos-edit-merch{
+ display:inline-flex!important;align-items:center!important;justify-content:center;
+ margin:0!important;padding:7px 8px!important;min-height:38px!important;min-width:0!important;
+ background:transparent!important;border:1px solid transparent!important;box-shadow:none!important;
+ border-radius:8px!important;color:#307b7c!important;font-size:13px!important;line-height:1.2;font-weight:700;
+}
+#page-analysis .eos-inventory-result .eos-edit-merch:hover{background:#edf6f5!important}
+#page-analysis .eos-inventory-result .eos-edit-merch svg{width:17px;height:17px;stroke:currentColor}
+#page-analysis .eos-inventory-result .trash-btn{
+ display:inline-flex;justify-content:center;align-items:center;width:38px!important;min-width:38px!important;
+ height:38px!important;min-height:38px!important;padding:8px!important;border:1px solid transparent;
+ background:transparent!important;box-shadow:none!important;border-radius:8px!important;color:#6e8794;
+}
+#page-analysis .eos-inventory-result .trash-btn:hover{background:#f4eeee!important;color:#a14f55}
+#page-analysis .eos-inventory-result .trash-btn svg{width:19px;height:19px}
+/* Statistiche: stessa freccia compatta delle righe Storico, non il bottone Apri. */
+#eosStatsDetail .eos-reviewed-row{align-items:center;gap:8px}
+#eosStatsDetail .eos-stats-open{display:inline-flex;align-items:center;justify-content:center;flex:none;
+ width:42px;height:42px;padding:10px;border:0;border-radius:9px;background:transparent;color:#63828f;
+ cursor:pointer;align-self:center}
+#eosStatsDetail .eos-stats-open svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2}
+#eosStatsDetail .eos-stats-open:hover{background:#f0f7f8;color:#2c7f81}
+#eosStatsDetail .eos-stats-open:focus-visible,
+#page-analysis .eos-inventory-result .eos-edit-merch:focus-visible,
+#page-analysis .eos-inventory-result .trash-btn:focus-visible{outline:3px solid #368E8A;outline-offset:2px}
+@media(max-width:600px){
+ #page-analysis .eos-content-heading h2,#page-history .eos-history-head h2{font-size:18px}
+ #page-analysis .eos-content-heading,#page-history .eos-history-head{gap:8px}
+ #page-analysis .eos-content-heading .eos-export-btn,
+ #page-analysis .eos-pane-heading .eos-export-btn,
+ #page-history .eos-history-head .eos-export-btn{padding:8px 10px;font-size:12px!important}
+ #eosStatsDetail .eos-reviewed-row-body{min-width:0}
+}
+@media(max-width:345px){
+ #page-analysis .eos-content-heading h2,#page-history .eos-history-head h2{font-size:16px}
+}
+
 </style></head><body>
 <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
 <symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></symbol>
@@ -2427,7 +2501,7 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
 <label>Stato<select id="historyStatus"><option value="all">Tutti gli stati</option><option value="confirmed">Confermate</option><option value="dismissed">Scartate</option><option value="expired">Scadute</option></select></label>
 <label>Esito<select id="historyOutcome"><option value="all">Tutti gli esiti</option></select></label>
 </div></div>
-<div class="eos-history-head"><h2>Segnalazioni precedenti</h2><div class="eos-history-head-actions"><span class="eos-history-count"><strong id="historyCount">0</strong> risultati</span><button class="eos-export-btn" id="historyExport" type="button">Esporta CSV</button></div></div>
+<div class="eos-history-head"><div class="eos-history-head-main"><h2>Segnalazioni precedenti</h2><span class="eos-history-count"><strong id="historyCount">0</strong> risultati</span></div><button class="eos-export-btn" id="historyExport" type="button">Esporta CSV</button></div>
 <div id="historyList" aria-live="polite"></div><button type="button" id="historyShowMore" class="eos-group-viewall" hidden>Mostra altre segnalazioni</button></div>
 </section>
 <section aria-label="Analisi furti" class="screen" id="page-analysis">
@@ -2453,7 +2527,8 @@ summary:focus-visible{outline:2px solid #0e8e89;outline-offset:2px}
  <div id="eosReportDetail" class="eos-detail-page" hidden></div>
 </div>
 <div id="analysisInventoryPane" role="tabpanel" class="eos-analysis-pane" hidden>
- <div class="eos-pane-heading"><h2>Inventario</h2><button type="button" class="text-action" id="exportInventory">Esporta CSV</button></div>
+ <div id="eosInventoryDetailHeading" class="eos-detail-page-heading" hidden></div>
+ <div class="eos-pane-heading" id="eosInventoryOverviewHeading"><h2>Inventario</h2><button type="button" class="eos-export-btn" id="exportInventory">Esporta CSV</button></div>
  <div class="eos-filter-panel eos-period-only"><label>Periodo<select id="eosInventoryPeriod"><option value="recent">Ultime 24 ore</option><option value="48">Ultime 48 ore</option><option value="72">Ultime 72 ore</option><option value="7d">Ultimi 7 giorni</option><option value="30d">Ultimi 30 giorni</option><option value="90d">Ultimi 90 giorni</option><option value="all">Tutto il periodo</option></select></label></div>
  <div id="eosInventoryOverview" class="eos-groups"></div>
  <div id="eosInventoryDetail" class="eos-detail-page" hidden></div>
@@ -2894,8 +2969,9 @@ function renderReportDetail(){
  if(!reportDetailGroup)return;
  const label=reportDetailGroup==='open'?'Da completare':'Completati';
  const rows=reportCategoryRows(reportDetailGroup,reportDetailAll),limited=rows.slice(0,reportDetailLimit),more=rows.length-limited.length;
- $('eosReportDetail').innerHTML=`<button type="button" class="eos-back-btn eos-nav-back" data-report-back>${icon('arrow-left')} Torna ai Rapporti</button>
- <div class="eos-detail-head"><h2>${label}</h2><span class="eos-detail-count">${rows.length} ${rows.length===1?'rapporto':'rapporti'}</span></div>
+ $('eosReportDetail').innerHTML=`<button type="button" class="eos-back-btn eos-nav-back" data-report-back>${icon('arrow-left')} Torna ai rapporti</button>
+ <div class="eos-content-heading"><h2>${label}</h2><button type="button" class="eos-export-btn" data-export-reports-detail="${reportDetailGroup}">Esporta CSV</button></div>
+ <p class="eos-content-count">${rows.length} ${rows.length===1?'rapporto':'rapporti'}</p>
  <div class="eos-detail-list">${limited.length?limited.map(reportCardHtml).join(''):'<p class="eos-group-empty">Nessun rapporto in questa categoria per il periodo scelto.</p>'}</div>
  ${more>0?`<button type="button" class="eos-group-viewall" data-report-detail-more>Mostra altri rapporti (${more})</button>`:''}
  ${!reportDetailAll&&reportPeriod!=='all'?`<button type="button" class="eos-group-viewall eos-secondary-link" data-report-detail-all>Visualizza tutti i rapporti ${label.toLowerCase()}</button>`:''}`;
@@ -3101,7 +3177,7 @@ function renderStatsShell(){
  $('eosStatsLanding').hidden=section;$('eosStatsSection').hidden=!section;
  if(!section)return;
  $('eosStatsSectionTitle').textContent=statsPage==='alerts'?'Segnalazioni':statsPage==='outcomes'?'Esiti degli eventi':'Inventario';
- $('eosStatsBackLabel').textContent=statsDetail?'Torna alle statistiche · '+$('eosStatsSectionTitle').textContent:'Torna alle statistiche';
+ $('eosStatsBackLabel').textContent=statsDetail?(statsPage==='alerts'?'Torna alle segnalazioni':statsPage==='outcomes'?'Torna agli esiti degli eventi':'Torna all’inventario delle statistiche'):'Torna alle statistiche';
  $('eosStatsStatusField').hidden=statsPage!=='alerts';
  $('eosStatsPeriod').value=statsPeriod;$('eosStatsStatus').value=statsStatus;
  setStatsTab(statsPage);
@@ -3122,18 +3198,22 @@ function renderAnalysis(){
  }).join('');
  renderStatsShell();renderStatsDetail();
 }
+function statCompactRowHtml(a){
+ const html=rowHtml(a,clipExpired(a));
+ return html.replace(/<button class="line-btn" data-alert="([^"]+)">[\s\S]*?<\/button>/,(_full,id)=>`<button type="button" class="eos-stats-open" data-alert="${id}" aria-label="Apri segnalazione ${id}">${icon('arrow')}</button>`);
+}
 function renderStatsDetail(){
  if(!statsPage)return;
  $('eosStatsMain').hidden=!!statsDetail;$('eosStatsDetail').hidden=!statsDetail;
  if(!statsDetail){if($('eosStatsBackLabel'))$('eosStatsBackLabel').textContent='Torna alle statistiche';return;}
- if($('eosStatsBackLabel'))$('eosStatsBackLabel').textContent='Torna alle statistiche · '+(statsPage==='alerts'?'Segnalazioni':statsPage==='outcomes'?'Esiti degli eventi':'Inventario');
+ if($('eosStatsBackLabel'))$('eosStatsBackLabel').textContent=(statsPage==='alerts'?'Torna alle segnalazioni':statsPage==='outcomes'?'Torna agli esiti degli eventi':'Torna all’inventario delle statistiche');
  const isAlert=statsDetail.section==='alerts',isOutcome=statsDetail.section==='outcomes',key=statsDetail.key;
  const rows=isAlert?statsAlertRows(key):isOutcome?eventOutcomeRows(key):statsInventoryRows(key);
  const title=isAlert?({all:'Segnalazioni rilevate',pending:'Da verificare',verified:'Verificate',confirmed:'Confermate',dismissed:'Scartate',expired:'Scadute',false:'Falsi positivi'}[key]):isOutcome?REPORT_OUTCOMES[key]:({recovered:'Merce recuperata',notRecovered:'Articoli non recuperati',total:'Valore commerciale non recuperato'}[key]);
  const limited=rows.slice(0,statsDetailLimit),more=rows.length-limited.length;
  const sectionName=isAlert?'Segnalazioni':isOutcome?'Esiti degli eventi':'Inventario';
  $('eosStatsDetail').innerHTML=` <div class="eos-detail-head"><h2>${title}</h2><span class="eos-detail-count">${rows.length} ${isAlert||isOutcome?'segnalazioni':'prodotti'}</span></div>
- <div class="eos-detail-list">${limited.length?limited.map(r=>isAlert||isOutcome?rowHtml(r,clipExpired(r)):inventoryProductCard(r)).join(''):'<p class="eos-group-empty">Nessun elemento per il periodo selezionato.</p>'}</div>
+ <div class="eos-detail-list">${limited.length?limited.map(r=>isAlert||isOutcome?statCompactRowHtml(r):inventoryProductCard(r)).join(''):'<p class="eos-group-empty">Nessun elemento per il periodo selezionato.</p>'}</div>
  ${more>0?`<button type="button" class="eos-group-viewall" data-stats-more>Mostra altri (${more})</button>`:''}`;
 }
 function itemValue(i){return i.qty*i.price;}
@@ -3166,15 +3246,17 @@ function renderInventoryOverview(){
  <button type="button" class="eos-group-main" data-inventory-group="${id}"><span class="eos-group-label"><strong>${title}</strong></span>
  <span class="eos-group-side"><span class="eos-group-count">${inventoryGroupRows(id).length}</span>${icon('arrow')}</span></button></section>`).join('');
  $('eosInventoryOverview').hidden=!!inventoryDetailGroup;$('eosInventoryDetail').hidden=!inventoryDetailGroup;
+ $('eosInventoryOverviewHeading').hidden=!!inventoryDetailGroup;$('eosInventoryDetailHeading').hidden=!inventoryDetailGroup;
  if(inventoryDetailGroup)renderInventoryDetail();
 }
 function renderInventoryDetail(){
  if(!inventoryDetailGroup)return;
  const label=inventoryDetailGroup==='unknown'?'Merce da aggiornare':'Prodotti registrati';
  const rows=inventoryGroupRows(inventoryDetailGroup,inventoryDetailAll),limited=rows.slice(0,inventoryDetailLimit),more=rows.length-limited.length;
- $('eosInventoryDetail').innerHTML=`<button type="button" class="eos-back-btn eos-nav-back" data-inventory-back>${icon('arrow-left')} Torna all’Inventario</button>
- <div class="eos-detail-head"><h2>${label}</h2><span class="eos-detail-count">${rows.length} ${rows.length===1?'prodotto':'prodotti'}</span></div>
- <div class="eos-detail-list">${limited.length?limited.map(i=>inventoryDetailGroup==='unknown'?inventoryActionCard(i):inventoryProductCard(i)).join(''):'<p class="eos-group-empty">Nessun prodotto in questa categoria per il periodo selezionato.</p>'}</div>
+ $('eosInventoryDetailHeading').innerHTML=`<button type="button" class="eos-back-btn eos-nav-back" data-inventory-back>${icon('arrow-left')} Torna all’Inventario</button>
+ <div class="eos-content-heading"><h2>${label}</h2>${inventoryDetailGroup==='products'?'<button type="button" class="eos-export-btn" data-export-inventory-detail>Esporta CSV</button>':''}</div>
+ <p class="eos-content-count">${rows.length} ${rows.length===1?'prodotto':'prodotti'}</p>`;
+ $('eosInventoryDetail').innerHTML=`<div class="eos-detail-list">${limited.length?limited.map(i=>inventoryDetailGroup==='unknown'?inventoryActionCard(i):inventoryProductCard(i)).join(''):'<p class="eos-group-empty">Nessun prodotto in questa categoria per il periodo selezionato.</p>'}</div>
  ${more>0?`<button type="button" class="eos-group-viewall" data-inventory-detail-more>Mostra altri prodotti (${more})</button>`:''}
  ${!inventoryDetailAll&&inventoryPeriod!=='all'?`<button type="button" class="eos-group-viewall eos-secondary-link" data-inventory-detail-all>Visualizza tutti i ${inventoryDetailGroup==='unknown'?'prodotti da aggiornare':'prodotti registrati'}</button>`:''}`;
 }
@@ -3701,7 +3783,7 @@ function exportAnalysisReports(){
 }
 function exportInventory(){
  const lines=[['Prodotto','Evento/Segnalazione','Quantità non recuperata','Prezzo unitario di vendita EUR','Valore commerciale non recuperato EUR','Data evento','Ultima registrazione/rettifica']];
- for(const i of activeInventory()){const a=alertById(i.alertId);lines.push([i.name,i.alertId||i.eventId,i.qty,i.price.toFixed(2),itemValue(i).toFixed(2),a?formatDate(a.ts):'',formatDate(inventoryTimestamp(i))]);}
+ for(const i of inventoryGroupRows('products',!!inventoryDetailGroup&&inventoryDetailAll)){const a=alertById(i.alertId);lines.push([i.name,i.alertId||i.eventId,i.qty,i.price.toFixed(2),itemValue(i).toFixed(2),a?formatDate(a.ts):'',formatDate(inventoryTimestamp(i))]);}
  downloadCsv('EOS_Intelligence_inventario.csv',lines);
 }
 const REPORT_ACTIONS=['Nessun intervento','Osservazione a distanza','Responsabile avvisato','Intervento verbale del personale','Deterrenza vocale attivata','Supporto interno o sicurezza richiesto','Servizi di emergenza contattati','Altro (specificare)'];
@@ -3892,6 +3974,8 @@ window.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn
   if(btn.hasAttribute('data-report-detail-all')){reportDetailAll=true;reportDetailLimit=8;renderReportDetail();return;}
   if(btn.hasAttribute('data-report-detail-more')){reportDetailLimit+=10;renderReportDetail();return;}
   if(btn.dataset.inventoryGroup){inventoryDetailGroup=btn.dataset.inventoryGroup;inventoryDetailAll=false;inventoryDetailLimit=8;renderInventoryOverview();window.scrollTo(0,0);return;}
+  if(btn.hasAttribute('data-export-inventory-detail')){exportInventory();return;}
+  if(btn.dataset.exportReportsDetail){const previousGroup=reportOpenGroup;reportOpenGroup=btn.dataset.exportReportsDetail;try{exportAnalysisReports();}finally{reportOpenGroup=previousGroup;}return;}
   if(btn.hasAttribute('data-inventory-back')){inventoryDetailGroup=null;inventoryDetailAll=false;renderInventoryOverview();window.scrollTo(0,0);return;}
   if(btn.hasAttribute('data-inventory-detail-all')){inventoryDetailAll=true;inventoryDetailLimit=8;renderInventoryDetail();return;}
   if(btn.hasAttribute('data-inventory-detail-more')){inventoryDetailLimit+=10;renderInventoryDetail();return;}
