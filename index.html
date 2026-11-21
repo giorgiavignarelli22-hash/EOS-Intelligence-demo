@@ -2,14 +2,14 @@
 
 <html lang="it"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#f5f8fb" name="theme-color"/>
-<meta name="eos-build" content="7.8.13-uniformita-pulizia-20261121-r22"/>
+<meta name="eos-build" content="7.8.13-audit-correzioni-20261121-r23"/>
 <script id="eos-auto-update">
 /* Static GitHub Pages: verify the deployed version without clearing local data. */
 (function(){
   'use strict';
   if (!/^https?:$/.test(window.location.protocol)) return;
   var PARAM = '__eos_fresh';
-  var currentVersion = '7.8.13-uniformita-pulizia-20261121-r22';
+  var currentVersion = '7.8.13-audit-correzioni-20261121-r23';
   var lastCheckTime = 0;
   var checking = false;
   var canonical;
@@ -2631,6 +2631,7 @@ function loadStore(store){
  return parsed;
 }
 let screen='home',filter='all',selectedAlertId=null,modal='',lastFocus=null,procedureOrigin='detail';
+let reportReturnAlertId=null; // Solo contesto di navigazione del rapporto nel laboratorio.
 let homeSelectedId=null,detailOrigin='history',pendingReportItems=[],stagedMerchEditIndex=-1;
 let homeVerifiedDirectoryOpen=false;
 let analysisTab='reports',reportsFilter='all',reportsSearch='';
@@ -2693,7 +2694,7 @@ function snapshotReport(a,reason){
  if(!a?.report)return;
  a.reportHistory=Array.isArray(a.reportHistory)?a.reportHistory:[];
  const r=a.report;
- a.reportHistory.unshift({ts:Date.now(),operator:operatorName(),reason,report:{closed:!!r.closed,draft:!!r.draft,needsReview:!!r.needsReview,outcome:r.outcome||null,notes:r.notes||'',actions:[...(r.actions||[])],completedAt:r.completedAt||null}});
+ a.reportHistory.unshift({ts:Date.now(),operator:operatorName(),reason,report:{closed:!!r.closed,draft:!!r.draft,needsReview:!!r.needsReview,outcome:r.outcome||null,notes:r.notes||'',actions:[...(r.actions||[])],completedAt:r.completedAt||null,critical:!!a.critical,criticalNotes:a.criticalNotes||''}});
  a.reportHistory=a.reportHistory.slice(0,24);
 }
 function archiveInvalidInventory(id,reason){
@@ -3224,7 +3225,7 @@ function nav(target){if(target==='inventory'){analysisTab='inventory';target='an
 function openModal(title,html,type,wide=false){if(activeIncomingAlertId){pendingIncomingAlertId=activeIncomingAlertId;hideIncomingNotification();}lastFocus=document.activeElement;modal=type;$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('modalBody').scrollTop=0;$('dialog').classList.toggle('wide',wide);$('dialog').classList.toggle('support-dialog',type==='support');$('modalRoot').classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>$('closeModal').focus(),40);}
 function closeMobileAux(){let el=$('mobileAuxMenu'),toggle=$('mobileAuxToggle');if(el)el.hidden=true;if(toggle)toggle.setAttribute('aria-expanded','false');}
 function toggleMobileAux(){const el=$('mobileAuxMenu');if(!el)return;el.hidden=!el.hidden;$('mobileAuxToggle').setAttribute('aria-expanded',String(!el.hidden));}
-function closeModal(){if(modal==='deterrence'){stopDeterrenceAudio();}let r=$('modalRoot');r.classList.remove('open');document.body.style.overflow='';modal='';selectedAlertId=null;if(lastFocus&&document.contains(lastFocus))lastFocus.focus();showPendingIncomingNotification();}
+function closeModal(){if(modal==='deterrence'){stopDeterrenceAudio();}if(modal==='report')reportReturnAlertId=null;let r=$('modalRoot');r.classList.remove('open');document.body.style.overflow='';modal='';selectedAlertId=null;if(lastFocus&&document.contains(lastFocus))lastFocus.focus();showPendingIncomingNotification();}
 function notify(msg){let t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(notify.timer);notify.timer=setTimeout(()=>t.classList.remove('show'),3600);}
 function detailHtml(a){
  const exp=clipExpired(a),pending=a.status==='pending'&&!exp,fromHome=detailOrigin==='home',can=canReview(a);
@@ -3244,7 +3245,7 @@ function detailHtml(a){
  <div class="report-detail-actions"><button type="button" data-report-open="${esc(a.id)}">${a.report?.needsReview?'Rivedi rapporto':a.report?.closed?'Apri rapporto':a.report?.draft?'Continua rapporto':a.status==='dismissed'?'Compila rapporto (facoltativo)':'Completa rapporto'}</button></div></section>`}
  ${logActionHtml(a)}`;
 }
-function showAlert(id){let a=alertById(id);if(!a)return;detailOrigin=screen;selectedAlertId=id;openModal(clipExpired(a)?'Esito segnalazione':'Dettaglio segnalazione',detailHtml(a),'detail');}
+function showAlert(id){let a=alertById(id);if(!a)return;if(modal==='report')reportReturnAlertId=null;detailOrigin=screen;selectedAlertId=id;openModal(clipExpired(a)?'Esito segnalazione':'Dettaglio segnalazione',detailHtml(a),'detail');}
 function warnLinkedChange(a){return !((a.report?.closed||a.report?.draft||state.inventory.some(i=>i.alertId===a.id))&&!window.confirm('Esistono rapporto o prodotti collegati. La modifica dell’esito non li cancellerà, ma potrebbe richiedere una revisione del rapporto. Continuare?'));}
 function applyOutcome(a,status,reason='',selection=''){
  if(!a||a.status==='pending'||!['confirmed','dismissed'].includes(status))return false;
@@ -3459,6 +3460,9 @@ function returnToGuideAlert(){
  showAlert(ctx.id);
 }
 function closeGuideOrModal(){
+ if(modal==='report'&&reportReturnAlertId&&alertById(reportReturnAlertId)){
+  const id=reportReturnAlertId;reportReturnAlertId=null;showAlert(id);return;
+ }
  if(modal==='contextGuide'){
   if(selectedAlertId){showAlert(selectedAlertId);return;}
   closeModal();nav('home');return;
@@ -3688,10 +3692,10 @@ function exportAnalysisAlerts(){
  downloadCsv('EOS_Intelligence_segnalazioni.csv',data);
 }
 function exportAnalysisReports(){
- const rows=filteredReportRows(),data=[['ID segnalazione','Data evento','Ora','Telecamera','Area / zona','Stato evento','Stato rapporto','Esito finale','Azioni del personale','Altro (azione)','Escalation critica','Note operative','Merce coinvolta','Quantità coinvolta','Valore commerciale coinvolto EUR','Quantità recuperata','Valore commerciale recuperato EUR','Quantità non recuperata','Valore commerciale non recuperato EUR']];
+ const rows=filteredReportRows(),data=[['ID segnalazione','Data evento','Ora','Telecamera','Area / zona','Stato evento','Stato rapporto','Esito finale','Azioni del personale','Altro (azione)','Escalation critica','Note operative','Note Escalation critica','Merce coinvolta','Quantità coinvolta','Valore commerciale coinvolto EUR','Quantità recuperata','Valore commerciale recuperato EUR','Quantità non recuperata','Valore commerciale non recuperato EUR']];
  for(const a of rows){
   const report=a.report||{},items=report.closed?reportMerchItems(a):report.itemsDraft||[];
-  data.push([a.id,formatDate(a.ts),formatTime(a.ts),a.camera,a.area||'',viewStatus(a),report.needsReview?'Da rivedere':report.closed?'Completato':report.draft?'Bozza':'Da completare',REPORT_OUTCOMES[report.outcome]||'',(report.actions||[]).join(', '),report.other||'',a.critical?'Sì':'No',combinedReportNotes(a),items.map(i=>i.name+' ×'+i.qty+' (recuperati '+merchRecoveredQty(i)+')').join(' | '),merchandiseCount(items),merchandiseValue(items).toFixed(2),merchandiseCount(items,'recovered'),merchandiseValue(items,'recovered').toFixed(2),merchandiseCount(items,'lost'),merchandiseValue(items,'lost').toFixed(2)]);
+  data.push([a.id,formatDate(a.ts),formatTime(a.ts),a.camera,a.area||'',viewStatus(a),report.needsReview?'Da rivedere':report.closed?'Completato':report.draft?'Bozza':'Da completare',REPORT_OUTCOMES[report.outcome]||'',(report.actions||[]).join(', '),report.other||'',a.critical?'Sì':'No',report.notes||'',a.criticalNotes||'',items.map(i=>i.name+' ×'+i.qty+' (recuperati '+merchRecoveredQty(i)+')').join(' | '),merchandiseCount(items),merchandiseValue(items).toFixed(2),merchandiseCount(items,'recovered'),merchandiseValue(items,'recovered').toFixed(2),merchandiseCount(items,'lost'),merchandiseValue(items,'lost').toFixed(2)]);
  }
  downloadCsv('EOS_Intelligence_rapporti.csv',data);
 }
@@ -3719,10 +3723,6 @@ function resetReportMerchEditor(){
  for(const [id,val] of [['reportItemName',''],['reportItemQty','1'],['reportItemPrice',''],['reportItemRecovery','no'],['reportItemRecovered','1']]){const el=$(id);if(el)el.value=val;}
  const btn=$('reportStageItem');if(btn)btn.textContent='Aggiungi al rapporto';reportRecoveryInput();
 }
-function combinedReportNotes(a){
- const operational=String(a.report?.notes||'').trim(),legacy=String(a.criticalNotes||'').trim();
- return legacy&&!operational.includes(legacy)?[operational,legacy].filter(Boolean).join('\n'):operational;
-}
 function autosizeReportTextarea(el){
  if(!el||!el.matches?.('#reportForm textarea'))return;
  el.style.height='0px';const rows=Number(el.getAttribute('rows'))||2;const minH=rows===1?41:63;el.style.height=Math.max(minH,el.scrollHeight)+'px';
@@ -3733,10 +3733,12 @@ function reportViewerField(label,value){
 }
 function openReport(id,edit=false){
  const a=alertById(id);if(!a||a.status==='pending'){notify('Prima verifica la segnalazione');return;}
+ if(modal==='detail'&&selectedAlertId===id)reportReturnAlertId=id;
+ else if(modal!=='report')reportReturnAlertId=null;
  selectedAlertId=id;stagedMerchEditIndex=-1;
  const r=a.report||{},acts=r.actions||[r.action].filter(Boolean),linked=reportMerchItems(a);
  pendingReportItems=(r.draft||r.needsReview)?(r.itemsDraft||[]).map(reportMerchSnapshot):linked.map(reportMerchSnapshot);
- const reportChoice=a.status==='confirmed'?(r.needsReview?(a.reviewOutcome||r.preliminaryOutcome):r.preliminaryOutcome!==undefined?r.preliminaryOutcome:(r.outcome||a.reviewOutcome)):null;
+ const reportChoice=a.status==='confirmed'?(r.closed&&edit?r.outcome:r.needsReview?(a.reviewOutcome||r.preliminaryOutcome):r.preliminaryOutcome!==undefined?r.preliminaryOutcome:(r.outcome||a.reviewOutcome)):null;
  const intro=`<p class="report-modal-intro">Segnalazione <strong>${esc(id)}</strong> · ${esc(a.camera)} · ${formatDate(a.ts)}</p>
  <div class="report-link-summary"><strong>Esito segnalazione:</strong> <span class="eos-inline-status">${statusColorDot(a)}${esc(viewStatus(a))}</span></div>`;
  if(r.closed&&!edit){
@@ -3749,7 +3751,8 @@ function openReport(id,edit=false){
   ${reportViewerField('Azioni del personale',actionLabels||'Nessuna azione registrata')}
   ${reportViewerField('Gestione della sicurezza',a.critical?'Escalation critica segnalata':'Non segnalata')}
   ${reportViewerField('Merce coinvolta, recuperata e non recuperata',merchList+sums||'Nessuna merce registrata')}
-  ${combinedReportNotes(a)?reportViewerField('Note operative',esc(combinedReportNotes(a)).replace(/\n/g,'<br>')):''}
+  ${r.notes?reportViewerField('Note operative',esc(r.notes).replace(/\n/g,'<br>')):''}
+  ${a.criticalNotes?reportViewerField('Note Escalation critica',esc(a.criticalNotes).replace(/\n/g,'<br>')):''}
   <div class="report-form-actions report-view-actions"><button type="button" class="primary-btn" data-report-modify="${esc(id)}">${icon('edit')} Modifica rapporto</button></div>
   </div>`;
   openModal('Rapporto evento',html,'report',true);return;
@@ -3765,6 +3768,7 @@ function openReport(id,edit=false){
  <div class="form-group" id="reportOtherWrap" ${acts.includes('Altro (specificare)')?'':'hidden'}><label for="reportOther">Specifica l'altra azione</label><textarea id="reportOther" rows="1" maxlength="350">${esc(r.other||'')}</textarea></div>
  <div class="report-form-section">Gestione della sicurezza (facoltativa)</div>
  <label class="eos-check-option"><input type="checkbox" id="reportCritical" ${a.critical?'checked':''}><span>Situazione critica segnalata</span></label>
+ <div class="form-group" id="reportCriticalNotesWrap" ${a.critical||a.criticalNotes?'':'hidden'}><label for="reportCriticalNotes">Note Escalation critica (facoltative)</label><textarea id="reportCriticalNotes" rows="2" maxlength="800">${esc(a.criticalNotes||'')}</textarea></div>
  <div id="reportMerchSection" ${a.status!=='confirmed'||!['theft','attempt'].includes(reportChoice)?'hidden':''}>
  <div class="report-form-section">Merce coinvolta (facoltativa)</div>
  <div id="reportItemsSummary" class="eos-items-list"></div><div id="reportItemsTotals" class="eos-r20-merch-totals"></div>
@@ -3778,7 +3782,7 @@ function openReport(id,edit=false){
  <div class="eos-r20-merchline-buttons"><button type="button" class="primary-btn" id="reportStageItem">Aggiungi al rapporto</button><button type="button" class="outline-btn" data-merch-cancel>Chiudi</button></div></div>
  ${archived.length?`<details class="eos-revision-log"><summary>Registrazioni archiviate · da rivedere se necessario (${archived.length})</summary>${archived.map(i=>`<div class="eos-r20-archived-row"><span>${esc(i.name)} · ${i.qty} pezzi · ${esc(i.archiveReason||'Rettifica')}</span><button type="button" class="outline-btn" data-merch-restore="${esc(i.id)}">Riprendi nel rapporto</button></div>`).join('')}</details>`:''}
  </div>
- <div class="report-form-section">Note operative (facoltative)</div><div class="form-group"><textarea id="reportNotes" rows="2" maxlength="1500" placeholder="">${esc(combinedReportNotes(a))}</textarea></div>
+ <div class="report-form-section">Note operative (facoltative)</div><div class="form-group"><textarea id="reportNotes" rows="2" maxlength="1500" placeholder="">${esc(r.notes||'')}</textarea></div>
  ${completedEdit?`<div class="form-group"><label for="reportRevisionReason">Motivo della rettifica (se modifichi merce o esito)</label><input id="reportRevisionReason" maxlength="220" placeholder="Es. recupero successivo o correzione quantità"></div>`:''}
  <div class="report-form-actions">${completedEdit?`<button type="button" class="outline-btn" data-report-cancel-edit="${esc(id)}">Annulla</button><button type="submit" class="primary-btn">Salva modifiche</button>`:`<button type="button" class="outline-btn" data-save-report-draft="${esc(id)}">Salva bozza</button><button type="submit" class="primary-btn">Completa rapporto</button>`}</div></form>`;
  openModal(completedEdit?'Modifica rapporto':'Completa rapporto evento',html,'report',true);
@@ -3823,10 +3827,14 @@ function commitReport(id,draft=false){
  if(actions.includes('Altro (specificare)')&&!other){notify('Specifica l’azione selezionata come Altro');return;}
  const critical=$('reportCritical')?.checked||false;
  if(a.critical&&!critical&&!window.confirm('Rimuovere una situazione critica già segnalata? La correzione resterà registrata nello storico.'))return;
- const notes=String($('reportNotes')?.value||'').trim().slice(0,1500),oldReport=a.report||{},prevCritical=!!a.critical;
+ const notes=String($('reportNotes')?.value||'').trim().slice(0,1500),criticalNotes=String($('reportCriticalNotes')?.value??a.criticalNotes??'').trim().slice(0,800),oldReport=a.report||{},prevCritical=!!a.critical;
  const oldCurrent=state.inventory.filter(i=>i.alertId===id&&!i.archivedAt).map(reportMerchSnapshot);
  const merchChanged=JSON.stringify(oldCurrent.map(i=>({...i})).sort((x,y)=>String(x.sourceId).localeCompare(String(y.sourceId))))!==JSON.stringify(staged.map(i=>({...i})).sort((x,y)=>String(x.sourceId).localeCompare(String(y.sourceId))));
  const reason=String($('reportRevisionReason')?.value||'').trim().slice(0,220);
+ // Evita rettifiche e timestamp fittizi se tutti i dati sono identici.
+ const sameActions=JSON.stringify([...new Set(actions)].sort())===JSON.stringify([...new Set(oldReport.actions||[])].sort());
+ const unchanged=completedEdit&&!merchChanged&&outcome===(oldReport.outcome||null)&&sameActions&&other===String(oldReport.other||'').trim()&&notes===String(oldReport.notes||'').trim()&&critical===prevCritical&&criticalNotes===String(a.criticalNotes||'').trim();
+ if(unchanged){openReport(id,false);notify('Nessuna modifica da salvare');return;}
  if(completedEdit&&(merchChanged||outcome!==oldReport.outcome)&&!reason){notify('Indica il motivo della rettifica di merce o esito');return;}
  if(oldReport.closed||oldReport.needsReview||oldReport.draft)snapshotReport(a,completedEdit?'Rettifica rapporto: '+(reason||'Correzione dettagli'):isDraft?'Aggiornamento bozza':'Completamento rapporto');
  a.report={needsReview:isDraft&&!!oldReport.needsReview,closed:!isDraft,draft:isDraft,
@@ -3835,7 +3843,7 @@ function commitReport(id,draft=false){
   actions,other,notes,completedAt:isDraft?null:(completedEdit?(oldReport.completedAt||Date.now()):Date.now()),updatedAt:Date.now()};
  if(a.status==='confirmed'&&Object.hasOwn(REPORT_OUTCOMES,outcome))a.reviewOutcome=outcome;
  if(a.status==='dismissed')a.reviewOutcome=null;
- a.critical=critical;a.criticalNotes='';
+ a.critical=critical;a.criticalNotes=criticalNotes; // Mantieni le note dedicate fuori dalle note generali.
  if(prevCritical!==critical)recordAction(a,critical?'Escalation critica segnalata dal rapporto':'Escalation critica rimossa dal rapporto');
  if(!isDraft)reconcileReportMerchandise(a,staged,reason||'Rapporto completato');
  pendingReportItems=[];
@@ -3949,6 +3957,7 @@ $('guideContent').addEventListener('input',e=>{
  $('eosStatsPeriod').addEventListener('change',e=>{statsPeriod=e.target.value;statsDetailLimit=8;renderAnalysis();});
  $('eosStatsStatus').addEventListener('change',e=>{statsStatus=e.target.value;statsDetail=null;renderAnalysis();});
  document.addEventListener('change',e=>{
+   if(e.target.id==='reportCritical'){const wrap=$('reportCriticalNotesWrap');if(wrap)wrap.hidden=!e.target.checked&&!String($('reportCriticalNotes')?.value||'').trim();}
   if(e.target.id==='historyPeriod'){historyPeriod=e.target.value;historyVisibleLimit=10;renderHistory();}
   if(e.target.id==='historyStatus'){historyStatus=e.target.value;historyOutcome='all';historyVisibleLimit=10;renderHistory();}
   if(e.target.id==='historyOutcome'){historyOutcome=e.target.value;historyVisibleLimit=10;renderHistory();}
